@@ -1,0 +1,270 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Organization/Company model
+model Organization {
+  id                String   @id @default(uuid())
+  name              String
+  slug              String   @unique
+  stripeCustomerId  String?  @unique
+  subscriptionTier  SubscriptionTier @default(STARTER)
+  subscriptionStatus SubscriptionStatus @default(ACTIVE)
+  monthlyDocumentLimit Int @default(100)
+  documentsUsedThisMonth Int @default(0)
+  billingCycleStart DateTime @default(now())
+  settings          Json     @default("{}")
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  users             User[]
+  documents         Document[]
+  prompts           Prompt[]
+  auditLogs         AuditLog[]
+  llmConfigs        LLMConfig[]
+
+  @@index([slug])
+  @@index([stripeCustomerId])
+}
+
+enum SubscriptionTier {
+  STARTER
+  PROFESSIONAL
+  ENTERPRISE
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  TRIALING
+}
+
+// User model
+model User {
+  id             String   @id @default(uuid())
+  email          String   @unique
+  passwordHash   String
+  firstName      String
+  lastName       String
+  role           UserRole @default(MEMBER)
+  isActive       Boolean  @default(true)
+  lastLoginAt    DateTime?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  documents      Document[]
+  auditLogs      AuditLog[]
+
+  @@unique([email, organizationId])
+  @@index([organizationId])
+  @@index([email])
+}
+
+enum UserRole {
+  OWNER
+  ADMIN
+  MEMBER
+  VIEWER
+}
+
+// Document model
+model Document {
+  id              String   @id @default(uuid())
+  filename        String
+  originalName    String
+  mimeType        String
+  fileSize        Int
+  storageKey      String   // S3 key or storage path
+  contentHash     String?  // SHA-256 hash of document content
+  hashStoredForAudit Boolean @default(false)
+  status          DocumentStatus @default(PENDING)
+  extractedText   String?  @db.Text
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  organizationId  String
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  uploadedById    String
+  uploadedBy      User @relation(fields: [uploadedById], references: [id])
+
+  validations     Validation[]
+  auditLogs       AuditLog[]
+
+  @@index([organizationId])
+  @@index([uploadedById])
+  @@index([status])
+  @@index([contentHash])
+}
+
+enum DocumentStatus {
+  PENDING
+  PROCESSING
+  VALIDATED
+  FAILED
+}
+
+// Prompt template model
+model Prompt {
+  id              String   @id @default(uuid())
+  name            String
+  description     String?
+  promptTemplate  String   @db.Text
+  category        String?
+  isActive        Boolean  @default(true)
+  isDefault       Boolean  @default(false)
+  version         Int      @default(1)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  organizationId  String
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  validations     Validation[]
+
+  @@unique([organizationId, name])
+  @@index([organizationId])
+  @@index([isActive])
+}
+
+// LLM Configuration model
+model LLMConfig {
+  id              String   @id @default(uuid())
+  provider        LLMProvider
+  modelName       String
+  displayName     String
+  isEnabled       Boolean  @default(true)
+  isDefault       Boolean  @default(false)
+  apiKeyEncrypted String?  // Encrypted API key if org provides their own
+  settings        Json     @default("{}") // temperature, max_tokens, etc.
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  organizationId  String
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  validations     Validation[]
+
+  @@unique([organizationId, provider, modelName])
+  @@index([organizationId])
+}
+
+enum LLMProvider {
+  OPENAI
+  ANTHROPIC
+  AZURE_OPENAI
+  CUSTOM
+}
+
+// Validation result model
+model Validation {
+  id              String   @id @default(uuid())
+  status          ValidationStatus @default(PENDING)
+  result          ValidationResult?
+  score           Float?   // Optional numeric score 0-100
+  findings        Json?    // Structured findings/issues
+  rawResponse     String?  @db.Text // Raw LLM response
+  tokensUsed      Int?
+  processingTimeMs Int?
+  errorMessage    String?
+  createdAt       DateTime @default(now())
+  completedAt     DateTime?
+
+  documentId      String
+  document        Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  promptId        String
+  prompt          Prompt @relation(fields: [promptId], references: [id])
+
+  llmConfigId     String
+  llmConfig       LLMConfig @relation(fields: [llmConfigId], references: [id])
+
+  auditLogs       AuditLog[]
+
+  @@index([documentId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum ValidationStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum ValidationResult {
+  PASS
+  FAIL
+  WARNING
+  NEEDS_REVIEW
+}
+
+// Audit log model
+model AuditLog {
+  id              String   @id @default(uuid())
+  action          AuditAction
+  entityType      String   // 'document', 'validation', 'prompt', etc.
+  entityId        String
+  details         Json?    // Additional context
+  documentHash    String?  // Stored if hashStoredForAudit is true
+  ipAddress       String?
+  userAgent       String?
+  createdAt       DateTime @default(now())
+
+  organizationId  String
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  userId          String?
+  user            User? @relation(fields: [userId], references: [id])
+
+  documentId      String?
+  document        Document? @relation(fields: [documentId], references: [id])
+
+  validationId    String?
+  validation      Validation? @relation(fields: [validationId], references: [id])
+
+  @@index([organizationId])
+  @@index([userId])
+  @@index([entityType, entityId])
+  @@index([createdAt])
+  @@index([action])
+}
+
+enum AuditAction {
+  // Document actions
+  DOCUMENT_UPLOADED
+  DOCUMENT_DELETED
+  DOCUMENT_VIEWED
+
+  // Validation actions
+  VALIDATION_STARTED
+  VALIDATION_COMPLETED
+  VALIDATION_FAILED
+
+  // Prompt actions
+  PROMPT_CREATED
+  PROMPT_UPDATED
+  PROMPT_DELETED
+
+  // User actions
+  USER_LOGIN
+  USER_LOGOUT
+  USER_CREATED
+  USER_UPDATED
+  USER_DELETED
+
+  // Organization actions
+  ORG_SETTINGS_UPDATED
+  LLM_CONFIG_UPDATED
+  SUBSCRIPTION_CHANGED
+}
