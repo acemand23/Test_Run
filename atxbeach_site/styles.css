@@ -206,23 +206,23 @@ a { color: inherit; text-decoration: none; }
 .breadcrumb a:hover { color: #fff; }
 
 /* ---------- Home tiles ---------- */
-.tiles-section { margin-top: -36px; position: relative; z-index: 3; padding-bottom: 20px; }
-.tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.tiles-section { margin-top: 0; position: relative; z-index: 3; padding: 0; }
+.tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
 .tile {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    min-height: 320px;
+    min-height: 420px;
     padding: 28px;
-    border-radius: var(--radius);
+    border-radius: 0;
     color: #fff;
     overflow: hidden;
-    box-shadow: var(--shadow);
+    box-shadow: none;
     isolation: isolate;
     transition: transform 0.2s, box-shadow 0.2s;
 }
-.tile:hover { transform: translateY(-4px); box-shadow: 0 26px 50px rgba(7, 28, 39, 0.28); }
+.tile:hover { transform: none; box-shadow: none; }
 .tile::before {
     content: "";
     position: absolute;
@@ -240,12 +240,12 @@ a { color: inherit; text-decoration: none; }
     z-index: -1;
     background: linear-gradient(180deg, rgba(7, 28, 39, 0.05) 0%, rgba(7, 28, 39, 0.78) 100%);
 }
-.tile-play::before    { background-color: #0c5a73; background-image: url(images/play.svg); }
-.tile-train::before   { background-color: #b9341a; background-image: url(images/train.svg); }
-.tile-juniors::before { background-color: #e07b0a; background-image: url(images/juniors.svg); }
-.tile-events::before  { background-color: #241b6e; background-image: url(images/events.svg); }
-.tile .kicker { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; opacity: 0.9; }
-.tile h2 { font-size: 2rem; font-weight: 900; margin-top: 6px; letter-spacing: -0.5px; }
+.tile-play::before    { background-image: url(images/photos/action-43.jpg); }
+.tile-train::before   { background-image: url(images/photos/venue-9468.jpg); }
+.tile-juniors::before { background-image: url(images/photos/venue-9471.jpg); }
+.tile-events::before  { background-image: url(images/photos/league-coed3s.jpg); }
+.tile .kicker { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; opacity: 0.9; }
+.tile h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0; margin-top: 6px; }
 .tile p { margin-top: 8px; font-size: 0.98rem; color: rgba(255, 255, 255, 0.92); max-width: 38ch; }
 .tile-cta { margin-top: 18px; display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 0.95rem; color: #fff; }
 .tile-cta .arrow { transition: transform 0.2s; }
