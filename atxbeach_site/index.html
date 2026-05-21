@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATX Beach — Austin's Largest Sand Volleyball Venue</title>
+    <meta name="description" content="ATX Beach is the largest sand volleyball venue in Austin — 8 pro courts, open play and reservations, adult training and clinics, ATX Juniors youth programs, tournaments, major events, and the Turtle Shack bar. Book, register, and find your next session in one place.">
+    <meta property="og:title" content="ATX Beach — Austin's Largest Sand Volleyball Venue">
+    <meta property="og:description" content="Play, train, compete, and celebrate on 8 pro sand courts. Book a court, join open play, register for tournaments, and more.">
+    <meta property="og:type" content="website">
+    <style>
+        :root {
+            --navy: #0c2b3a;
+            --navy-deep: #071c27;
+            --teal: #1aa6b7;
+            --teal-bright: #25c3d6;
+            --sand: #f4ead7;
+            --sand-soft: #faf4e9;
+            --coral: #ff6b4a;
+            --coral-deep: #e8512f;
+            --sun: #ffc14d;
+            --ink: #15323f;
+            --muted: #5d7884;
+            --white: #ffffff;
+            --radius: 18px;
+            --shadow: 0 18px 40px rgba(7, 28, 39, 0.18);
+            --shadow-soft: 0 8px 20px rgba(7, 28, 39, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif;
+            color: var(--ink);
+            background: var(--sand-soft);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .wrap { max-width: 1180px; margin: 0 auto; padding: 0 22px; }
+
+        /* ---------- Top nav ---------- */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(7, 28, 39, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 14px 22px;
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--white);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            font-size: 1.2rem;
+        }
+        .brand .dot {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: var(--coral);
+            box-shadow: 0 0 0 4px rgba(255, 107, 74, 0.25);
+        }
+        .nav-links {
+            display: flex;
+            gap: 6px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.82);
+            font-weight: 600;
+            font-size: 0.92rem;
+            padding: 8px 12px;
+            border-radius: 999px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .nav-links a:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+        .nav-cta {
+            background: var(--coral);
+            color: #fff !important;
+        }
+        .nav-cta:hover { background: var(--coral-deep) !important; }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            position: relative;
+            color: var(--white);
+            background:
+                radial-gradient(1100px 500px at 80% -10%, rgba(37, 195, 214, 0.45), transparent 60%),
+                radial-gradient(900px 500px at 0% 120%, rgba(255, 107, 74, 0.4), transparent 55%),
+                linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+            overflow: hidden;
+        }
+        .hero-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 70px 22px 56px;
+            position: relative;
+            z-index: 2;
+        }
+        .eyebrow {
+            display: inline-block;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--sun);
+            margin-bottom: 14px;
+        }
+        .hero h1 {
+            font-size: clamp(2.1rem, 5.5vw, 3.7rem);
+            line-height: 1.05;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            max-width: 16ch;
+        }
+        .hero p {
+            margin-top: 16px;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 56ch;
+        }
+        .hero-actions {
+            margin-top: 26px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 0.98rem;
+            padding: 13px 22px;
+            border-radius: 999px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: transform 0.15s, background 0.2s, border-color 0.2s;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-primary { background: var(--coral); color: #fff; }
+        .btn-primary:hover { background: var(--coral-deep); }
+        .btn-ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.5); }
+        .btn-ghost:hover { border-color: #fff; background: rgba(255, 255, 255, 0.1); }
+
+        /* ---------- Tiles ---------- */
+        .tiles-section {
+            margin-top: -36px;
+            position: relative;
+            z-index: 3;
+            padding-bottom: 20px;
+        }
+        .tiles {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+        .tile {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 320px;
+            padding: 28px;
+            border-radius: var(--radius);
+            color: #fff;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            isolation: isolate;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .tile:hover { transform: translateY(-4px); box-shadow: 0 26px 50px rgba(7, 28, 39, 0.28); }
+        .tile::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.4s ease;
+        }
+        .tile:hover::before { transform: scale(1.06); }
+        .tile::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(180deg, rgba(7, 28, 39, 0.05) 0%, rgba(7, 28, 39, 0.78) 100%);
+        }
+        .tile-play::before    { background: linear-gradient(150deg, #1aa6b7, #0c5a73); }
+        .tile-train::before   { background: linear-gradient(150deg, #ff6b4a, #b9341a); }
+        .tile-juniors::before { background: linear-gradient(150deg, #ffc14d, #e07b0a); }
+        .tile-events::before  { background: linear-gradient(150deg, #5a4fcf, #241b6e); }
+
+        .tile .kicker {
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            opacity: 0.9;
+        }
+        .tile h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-top: 6px;
+            letter-spacing: -0.5px;
+        }
+        .tile p {
+            margin-top: 8px;
+            font-size: 0.98rem;
+            color: rgba(255, 255, 255, 0.92);
+            max-width: 38ch;
+        }
+        .tile-cta {
+            margin-top: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: #fff;
+        }
+        .tile-cta .arrow { transition: transform 0.2s; }
+        .tile:hover .tile-cta .arrow { transform: translateX(5px); }
+        .tile .powered {
+            margin-top: 4px;
+            font-size: 0.74rem;
+            opacity: 0.75;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+        }
+
+        /* ---------- Quick actions ---------- */
+        .section { padding: 56px 0; }
+        .section-head { text-align: center; margin-bottom: 32px; }
+        .section-head .eyebrow { color: var(--teal); }
+        .section-head h2 {
+            font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+            font-weight: 900;
+            color: var(--ink);
+            letter-spacing: -0.5px;
+        }
+        .section-head p { color: var(--muted); margin-top: 8px; max-width: 60ch; margin-left: auto; margin-right: auto; }
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+        .quick {
+            background: #fff;
+            border: 1px solid #e7ddc9;
+            border-radius: 14px;
+            padding: 20px 18px;
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.15s, border-color 0.2s;
+        }
+        .quick:hover { transform: translateY(-3px); border-color: var(--teal); }
+        .quick h3 { font-size: 1.05rem; font-weight: 800; color: var(--ink); }
+        .quick p { font-size: 0.86rem; color: var(--muted); margin-top: 4px; }
+        .quick .tag {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            color: var(--teal);
+            background: rgba(26, 166, 183, 0.1);
+            padding: 5px 10px;
+            border-radius: 999px;
+        }
+
+        /* ---------- Policies strip ---------- */
+        .policies { background: var(--navy); color: #fff; }
+        .policies .section-head h2 { color: #fff; }
+        .policies .section-head .eyebrow { color: var(--sun); }
+        .policies .section-head p { color: rgba(255,255,255,0.75); }
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+        .policy {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+            padding: 18px 20px;
+            font-size: 0.95rem;
+        }
+        .policy strong { display: block; color: var(--sun); font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+        .policy.note { background: rgba(255, 107, 74, 0.14); border-color: rgba(255, 107, 74, 0.4); }
+
+        /* ---------- Contact ---------- */
+        .contact { background: var(--sand); }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .contact-info h2 {
+            font-size: clamp(1.7rem, 4vw, 2.4rem);
+            font-weight: 900;
+            color: var(--ink);
+            letter-spacing: -0.5px;
+        }
+        .contact-info p.lead { color: var(--muted); margin-top: 10px; max-width: 46ch; }
+        .info-list { list-style: none; margin-top: 22px; display: grid; gap: 16px; }
+        .info-list li { display: flex; gap: 14px; align-items: flex-start; }
+        .info-list .label { font-weight: 800; min-width: 92px; color: var(--ink); }
+        .info-list a { color: var(--coral-deep); font-weight: 700; }
+        .route-note {
+            margin-top: 22px;
+            background: #fff;
+            border-left: 4px solid var(--teal);
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-size: 0.9rem;
+            color: var(--muted);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .lead-form {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow);
+        }
+        .lead-form h3 { font-size: 1.3rem; font-weight: 900; color: var(--ink); }
+        .lead-form p.sub { color: var(--muted); font-size: 0.92rem; margin-top: 4px; margin-bottom: 18px; }
+        .field { margin-bottom: 14px; }
+        .field label { display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 6px; color: var(--ink); }
+        .field input, .field select, .field textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #d8cdb6;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: var(--sand-soft);
+            color: var(--ink);
+        }
+        .field input:focus, .field select:focus, .field textarea:focus {
+            outline: none;
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(26, 166, 183, 0.18);
+            background: #fff;
+        }
+        .field textarea { resize: vertical; min-height: 96px; }
+        .lead-form .btn-primary { width: 100%; justify-content: center; margin-top: 4px; }
+        .form-success {
+            display: none;
+            margin-top: 14px;
+            padding: 12px 14px;
+            background: rgba(26, 166, 183, 0.12);
+            border: 1px solid var(--teal);
+            border-radius: 10px;
+            color: var(--ink);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+            background: var(--navy-deep);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 36px 0;
+        }
+        .foot-inner { display: flex; flex-wrap: wrap; gap: 18px; justify-content: space-between; align-items: center; }
+        .foot-links { display: flex; flex-wrap: wrap; gap: 16px; list-style: none; }
+        .foot-links a { color: rgba(255, 255, 255, 0.75); font-weight: 600; font-size: 0.9rem; }
+        .foot-links a:hover { color: #fff; }
+        .foot-brand { color: #fff; font-weight: 800; letter-spacing: 0.5px; }
+        .foot-fine { font-size: 0.8rem; opacity: 0.6; margin-top: 14px; width: 100%; }
+
+        /* ---------- Mobile CTA bar ---------- */
+        .mobile-cta {
+            display: none;
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 60;
+            background: rgba(7, 28, 39, 0.96);
+            backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 12px;
+            gap: 8px;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .mobile-cta a {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 8px 4px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .mobile-cta a.hot { background: var(--coral); color: #fff; }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 900px) {
+            .quick-grid { grid-template-columns: repeat(2, 1fr); }
+            .policy-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; gap: 28px; }
+        }
+        @media (max-width: 720px) {
+            .nav-links { display: none; }
+            .tiles { grid-template-columns: 1fr; }
+            .tile { min-height: 240px; }
+            .mobile-cta { display: grid; }
+            body { padding-bottom: 64px; }
+            .hero-inner { padding: 54px 22px 50px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="#top" class="brand"><span class="dot"></span> ATX BEACH</a>
+        <ul class="nav-links">
+            <li><a href="#play">Play</a></li>
+            <li><a href="#train">Train</a></li>
+            <li><a href="#juniors">ATX Juniors</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#policies">Venue Info</a></li>
+            <li><a href="#contact" class="nav-cta">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+    <div class="hero-inner">
+        <span class="eyebrow">Austin's Largest Sand Volleyball Venue</span>
+        <h1>Play. Train. Compete. Celebrate.</h1>
+        <p>8 pro sand courts, 200-ft shade runways, adult clinics, junior programs, tournaments, and the Turtle Shack bar — all in one place. Pick what you came to do and get on the sand.</p>
+        <div class="hero-actions">
+            <a href="#tiles" class="btn btn-primary">Get Started</a>
+            <a href="#contact" class="btn btn-ghost">Plan an Event</a>
+        </div>
+    </div>
+</header>
+
+<!-- ============ 4 TILES ============ -->
+<section class="tiles-section" id="tiles">
+    <div class="wrap">
+        <div class="tiles">
+
+            <a href="https://atxbeach.com/book-a-court/" target="_blank" rel="noopener" class="tile tile-play" id="play">
+                <span class="kicker">Open Play & Courts</span>
+                <h2>Play</h2>
+                <p>Reserve one of our 8 pro sand courts or drop into open play. Check in, sign your waiver, and grab a spot on the sand.</p>
+                <span class="tile-cta">Book &amp; Play <span class="arrow">&rarr;</span></span>
+                <span class="powered">Reservations &amp; open play via YourCourts</span>
+            </a>
+
+            <a href="https://goteamup.com/p/9142954-atx-beach/" target="_blank" rel="noopener" class="tile tile-train" id="train">
+                <span class="kicker">Adult Training & Clinics</span>
+                <h2>Train</h2>
+                <p>Level up with adult clinics, coaching from award-winning coach Will Buchanan, and memberships for every skill level.</p>
+                <span class="tile-cta">Start Training <span class="arrow">&rarr;</span></span>
+                <span class="powered">Training &amp; memberships via TeamUp</span>
+            </a>
+
+            <a href="https://juniors.atxbeach.com/" target="_blank" rel="noopener" class="tile tile-juniors" id="juniors">
+                <span class="kicker">Youth Programs</span>
+                <h2>ATX Juniors</h2>
+                <p>Camps, clinics, and competitive pathways that grow young players on and off the sand, with recruiting support.</p>
+                <span class="tile-cta">Explore Juniors <span class="arrow">&rarr;</span></span>
+                <span class="powered">Junior programs &amp; registration</span>
+            </a>
+
+            <a href="https://atxbeach.volleyballlife.com/" target="_blank" rel="noopener" class="tile tile-events" id="events">
+                <span class="kicker">Tournaments & Festivals</span>
+                <h2>Events</h2>
+                <p>Tournaments, the TruVolley Texas summer series, and ATX Fit Fest. Register and grab tickets.</p>
+                <span class="tile-cta">See Events <span class="arrow">&rarr;</span></span>
+                <span class="powered">Tournaments via VolleyballLife &middot; Tickets via TicketSocket</span>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============ QUICK ACTIONS ============ -->
+<section class="section">
+    <div class="wrap">
+        <div class="section-head">
+            <span class="eyebrow">What do you want to do?</span>
+            <h2>Jump straight to the right place</h2>
+            <p>Every offering routes to the system that handles it — so you always book, register, or buy in the right spot.</p>
+        </div>
+        <div class="quick-grid">
+            <a href="https://atxbeach.com/book-a-court/" target="_blank" rel="noopener" class="quick">
+                <h3>Book a Court</h3>
+                <p>Reserve sand by the hour for your crew.</p>
+                <span class="tag">YourCourts</span>
+            </a>
+            <a href="https://atxbeach.com/book-a-court/" target="_blank" rel="noopener" class="quick">
+                <h3>Open Play</h3>
+                <p>Drop in, check in, and jump into games.</p>
+                <span class="tag">YourCourts</span>
+            </a>
+            <a href="https://goteamup.com/p/9142954-atx-beach/" target="_blank" rel="noopener" class="quick">
+                <h3>Adult Training</h3>
+                <p>Clinics and coaching for all levels.</p>
+                <span class="tag">TeamUp</span>
+            </a>
+            <a href="https://goteamup.com/p/9142954-atx-beach/" target="_blank" rel="noopener" class="quick">
+                <h3>Memberships</h3>
+                <p>Train more, save more, play year-round.</p>
+                <span class="tag">TeamUp</span>
+            </a>
+            <a href="https://atxbeach.volleyballlife.com/" target="_blank" rel="noopener" class="quick">
+                <h3>Tournaments</h3>
+                <p>Find active brackets and register.</p>
+                <span class="tag">VolleyballLife</span>
+            </a>
+            <a href="#events" class="quick">
+                <h3>Major Events</h3>
+                <p>ATX Fit Fest &amp; festival ticketing.</p>
+                <span class="tag">TicketSocket</span>
+            </a>
+            <a href="#contact" class="quick">
+                <h3>Private Events</h3>
+                <p>Parties, corporate &amp; group rentals.</p>
+                <span class="tag">Inquiry Form</span>
+            </a>
+            <a href="#turtle" class="quick">
+                <h3>Turtle Shack</h3>
+                <p>Food, drinks &amp; check-in on site.</p>
+                <span class="tag">On-site</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ============ POLICIES / VENUE INFO ============ -->
+<section class="section policies" id="policies">
+    <div class="wrap">
+        <div class="section-head">
+            <span class="eyebrow">Venue Info</span>
+            <h2>Good to know before you go</h2>
+            <p>8 pro courts under 200-ft shade runways, plus the <strong style="color:var(--sun);">Turtle Shack</strong> bar &mdash; 7 TVs, cold drinks, and concessions. One consistent set of rules across the whole venue: check in at Turtle Shack when required, and complete your waiver before you play.</p>
+        </div>
+        <div class="policy-grid" id="turtle">
+            <div class="policy">
+                <strong>Food</strong>
+                Any &amp; all outside food is welcome — bring the cooler.
+            </div>
+            <div class="policy">
+                <strong>Drinks</strong>
+                No outside beverages, except coffee, smoothies, and water.
+            </div>
+            <div class="policy">
+                <strong>Not Allowed</strong>
+                No dogs, no glass, and no smoking anywhere at the venue.
+            </div>
+            <div class="policy">
+                <strong>Chairs</strong>
+                Chairs are welcome — get comfortable courtside.
+            </div>
+            <div class="policy">
+                <strong>Canopies & Tents</strong>
+                Allowed, as long as they don't block walkways or others' views.
+            </div>
+            <div class="policy note">
+                <strong>Before You Play</strong>
+                Check in at Turtle Shack when required and complete your waiver first.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact" id="contact">
+    <div class="wrap">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2>Get in touch</h2>
+                <p class="lead">Questions about training, private events, sponsorships, or just where to start? Reach out and we'll route you to the right person.</p>
+                <ul class="info-list">
+                    <li><span class="label">Visit</span><a href="https://maps.google.com/?q=11000+Middle+Fiskville+Road+Bldg+E+Austin+TX+78753" target="_blank" rel="noopener">11000 Middle Fiskville Rd, Bldg E<br>Austin, TX 78753</a></li>
+                    <li><span class="label">Call / Text</span><a href="tel:+15128789459">(512) 878-9459</a></li>
+                    <li><span class="label">Email</span><a href="mailto:info@atxbeach.com">info@atxbeach.com</a></li>
+                    <li><span class="label">Hours</span><span>Open daily, 8:00 a.m. &ndash; 12:00 a.m.</span></li>
+                </ul>
+                <div class="route-note">
+                    <strong>Where your message goes:</strong> Private events &amp; sponsorship leads are routed to our events team. Training questions go to coaching. We'll get you to the right place — no need to text or email around to figure out the basics.
+                </div>
+            </div>
+
+            <form class="lead-form" id="leadForm" novalidate>
+                <h3>Send us a note</h3>
+                <p class="sub">Tell us what you're after and we'll follow up fast.</p>
+                <div class="field">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your name" required>
+                </div>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                </div>
+                <div class="field">
+                    <label for="topic">I'm interested in</label>
+                    <select id="topic" name="topic">
+                        <option>Open Play / Booking a Court</option>
+                        <option>Adult Training &amp; Clinics</option>
+                        <option>ATX Juniors</option>
+                        <option>Tournaments &amp; Events</option>
+                        <option>Memberships</option>
+                        <option>Private Events / Rentals</option>
+                        <option>Sponsorships / Partnerships</option>
+                        <option>Something else</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="How can we help?"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+                <div class="form-success" id="formSuccess">Thanks! This is a sample form — connect it to your CRM (Copper) or Mailchimp to capture real leads.</div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+    <div class="wrap">
+        <div class="foot-inner">
+            <span class="foot-brand">ATX BEACH</span>
+            <ul class="foot-links">
+                <li><a href="#play">Play</a></li>
+                <li><a href="#train">Train</a></li>
+                <li><a href="#juniors">ATX Juniors</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#policies">Venue Info</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="https://www.facebook.com/p/ATX-Beach-61553887867812/" target="_blank" rel="noopener">Facebook</a></li>
+            </ul>
+        </div>
+        <p class="foot-fine">&copy; 2026 ATX Beach &mdash; 11000 Middle Fiskville Rd, Bldg E, Austin, TX 78753. Sample homepage concept; tile CTAs route to YourCourts, TeamUp, VolleyballLife, and TicketSocket.</p>
+    </div>
+</footer>
+
+<!-- ============ MOBILE CTA BAR ============ -->
+<nav class="mobile-cta">
+    <a href="#play" class="hot">Play</a>
+    <a href="#train">Train</a>
+    <a href="#events">Events</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<script>
+(function () {
+    var form = document.getElementById('leadForm');
+    var success = document.getElementById('formSuccess');
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+        success.style.display = 'block';
+        form.querySelector('button[type="submit"]').textContent = 'Message Sent';
+    });
+})();
+</script>
+
+</body>
+</html>
