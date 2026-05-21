@@ -126,6 +126,29 @@ a { color: inherit; text-decoration: none; }
         linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
     overflow: hidden;
 }
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(90deg, rgba(7, 28, 39, 0.86) 0%, rgba(7, 28, 39, 0.55) 55%, rgba(7, 28, 39, 0.28) 100%),
+        linear-gradient(180deg, rgba(7, 28, 39, 0.32) 0%, rgba(7, 28, 39, 0.62) 100%);
+}
+.page-home    .hero::before { background-image: url(images/hero-courts.svg); }
+.page-play    .hero::before { background-image: url(images/play.svg); }
+.page-train   .hero::before { background-image: url(images/train.svg); }
+.page-juniors .hero::before { background-image: url(images/juniors.svg); }
+.page-events  .hero::before { background-image: url(images/events.svg); }
 .hero-inner {
     max-width: 1180px;
     margin: 0 auto;
@@ -205,10 +228,10 @@ a { color: inherit; text-decoration: none; }
     z-index: -1;
     background: linear-gradient(180deg, rgba(7, 28, 39, 0.05) 0%, rgba(7, 28, 39, 0.78) 100%);
 }
-.tile-play::before    { background: linear-gradient(150deg, #1aa6b7, #0c5a73); }
-.tile-train::before   { background: linear-gradient(150deg, #ff6b4a, #b9341a); }
-.tile-juniors::before { background: linear-gradient(150deg, #ffc14d, #e07b0a); }
-.tile-events::before  { background: linear-gradient(150deg, #5a4fcf, #241b6e); }
+.tile-play::before    { background-color: #0c5a73; background-image: url(images/play.svg); }
+.tile-train::before   { background-color: #b9341a; background-image: url(images/train.svg); }
+.tile-juniors::before { background-color: #e07b0a; background-image: url(images/juniors.svg); }
+.tile-events::before  { background-color: #241b6e; background-image: url(images/events.svg); }
 .tile .kicker { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; opacity: 0.9; }
 .tile h2 { font-size: 2rem; font-weight: 900; margin-top: 6px; letter-spacing: -0.5px; }
 .tile p { margin-top: 8px; font-size: 0.98rem; color: rgba(255, 255, 255, 0.92); max-width: 38ch; }
@@ -353,7 +376,12 @@ a { color: inherit; text-decoration: none; }
 .event-row .tag { font-size: 0.7rem; font-weight: 700; color: var(--accent-deep); }
 
 /* ---------- Policies strip ---------- */
-.policies { background: var(--navy); color: #fff; }
+.policies {
+    color: #fff;
+    background:
+        linear-gradient(rgba(7, 28, 39, 0.86), rgba(7, 28, 39, 0.93)),
+        var(--navy) url(images/courts-night.svg) center / cover no-repeat;
+}
 .policies .section-head h2 { color: #fff; }
 .policies .section-head .eyebrow { color: var(--sun); }
 .policies .section-head p { color: rgba(255,255,255,0.75); }
