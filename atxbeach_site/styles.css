@@ -54,8 +54,7 @@ a { color: inherit; text-decoration: none; }
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(7, 28, 39, 0.92);
-    backdrop-filter: blur(10px);
+    background: var(--black);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 .nav-inner {
@@ -76,12 +75,7 @@ a { color: inherit; text-decoration: none; }
     letter-spacing: 0.5px;
     font-size: 1.2rem;
 }
-.brand .dot {
-    width: 12px; height: 12px;
-    border-radius: 50%;
-    background: var(--coral);
-    box-shadow: 0 0 0 4px rgba(255, 107, 74, 0.25);
-}
+.brand-logo { height: 30px; width: auto; display: block; }
 .nav-links {
     display: flex;
     gap: 6px;
@@ -91,14 +85,16 @@ a { color: inherit; text-decoration: none; }
 .nav-links a {
     color: rgba(255, 255, 255, 0.82);
     font-weight: 600;
-    font-size: 0.92rem;
+    font-size: 0.78rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
     padding: 8px 12px;
-    border-radius: 999px;
-    transition: background 0.2s, color 0.2s;
+    border-radius: var(--radius-sm);
+    transition: color .2s, background .2s;
 }
 .nav-links a:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
 .nav-links a.active { background: rgba(255, 255, 255, 0.16); color: #fff; }
-.nav-cta { background: var(--coral); color: #fff !important; }
+.nav-cta { background: var(--coral); color: #fff !important; border-radius: var(--radius-sm); }
 .nav-cta:hover { background: var(--coral-deep) !important; }
 
 /* ---------- Buttons ---------- */
@@ -109,12 +105,12 @@ a { color: inherit; text-decoration: none; }
     font-weight: 700;
     font-size: 0.98rem;
     padding: 13px 22px;
-    border-radius: 999px;
+    border-radius: var(--radius-sm);
     border: 2px solid transparent;
     cursor: pointer;
     transition: transform 0.15s, background 0.2s, border-color 0.2s;
 }
-.btn:hover { transform: translateY(-2px); }
+.btn:hover { transform: translateY(-1px); }
 .btn-primary { background: var(--coral); color: #fff; }
 .btn-primary:hover { background: var(--coral-deep); }
 .btn-accent { background: var(--accent); color: #fff; }
@@ -123,6 +119,8 @@ a { color: inherit; text-decoration: none; }
 .btn-ghost:hover { border-color: #fff; background: rgba(255, 255, 255, 0.1); }
 .btn-outline { background: transparent; color: var(--ink); border-color: #cdbfa6; }
 .btn-outline:hover { border-color: var(--accent); color: var(--accent-deep); }
+.btn-dark { background: var(--black); color: #fff; }
+.btn-dark:hover { background: #000; }
 
 /* ---------- Hero (home + page) ---------- */
 .hero {
@@ -473,7 +471,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ---------- Footer ---------- */
-footer { background: var(--navy-deep); color: rgba(255, 255, 255, 0.7); padding: 36px 0; }
+footer { background: var(--black); color: rgba(255, 255, 255, 0.7); padding: 36px 0; }
 .foot-inner { display: flex; flex-wrap: wrap; gap: 18px; justify-content: space-between; align-items: center; }
 .foot-links { display: flex; flex-wrap: wrap; gap: 16px; list-style: none; }
 .foot-links a { color: rgba(255, 255, 255, 0.75); font-weight: 600; font-size: 0.9rem; }
@@ -487,8 +485,7 @@ footer { background: var(--navy-deep); color: rgba(255, 255, 255, 0.7); padding:
     position: fixed;
     bottom: 0; left: 0; right: 0;
     z-index: 60;
-    background: rgba(7, 28, 39, 0.96);
-    backdrop-filter: blur(8px);
+    background: var(--black);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding: 10px 12px;
     gap: 8px;
@@ -500,7 +497,7 @@ footer { background: var(--navy-deep); color: rgba(255, 255, 255, 0.7); padding:
     font-size: 0.72rem;
     font-weight: 700;
     padding: 8px 4px;
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
     background: rgba(255, 255, 255, 0.08);
 }
 .mobile-cta a.hot { background: var(--coral); color: #fff; }
