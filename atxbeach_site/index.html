@@ -10,41 +10,19 @@
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="page-home">
 
-<!-- ============ NAV ============ -->
-<nav class="nav">
-    <div class="nav-inner">
-        <a href="index.html" class="brand"><img src="images/photos/logo-white.png" alt="ATX Beach" class="brand-logo"></a>
-        <ul class="nav-links">
-            <li><a href="play.html">Play</a></li>
-            <li><a href="train.html">Train</a></li>
-            <li><a href="juniors.html">ATX Juniors</a></li>
-            <li><a href="events.html">Events</a></li>
-            <li><a href="#policies">Venue Info</a></li>
-            <li><a href="#contact" class="nav-cta">Contact</a></li>
-        </ul>
-    </div>
-</nav>
-
-<!-- ============ HERO ============ -->
-<header class="hero" id="top">
-    <div class="hero-inner">
-        <span class="eyebrow">Austin's Largest Sand Volleyball Venue</span>
-        <h1>PLAY. TRAIN. COMPETE.</h1>
-        <p>Austin's largest sand volleyball venue — 8 pro courts, open play, training, juniors, and events.</p>
-        <div class="hero-actions">
-            <a href="#tiles" class="btn btn-primary">Get Started</a>
-            <a href="#contact" class="btn btn-ghost">Plan an Event</a>
-        </div>
-    </div>
+<!-- ============ LANDING HEADER (logo) ============ -->
+<header class="landing-head" id="top">
+    <a href="index.html" class="brand"><img src="images/photos/logo-white.png" alt="ATX Beach" class="brand-logo"></a>
+    <p class="landing-tag">Austin's Largest Sand Volleyball Venue</p>
 </header>
 
-<!-- ============ 4 TILES ============ -->
-<section class="tiles-section" id="tiles">
+<!-- ============ 4 TILES (landing hero) ============ -->
+<section class="tiles-section tiles-hero" id="tiles">
     <div class="wrap">
         <div class="tiles">
 
@@ -83,6 +61,22 @@
         </div>
     </div>
 </section>
+
+<!-- ============ MENU (below tiles) ============ -->
+<nav class="below-menu">
+    <button class="hamburger" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+        <span class="bars" aria-hidden="true"></span>
+        <span class="hamburger-label">Menu</span>
+    </button>
+    <ul class="below-menu-links" id="navMenu" hidden>
+        <li><a href="play.html">Play</a></li>
+        <li><a href="train.html">Train</a></li>
+        <li><a href="juniors.html">ATX Juniors</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="#policies">Venue Info</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
 
 <!-- ============ VENUE SCALE BAND ============ -->
 <section class="venue-band">
@@ -266,6 +260,19 @@
 
 <script>
 (function () {
+    // hamburger / menu toggle (below tiles)
+    var toggle = document.getElementById('navToggle');
+    var menu = document.getElementById('navMenu');
+    if (toggle && menu) {
+        toggle.addEventListener('click', function () {
+            var willOpen = menu.hasAttribute('hidden');
+            if (willOpen) { menu.removeAttribute('hidden'); }
+            else { menu.setAttribute('hidden', ''); }
+            toggle.setAttribute('aria-expanded', String(willOpen));
+            toggle.classList.toggle('is-open', willOpen);
+        });
+    }
+
     var form = document.getElementById('leadForm');
     var success = document.getElementById('formSuccess');
     form.addEventListener('submit', function (e) {
