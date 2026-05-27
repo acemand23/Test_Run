@@ -97,9 +97,12 @@
   <h2>Sponsorship Levels:</h2>
   <p style="font-size: 16px; line-height: 1.6;">
     <ul style="margin-top: 5px; padding-left: 20px;">
-      <li>Presenting Sponsor - <strong>$6000</strong></li>
-      <li>Court Sponsor - <strong>$2000</strong></li>
-      <li>Team Sponsor - <strong>$1000</strong></li>
+      <li>Presenting Sponsor - <strong>$6,000</strong></li>
+      <li>Court Sponsor - <strong>$1,500</strong></li>
+      <li>Team Sponsor - <strong>$500</strong></li>
+      <li>In-Kind Sponsor - donate swag for players and/or prizes for the top two teams (recognized for in-kind donations of $500+ in value)</li>
+      <li>Lunch Sponsor - <strong>available</strong></li>
+      <li>DJ Sponsor - <strong>available</strong></li>
       <li>Choose Your Impact – Every gift matters</li>
     </ul>
     Please include the level in the comment section

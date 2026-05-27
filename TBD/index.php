@@ -80,7 +80,7 @@
       <table>
         <tr>
           <td style="padding-left: 50px;">
-            <p class="style30" id="top">Blind Draw 6 VS 6 Beach Volleyball Tournament</p>
+            <p class="style30" id="top">Blind Draw 4s Beach Volleyball Tournament</p>
           </td>
         </tr>
         <tr>
@@ -91,39 +91,12 @@
         <tr>
           <td style="padding-left: 50px;">
             <p class="style30">
-              November 1st, 2025 / Aussies Grill & Beach Bar / 9am - 6pm -
-              <span id="reg-text" class="countdown">Registration Has Closed</span>
+              November 1st, 2026 / Aussie’s Grill & Beach Bar / 9am &ndash; 7pm
             </p>
-            <script>
-              (function () {
-                const openAt = new Date("2025-09-18T17:00:00-05:00");
-                const el = document.getElementById("reg-text");
-
-                function updateCountdown() {
-                  const now = new Date();
-                  const diffMs = openAt - now;
-
-                  if (diffMs <= 0) {
-                    el.innerHTML = '<a href="https://tbdvolleyball.com/register.php">CLICK HERE - REGISTER NOW</a>';
-                    el.classList.remove("countdown");
-                    el.classList.add("countdown-done");
-                    clearInterval(timer);
-                    return;
-                  }
-
-                  const totalSeconds = Math.floor(diffMs / 1000);
-                  const days = Math.floor(totalSeconds / (3600 * 24));
-                  const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
-                  const mins = Math.floor((totalSeconds % 3600) / 60);
-                  const secs = totalSeconds % 60;
-
-                  el.textContent = `Registration opens in ${days}d ${hours}h ${mins}m ${secs}s`;
-                }
-
-                updateCountdown();
-                const timer = setInterval(updateCountdown, 1000);
-              })();
-            </script>
+            <p class="style30">
+              <!-- TODO: replace href with the specific vballmanager.com event registration link -->
+              <a href="https://vballmanager.com/" class="countdown-done">CLICK HERE &ndash; REGISTER NOW</a>
+            </p>
           </td>
         </tr>
       </table>
@@ -142,7 +115,7 @@
               </tr>
               <tr>
                 <td>
-                  <p class="style18">Our mission is to connect the world of Beach Volleyball with organizations that positively impact our community, similar to the way volleyball has impacted our lives. The format intentionally fosters community by randomly pairing 6 players of all skill levels together. Volleyball exemplifies teamwork, as the most skilled player on the court can only succeed as much as they can support their least experienced teammate. If we approach our communities with this mindset, we can create a brighter future for all. Our goal is to establish lasting connections and inspire engagement and awareness.</p>
+                  <p class="style18">Our mission is to connect the world of Beach Volleyball with organizations that positively impact our community, similar to the way volleyball has impacted our lives. The format intentionally fosters community by randomly pairing 4 players of all skill levels together. Volleyball exemplifies teamwork, as the most skilled player on the court can only succeed as much as they can support their least experienced teammate. If we approach our communities with this mindset, we can create a brighter future for all. Our goal is to establish lasting connections and inspire engagement and awareness.</p>
                 </td>
               </tr>
               <tr>

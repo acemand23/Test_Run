@@ -103,18 +103,29 @@
             <div>
                 <h1>Tournament Details:</h1>
                 <p><strong>Location:</strong> Aussie’s Grill & Beach Bar – 306 Barton Springs Rd, Austin, TX 78704</p>
-                <p><strong>Date:</strong> November 1st, 2025, 9am – 6pm</p>
-          
-                </ul>
-                <p><strong>Type of Event:</strong> This is a blind draw event, meaning you sign up as an individual, and we will randomly draw the teams with a twist (weighted based on levels)</p>
-                <p><strong>Format:</strong> 6 versus 6, Co-Ed (men and women) teams</p>
-                <p><strong>Style of Play:</strong> Standard 6 on 6 rules SEE BELOW FOR MORE DETAILS , pool play into a bracket</p>
+                <p><strong>Date:</strong> November 1st, 2026</p>
+                <p><strong>Type of Event:</strong> This is a blind draw event — you sign up as an individual and we randomly draw the teams with a twist (weighted based on levels). New this year: a dual tournament with two divisions to play in.</p>
+                <p><strong>Format:</strong> 4 versus 4, Co-Ed (men and women) teams</p>
+                <p><strong>Style of Play:</strong> Standard rules (SEE BELOW FOR MORE DETAILS), pool play into a bracket</p>
                 <p><strong>Facility:</strong> Aussies will have food, drinks, bathrooms, shade, and showers</p>
+            </div>
+            <div>
+                <h1>Divisions</h1>
+                <h2>Rec Division &mdash; 9:00 AM to 1:00 PM</h2>
+                <p>All blind draw, 4 vs 4, open to all skill levels. This division includes Big Brother Big Sister <strong>Matches</strong> &mdash; a "Big" paired with their "Little," where the Little is 16 or older.</p>
+                <p><strong>Entry:</strong> BBBS Matches $25 each &middot; all other players $50 each.</p>
+                <h2>Competitive Division &mdash; 12:00 PM to 7:00 PM</h2>
+                <p>All blind draw, 4 vs 4, for experienced and competitive players.</p>
+                <p><strong>Entry:</strong> $50 per player.</p>
+                <p style="text-align:center; padding-top:10px;">
+                    <!-- TODO: replace href with the specific vballmanager.com event registration link -->
+                    <a href="https://vballmanager.com/" style="display:inline-block; background:#48BB8C; color:#fff; padding:14px 30px; border-radius:6px; font-weight:bold; text-decoration:none; font-size:18px;">REGISTER NOW &rarr;</a>
+                </p>
             </div>
             <div>
                 <h1>Our Volleyball Rules</h1>
                 <h2>Team Composition:</h2>
-                <p>Each team consists of six players on the court at a time, with a minimum of four players required to start the game.</p>
+                <p>Each team consists of four players on the court at a time.</p>
                 <h2>Service:</h2>
                 <p>The serve must be executed from behind the end line or the imaginary continuation of the end line. The server can choose any spot behind the end line to serve.</p>
                 <h2>Rotation:</h2>
