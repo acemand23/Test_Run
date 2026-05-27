@@ -51,6 +51,7 @@
             </td>
             <td style="text-align: right; vertical-align: middle; padding-right: 50px">
                 <div class="menu-overlay">
+                <input type="checkbox" id="menu-toggle" hidden>
                 <label for="menu-toggle" class="menu-icon">
                     <img src="images/t4.png" alt="Menu">
                 </label>
@@ -66,7 +67,6 @@
                 </ul>
                 </nav>
                 </div>
-                <script src="script.js"></script>
             </td>
           </tr>
           <tr style="padding-bottom: 50px;">
