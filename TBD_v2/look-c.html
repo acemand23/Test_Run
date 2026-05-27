@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Big Draw — Beach Party</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF6E9; --ink:#2B2A33;
+    --teal:#1FB9A6; --orange:#FF8A3D; --blue:#3E7CFF; --purple:#9B5DE5; --pink:#FF5DA2;
+    --sun:#FFD23F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--ink);font-family:"Nunito",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+  .fred{font-family:"Fredoka",sans-serif}
+  a{text-decoration:none;color:inherit}
+
+  /* dotted texture */
+  body{background-image:radial-gradient(rgba(43,42,51,.05) 1.4px,transparent 1.4px);background-size:22px 22px}
+
+  header{padding:22px 0}
+  .nav{display:flex;align-items:center;justify-content:space-between}
+  .nav img{height:36px}
+  .nav .links{display:flex;gap:26px;align-items:center}
+  .nav .links a{font-family:"Fredoka";font-weight:500;font-size:16px}
+  .nav .links a:hover{color:var(--teal)}
+  .pill{font-family:"Fredoka";font-weight:600;border-radius:100px;padding:11px 22px;color:#fff;display:inline-block;
+        box-shadow:0 6px 0 rgba(0,0,0,.12);transition:.15s}
+  .pill:hover{transform:translateY(2px);box-shadow:0 4px 0 rgba(0,0,0,.12)}
+  .pill.t{background:var(--teal)} .pill.o{background:var(--orange)} .pill.p{background:var(--purple)} .pill.b{background:var(--blue)}
+
+  /* hero */
+  .hero{padding:40px 0 30px;text-align:center;position:relative}
+  .sun{position:absolute;right:6%;top:0;width:120px;height:120px;border-radius:50%;background:var(--sun);
+       box-shadow:0 0 0 14px rgba(255,210,63,.25);}
+  .badge{display:inline-flex;gap:8px;align-items:center;background:#fff;border-radius:100px;padding:9px 18px;
+         font-family:"Fredoka";font-weight:600;font-size:15px;box-shadow:0 6px 0 rgba(0,0,0,.08)}
+  .badge .d{width:9px;height:9px;border-radius:50%;background:var(--orange)}
+  .hero h1{font-family:"Fredoka";font-weight:700;font-size:clamp(60px,11vw,150px);line-height:.9;margin:22px 0 6px;letter-spacing:-.01em}
+  .hero h1 .a{color:var(--teal)} .hero h1 .b{color:var(--orange)} .hero h1 .c{color:var(--blue)} .hero h1 .d{color:var(--purple)}
+  .vfg{font-family:"Fredoka";font-weight:600;font-size:clamp(22px,3vw,34px);margin-top:6px}
+  .vfg .g{color:var(--teal)}
+  .hero .lede{max-width:46ch;margin:20px auto 0;font-size:18px;color:#555}
+  .hero .cta{display:flex;gap:16px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+
+  .photo{margin:46px auto 0;max-width:1000px;border-radius:28px;overflow:hidden;
+         border:8px solid #fff;box-shadow:0 24px 50px -22px rgba(43,42,51,.4);transform:rotate(-1deg)}
+  .photo img{width:100%;display:block}
+  .confetti{position:absolute;font-size:26px}
+
+  /* info chips */
+  .chips{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:46px 0}
+  .chip{background:#fff;border-radius:22px;padding:18px 26px;display:flex;align-items:center;gap:14px;box-shadow:0 8px 0 rgba(0,0,0,.07)}
+  .chip .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:22px;color:#fff;font-family:"Fredoka";font-weight:700}
+  .chip .k{font-family:"Fredoka";font-weight:600;font-size:18px;line-height:1.1}
+  .chip .v{font-size:13px;color:#777}
+
+  /* divisions */
+  .divs{padding:40px 0 70px}
+  .divs h2{font-family:"Fredoka";font-weight:700;font-size:clamp(36px,6vw,60px);text-align:center;margin-bottom:8px}
+  .divs .sub{text-align:center;color:#777;margin-bottom:38px;font-size:17px}
+  .dgrid{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:980px;margin:0 auto}
+  .dcard{border-radius:28px;padding:36px 34px;color:#fff;position:relative;overflow:hidden}
+  .dcard.rec{background:linear-gradient(155deg,var(--teal),#149c8b)}
+  .dcard.comp{background:linear-gradient(155deg,var(--blue),var(--purple))}
+  .dcard .tag{font-family:"Fredoka";font-weight:600;background:rgba(255,255,255,.25);border-radius:100px;padding:5px 14px;display:inline-block;font-size:13px;letter-spacing:.04em}
+  .dcard h3{font-family:"Fredoka";font-weight:700;font-size:44px;margin:14px 0 4px}
+  .dcard .time{font-family:"Fredoka";font-weight:600;font-size:22px;opacity:.95;margin-bottom:14px}
+  .dcard p{font-size:15.5px;line-height:1.6;opacity:.95}
+  .dcard .fee{margin-top:20px;background:rgba(255,255,255,.18);border-radius:16px;padding:12px 16px;font-family:"Fredoka";font-weight:600}
+  .blob{position:absolute;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.12);right:-40px;bottom:-40px}
+
+  /* cause */
+  .cause{background:var(--ink);color:var(--cream);border-radius:34px;padding:54px;text-align:center;margin:10px auto 70px;max-width:1040px}
+  .cause h2{font-family:"Fredoka";font-weight:700;font-size:clamp(28px,4vw,42px);line-height:1.1}
+  .cause h2 .g{color:var(--sun)}
+  .cause p{max-width:54ch;margin:16px auto 0;opacity:.85;font-size:16px}
+  .cause a{color:var(--sun);font-family:"Fredoka";font-weight:600}
+
+  /* sponsor */
+  .spon{text-align:center;padding:0 0 80px}
+  .spon h2{font-family:"Fredoka";font-weight:700;font-size:clamp(34px,5vw,52px)}
+  .spon p{color:#777;margin:12px auto 24px;max-width:46ch}
+  .spon .tiers{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+  .spon .tiers span{font-family:"Fredoka";font-weight:600;background:#fff;border-radius:100px;padding:9px 18px;box-shadow:0 5px 0 rgba(0,0,0,.06)}
+
+  footer{text-align:center;padding:34px 0 60px;color:#888;font-size:15px}
+  footer img{height:30px;margin-bottom:12px;opacity:.85}
+  footer a{color:var(--teal);font-weight:700}
+</style>
+</head>
+<body>
+
+<header><div class="wrap nav">
+  <img src="assets/brand/logo.png" alt="The Big Draw">
+  <nav class="links">
+    <a href="#divisions">Tournament</a><a href="#cause">The Cause</a><a href="#sponsor">Sponsor</a>
+    <a href="#" class="pill t">Register</a>
+  </nav>
+</div></header>
+
+<section class="wrap hero">
+  <div class="sun"></div>
+  <span class="badge"><span class="d"></span>Sat · Nov 1, 2026 · Aussie's Grill &amp; Beach Bar</span>
+  <h1>Blind<br>Draw <span class="b">4s</span></h1>
+  <div class="vfg">volleyball for <span class="g">good.</span></div>
+  <p class="lede">Sign up solo, get drawn onto a random team, and play all day for a great cause. Two divisions — pick your speed!</p>
+  <div class="cta">
+    <a href="#" class="pill o">Register on vballmanager →</a>
+    <a href="#divisions" class="pill p">See divisions</a>
+  </div>
+  <div class="photo"><img src="assets/photos/hero-balloons.jpg" alt="The Big Draw teams"></div>
+</section>
+
+<div class="wrap chips">
+  <div class="chip"><div class="ic" style="background:var(--teal)">4v4</div><div><div class="k">All blind draw</div><div class="v">Teams drawn at random</div></div></div>
+  <div class="chip"><div class="ic" style="background:var(--orange)">2</div><div><div class="k">Two divisions</div><div class="v">Rec &amp; Competitive</div></div></div>
+  <div class="chip"><div class="ic" style="background:var(--purple)">♥</div><div><div class="k">For good</div><div class="v">Big Brothers Big Sisters</div></div></div>
+</div>
+
+<section class="wrap divs" id="divisions">
+  <h2>Two ways to play</h2>
+  <div class="sub">Same blind-draw fun — choose your vibe.</div>
+  <div class="dgrid">
+    <div class="dcard rec">
+      <div class="blob"></div>
+      <span class="tag">9 AM – 1 PM</span>
+      <h3>Rec</h3>
+      <div class="time">Chill &amp; social</div>
+      <p>Every skill level welcome! Includes Big Brothers Big Sisters <b>Matches</b> — a Big and their Little (16+) playing together.</p>
+      <div class="fee">$25 BBBS Matches · $50 everyone else</div>
+    </div>
+    <div class="dcard comp">
+      <div class="blob"></div>
+      <span class="tag">12 PM – 7 PM</span>
+      <h3>Competitive</h3>
+      <div class="time">Bring the heat</div>
+      <p>For experienced players who want a deeper bracket and a real fight for the win. Blind draw, leveled up.</p>
+      <div class="fee">$50 per player</div>
+    </div>
+  </div>
+</section>
+
+<section class="cause" id="cause">
+  <h2>The best player wins by <span class="g">lifting</span> the least experienced.</h2>
+  <p>That's why we draw blind — and why every entry and sponsorship supports Big Brothers Big Sisters of Central Texas, building mentorship matches that change lives.</p>
+  <p style="margin-top:14px"><a href="https://www.bigmentoring.org/">bigmentoring.org →</a></p>
+</section>
+
+<section class="wrap spon" id="sponsor">
+  <h2>Sponsor the fun ☀</h2>
+  <p>Every gift matters — and every gift goes to the cause.</p>
+  <div class="tiers">
+    <span>Presenting $6,000</span><span>Court $1,500</span><span>Team $500</span><span>In-Kind</span><span>Lunch</span><span>DJ</span>
+  </div>
+  <div><a href="#" class="pill b">Become a sponsor</a></div>
+</section>
+
+<footer>
+  <img src="assets/brand/logo.png" alt="The Big Draw"><br>
+  Volleyball for good · Austin, TX · Questions? <a href="mailto:questions@tbdvolleyball.com">questions@tbdvolleyball.com</a>
+</footer>
+
+</body>
+</html>

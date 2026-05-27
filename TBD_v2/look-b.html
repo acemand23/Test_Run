@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Big Draw — Court Poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0C3526; --bg2:#0a2a1f; --mint:#5CF2A8; --mint2:#27d98a;
+    --orange:#FF7A3C; --cream:#F3EFE3; --ink:#0C3526;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--cream);font-family:"Archivo",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+  .anton{font-family:"Anton",sans-serif;text-transform:uppercase;letter-spacing:.01em;font-weight:400}
+  a{text-decoration:none}
+
+  /* grain + glow background */
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(1100px 600px at 80% -10%,rgba(92,242,168,.18),transparent 60%),
+               radial-gradient(800px 500px at -10% 110%,rgba(255,122,60,.14),transparent 60%);}
+  .page{position:relative;z-index:1}
+
+  header{padding:24px 0}
+  .nav{display:flex;align-items:center;justify-content:space-between}
+  .nav .logo{font-family:"Anton",sans-serif;font-size:26px;letter-spacing:.02em;color:var(--cream);text-transform:uppercase}
+  .nav .logo b{color:var(--mint)}
+  .nav .links{display:flex;gap:30px;align-items:center}
+  .nav .links a{color:var(--cream);font-weight:600;font-size:14px;letter-spacing:.04em;text-transform:uppercase;opacity:.85}
+  .nav .links a:hover{opacity:1;color:var(--mint)}
+  .btn{background:var(--mint);color:var(--ink)!important;padding:13px 24px;border-radius:6px;font-weight:800;
+       font-size:14px;letter-spacing:.06em;text-transform:uppercase;transition:.2s;display:inline-block}
+  .btn:hover{background:var(--orange);color:var(--cream)!important;transform:translateY(-2px)}
+
+  /* hero */
+  .hero{padding:30px 0 50px;position:relative}
+  .kick{display:inline-flex;gap:10px;align-items:center;border:1px solid rgba(243,239,227,.25);
+        border-radius:100px;padding:8px 16px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+  .kick .blip{width:8px;height:8px;border-radius:50%;background:var(--orange)}
+  .giant{font-family:"Anton",sans-serif;text-transform:uppercase;line-height:.82;margin:22px 0 0;
+         font-size:clamp(80px,17vw,250px);letter-spacing:-.01em}
+  .giant .out{color:transparent;-webkit-text-stroke:2px var(--mint);}
+  .giant .fs{color:var(--orange)}
+  .subline{display:flex;gap:18px;align-items:baseline;flex-wrap:wrap;margin-top:14px}
+  .subline .big{font-family:"Anton",sans-serif;font-size:clamp(26px,3.4vw,46px);text-transform:uppercase;color:var(--mint)}
+  .subline .small{font-size:16px;letter-spacing:.04em;opacity:.85;max-width:34ch}
+
+  .herorow{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:end;margin-top:30px}
+  .photo{position:relative;border-radius:10px;overflow:hidden;border:2px solid rgba(92,242,168,.4)}
+  .photo img{width:100%;display:block;filter:grayscale(.2) contrast(1.05) saturate(1.05);}
+  .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,53,38,0) 40%,rgba(12,53,38,.85));mix-blend-multiply}
+  .facts{display:flex;flex-direction:column;gap:14px}
+  .fact{border:1px solid rgba(243,239,227,.18);border-radius:10px;padding:18px 20px;background:rgba(255,255,255,.03)}
+  .fact .t{font-family:"Anton",sans-serif;font-size:30px;color:var(--mint);line-height:1}
+  .fact .d{font-size:13px;letter-spacing:.06em;text-transform:uppercase;opacity:.75;margin-top:6px}
+
+  /* ticker */
+  .ticker{background:var(--mint);color:var(--ink);padding:12px 0;overflow:hidden;white-space:nowrap;margin-top:40px}
+  .ticker span{font-family:"Anton",sans-serif;font-size:20px;text-transform:uppercase;margin:0 22px;letter-spacing:.02em}
+
+  /* divisions */
+  .divs{padding:90px 0}
+  .divs .eyebrow{font-family:"Anton",sans-serif;font-size:16px;letter-spacing:.2em;color:var(--orange);text-transform:uppercase}
+  .divs h2{font-family:"Anton",sans-serif;font-size:clamp(42px,6vw,80px);text-transform:uppercase;line-height:.9;margin:8px 0 36px}
+  .dgrid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .dcard{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(243,239,227,.15);
+         border-radius:14px;padding:34px;position:relative;overflow:hidden}
+  .dcard .num{position:absolute;right:18px;top:-18px;font-family:"Anton",sans-serif;font-size:150px;color:rgba(92,242,168,.1)}
+  .dcard h3{font-family:"Anton",sans-serif;font-size:46px;text-transform:uppercase}
+  .dcard .time{display:inline-block;background:var(--mint);color:var(--ink);font-weight:800;padding:6px 14px;border-radius:6px;margin:10px 0 16px;letter-spacing:.04em}
+  .dcard p{opacity:.85;font-size:15.5px;line-height:1.6}
+  .dcard .fee{margin-top:20px;font-family:"Anton",sans-serif;font-size:22px;color:var(--orange);text-transform:uppercase}
+  .dcard.alt .time{background:var(--orange);color:var(--cream)}
+  .dcard.alt .num{color:rgba(255,122,60,.12)}
+
+  /* sponsor */
+  .spon{padding:80px 0;text-align:center}
+  .spon h2{font-family:"Anton",sans-serif;font-size:clamp(46px,8vw,120px);text-transform:uppercase;line-height:.85}
+  .spon h2 .out{color:transparent;-webkit-text-stroke:2px var(--orange)}
+  .tiers{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:26px 0 30px}
+  .tiers span{border:1px solid rgba(243,239,227,.25);border-radius:100px;padding:8px 18px;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+
+  footer{border-top:1px solid rgba(243,239,227,.15);padding:40px 0;margin-top:30px}
+  footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
+  footer .logo{font-family:"Anton",sans-serif;font-size:22px;text-transform:uppercase}
+  footer .logo b{color:var(--mint)}
+  footer a{color:var(--mint)}
+</style>
+</head>
+<body><div class="page">
+
+<header><div class="wrap nav">
+  <div class="logo">THE <b>BIG</b> DRAW</div>
+  <nav class="links">
+    <a href="#divisions">Tournament</a><a href="#sponsor">Sponsor</a>
+    <a href="#">Big Brothers Big Sisters</a><a href="#" class="btn">Register</a>
+  </nav>
+</div></header>
+
+<section class="wrap hero">
+  <span class="kick"><span class="blip"></span>Nov 1, 2026 · Aussie's Grill &amp; Beach Bar · Austin</span>
+  <h1 class="giant">BLIND DRAW <span class="fs">4S</span></h1>
+  <div class="subline">
+    <span class="big">VOLLEYBALL FOR GOOD</span>
+    <span class="small">Sign up solo. We draw the teams. You bring the energy — for the whole community.</span>
+  </div>
+  <div class="herorow">
+    <div class="photo"><img src="assets/photos/hero-balloons.jpg" alt="The Big Draw"></div>
+    <div class="facts">
+      <div class="fact"><div class="t">4 v 4</div><div class="d">All blind draw</div></div>
+      <div class="fact"><div class="t">2 DIVS</div><div class="d">Rec + Competitive</div></div>
+      <div class="fact"><div class="t">9–7</div><div class="d">All day on the sand</div></div>
+      <a href="#" class="btn" style="text-align:center;padding:16px">Register on vballmanager →</a>
+    </div>
+  </div>
+</section>
+
+<div class="ticker"><span>★ BLIND DRAW 4S ★ NOV 1 2026 ★ VOLLEYBALL FOR GOOD ★ BENEFITING BIG BROTHERS BIG SISTERS ★ BLIND DRAW 4S ★ NOV 1 2026 ★ VOLLEYBALL FOR GOOD ★</span></div>
+
+<section class="wrap divs" id="divisions">
+  <div class="eyebrow">Two divisions</div>
+  <h2>Pick your<br>battle.</h2>
+  <div class="dgrid">
+    <div class="dcard">
+      <div class="num">01</div>
+      <h3>Rec</h3>
+      <div class="time">9:00 AM – 1:00 PM</div>
+      <p>All skill levels. Includes Big Brothers Big Sisters <b>Matches</b> — a Big and their Little (16+) on the same side of the net.</p>
+      <div class="fee">$25 matches · $50 others</div>
+    </div>
+    <div class="dcard alt">
+      <div class="num">02</div>
+      <h3>Comp</h3>
+      <div class="time">12:00 PM – 7:00 PM</div>
+      <p>Experienced players, deeper brackets, bigger swings. Same blind-draw chaos — turned up.</p>
+      <div class="fee">$50 per player</div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap spon" id="sponsor">
+  <h2>PUT YOUR<br><span class="out">NAME</span> ON IT.</h2>
+  <div class="tiers">
+    <span>Presenting $6,000</span><span>Court $1,500</span><span>Team $500</span>
+    <span>In-Kind</span><span>Lunch</span><span>DJ</span>
+  </div>
+  <a href="#" class="btn">Become a sponsor</a>
+</section>
+
+<footer><div class="wrap row">
+  <div class="logo">THE <b>BIG</b> DRAW</div>
+  <div>Austin, TX · <a href="mailto:questions@tbdvolleyball.com">questions@tbdvolleyball.com</a></div>
+</div></footer>
+
+</div></body>
+</html>

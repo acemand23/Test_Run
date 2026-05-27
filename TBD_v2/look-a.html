@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Big Draw — Sunlit Editorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,400..600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F5ECDD; --paper:#FBF6EE; --ink:#23241F; --muted:#6f6a5d;
+    --green:#2E9E6E; --green-deep:#1f6f4d; --line:#ddd2bf;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--ink);font-family:"Hanken Grotesk",sans-serif;
+       -webkit-font-smoothing:antialiased;line-height:1.55}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+  .label{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+  /* nav */
+  header{padding:26px 0;border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between}
+  .nav img{height:34px}
+  .nav .links{display:flex;gap:34px;align-items:center}
+  .nav a{color:var(--ink);text-decoration:none;font-weight:600;font-size:15px}
+  .nav a:hover{color:var(--green)}
+  .btn{display:inline-block;background:var(--ink);color:var(--paper)!important;padding:12px 22px;
+       border-radius:100px;font-weight:600;font-size:14px;letter-spacing:.02em;transition:.25s}
+  .btn:hover{background:var(--green);transform:translateY(-1px)}
+
+  /* hero */
+  .hero{padding:78px 0 60px;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+  .eyebrow .dot{width:9px;height:9px;border-radius:50%;background:var(--green)}
+  h1{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(52px,7vw,104px);line-height:.92;
+     letter-spacing:-.02em}
+  h1 em{font-style:italic;font-weight:400;color:var(--green-deep)}
+  h1 .good{color:var(--green)}
+  .lede{margin:30px 0 34px;font-size:19px;color:#4c4a40;max-width:30ch}
+  .cta-row{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+  .meta{display:flex;gap:30px;margin-top:44px;padding-top:26px;border-top:1px solid var(--line)}
+  .meta .k{font-family:"Fraunces",serif;font-size:24px;font-weight:600}
+  .meta .v{font-size:13px;color:var(--muted)}
+
+  .hero-art{position:relative}
+  .hero-art .frame{border-radius:8px;overflow:hidden;box-shadow:0 30px 60px -28px rgba(40,30,10,.45)}
+  .hero-art img{width:100%;display:block;filter:saturate(1.02) contrast(1.02)}
+  .stamp{position:absolute;left:-26px;bottom:34px;background:var(--paper);border:1px solid var(--line);
+         border-radius:100px;padding:14px 22px;display:flex;align-items:center;gap:12px;
+         box-shadow:0 14px 30px -16px rgba(0,0,0,.3)}
+  .stamp b{font-family:"Fraunces",serif;font-size:22px}
+  .stamp span{font-size:12px;color:var(--muted);letter-spacing:.04em}
+  .ball{width:30px;height:30px;border-radius:50%;border:2px solid var(--ink);position:relative}
+  .ball::before,.ball::after{content:"";position:absolute;inset:0;border-radius:50%}
+  .ball::before{border-left:2px solid var(--ink);width:50%}
+  .ball::after{border-top:2px solid var(--ink);height:50%;top:35%}
+
+  /* marquee divider */
+  .strip{background:var(--ink);color:var(--cream);overflow:hidden;white-space:nowrap;padding:14px 0}
+  .strip span{font-family:"Fraunces",serif;font-style:italic;font-size:22px;margin:0 26px;opacity:.9}
+  .strip .g{color:#7fe0b4}
+
+  /* divisions */
+  .divs{padding:90px 0}
+  .divs .head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px}
+  .divs h2{font-family:"Fraunces",serif;font-size:46px;font-weight:600;letter-spacing:-.01em}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:38px 36px;position:relative;overflow:hidden}
+  .card .no{font-family:"Fraunces",serif;font-size:15px;letter-spacing:.2em;color:var(--green);text-transform:uppercase;font-weight:600}
+  .card h3{font-family:"Fraunces",serif;font-size:34px;margin:10px 0 6px}
+  .card .time{font-size:18px;color:var(--green-deep);font-weight:700;margin-bottom:18px}
+  .card p{color:#55524a;font-size:16px}
+  .card .fee{margin-top:22px;padding-top:18px;border-top:1px dashed var(--line);font-size:15px}
+  .card .fee b{font-family:"Fraunces",serif}
+
+  /* cause */
+  .cause{padding:70px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+         display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:center}
+  .cause h2{font-family:"Fraunces",serif;font-size:40px;font-weight:600;line-height:1.05}
+  .cause p{margin-top:18px;color:#55524a;font-size:17px;max-width:46ch}
+
+  /* sponsor + footer */
+  .spon{padding:84px 0;text-align:center}
+  .spon h2{font-family:"Fraunces",serif;font-size:clamp(40px,6vw,76px);font-weight:600;letter-spacing:-.02em}
+  .spon p{color:var(--muted);margin:16px auto 30px;max-width:50ch}
+  footer{background:var(--ink);color:#cfc9bb;padding:52px 0}
+  footer .row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+  footer b{color:var(--cream);font-family:"Fraunces",serif;font-size:20px}
+  footer a{color:#7fe0b4;text-decoration:none}
+</style>
+</head>
+<body>
+
+<header><div class="wrap nav">
+  <img src="assets/brand/logo.png" alt="The Big Draw">
+  <nav class="links">
+    <a href="#divisions">Tournament</a>
+    <a href="#cause">The Cause</a>
+    <a href="#sponsor">Sponsor</a>
+    <a href="#" class="btn">Register</a>
+  </nav>
+</div></header>
+
+<section class="wrap hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="dot"></span><span class="label">Blind Draw 4s · Beach Volleyball</span></div>
+    <h1>Volleyball<br>for <em>good.</em></h1>
+    <p class="lede">One sand court, randomly drawn teams, and a whole lot of community — back for 2026 as a dual tournament.</p>
+    <div class="cta-row">
+      <a href="#" class="btn">Register on vballmanager</a>
+      <a href="#divisions" style="color:var(--green-deep);font-weight:700;text-decoration:none">See divisions →</a>
+    </div>
+    <div class="meta">
+      <div><div class="k">Nov 1</div><div class="v">2026, Saturday</div></div>
+      <div><div class="k">Aussie's</div><div class="v">Grill &amp; Beach Bar · Austin</div></div>
+      <div><div class="k">9–7</div><div class="v">Rec &amp; Competitive</div></div>
+    </div>
+  </div>
+  <div class="hero-art">
+    <div class="frame"><img src="assets/photos/hero-banner.jpg" alt="The Big Draw tournament"></div>
+    <div class="stamp"><span class="ball"></span><div><b>4 vs 4</b><br><span>All blind draw</span></div></div>
+  </div>
+</section>
+
+<div class="strip">
+  <span>Benefiting Big Brothers Big Sisters of Central Texas</span><span class="g">✦</span>
+  <span>Blind Draw 4s</span><span class="g">✦</span><span>November 1, 2026</span><span class="g">✦</span>
+  <span>Benefiting Big Brothers Big Sisters of Central Texas</span><span class="g">✦</span>
+  <span>Blind Draw 4s</span><span class="g">✦</span>
+</div>
+
+<section class="wrap divs" id="divisions">
+  <div class="head">
+    <div><div class="label">Two ways to play</div><h2>Pick your division</h2></div>
+    <div class="label" style="text-align:right">Sign up solo · we draw the teams</div>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="no">Division 01</div>
+      <h3>Rec</h3>
+      <div class="time">9:00 AM – 1:00 PM</div>
+      <p>All skill levels welcome. Includes Big Brothers Big Sisters <b>Matches</b> — a Big paired with their Little (16+) — playing side by side.</p>
+      <div class="fee">Entry — <b>$25</b> BBBS Matches · <b>$50</b> all other players</div>
+    </div>
+    <div class="card">
+      <div class="no">Division 02</div>
+      <h3>Competitive</h3>
+      <div class="time">12:00 PM – 7:00 PM</div>
+      <p>For experienced players who want the bracket to bite. Same blind-draw format, higher level of play.</p>
+      <div class="fee">Entry — <b>$50</b> per player</div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap cause" id="cause">
+  <div><h2>The most skilled player only wins by lifting the least experienced.</h2></div>
+  <div>
+    <div class="label" style="margin-bottom:10px">Why we draw blind</div>
+    <p>The format intentionally fosters community by pairing four players of all skill levels together. Every dollar supports <b>Big Brothers Big Sisters of Central Texas</b> — building mentorship matches that change lives.</p>
+    <p style="margin-top:14px"><a href="https://www.bigmentoring.org/" style="color:var(--green-deep);font-weight:700;text-decoration:none">bigmentoring.org →</a></p>
+  </div>
+</section>
+
+<section class="wrap spon" id="sponsor">
+  <div class="label">Choose your impact</div>
+  <h2>Put your name<br>on the sand.</h2>
+  <p>Presenting · Court · Team · In-Kind · Lunch · DJ — every gift matters, and every gift goes to the cause.</p>
+  <a href="#" class="btn">Become a sponsor</a>
+</section>
+
+<footer><div class="wrap row">
+  <div><b>The Big Draw</b><br><span style="font-size:14px">Volleyball for good · Austin, TX</span></div>
+  <div style="font-size:14px">Questions? <a href="mailto:questions@tbdvolleyball.com">questions@tbdvolleyball.com</a></div>
+</div></footer>
+
+</body>
+</html>
