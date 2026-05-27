@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Big Draw — Retro Sun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F6E7CC; --paper:#FBF1DD; --rust:#BE4628; --burnt:#E0793A; --gold:#E7B33C;
+    --teal:#2C7C6B; --navy:#36241A; --ink:#36241A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--ink);font-family:"Hanken Grotesk",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 34px}
+  .slab{font-family:"Alfa Slab One",serif;font-weight:400;letter-spacing:.005em}
+  a{text-decoration:none;color:inherit}
+
+  header{padding:22px 0;position:relative;z-index:3}
+  .nav{display:flex;align-items:center;justify-content:space-between}
+  .nav .logo{font-family:"Alfa Slab One";font-size:24px;color:var(--rust)}
+  .nav .logo span{color:var(--teal)}
+  .nav .links{display:flex;gap:26px;align-items:center;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.06em}
+  .nav .links a:hover{color:var(--rust)}
+  .btn{font-family:"Alfa Slab One";font-size:14px;letter-spacing:.04em;color:var(--cream)!important;background:var(--rust);
+       padding:12px 22px;border-radius:6px;display:inline-block;box-shadow:3px 3px 0 var(--navy)}
+  .btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--navy)}
+  .btn.gold{background:var(--gold);color:var(--navy)!important}
+  .btn.teal{background:var(--teal)}
+
+  /* hero with sunburst */
+  .hero{position:relative;text-align:center;padding:60px 0 70px;overflow:hidden}
+  .sun{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);width:1500px;height:1500px;z-index:0;
+       background:repeating-conic-gradient(from 0deg, rgba(231,179,60,.55) 0deg 7deg, transparent 7deg 14deg);
+       -webkit-mask:radial-gradient(circle, #000 30%, transparent 62%);mask:radial-gradient(circle,#000 30%,transparent 62%);opacity:.7}
+  .sundisk{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);width:430px;height:430px;border-radius:50%;z-index:0;
+       background:radial-gradient(circle at 50% 35%,var(--gold),var(--burnt) 70%,var(--rust));opacity:.18}
+  .hero .inner{position:relative;z-index:2}
+  .arc{font-family:"Alfa Slab One";color:var(--teal);font-size:clamp(16px,2.2vw,22px);letter-spacing:.16em;text-transform:uppercase}
+  .title{font-family:"Alfa Slab One";line-height:.9;margin:10px 0;color:var(--rust);
+         font-size:clamp(64px,13vw,168px);text-shadow:5px 5px 0 var(--gold), 9px 9px 0 rgba(54,36,26,.15)}
+  .title .fs{color:var(--teal)}
+  .vfg{font-family:"Alfa Slab One";font-size:clamp(22px,3.4vw,42px);color:var(--navy)}
+  .vfg .g{color:var(--burnt)}
+  .ribbon{display:inline-block;margin-top:22px;background:var(--navy);color:var(--cream);font-weight:700;
+          padding:10px 22px;border-radius:6px;letter-spacing:.04em}
+  .cta{display:flex;gap:14px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+
+  /* wavy divider */
+  .wave{height:46px;background:var(--rust);
+        -webkit-mask:radial-gradient(22px at 22px 0,transparent 98%,#000) repeat-x 0 0/44px 46px;}
+  .stripe{background:var(--rust);color:var(--cream);text-align:center;padding:0 0 14px;font-family:"Alfa Slab One";letter-spacing:.06em;font-size:18px}
+
+  /* divisions */
+  .divs{padding:80px 0 60px}
+  .divs h2{font-family:"Alfa Slab One";text-align:center;font-size:clamp(36px,6vw,64px);color:var(--rust)}
+  .divs .sub{text-align:center;color:#7a5c45;margin-bottom:38px;font-weight:600}
+  .dgrid{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:960px;margin:0 auto}
+  .dcard{background:var(--paper);border:3px solid var(--navy);border-radius:14px;padding:32px;position:relative;box-shadow:6px 6px 0 var(--navy)}
+  .dcard .badge{position:absolute;top:-16px;right:24px;font-family:"Alfa Slab One";font-size:13px;color:var(--cream);padding:7px 14px;border-radius:6px}
+  .dcard.rec .badge{background:var(--teal)} .dcard.comp .badge{background:var(--burnt)}
+  .dcard h3{font-family:"Alfa Slab One";font-size:38px;color:var(--navy)}
+  .dcard .time{font-weight:800;color:var(--rust);font-size:18px;margin:6px 0 14px;letter-spacing:.02em}
+  .dcard p{color:#5f4634;font-size:15.5px;line-height:1.6}
+  .dcard .fee{margin-top:18px;border-top:3px dotted var(--gold);padding-top:14px;font-family:"Alfa Slab One";font-size:16px;color:var(--navy)}
+
+  /* sponsor */
+  .spon{background:var(--navy);color:var(--cream);padding:70px 0;text-align:center}
+  .spon h2{font-family:"Alfa Slab One";font-size:clamp(40px,7vw,92px);color:var(--gold);line-height:.9;text-shadow:4px 4px 0 var(--rust)}
+  .spon p{margin:16px auto 24px;max-width:48ch;opacity:.85}
+  .tiers{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:26px}
+  .tiers span{border:2px solid var(--gold);border-radius:100px;padding:8px 16px;font-weight:700;font-size:13px;letter-spacing:.04em}
+
+  footer{background:var(--navy);color:#cdb9a6;text-align:center;padding:30px 0 50px;border-top:3px dotted rgba(231,179,60,.4)}
+  footer .logo{font-family:"Alfa Slab One";font-size:20px;color:var(--cream)}
+  footer .logo span{color:var(--gold)}
+  footer a{color:var(--gold)}
+</style>
+</head>
+<body>
+
+<header><div class="wrap nav">
+  <div class="logo">THE BIG <span>DRAW</span></div>
+  <nav class="links">
+    <a href="#divisions">Tournament</a><a href="#sponsor">Sponsor</a><a href="#">The Cause</a>
+    <a href="#" class="btn gold">Register</a>
+  </nav>
+</div></header>
+
+<section class="hero">
+  <div class="sun"></div><div class="sundisk"></div>
+  <div class="wrap inner">
+    <div class="arc">★ Saturday · November 1, 2026 · Austin, Texas ★</div>
+    <h1 class="title">BLIND DRAW<br><span class="fs">4S</span></h1>
+    <div class="vfg">volleyball for <span class="g">good.</span></div>
+    <div class="ribbon">Aussie's Grill &amp; Beach Bar · Sign up solo, we draw the teams</div>
+    <div class="cta">
+      <a href="#" class="btn">Register on vballmanager →</a>
+      <a href="#divisions" class="btn teal">See divisions</a>
+    </div>
+  </div>
+</section>
+
+<div class="wave"></div>
+<div class="stripe">★ BLIND DRAW 4S ★ VOLLEYBALL FOR GOOD ★ BENEFITING BIG BROTHERS BIG SISTERS ★</div>
+
+<section class="wrap divs" id="divisions">
+  <h2>Two Ways To Play</h2>
+  <div class="sub">Same sun-soaked blind draw — pick your speed.</div>
+  <div class="dgrid">
+    <div class="dcard rec">
+      <span class="badge">9 AM – 1 PM</span>
+      <h3>Rec</h3>
+      <div class="time">ALL SKILL LEVELS</div>
+      <p>Everybody's in. Includes Big Brothers Big Sisters <b>Matches</b> — a Big and their Little (16+) playing together.</p>
+      <div class="fee">$25 Matches · $50 others</div>
+    </div>
+    <div class="dcard comp">
+      <span class="badge">12 PM – 7 PM</span>
+      <h3>Competitive</h3>
+      <div class="time">FOR THE CONTENDERS</div>
+      <p>Experienced players, deeper brackets, all the glory. Blind draw with the heat turned all the way up.</p>
+      <div class="fee">$50 per player</div>
+    </div>
+  </div>
+</section>
+
+<section class="spon" id="sponsor">
+  <div class="wrap">
+    <h2>BACK<br>THE DRAW</h2>
+    <p>Presenting · Court · Team · In-Kind · Lunch · DJ. Every gift matters, and every gift goes to the cause.</p>
+    <div class="tiers">
+      <span>PRESENTING $6,000</span><span>COURT $1,500</span><span>TEAM $500</span><span>IN-KIND</span><span>LUNCH</span><span>DJ</span>
+    </div>
+    <a href="#" class="btn gold">Become a sponsor</a>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">THE BIG <span>DRAW</span></div>
+  <div style="margin-top:8px">Austin, TX · <a href="mailto:questions@tbdvolleyball.com">questions@tbdvolleyball.com</a></div>
+</footer>
+
+</body>
+</html>
