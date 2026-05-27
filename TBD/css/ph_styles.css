@@ -1,0 +1,219 @@
+#myTable {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+#myTable td {
+  border: 2;
+  padding: 0;
+}
+
+@font-face {
+  font-family: 'AzoSans-Bold';
+  src: url('azosans-bold.woff2') format('woff2'),
+       url('azosans-bold.woff') format('woff'),
+       url('azosans-bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+li {
+     font-family: 'AzoSans-Bold', sans-serif;
+        font-size: 24px; 
+      /* Additional CSS properties for style1 */
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gallery img {
+    margin: 10px;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.gallery a {
+    text-decoration: none;
+}
+
+.gallery a:hover {
+    opacity: 0.7;
+}
+
+/* css/style.css */
+
+.thumbnail-menu {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.thumbnail-container {
+    display: inline-block;
+}
+
+.thumbnail-container a {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.thumbnail-container img {
+    max-width: 100px;
+    max-height: 75px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.full-image {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.full-image img {
+    max-width: 100%;
+    max-height: 500px;
+}
+
+
+
+
+ html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+ .style10 {
+      font-family: 'AzoSans-Bold', sans-serif;
+        font-size: 10px; 
+      /* Additional CSS properties for style1 */
+    }
+    .style18 {
+      font-family: 'AzoSans-Bold', sans-serif;
+        font-size: 18px; 
+      /* Additional CSS properties for style1 */
+    }
+    .style18g {
+      font-family: 'AzoSans-Bold', sans-serif;
+        font-size: 18px; 
+        color : green;
+      /* Additional CSS properties for style1 */
+    }
+    
+     .style30 {
+      font-family: 'AzoSans-Bold', sans-serif;
+        font-size: 32px; 
+      /* Additional CSS properties for style1 */
+    }
+    
+    .style50 {
+      font-family: 'AzoSans-Bold', sans-serif;
+        font-size: 50px; 
+      /* Additional CSS properties for style2 */
+    }
+    .style50g {
+      font-family: 'AzoSans-Bold', sans-serif;
+        font-size: 50px;
+        color : green;
+      /* Additional CSS properties for style2 */
+    }
+    .style80 {
+      font-family: 'AzoSans-Bold', sans-serif;
+        font-size: 80px; 
+      /* Additional CSS properties for style2 */
+    }
+    
+    .style80g {
+      font-family: 'AzoSans-Bold', sans-serif;
+      color : green;
+        font-size: 80px; 
+      /* Additional CSS properties for style2 */
+    }
+    
+     .style30w {
+      font-family: 'AzoSans-Bold', sans-serif;
+      color : white;
+        font-size: 30px; 
+     }
+     .style50w {
+      font-family: 'AzoSans-Bold', sans-serif;
+      color : white;
+        font-size: 50px; 
+    
+     }
+    
+    .resize-img {
+      max-width: 100%;
+      width: auto;
+      height: auto;
+      max-height: 100%;
+    }
+    .menu-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999;
+}
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999;
+}
+
+.menu-icon {
+    cursor: pointer;
+    padding: 10px;
+}
+
+.menu-icon img {
+    width: 30px; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
+}
+
+.menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #f9f9f9;
+    width: 200px;
+    padding: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li {
+    margin-bottom: 10px;
+}
+
+.menu ul li a {
+    color: #333;
+    text-decoration: none;
+}
+
+/* Show/hide the menu when checkbox is clicked */
+#menu-toggle:checked ~ .menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Rollover effect */
+.menu-icon:hover + .menu,
+.menu:hover {
+    opacity: 1;
+    visibility: visible;
+}
+
