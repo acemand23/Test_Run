@@ -17,7 +17,6 @@
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{background:var(--cream);color:var(--ink);font-family:"Archivo",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  /* paper grain */
   body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55;mix-blend-mode:multiply;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");}
   .wrap{max-width:1240px;margin:0 auto;padding:0 38px;position:relative;z-index:1}
@@ -25,7 +24,6 @@
   a{text-decoration:none;color:inherit}
   .grad-btn{background:var(--grad);color:#fff!important;border:none}
 
-  /* triangles */
   .tri{position:absolute;width:0;height:0;z-index:1}
   .tri.f{border-left:var(--s) solid transparent;border-right:var(--s) solid transparent;border-bottom:calc(var(--s)*1.5) solid var(--c)}
 
@@ -37,29 +35,27 @@
   .nav .links a:hover{color:var(--orange)}
   .nav .pill{background:var(--grad);color:#fff!important;padding:11px 20px;border-radius:8px;box-shadow:0 6px 16px -6px rgba(229,56,140,.6)}
 
-  /* hero */
-  .hero{position:relative;padding:30px 0 50px}
-  .hgrid{display:grid;grid-template-columns:1.02fr .98fr;gap:30px;align-items:center}
-  .eyebrow{font-family:"Archivo Black";font-size:15px;letter-spacing:.03em;color:var(--ink);text-transform:uppercase;line-height:1.25}
+  /* photo hero */
+  .phero{position:relative;min-height:600px;display:flex;align-items:center;
+    background:#0a1023 url('assets/photos/festival-hero.jpg') center/cover no-repeat}
+  .phero::before{content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(90deg,rgba(8,14,30,.9),rgba(8,14,30,.6) 44%,rgba(8,14,30,0) 76%)}
+  .phero .pin{position:relative;z-index:2;color:#fff;padding:64px 0;max-width:680px}
+  .eyebrow{font-family:"Archivo Black";font-size:15px;letter-spacing:.03em;text-transform:uppercase;line-height:1.25}
   .eyebrow::after{content:"";display:block;width:80px;height:5px;background:var(--teal);border-radius:4px;margin-top:12px}
-  h1{font-family:"Archivo Black";text-transform:uppercase;line-height:.86;margin:18px 0 0;font-size:clamp(64px,9.2vw,128px);letter-spacing:-.01em;color:var(--ink)}
-  h1 .good{color:var(--teal)} h1 .good .d{color:var(--orange)}
+  h1{font-family:"Archivo Black";text-transform:uppercase;line-height:.84;margin:18px 0 0;font-size:clamp(60px,9vw,124px);letter-spacing:-.01em}
+  .phero h1{color:#fff;text-shadow:0 6px 28px rgba(0,0,0,.45)}
+  h1 .good{color:#46e3c0} h1 .good .d{color:var(--orange)}
   .meta{display:flex;flex-direction:column;gap:8px;margin:26px 0 24px;font-weight:800;font-size:17px}
   .meta .r{display:flex;align-items:center;gap:12px}
-  .meta .ic{width:30px;height:30px;border-radius:8px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:15px;flex:none}
-  .meta .r.two{gap:22px} .meta .sub{color:var(--orange-d)}
+  .meta .r.two{gap:22px;flex-wrap:wrap}
+  .meta .ic{width:30px;height:30px;border-radius:8px;background:#fff;color:var(--ink);display:grid;place-items:center;font-size:15px;flex:none}
   .cta{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
   .btn{display:inline-block;font-weight:900;font-size:15px;letter-spacing:.03em;text-transform:uppercase;padding:15px 26px;border-radius:10px}
-  .btn.line{border:2px solid var(--ink);color:var(--ink)} .btn.line:hover{background:var(--ink);color:#fff}
-  .ben{display:inline-flex;align-items:center;gap:14px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-top:26px;box-shadow:0 10px 26px -18px rgba(0,0,0,.4)}
-  .ben img{height:46px}
-  .ben .t{font-family:"Archivo Black";font-size:11px;letter-spacing:.18em;color:#8a8266;text-transform:uppercase}
-
-  .art{position:relative}
-  .art svg{width:100%;height:auto;display:block;filter:drop-shadow(0 24px 40px rgba(20,30,60,.22))}
+  .btn.line{border:2px solid #fff;color:#fff} .btn.line:hover{background:#fff;color:var(--ink)}
 
   /* gradient tagline band */
-  .band{background:var(--grad);color:#fff;text-align:center;padding:30px 0;position:relative;overflow:hidden}
+  .band{background:var(--grad);color:#fff;text-align:center;padding:28px 0;position:relative;overflow:hidden}
   .band p{font-family:"Archivo Black";font-size:clamp(18px,2.5vw,30px);letter-spacing:.01em;text-transform:uppercase;position:relative;z-index:1}
   .band .t{color:#FFD23F}
 
@@ -100,7 +96,6 @@
   .tier ul li{margin:2px 0}
   .tier .badge{justify-self:end;text-align:center;background:var(--grad);color:#fff;font-family:"Archivo Black";text-transform:uppercase;
     font-size:14px;line-height:1.15;padding:12px 16px;border-radius:10px;min-width:150px}
-  .tier .badge.done{background:#9aa0b0;filter:saturate(.5)}
 
   /* footer */
   footer{background:var(--ink);color:#cdd4e6;padding:0 0 44px;margin-top:30px}
@@ -123,92 +118,19 @@
   </nav>
 </div></header>
 
-<section class="hero"><div class="wrap">
-  <!-- triangle confetti -->
-  <div class="tri f" style="--s:24px;--c:var(--gold);left:46%;top:-4px;transform:rotate(18deg)"></div>
-  <div class="tri f" style="--s:16px;--c:var(--magenta);left:3%;top:120px;transform:rotate(-20deg)"></div>
-  <div class="tri f" style="--s:20px;--c:var(--purple);left:2%;top:330px;transform:rotate(30deg)"></div>
-  <div class="tri f" style="--s:14px;--c:var(--blue);left:40%;top:300px;transform:rotate(-12deg)"></div>
-
-  <div class="hgrid">
-    <div>
-      <div class="eyebrow">Blind Draw 4s<br>Beach Volleyball Tournament</div>
-      <h1>Volleyball<br>For <span class="good">Good<span class="d">.</span></span></h1>
-      <div class="meta">
-        <div class="r two">
-          <span><span class="ic">📅</span> November 1<sup>st</sup>, 2026</span>
-          <span><span class="ic">🕘</span> 9AM – 7PM</span>
-        </div>
-        <div class="r"><span class="ic">📍</span> Aussie's Grill &amp; Beach Bar · Austin, TX</div>
-      </div>
-      <div class="cta">
-        <a href="#" class="btn grad-btn">Register Now →</a>
-        <a href="#divisions" class="btn line">See Divisions</a>
-      </div>
-      <div class="ben">
-        <img src="assets/brand/bbbs-logo.png" alt="Big Brothers Big Sisters">
-        <div class="t">Benefiting</div>
-      </div>
+<section class="phero"><div class="wrap pin">
+  <div class="eyebrow">The Big Draw · Volleyball for Good</div>
+  <h1>Blind Draw<br><span class="good">4s<span class="d">.</span></span></h1>
+  <div class="meta">
+    <div class="r two">
+      <span><span class="ic">📅</span> November 1<sup>st</sup>, 2026</span>
+      <span><span class="ic">🕘</span> 9AM – 7PM</span>
     </div>
-
-    <div class="art">
-      <svg viewBox="0 0 600 540" role="img" aria-label="Geometric Austin skyline with volleyball">
-        <defs>
-          <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD23F"/><stop offset="1" stop-color="#F6A91B"/></linearGradient>
-          <linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2563EB"/><stop offset="1" stop-color="#6D28D9"/></linearGradient>
-          <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E5388C"/><stop offset="1" stop-color="#6D28D9"/></linearGradient>
-          <linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#15A88C"/><stop offset="1" stop-color="#2563EB"/></linearGradient>
-          <linearGradient id="bg4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6A91B"/><stop offset="1" stop-color="#F26522"/></linearGradient>
-          <linearGradient id="watr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2EC4B6"/><stop offset="1" stop-color="#2563EB"/></linearGradient>
-        </defs>
-        <!-- sun -->
-        <circle cx="455" cy="120" r="74" fill="url(#sun)"/>
-        <!-- skyline -->
-        <g>
-          <rect x="150" y="150" width="46" height="210" rx="3" fill="url(#bg2)"/>
-          <rect x="202" y="110" width="40" height="250" rx="3" fill="url(#bg1)"/>
-          <rect x="248" y="180" width="34" height="180" rx="3" fill="url(#bg3)"/>
-          <rect x="300" y="92"  width="52" height="268" rx="3" fill="url(#bg1)"/>
-          <rect x="300" y="92"  width="52" height="22"  fill="#16264A" opacity=".25"/>
-          <rect x="360" y="160" width="40" height="200" rx="3" fill="url(#bg4)"/>
-          <rect x="406" y="120" width="46" height="240" rx="3" fill="url(#bg2)"/>
-          <rect x="460" y="190" width="36" height="170" rx="3" fill="url(#bg3)"/>
-          <rect x="502" y="150" width="44" height="210" rx="3" fill="url(#bg1)"/>
-          <!-- windows -->
-          <g fill="#FBF4E6" opacity=".55">
-            <rect x="312" y="130" width="6" height="9"/><rect x="324" y="130" width="6" height="9"/><rect x="336" y="130" width="6" height="9"/>
-            <rect x="312" y="150" width="6" height="9"/><rect x="324" y="150" width="6" height="9"/><rect x="336" y="150" width="6" height="9"/>
-            <rect x="416" y="150" width="6" height="9"/><rect x="428" y="150" width="6" height="9"/><rect x="440" y="150" width="6" height="9"/>
-            <rect x="212" y="140" width="6" height="9"/><rect x="224" y="140" width="6" height="9"/>
-          </g>
-        </g>
-        <!-- bridge + water -->
-        <rect x="60" y="360" width="520" height="58" fill="url(#watr)"/>
-        <g fill="#16264A">
-          <rect x="60" y="356" width="520" height="10"/>
-          <path d="M96 366 q34 34 68 0 z" /><path d="M178 366 q34 34 68 0 z"/>
-          <path d="M260 366 q34 34 68 0 z"/><path d="M342 366 q34 34 68 0 z"/>
-          <path d="M424 366 q34 34 68 0 z"/>
-        </g>
-        <g stroke="#FBF4E6" stroke-width="2" opacity=".4"><line x1="80" y1="392" x2="200" y2="392"/><line x1="360" y1="402" x2="540" y2="402"/></g>
-        <!-- sand -->
-        <rect x="0" y="416" width="600" height="124" fill="#EBD9A8"/>
-        <!-- net pole -->
-        <rect x="520" y="300" width="8" height="150" fill="#16264A"/>
-        <path d="M430 318 H520 V366 H430 Z" fill="none" stroke="#16264A" stroke-width="2"/>
-        <g stroke="#16264A" stroke-width="1" opacity=".5">
-          <line x1="442" y1="318" x2="442" y2="366"/><line x1="456" y1="318" x2="456" y2="366"/><line x1="470" y1="318" x2="470" y2="366"/><line x1="484" y1="318" x2="484" y2="366"/><line x1="498" y1="318" x2="498" y2="366"/><line x1="510" y1="318" x2="510" y2="366"/>
-          <line x1="430" y1="330" x2="520" y2="330"/><line x1="430" y1="342" x2="520" y2="342"/><line x1="430" y1="354" x2="520" y2="354"/>
-        </g>
-        <!-- volleyball -->
-        <g transform="translate(170 452)">
-          <circle r="50" fill="#fff" stroke="#16264A" stroke-width="3"/>
-          <path d="M-50 -6 q40 -20 86 18" fill="none" stroke="var(--magenta)" stroke-width="4"/>
-          <path d="M-30 47 q6 -52 -8 -92" fill="none" stroke="var(--teal)" stroke-width="4"/>
-          <path d="M40 44 q-18 -46 6 -92" fill="none" stroke="var(--blue)" stroke-width="4"/>
-        </g>
-      </svg>
-    </div>
+    <div class="r"><span class="ic">📍</span> Aussie's Grill &amp; Beach Bar · Austin, TX</div>
+  </div>
+  <div class="cta">
+    <a href="#" class="btn grad-btn">Register Now →</a>
+    <a href="#divisions" class="btn line">See Divisions</a>
   </div>
 </div></section>
 
