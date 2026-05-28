@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test_Run · Beta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#F6F4EE;--ink:#15201A;--green:#1FAE6E;--muted:#6c6e62;--line:#dcd9cb}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hanken Grotesk",sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding:64px 32px}
+  .label{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  h1{font-weight:800;letter-spacing:-.025em;font-size:clamp(40px,7vw,68px);margin:8px 0 16px;line-height:1}
+  .sub{color:#3c4239;max-width:60ch;margin-bottom:44px;font-size:17px;line-height:1.55}
+  .sub a, .sub code{color:var(--green);text-decoration:none;font-weight:600}
+  .sub code{font-family:"JetBrains Mono",monospace;font-size:15px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px;display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit;transition:transform .2s, box-shadow .2s, border-color .2s;min-height:172px}
+  .card:hover{transform:translateY(-2px);border-color:var(--green);box-shadow:0 18px 40px -28px rgba(0,0,0,.3)}
+  .tag{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+  .card h2{font-size:24px;letter-spacing:-.01em;font-weight:800;margin:0}
+  .card p{color:#43483d;font-size:15px;line-height:1.5;margin:0}
+  .arrow{margin-top:auto;font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--green);font-weight:500}
+  footer{margin-top:50px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+  footer a{color:var(--green);text-decoration:none}
+  @media (max-width:720px){.grid{grid-template-columns:1fr}.wrap{padding:42px 22px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="label">Test_Run · Beta</div>
+  <h1>Projects.</h1>
+  <p class="sub">Sandbox of in-progress sites — auto-deployed from the <code>master</code> branch of <a href="https://github.com/acemand23/Test_Run">acemand23/Test_Run</a>.</p>
+
+  <div class="grid">
+    <a class="card" href="TBD/index.php">
+      <span class="tag">PHP · Live mirror</span>
+      <h2>The Big Draw</h2>
+      <p>Mirror of tbdvolleyball.com — Blind Draw 4s beach volleyball tournament, dual division, benefiting Big Brothers Big Sisters.</p>
+      <span class="arrow">Open →</span>
+    </a>
+    <a class="card" href="TBD_v2/index.php">
+      <span class="tag">PHP · v2 redesign</span>
+      <h2>The Big Draw — Festival</h2>
+      <p>New "Festival" brand-system redesign — multi-page (home / tournament / sponsor) with festival-photo hero.</p>
+      <span class="arrow">Open →</span>
+    </a>
+    <a class="card" href="atxbeach_site/index.html">
+      <span class="tag">HTML</span>
+      <h2>ATX Beach</h2>
+      <p>Austin sand-volleyball venue site — Play, Train, ATX Juniors, Events.</p>
+      <span class="arrow">Open →</span>
+    </a>
+    <a class="card" href="btm/index.php">
+      <span class="tag">PHP</span>
+      <h2>Boomtown Classic</h2>
+      <p>Boomtown Classic — 10th Anniversary landing.</p>
+      <span class="arrow">Open →</span>
+    </a>
+  </div>
+
+  <footer>Source — <a href="https://github.com/acemand23/Test_Run">github.com/acemand23/Test_Run</a> &nbsp;·&nbsp; Specs &amp; plans — <a href="docs/superpowers/">docs/</a></footer>
+</div>
+</body>
+</html>
