@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Big Draw — The Festival</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#F26522; --orange-d:#d8551a; --ink:#16264A; --teal:#15A88C;
+    --magenta:#E5388C; --purple:#6D28D9; --blue:#2563EB; --gold:#F6A91B;
+    --cream:#F6ECD7; --paper:#FBF4E6; --line:#e4d8bd;
+    --grad:linear-gradient(100deg,#2563EB,#6D28D9 38%,#E5388C 68%,#F26522);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--ink);font-family:"Archivo",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  /* paper grain */
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 38px;position:relative;z-index:1}
+  .black{font-family:"Archivo Black",sans-serif;font-weight:400}
+  a{text-decoration:none;color:inherit}
+  .grad-btn{background:var(--grad);color:#fff!important;border:none}
+
+  /* triangles */
+  .tri{position:absolute;width:0;height:0;z-index:1}
+  .tri.f{border-left:var(--s) solid transparent;border-right:var(--s) solid transparent;border-bottom:calc(var(--s)*1.5) solid var(--c)}
+
+  /* header */
+  header{position:relative;z-index:5}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+  .nav img{height:34px}
+  .nav .links{display:flex;gap:24px;align-items:center;font-weight:800;font-size:13.5px;letter-spacing:.04em;text-transform:uppercase}
+  .nav .links a:hover{color:var(--orange)}
+  .nav .pill{background:var(--grad);color:#fff!important;padding:11px 20px;border-radius:8px;box-shadow:0 6px 16px -6px rgba(229,56,140,.6)}
+
+  /* hero */
+  .hero{position:relative;padding:30px 0 50px}
+  .hgrid{display:grid;grid-template-columns:1.02fr .98fr;gap:30px;align-items:center}
+  .eyebrow{font-family:"Archivo Black";font-size:15px;letter-spacing:.03em;color:var(--ink);text-transform:uppercase;line-height:1.25}
+  .eyebrow::after{content:"";display:block;width:80px;height:5px;background:var(--teal);border-radius:4px;margin-top:12px}
+  h1{font-family:"Archivo Black";text-transform:uppercase;line-height:.86;margin:18px 0 0;font-size:clamp(64px,9.2vw,128px);letter-spacing:-.01em;color:var(--ink)}
+  h1 .good{color:var(--teal)} h1 .good .d{color:var(--orange)}
+  .meta{display:flex;flex-direction:column;gap:8px;margin:26px 0 24px;font-weight:800;font-size:17px}
+  .meta .r{display:flex;align-items:center;gap:12px}
+  .meta .ic{width:30px;height:30px;border-radius:8px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:15px;flex:none}
+  .meta .r.two{gap:22px} .meta .sub{color:var(--orange-d)}
+  .cta{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .btn{display:inline-block;font-weight:900;font-size:15px;letter-spacing:.03em;text-transform:uppercase;padding:15px 26px;border-radius:10px}
+  .btn.line{border:2px solid var(--ink);color:var(--ink)} .btn.line:hover{background:var(--ink);color:#fff}
+  .ben{display:inline-flex;align-items:center;gap:14px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-top:26px;box-shadow:0 10px 26px -18px rgba(0,0,0,.4)}
+  .ben img{height:46px}
+  .ben .t{font-family:"Archivo Black";font-size:11px;letter-spacing:.18em;color:#8a8266;text-transform:uppercase}
+
+  .art{position:relative}
+  .art svg{width:100%;height:auto;display:block;filter:drop-shadow(0 24px 40px rgba(20,30,60,.22))}
+
+  /* gradient tagline band */
+  .band{background:var(--grad);color:#fff;text-align:center;padding:30px 0;position:relative;overflow:hidden}
+  .band p{font-family:"Archivo Black";font-size:clamp(18px,2.5vw,30px);letter-spacing:.01em;text-transform:uppercase;position:relative;z-index:1}
+  .band .t{color:#FFD23F}
+
+  /* divisions — orange fence band */
+  .divs{position:relative;background:var(--orange);color:#fff;padding:70px 0 78px;overflow:hidden}
+  .divs::before{content:"";position:absolute;inset:0;opacity:.5;
+    background:
+      linear-gradient(135deg, var(--magenta) 0 14%, transparent 14%),
+      linear-gradient(-135deg, var(--teal) 0 12%, transparent 12%),
+      linear-gradient(45deg, var(--purple) 0 10%, transparent 10%),
+      linear-gradient(-45deg, var(--blue) 0 10%, transparent 10%);
+    background-position:left top,right top,left bottom,right bottom;background-repeat:no-repeat;background-size:46% 60%,40% 55%,40% 55%,46% 60%;}
+  .divs .inner{position:relative;z-index:1}
+  .divs .kick{font-family:"Archivo Black";text-transform:uppercase;letter-spacing:.06em;font-size:14px;opacity:.9}
+  .divs h2{font-family:"Archivo Black";text-transform:uppercase;font-size:clamp(36px,5.6vw,68px);line-height:.92;margin:6px 0 30px}
+  .dgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .dcard{background:var(--paper);color:var(--ink);border-radius:18px;padding:30px 30px;position:relative;overflow:hidden;box-shadow:0 18px 40px -24px rgba(0,0,0,.5)}
+  .dcard .tag{display:inline-block;font-family:"Archivo Black";font-size:13px;color:#fff;padding:6px 14px;border-radius:8px;letter-spacing:.04em}
+  .dcard.rec .tag{background:var(--teal)} .dcard.comp .tag{background:var(--purple)}
+  .dcard h3{font-family:"Archivo Black";text-transform:uppercase;font-size:40px;margin:12px 0 2px}
+  .dcard .sub{font-weight:800;color:var(--orange-d);margin-bottom:12px}
+  .dcard p{font-weight:600;color:#3c4257;font-size:15.5px;line-height:1.55}
+  .dcard .fee{margin-top:18px;font-family:"Archivo Black";font-size:16px;background:var(--cream);border-radius:12px;padding:12px 14px}
+  .dcard .corner{position:absolute;right:-30px;bottom:-30px;width:120px;height:120px;border-radius:14px;transform:rotate(20deg);opacity:.14}
+  .dcard.rec .corner{background:var(--teal)} .dcard.comp .corner{background:var(--purple)}
+
+  /* sponsorship packages */
+  .spon{padding:78px 0 40px;position:relative}
+  .spon .hbrush{display:inline-block;background:var(--magenta);color:#fff;font-family:"Archivo Black";text-transform:uppercase;
+    font-size:clamp(26px,4vw,46px);padding:12px 30px;border-radius:10px;transform:rotate(-1.2deg);box-shadow:0 10px 28px -14px rgba(229,56,140,.7)}
+  .spon .center{text-align:center;margin-bottom:36px}
+  .tier{display:grid;grid-template-columns:78px 230px 1fr 180px;gap:22px;align-items:center;
+    background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 22px;margin-bottom:14px}
+  .tier .no{font-family:"Archivo Black";font-size:34px;color:#fff;width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:var(--grad)}
+  .tier .name{font-family:"Archivo Black";text-transform:uppercase;color:var(--teal);font-size:22px;line-height:1.05}
+  .tier .name span{display:block;color:var(--ink);font-size:26px}
+  .tier ul{margin:0;padding-left:18px;font-weight:600;font-size:14px;color:#43485c}
+  .tier ul li{margin:2px 0}
+  .tier .badge{justify-self:end;text-align:center;background:var(--grad);color:#fff;font-family:"Archivo Black";text-transform:uppercase;
+    font-size:14px;line-height:1.15;padding:12px 16px;border-radius:10px;min-width:150px}
+  .tier .badge.done{background:#9aa0b0;filter:saturate(.5)}
+
+  /* footer */
+  footer{background:var(--ink);color:#cdd4e6;padding:0 0 44px;margin-top:30px}
+  .footband{background:var(--grad);text-align:center;padding:20px;font-family:"Archivo Black";text-transform:uppercase;color:#fff;letter-spacing:.02em;font-size:clamp(16px,2.2vw,26px)}
+  .footband .t{color:#FFD23F}
+  .frow{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding-top:34px}
+  footer a{color:#7fe0c4}
+  footer .pcb{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  footer .pcb span{font-family:"Archivo Black";font-size:12px;letter-spacing:.06em;padding:7px 14px;border-radius:100px;color:#fff}
+</style>
+</head>
+<body>
+
+<header><div class="wrap nav">
+  <img src="assets/brand/logo.png" alt="The Big Draw">
+  <nav class="links">
+    <a href="#">About</a><a href="#divisions">Tournaments</a><a href="#">Get Involved</a>
+    <a href="#sponsor">Sponsor</a><a href="#">Shop</a><a href="#">Contact</a>
+    <a href="#" class="pill">Sponsor Now</a>
+  </nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <!-- triangle confetti -->
+  <div class="tri f" style="--s:24px;--c:var(--gold);left:46%;top:-4px;transform:rotate(18deg)"></div>
+  <div class="tri f" style="--s:16px;--c:var(--magenta);left:3%;top:120px;transform:rotate(-20deg)"></div>
+  <div class="tri f" style="--s:20px;--c:var(--purple);left:2%;top:330px;transform:rotate(30deg)"></div>
+  <div class="tri f" style="--s:14px;--c:var(--blue);left:40%;top:300px;transform:rotate(-12deg)"></div>
+
+  <div class="hgrid">
+    <div>
+      <div class="eyebrow">Blind Draw 4s<br>Beach Volleyball Tournament</div>
+      <h1>Volleyball<br>For <span class="good">Good<span class="d">.</span></span></h1>
+      <div class="meta">
+        <div class="r two">
+          <span><span class="ic">📅</span> November 1<sup>st</sup>, 2026</span>
+          <span><span class="ic">🕘</span> 9AM – 7PM</span>
+        </div>
+        <div class="r"><span class="ic">📍</span> Aussie's Grill &amp; Beach Bar · Austin, TX</div>
+      </div>
+      <div class="cta">
+        <a href="#" class="btn grad-btn">Register Now →</a>
+        <a href="#divisions" class="btn line">See Divisions</a>
+      </div>
+      <div class="ben">
+        <img src="assets/brand/bbbs-logo.png" alt="Big Brothers Big Sisters">
+        <div class="t">Benefiting</div>
+      </div>
+    </div>
+
+    <div class="art">
+      <svg viewBox="0 0 600 540" role="img" aria-label="Geometric Austin skyline with volleyball">
+        <defs>
+          <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD23F"/><stop offset="1" stop-color="#F6A91B"/></linearGradient>
+          <linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2563EB"/><stop offset="1" stop-color="#6D28D9"/></linearGradient>
+          <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E5388C"/><stop offset="1" stop-color="#6D28D9"/></linearGradient>
+          <linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#15A88C"/><stop offset="1" stop-color="#2563EB"/></linearGradient>
+          <linearGradient id="bg4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6A91B"/><stop offset="1" stop-color="#F26522"/></linearGradient>
+          <linearGradient id="watr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2EC4B6"/><stop offset="1" stop-color="#2563EB"/></linearGradient>
+        </defs>
+        <!-- sun -->
+        <circle cx="455" cy="120" r="74" fill="url(#sun)"/>
+        <!-- skyline -->
+        <g>
+          <rect x="150" y="150" width="46" height="210" rx="3" fill="url(#bg2)"/>
+          <rect x="202" y="110" width="40" height="250" rx="3" fill="url(#bg1)"/>
+          <rect x="248" y="180" width="34" height="180" rx="3" fill="url(#bg3)"/>
+          <rect x="300" y="92"  width="52" height="268" rx="3" fill="url(#bg1)"/>
+          <rect x="300" y="92"  width="52" height="22"  fill="#16264A" opacity=".25"/>
+          <rect x="360" y="160" width="40" height="200" rx="3" fill="url(#bg4)"/>
+          <rect x="406" y="120" width="46" height="240" rx="3" fill="url(#bg2)"/>
+          <rect x="460" y="190" width="36" height="170" rx="3" fill="url(#bg3)"/>
+          <rect x="502" y="150" width="44" height="210" rx="3" fill="url(#bg1)"/>
+          <!-- windows -->
+          <g fill="#FBF4E6" opacity=".55">
+            <rect x="312" y="130" width="6" height="9"/><rect x="324" y="130" width="6" height="9"/><rect x="336" y="130" width="6" height="9"/>
+            <rect x="312" y="150" width="6" height="9"/><rect x="324" y="150" width="6" height="9"/><rect x="336" y="150" width="6" height="9"/>
+            <rect x="416" y="150" width="6" height="9"/><rect x="428" y="150" width="6" height="9"/><rect x="440" y="150" width="6" height="9"/>
+            <rect x="212" y="140" width="6" height="9"/><rect x="224" y="140" width="6" height="9"/>
+          </g>
+        </g>
+        <!-- bridge + water -->
+        <rect x="60" y="360" width="520" height="58" fill="url(#watr)"/>
+        <g fill="#16264A">
+          <rect x="60" y="356" width="520" height="10"/>
+          <path d="M96 366 q34 34 68 0 z" /><path d="M178 366 q34 34 68 0 z"/>
+          <path d="M260 366 q34 34 68 0 z"/><path d="M342 366 q34 34 68 0 z"/>
+          <path d="M424 366 q34 34 68 0 z"/>
+        </g>
+        <g stroke="#FBF4E6" stroke-width="2" opacity=".4"><line x1="80" y1="392" x2="200" y2="392"/><line x1="360" y1="402" x2="540" y2="402"/></g>
+        <!-- sand -->
+        <rect x="0" y="416" width="600" height="124" fill="#EBD9A8"/>
+        <!-- net pole -->
+        <rect x="520" y="300" width="8" height="150" fill="#16264A"/>
+        <path d="M430 318 H520 V366 H430 Z" fill="none" stroke="#16264A" stroke-width="2"/>
+        <g stroke="#16264A" stroke-width="1" opacity=".5">
+          <line x1="442" y1="318" x2="442" y2="366"/><line x1="456" y1="318" x2="456" y2="366"/><line x1="470" y1="318" x2="470" y2="366"/><line x1="484" y1="318" x2="484" y2="366"/><line x1="498" y1="318" x2="498" y2="366"/><line x1="510" y1="318" x2="510" y2="366"/>
+          <line x1="430" y1="330" x2="520" y2="330"/><line x1="430" y1="342" x2="520" y2="342"/><line x1="430" y1="354" x2="520" y2="354"/>
+        </g>
+        <!-- volleyball -->
+        <g transform="translate(170 452)">
+          <circle r="50" fill="#fff" stroke="#16264A" stroke-width="3"/>
+          <path d="M-50 -6 q40 -20 86 18" fill="none" stroke="var(--magenta)" stroke-width="4"/>
+          <path d="M-30 47 q6 -52 -8 -92" fill="none" stroke="var(--teal)" stroke-width="4"/>
+          <path d="M40 44 q-18 -46 6 -92" fill="none" stroke="var(--blue)" stroke-width="4"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div></section>
+
+<div class="band"><div class="wrap"><p>Draw <span class="t">Together.</span> Change <span class="t">Together.</span></p></div></div>
+
+<section class="divs" id="divisions">
+  <div class="wrap inner">
+    <div class="kick">Sign up solo — we draw the teams</div>
+    <h2>Two ways to play</h2>
+    <div class="dgrid">
+      <div class="dcard rec">
+        <div class="corner"></div>
+        <span class="tag">Rec · 9AM – 1PM</span>
+        <h3>Rec</h3>
+        <div class="sub">All skill levels welcome</div>
+        <p>4-on-4, all blind draw. Includes Big Brothers Big Sisters <b>Matches</b> — a Big paired with their Little (16+) — playing on the same team.</p>
+        <div class="fee">$25 BBBS Matches · $50 all other players</div>
+      </div>
+      <div class="dcard comp">
+        <div class="corner"></div>
+        <span class="tag">Competitive · 12PM – 7PM</span>
+        <h3>Competitive</h3>
+        <div class="sub">For experienced players</div>
+        <p>4-on-4 blind draw with deeper brackets and a real fight to the finish. Same format, higher level of play.</p>
+        <div class="fee">$50 per player</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="spon" id="sponsor"><div class="wrap">
+  <div class="center"><span class="hbrush">Sponsorship Packages</span></div>
+
+  <div class="tier">
+    <div class="no">1</div>
+    <div class="name">Presenting<span>$6,000</span></div>
+    <ul><li>Logo &amp; appreciation on the tournament website (landing page for all promotion &amp; registration)</li><li>Speaking opportunity during the "Minute for Mission"</li><li>Logo on players' arm bands · social media recognition</li></ul>
+    <div class="badge">1 Spot<br>Available</div>
+  </div>
+  <div class="tier">
+    <div class="no">2</div>
+    <div class="name">Court<span>$1,500</span></div>
+    <ul><li>Highly visible logo &amp; appreciation on a court banner</li><li>Verbal appreciation at the event</li><li>Logo on the tournament website · social media recognition</li></ul>
+    <div class="badge">Spots<br>Available</div>
+  </div>
+  <div class="tier">
+    <div class="no">3</div>
+    <div class="name">Team<span>$500</span></div>
+    <ul><li>Logo on players' arm bands</li><li>Verbal appreciation at the event</li></ul>
+    <div class="badge">Spots<br>Available</div>
+  </div>
+  <div class="tier">
+    <div class="no">4</div>
+    <div class="name">In-Kind</div>
+    <ul><li>Donate swag for all players, and/or prizes for the top two winning teams</li><li>Recognized for in-kind donations of $500+ in value</li></ul>
+    <div class="badge">Spots<br>Available</div>
+  </div>
+  <div class="tier">
+    <div class="no">5</div>
+    <div class="name">Lunch</div>
+    <ul><li>Feed the players — your brand on the tournament lunch</li><li>Verbal appreciation &amp; social media recognition</li></ul>
+    <div class="badge">Available</div>
+  </div>
+  <div class="tier">
+    <div class="no">6</div>
+    <div class="name">DJ</div>
+    <ul><li>Sponsor the event DJ and keep the energy going all day</li><li>Verbal appreciation &amp; social media recognition</li></ul>
+    <div class="badge">Available</div>
+  </div>
+</div></section>
+
+<footer>
+  <div class="footband">Play. Connect. <span class="t">Give Back.</span></div>
+  <div class="wrap frow">
+    <div>
+      <img src="assets/brand/logo.png" alt="The Big Draw" style="height:34px;filter:brightness(0) invert(1)">
+      <div class="pcb"><span style="background:var(--teal)">Volleyball for Good</span><span style="background:var(--magenta)">Austin, TX</span></div>
+    </div>
+    <div>Questions? <a href="mailto:questions@tbdvolleyball.com">questions@tbdvolleyball.com</a><br>
+    Benefiting Big Brothers Big Sisters of Central Texas</div>
+  </div>
+</footer>
+
+</body>
+</html>
