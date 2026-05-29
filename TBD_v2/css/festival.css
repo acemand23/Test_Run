@@ -143,6 +143,54 @@ footer .pcb span{font-family:"Archivo Black";font-size:12px;letter-spacing:.06em
   .dgrid,.detail,.rules{grid-template-columns:1fr}
   .tier{grid-template-columns:60px 1fr;gap:14px}
   .tier ul,.tier .badge{grid-column:1/-1;justify-self:start;margin-top:6px}
+  .nav{flex-wrap:wrap;gap:12px 16px}
   .nav .links{gap:16px;font-size:12px}
   .phero{min-height:480px}
+}
+
+/* phones */
+@media (max-width:560px){
+  .wrap{padding:0 20px}
+
+  /* nav: logo centered over a wrapped, centered link row */
+  .nav{flex-direction:column;gap:14px;padding:16px 0}
+  .nav img{height:32px}
+  .nav .links{flex-wrap:wrap;justify-content:center;gap:12px 18px;font-size:12.5px}
+  .nav .pill{padding:10px 18px}
+
+  /* photo hero */
+  .phero{min-height:auto}
+  .phero .pin{padding:48px 0;max-width:none}
+  .phero h1{font-size:clamp(46px,13vw,80px)}
+  .meta{font-size:15.5px;margin:22px 0 20px}
+  .meta .r.two{gap:8px 18px}
+  .cta{flex-direction:column;align-items:stretch}
+  .cta .btn{text-align:center}
+
+  /* tighten vertical rhythm */
+  .band{padding:22px 0}
+  .divs{padding:50px 0 56px}
+  .mission{padding:52px 0}
+  .section{padding:52px 0}
+  .spon{padding:50px 0 30px}
+  .pay{padding:10px 0 52px}
+
+  /* division + rule cards */
+  .dcard{padding:24px 22px}
+  .dcard h3{font-size:34px}
+  .rule{padding:18px 20px}
+  .detail .item{padding:16px 18px}
+
+  /* sponsor tiers */
+  .tier{grid-template-columns:48px 1fr;gap:10px 14px;padding:16px 18px}
+  .tier .no{font-size:26px;width:48px;height:48px}
+  .tier .name{font-size:20px}
+  .tier .name span{font-size:22px}
+  .tier .badge{justify-self:start;min-width:0;padding:8px 14px;font-size:13px}
+
+  /* sponsorship donation form needs room on mobile */
+  .pay iframe{height:1850px}
+
+  /* footer stacks */
+  .frow{flex-direction:column;align-items:flex-start;gap:18px;padding-top:28px}
 }
