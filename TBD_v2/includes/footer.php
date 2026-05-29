@@ -1,5 +1,5 @@
 <footer>
-  <div class="footband">Play. Connect. <span class="t">Give Back.</span></div>
+  <div class="footband">Draw <span class="t">Together.</span> Change <span class="t">Together.</span></div>
   <div class="wrap frow">
     <div>
       <img src="assets/brand/logo.png" alt="The Big Draw" style="height:34px;filter:brightness(0) invert(1)">
