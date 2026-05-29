@@ -2,16 +2,20 @@
 
 <section class="phero">
   <span class="sun"></span>
+  <div class="skyline" aria-hidden="true"></div>
+  <div class="net" aria-hidden="true"></div>
+  <div class="sand" aria-hidden="true"></div>
+  <div class="ball" aria-hidden="true"></div>
+  <div class="mzone tl" aria-hidden="true"></div>
+  <div class="mzone bl" aria-hidden="true"></div>
   <div class="confetti" aria-hidden="true">
     <span class="tri f" style="--s:18px;--c:var(--gold);left:6%;top:42px;transform:rotate(14deg)"></span>
-    <span class="tri f" style="--s:13px;--c:var(--teal);left:30%;top:18px;transform:rotate(-20deg)"></span>
-    <span class="tri f" style="--s:16px;--c:var(--magenta);left:52%;top:64px;transform:rotate(30deg)"></span>
-    <span class="tri f" style="--s:11px;--c:#fff;left:70%;top:30px;transform:rotate(-12deg);opacity:.75"></span>
-    <span class="tri f" style="--s:20px;--c:var(--purple);right:9%;top:120px;transform:rotate(24deg)"></span>
-    <span class="tri f" style="--s:14px;--c:var(--blue);right:22%;bottom:78px;transform:rotate(-18deg)"></span>
-    <span class="tri f" style="--s:22px;--c:var(--gold);right:5%;bottom:44px;transform:rotate(8deg)"></span>
-    <span class="tri f" style="--s:12px;--c:var(--teal);left:14%;bottom:58px;transform:rotate(-26deg)"></span>
-    <span class="tri f" style="--s:15px;--c:var(--magenta);right:34%;top:200px;transform:rotate(16deg)"></span>
+    <span class="tri f" style="--s:13px;--c:var(--teal);left:33%;top:24px;transform:rotate(-20deg)"></span>
+    <span class="tri f" style="--s:16px;--c:var(--magenta);left:50%;top:70px;transform:rotate(30deg)"></span>
+    <span class="tri f" style="--s:11px;--c:var(--purple);left:62%;top:30px;transform:rotate(-12deg)"></span>
+    <span class="tri f" style="--s:20px;--c:var(--purple);right:12%;top:150px;transform:rotate(24deg)"></span>
+    <span class="tri f" style="--s:14px;--c:var(--blue);left:26%;top:200px;transform:rotate(-18deg)"></span>
+    <span class="tri f" style="--s:13px;--c:var(--magenta);right:38%;top:120px;transform:rotate(16deg)"></span>
   </div>
   <div class="wrap pin">
     <div class="benefit"><span class="lab">Benefiting</span><img src="assets/brand/bbbs-logo.png" alt="Big Brothers Big Sisters"></div>
@@ -26,7 +30,7 @@
     </div>
     <div class="cta">
       <a href="<?= $register_url ?>" class="btn grad-btn">Register Now →</a>
-      <a href="tournament.php" class="btn line lt">See Divisions</a>
+      <a href="tournament.php" class="btn line">See Divisions</a>
     </div>
   </div>
 </section>

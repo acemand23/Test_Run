@@ -35,21 +35,39 @@ header{position:relative;z-index:5;background:var(--cream)}
 .eyebrow::after{content:"";display:block;width:80px;height:5px;background:var(--teal);border-radius:4px;margin-top:12px}
 h1,h2,h3{font-family:"Archivo Black";text-transform:uppercase;letter-spacing:-.01em}
 
-/* photo hero (home) */
-.phero{position:relative;min-height:600px;display:flex;align-items:center;
-  background:#0a1023 url('../assets/photos/festival-hero.jpg') center/cover no-repeat}
-.phero::before{content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(90deg,rgba(8,14,30,.9),rgba(8,14,30,.6) 44%,rgba(8,14,30,0) 76%)}
-.phero .pin{position:relative;z-index:2;color:#fff;padding:64px 0;max-width:680px}
-.phero h1{line-height:.84;margin:18px 0 0;font-size:clamp(60px,9vw,124px);color:#fff;text-shadow:0 6px 28px rgba(0,0,0,.45)}
-h1 .good{color:#46e3c0} h1 .good .d{color:var(--orange)}
+/* illustrated hero (home) — poster look */
+.phero{position:relative;min-height:720px;display:flex;align-items:center;overflow:hidden;
+  background:linear-gradient(180deg,#9fd4ff 0%,#cfeaff 34%,#eef6ec 70%,#FBF4E6 100%)}
+.phero .sun{position:absolute;z-index:1;width:210px;height:210px;border-radius:50%;
+  background:radial-gradient(circle,#FFE27A 0 52%,#F6A91B 52% 100%);
+  top:96px;right:24%;box-shadow:0 0 70px 10px rgba(246,169,27,.45);pointer-events:none}
+.phero .skyline{position:absolute;left:0;right:0;bottom:84px;height:300px;z-index:1;pointer-events:none;
+  background:url('../assets/art/skyline.svg') right bottom/auto 300px no-repeat;filter:drop-shadow(0 6px 0 rgba(0,0,0,.04))}
+.phero .sand{position:absolute;left:0;right:0;bottom:0;height:96px;z-index:1;
+  background:linear-gradient(180deg,#f0d59a,#ddb368)}
+.phero .sand::before{content:"";position:absolute;inset:0;opacity:.18;
+  background:repeating-linear-gradient(115deg,rgba(120,80,20,.5) 0 2px,transparent 2px 9px)}
+.phero .ball{position:absolute;right:9%;bottom:52px;width:128px;height:128px;z-index:2;
+  background:url('../assets/art/volleyball.svg') center/contain no-repeat;
+  filter:drop-shadow(0 12px 14px rgba(0,0,0,.28))}
+.phero .net{position:absolute;right:2%;bottom:96px;width:230px;height:150px;z-index:1;opacity:.5;
+  background:repeating-linear-gradient(90deg,rgba(22,38,74,.55) 0 1.5px,transparent 1.5px 13px),
+             repeating-linear-gradient(0deg,rgba(22,38,74,.55) 0 1.5px,transparent 1.5px 13px);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 40%);mask-image:linear-gradient(90deg,transparent,#000 40%);pointer-events:none}
 
-/* confetti triangles + sun (festival poster look) */
-.confetti{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+/* triangle-mosaic corner clusters */
+.mzone{position:absolute;z-index:2;background:url('../assets/art/mosaic.svg');background-size:60px 60px;pointer-events:none}
+.mzone.tl{top:0;left:0;width:190px;height:150px;clip-path:polygon(0 0,100% 0,0 100%)}
+.mzone.bl{bottom:0;left:0;width:150px;height:170px;z-index:3;clip-path:polygon(0 0,0 100%,100% 100%)}
+
+.phero .pin{position:relative;z-index:4;color:var(--ink);padding:48px 0;max-width:640px}
+.phero h1{line-height:.84;margin:18px 0 0;font-size:clamp(56px,8.6vw,116px);color:var(--ink)}
+.phero h1 .good{color:var(--teal)} .phero h1 .good .d{color:var(--orange)}
+h1 .good{color:var(--teal)} h1 .good .d{color:var(--orange)}
+
+/* confetti triangles */
+.confetti{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden}
 .confetti .tri{position:absolute}
-.phero .sun{position:absolute;z-index:1;width:280px;height:280px;border-radius:50%;
-  background:radial-gradient(circle,#FFD23F 0 58%,#F6A91B 58% 100%);
-  top:-70px;right:7%;opacity:.85;mix-blend-mode:screen;pointer-events:none}
 
 /* benefiting badge (hero) */
 .benefit{position:absolute;top:26px;right:max(38px,calc(50% - 582px));z-index:3;display:flex;align-items:center;gap:12px;
@@ -67,7 +85,7 @@ h1 .good{color:#46e3c0} h1 .good .d{color:var(--orange)}
 /* event meta row */
 .meta{display:flex;flex-direction:column;gap:8px;margin:26px 0 24px;font-weight:800;font-size:17px}
 .meta .r{display:flex;align-items:center;gap:12px} .meta .r.two{gap:22px;flex-wrap:wrap}
-.meta .ic{width:30px;height:30px;border-radius:8px;background:#fff;color:var(--ink);display:grid;place-items:center;font-size:15px;flex:none}
+.meta .ic{width:30px;height:30px;border-radius:8px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:15px;flex:none}
 .cta{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
 
 /* gradient tagline band */
@@ -77,13 +95,10 @@ h1 .good{color:#46e3c0} h1 .good .d{color:var(--orange)}
 
 /* divisions — orange fence band */
 .divs{position:relative;background:var(--orange);color:#fff;padding:70px 0 78px;overflow:hidden}
-.divs::before{content:"";position:absolute;inset:0;opacity:.5;
-  background:
-    linear-gradient(135deg, var(--magenta) 0 14%, transparent 14%),
-    linear-gradient(-135deg, var(--teal) 0 12%, transparent 12%),
-    linear-gradient(45deg, var(--purple) 0 10%, transparent 10%),
-    linear-gradient(-45deg, var(--blue) 0 10%, transparent 10%);
-  background-position:left top,right top,left bottom,right bottom;background-repeat:no-repeat;background-size:46% 60%,40% 55%,40% 55%,46% 60%;}
+.divs::before{content:"";position:absolute;inset:0;opacity:.32;mix-blend-mode:soft-light;
+  background:url('../assets/art/mosaic.svg');background-size:104px 104px}
+.divs::after{content:"";position:absolute;left:0;right:0;top:0;height:26px;z-index:0;
+  background:url('../assets/art/mosaic.svg');background-size:52px 52px;opacity:.9}
 .divs .inner{position:relative;z-index:1}
 .divs .kick{font-family:"Archivo Black";text-transform:uppercase;letter-spacing:.06em;font-size:14px;opacity:.9}
 .divs h2{font-size:clamp(36px,5.6vw,68px);line-height:.92;margin:6px 0 30px}
@@ -171,13 +186,17 @@ footer .pcb span{font-family:"Archivo Black";font-size:12px;letter-spacing:.06em
   .nav .links{flex-wrap:wrap;justify-content:center;gap:12px 18px;font-size:12.5px}
   .nav .pill{padding:10px 18px}
 
-  /* photo hero */
-  .phero{min-height:auto}
-  .phero .pin{padding:44px 0 48px;max-width:none}
+  /* illustrated hero — stack text above the scene */
+  .phero{min-height:auto;display:block}
+  .phero .pin{padding:34px 0 210px;max-width:none}
   .phero h1{font-size:clamp(40px,12vw,84px)}
-  .confetti{display:none}
-  .phero .sun{width:170px;height:170px;top:-50px;right:-20px}
-  .benefit{position:static;margin-bottom:22px;align-self:flex-start}
+  .confetti,.phero .net,.mzone.bl{display:none}
+  .phero .sun{width:120px;height:120px;top:28px;right:6%}
+  .phero .skyline{bottom:60px;height:170px;background-size:auto 170px}
+  .phero .sand{height:70px}
+  .phero .ball{width:78px;height:78px;right:7%;bottom:36px}
+  .mzone.tl{width:118px;height:94px;background-size:42px 42px}
+  .benefit{position:static;margin-bottom:20px}
   .meta{font-size:15.5px;margin:22px 0 20px}
   .meta .r.two{gap:8px 18px}
   .cta{flex-direction:column;align-items:stretch}

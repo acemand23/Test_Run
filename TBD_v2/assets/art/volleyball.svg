@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="98" fill="#fff"/>
+  <g>
+    <path d="M100,100 L196,100 A96,96 0 0 1 148,183.14 Z" fill="#F26522"/>
+    <path d="M100,100 L148,183.14 A96,96 0 0 1 52,183.14 Z" fill="#E5388C"/>
+    <path d="M100,100 L52,183.14 A96,96 0 0 1 4,100 Z" fill="#6D28D9"/>
+    <path d="M100,100 L4,100 A96,96 0 0 1 52,16.86 Z" fill="#2563EB"/>
+    <path d="M100,100 L52,16.86 A96,96 0 0 1 148,16.86 Z" fill="#15A88C"/>
+    <path d="M100,100 L148,16.86 A96,96 0 0 1 196,100 Z" fill="#F6A91B"/>
+  </g>
+  <g stroke="#fff" stroke-width="6" stroke-linecap="round">
+    <line x1="100" y1="100" x2="196" y2="100"/>
+    <line x1="100" y1="100" x2="148" y2="183.14"/>
+    <line x1="100" y1="100" x2="52" y2="183.14"/>
+    <line x1="100" y1="100" x2="4" y2="100"/>
+    <line x1="100" y1="100" x2="52" y2="16.86"/>
+    <line x1="100" y1="100" x2="148" y2="16.86"/>
+  </g>
+  <circle cx="100" cy="100" r="96" fill="none" stroke="#fff" stroke-width="7"/>
+  <circle cx="100" cy="100" r="11" fill="#fff"/>
+</svg>
