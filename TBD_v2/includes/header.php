@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/festival.css">
+<link rel="stylesheet" href="css/festival.css?v=<?= @filemtime(__DIR__ . '/../css/festival.css') ?: time() ?>">
 </head>
 <body>
 <header><div class="wrap nav">

@@ -177,7 +177,7 @@ footer .pcb span{font-family:"Archivo Black";font-size:12px;letter-spacing:.06em
 
   /* division + rule cards */
   .dcard{padding:24px 22px}
-  .dcard h3{font-size:34px}
+  .dcard h3{font-size:clamp(28px,8vw,36px)}
   .rule{padding:18px 20px}
   .detail .item{padding:16px 18px}
 
