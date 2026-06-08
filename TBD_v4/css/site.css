@@ -1,0 +1,95 @@
+/* The Big Draw — v4: poster sliced into pages, shared brand chrome */
+:root{
+  --orange:#F26522; --orange-d:#d8551a; --ink:#16264A; --teal:#15A88C;
+  --magenta:#E5388C; --purple:#6D28D9; --blue:#2563EB; --gold:#F6A91B;
+  --cream:#F6ECD7; --paper:#FBF4E6; --line:#e4d8bd;
+  --grad:linear-gradient(100deg,#2563EB,#6D28D9 38%,#E5388C 68%,#F26522);
+  --col:760px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:"Archivo",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+h1,h2,h3{font-family:"Archivo Black";text-transform:uppercase;letter-spacing:-.01em}
+
+/* shared header / nav (matches the poster header) */
+header{background:var(--cream);position:relative;z-index:10}
+.bar{max-width:var(--col);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px}
+.brand img{height:40px;display:block}
+.links{display:flex;align-items:center;gap:18px;font-weight:800;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
+.links a:hover,.links a.on{color:var(--orange)}
+.links .pill{background:var(--orange);color:#fff;padding:9px 16px;border-radius:8px;box-shadow:0 8px 18px -8px rgba(242,101,34,.7)}
+.links .pill:hover{filter:brightness(1.05)}
+
+/* poster slices */
+.slice{position:relative;width:100%;max-width:var(--col);margin:0 auto;overflow:hidden;line-height:0;background:var(--cream)}
+.slice img{display:block;width:100%}
+.slice.home{aspect-ratio:1024 / 799}
+.slice.home img{margin-top:-8.25%}      /* show poster 5.5% -> 57.5% */
+.slice.spon{aspect-ratio:1024 / 653}
+.slice.spon img{margin-top:-86.25%}      /* show poster 57.5% -> 100% */
+
+/* clickable hotspots over the artwork */
+.hot{position:absolute;display:block;z-index:2;border-radius:8px;-webkit-tap-highlight-color:transparent}
+.hot:hover{box-shadow:0 0 0 3px rgba(229,56,140,.6) inset}
+.hot:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.slice.edit .hot{background:rgba(21,168,140,.28);outline:2px dashed #0f7d68}
+.slice.edit .hot::after{content:attr(data-label);position:absolute;left:0;top:0;
+  font:600 11px/1.4 system-ui,sans-serif;color:#0a3d33;background:#7fffe0;padding:1px 5px;border-radius:0 0 5px 0;white-space:nowrap}
+
+/* inner-page header band (tournament / contact) */
+.col{max-width:var(--col);margin:0 auto;padding:0 18px}
+.pagehead{background:var(--grad);color:#fff;padding:46px 0 44px}
+.pagehead .eyebrow{font-family:"Archivo Black";text-transform:uppercase;letter-spacing:.06em;font-size:13px;opacity:.95}
+.pagehead h1{font-size:clamp(38px,6vw,70px);line-height:.92;margin-top:8px;color:#fff;text-shadow:0 4px 16px rgba(0,0,0,.2)}
+.pagehead p{font-weight:600;margin-top:12px;max-width:56ch;font-size:16px}
+
+/* generic content block */
+.block{padding:48px 0 58px}
+.kicker{font-family:"Archivo Black";text-transform:uppercase;color:var(--orange-d);letter-spacing:.04em;font-size:14px;margin-bottom:20px}
+
+/* rules grid */
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rule{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 22px;position:relative}
+.rule .n{font-family:"Archivo Black";color:var(--teal);font-size:13px;letter-spacing:.08em}
+.rule h3{font-size:18px;margin:6px 0 8px;color:var(--ink)}
+.rule p{font-weight:600;color:#3c4257;font-size:14.5px;line-height:1.5}
+
+/* buttons */
+.btn{display:inline-block;font-family:"Archivo Black";text-transform:uppercase;font-size:14px;letter-spacing:.03em;padding:14px 24px;border-radius:10px}
+.btn.grad{background:var(--grad);color:#fff;border:none;box-shadow:0 12px 26px -12px rgba(229,56,140,.6)}
+.btn.line{border:2px solid var(--ink);color:var(--ink)}
+.btn.line:hover{background:var(--ink);color:#fff}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:30px;align-items:start}
+.cinfo .lead{font-size:20px;font-weight:800;margin-bottom:14px}
+.cinfo .lead a{color:var(--teal)}
+.cinfo .muted{color:#5a5f52;font-weight:600;font-size:14.5px;line-height:1.5;margin-top:12px}
+.lead-form{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:24px}
+.field{margin-bottom:14px;display:flex;flex-direction:column;gap:6px}
+.field label{font-family:"Archivo Black";text-transform:uppercase;font-size:11px;letter-spacing:.08em;color:var(--orange-d)}
+.field input,.field select,.field textarea{font-family:"Archivo",sans-serif;font-size:15px;font-weight:600;color:var(--ink);
+  background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:11px 13px;width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(21,168,140,.18)}
+.lead-form .btn{cursor:pointer;width:100%;margin-top:4px}
+.form-success{margin-top:14px;background:#e7f7f1;border:1px solid #bfe9da;color:#0f6a55;border-radius:10px;padding:12px 14px;font-weight:700;font-size:14px}
+
+/* footer */
+footer.foot{background:var(--ink);color:#cdd4e6;text-align:center;padding:30px 18px}
+footer.foot .t{color:#7fe0c4}
+footer.foot a{color:#7fe0c4}
+footer.foot .tag{font-family:"Archivo Black";text-transform:uppercase;font-size:clamp(16px,2.4vw,24px)}
+footer.foot .sub{font-size:13px;font-weight:600;margin-top:8px;opacity:.85}
+
+/* responsive */
+@media (max-width:680px){
+  .links{gap:12px;font-size:11.5px}
+  .rules,.contact-grid{grid-template-columns:1fr}
+}
+@media (max-width:540px){
+  .bar{flex-direction:column;gap:10px;padding:12px 16px}
+  .links{flex-wrap:wrap;justify-content:center;gap:9px 14px}
+  .pagehead{padding:34px 0 32px}
+}
