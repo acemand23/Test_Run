@@ -11,36 +11,42 @@
 <section class="spon"><div class="wrap">
   <div class="tier">
     <div class="no">1</div>
+    <img class="thumb" src="assets/art/thumb.svg" alt="">
     <div class="name">Presenting<span>$6,000</span></div>
     <ul><li>Logo &amp; appreciation on the tournament website (landing page for all promotion &amp; registration)</li><li>Speaking opportunity during the "Minute for Mission"</li><li>Logo on players' arm bands · social media recognition</li></ul>
     <div class="badge">1 Spot<br>Available</div>
   </div>
   <div class="tier">
     <div class="no">2</div>
+    <img class="thumb" src="assets/art/thumb.svg" alt="">
     <div class="name">Court<span>$1,500</span></div>
     <ul><li>Highly visible logo &amp; appreciation on a court banner</li><li>Verbal appreciation at the event</li><li>Logo on the tournament website · social media recognition</li></ul>
     <div class="badge">Spots<br>Available</div>
   </div>
   <div class="tier">
     <div class="no">3</div>
+    <img class="thumb" src="assets/art/thumb.svg" alt="">
     <div class="name">Team<span>$500</span></div>
     <ul><li>Logo on players' arm bands</li><li>Verbal appreciation at the event</li></ul>
     <div class="badge">Spots<br>Available</div>
   </div>
   <div class="tier">
     <div class="no">4</div>
+    <img class="thumb" src="assets/art/thumb.svg" alt="">
     <div class="name">In-Kind</div>
     <ul><li>Donate swag for all players, and/or prizes for the top two winning teams</li><li>Recognized for in-kind donations of $500+ in value</li></ul>
     <div class="badge">Spots<br>Available</div>
   </div>
   <div class="tier">
     <div class="no">5</div>
+    <img class="thumb" src="assets/art/thumb.svg" alt="">
     <div class="name">Lunch</div>
     <ul><li>Feed the players — your brand on the tournament lunch</li><li>Verbal appreciation &amp; social media recognition</li></ul>
     <div class="badge">Available</div>
   </div>
   <div class="tier">
     <div class="no">6</div>
+    <img class="thumb" src="assets/art/thumb.svg" alt="">
     <div class="name">DJ</div>
     <ul><li>Sponsor the event DJ and keep the energy going all day</li><li>Verbal appreciation &amp; social media recognition</li></ul>
     <div class="badge">Available</div>
