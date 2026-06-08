@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240">
+  <defs>
+    <pattern id="mesh" width="15" height="15" patternUnits="userSpaceOnUse">
+      <path d="M15 0 V15 M0 15 H15" stroke="#16264A" stroke-width="1.4" opacity="0.65" fill="none"/>
+    </pattern>
+  </defs>
+  <!-- poles -->
+  <rect x="20" y="16" width="9" height="218" rx="4" fill="#16264A"/>
+  <rect x="331" y="16" width="9" height="218" rx="4" fill="#16264A"/>
+  <!-- net mesh -->
+  <rect x="26" y="34" width="308" height="168" fill="url(#mesh)"/>
+  <!-- tapes -->
+  <rect x="24" y="18" width="312" height="15" rx="3" fill="#fff" stroke="#16264A" stroke-width="2"/>
+  <rect x="24" y="198" width="312" height="6" fill="#fff" opacity="0.95"/>
+  <!-- antenna accents -->
+  <rect x="92" y="12" width="4" height="200" fill="#F26522" opacity="0.85"/>
+  <rect x="264" y="12" width="4" height="200" fill="#F26522" opacity="0.85"/>
+</svg>
