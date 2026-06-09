@@ -1,6 +1,6 @@
 # The Big Draw — v4 site · Handoff / Continue notes
 
-_Last updated: 2026-06-09_
+_Last updated: 2026-06-09 (contact form wired to mailto; mobile menu outside-tap/Esc close; gallery still network-blocked)_
 
 Load this file at the start of a new session to pick up exactly where we left off.
 
@@ -39,7 +39,7 @@ tournament, contact, volunteer, gallery.
 | `index.php` | (logo) / About | ✅ done | Top of poster (hero + mission). Header chopped off the image (5.5%) and replaced by the shared nav. Register-Now hotspot over the button. |
 | `sponsor.php` | Sponsor / Sponsor Now | ✅ done | Bottom of poster (Sponsorship Packages + footer art, 57.5%→100%). "Become a sponsor" mailto hotspot. |
 | `tournament.php` | Tournament | ✅ done | "Rules of the Game" — gradient header + 8-rule grid + CTAs. (Menu says **Tournament**, singular — deliberate.) |
-| `contact.php` | Contact | ✅ done | Sample contact form (name/email/topic/message). JS-only confirmation, no real send yet. |
+| `contact.php` | Contact | ✅ done | Contact form (name/email/topic/message). On submit opens a `mailto:` to `questions@tbdvolleyball.com` (like volunteer.php). Swap to a backend if real capture is needed. |
 | `volunteer.php` | Get Involved | ✅ done | Volunteer signup form (see below). Emails the director via `mailto:`. |
 | `gallery.php` | Gallery | ⏳ built, **needs photos** | Replaces "Shop". Past-Years tabs + grid + lightbox; auto-loads `assets/gallery/<year>/`. Currently empty → "Photos coming soon." |
 
@@ -84,8 +84,9 @@ tournament, contact, volunteer, gallery.
 
 ## OPEN ITEMS — do these next
 
-1. **Gallery photos (BLOCKED on network allowlist).**
-   - This environment cannot reach `tbdvolleyball.com` → `Host not in allowlist`.
+1. **Gallery photos (STILL BLOCKED on network allowlist — re-checked 2026-06-09).**
+   - This environment cannot reach `tbdvolleyball.com` → `Host not in allowlist`
+     (both `/` and `/photo_index.php` return 403 from the allowlist proxy).
    - User chose: **allowlist the domain.** Network policy is fixed per session,
      so it must be added in the environment settings **and a new session started**.
    - **To do once reachable:** fetch `https://tbdvolleyball.com/photo_index.php?year=2022`
@@ -99,8 +100,10 @@ tournament, contact, volunteer, gallery.
    `$director_email = 'director@tbdvolleyball.com'` (marked TODO). **Replace with
    the real address.**
 
-3. **Contact form is sample-only.** `contact.php` doesn't actually send. Decide:
-   `mailto:` (like volunteer.php), PHP `mail()`, or a form service (Formspree).
+3. **Contact form — DONE (mailto).** `contact.php` now opens a `mailto:` to
+   `questions@tbdvolleyball.com` on submit (mirrors volunteer.php). If you want
+   real server-side capture instead, swap for PHP `mail()` or a form service
+   (Formspree) — the `$contact_email` var + submit handler are the only touch points.
 
 4. **Registration link placeholder.** `header.php` sets
    `$register_url = 'https://vballmanager.com/'` (TODO: the specific event reg URL).
@@ -112,7 +115,7 @@ tournament, contact, volunteer, gallery.
 ---
 
 ## Possible future polish (not requested / optional)
-- Close the mobile menu when tapping outside it.
+- ~~Close the mobile menu when tapping outside it.~~ ✅ done (also closes on Esc).
 - Convert the home hero + mission (and sponsor tiers) from poster-slice images to
   real HTML/text for accessibility & SEO.
 - Apply the same 2026 date fix to `TBD_v3/assets/poster.png` (still says 2025).

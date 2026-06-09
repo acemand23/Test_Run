@@ -1,4 +1,9 @@
-<?php $title='Contact — The Big Draw'; $active='contact'; include 'includes/header.php'; ?>
+<?php
+  $title='Contact — The Big Draw'; $active='contact';
+  // Messages from this form open the visitor's email app addressed here.
+  $contact_email = 'questions@tbdvolleyball.com';
+  include 'includes/header.php';
+?>
 
 <section class="pagehead"><div class="col">
   <div class="eyebrow">Questions?</div>
@@ -10,7 +15,7 @@
   <div class="contact-grid">
     <div class="cinfo">
       <h2 class="kicker">Get in touch</h2>
-      <p class="lead"><a href="mailto:questions@tbdvolleyball.com">questions@tbdvolleyball.com</a></p>
+      <p class="lead"><a href="mailto:<?= htmlspecialchars($contact_email) ?>"><?= htmlspecialchars($contact_email) ?></a></p>
       <p class="muted">Aussie's Grill &amp; Beach Bar<br>306 Barton Springs Rd, Austin, TX 78704</p>
       <p class="muted">Benefiting Big Brothers Big Sisters of Central Texas.</p>
     </div>
@@ -38,7 +43,7 @@
         <textarea id="message" name="message" rows="4" placeholder="How can we help?"></textarea>
       </div>
       <button type="submit" class="btn grad">Send Message →</button>
-      <div class="form-success" id="formSuccess" hidden>Thanks! This is a sample form — connect it to your email/CRM to capture real messages.</div>
+      <div class="form-success" id="formSuccess" hidden>Thanks! Your email app should open with your message ready — just hit send and we'll get back to you.</div>
     </form>
   </div>
 </div></section>
@@ -47,9 +52,28 @@
   (function(){
     var form = document.getElementById('leadForm');
     var success = document.getElementById('formSuccess');
+    var to = <?= json_encode($contact_email) ?>;
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
+      var name = form.name.value.trim();
+
+      var lines = [
+        'New message from The Big Draw contact form',
+        '',
+        'Name:  ' + name,
+        'Email: ' + form.email.value.trim(),
+        'Topic: ' + form.topic.value,
+        '',
+        'Message:',
+        (form.message.value.trim() || '  —')
+      ];
+
+      var subject = 'Contact — ' + form.topic.value + (name ? ' — ' + name : '');
+      var href = 'mailto:' + to +
+                 '?subject=' + encodeURIComponent(subject) +
+                 '&body='    + encodeURIComponent(lines.join('\n'));
+      window.location.href = href;
       success.hidden = false;
       form.querySelector('button[type="submit"]').textContent = 'Message Sent';
     });

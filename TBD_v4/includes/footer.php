@@ -11,10 +11,22 @@
     var btn = document.querySelector('.navtoggle');
     var bar = document.querySelector('.bar');
     if (btn && bar) {
-      btn.addEventListener('click', function(){
-        var open = bar.classList.toggle('open');
+      function setOpen(open){
+        bar.classList.toggle('open', open);
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
         btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      }
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        setOpen(!bar.classList.contains('open'));
+      });
+      // close when tapping outside the menu
+      document.addEventListener('click', function(e){
+        if (bar.classList.contains('open') && !bar.contains(e.target)) setOpen(false);
+      });
+      // close on Escape
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && bar.classList.contains('open')) setOpen(false);
       });
     }
   })();
