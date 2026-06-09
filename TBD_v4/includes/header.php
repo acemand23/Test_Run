@@ -21,7 +21,7 @@
     <span></span><span></span><span></span>
   </button>
   <nav class="links" id="navlinks">
-    <a href="#">About</a>
+    <a href="index.php">About</a>
     <a href="tournament.php" class="<?= $active==='tour'?'on':'' ?>">Tournament</a>
     <a href="volunteer.php" class="<?= $active==='involve'?'on':'' ?>">Get Involved</a>
     <a href="sponsor.php" class="<?= $active==='sponsor'?'on':'' ?>">Sponsor</a>
