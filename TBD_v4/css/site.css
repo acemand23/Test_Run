@@ -83,6 +83,26 @@ header{background:var(--cream);position:relative;z-index:10}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(21,168,140,.18)}
 .lead-form .btn{cursor:pointer;width:100%;margin-top:4px}
 .form-success{margin-top:14px;background:#e7f7f1;border:1px solid #bfe9da;color:#0f6a55;border-radius:10px;padding:12px 14px;font-weight:700;font-size:14px}
+.field .opt{font-weight:600;color:#9a9486;text-transform:none;letter-spacing:0}
+.checks{border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff}
+.checks legend{font-family:"Archivo Black";text-transform:uppercase;font-size:11px;letter-spacing:.08em;color:var(--orange-d);padding:0 6px}
+.check{display:flex;align-items:center;gap:10px;padding:7px 0;font-weight:600;font-size:14.5px;color:var(--ink);cursor:pointer}
+.check input{width:18px;height:18px;accent-color:var(--teal);cursor:pointer}
+
+/* gallery */
+.yeartabs{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+.ytab{font-family:"Archivo Black";text-transform:uppercase;font-size:13px;letter-spacing:.04em;
+  padding:9px 18px;border-radius:999px;border:2px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+.ytab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.gallery-grid{display:none;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.gallery-grid.on{display:grid}
+.shot{display:block;overflow:hidden;border-radius:12px;aspect-ratio:1/1;background:var(--paper);border:1px solid var(--line)}
+.shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.shot:hover img{transform:scale(1.06)}
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(10,14,28,.92);display:flex;align-items:center;justify-content:center;padding:24px}
+.lightbox[hidden]{display:none}
+.lightbox img{max-width:94vw;max-height:90vh;border-radius:8px;box-shadow:0 24px 70px rgba(0,0,0,.55)}
+.lb-close{position:absolute;top:14px;right:24px;font-size:42px;line-height:1;color:#fff;background:none;border:0;cursor:pointer}
 
 /* footer */
 footer.foot{background:var(--ink);color:#cdd4e6;text-align:center;padding:30px 18px}

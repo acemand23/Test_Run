@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=2">
+<link rel="stylesheet" href="css/site.css?v=3">
 </head>
 <body>
 <header><div class="bar">
@@ -23,9 +23,9 @@
   <nav class="links" id="navlinks">
     <a href="#">About</a>
     <a href="tournament.php" class="<?= $active==='tour'?'on':'' ?>">Tournament</a>
-    <a href="#">Get Involved</a>
+    <a href="volunteer.php" class="<?= $active==='involve'?'on':'' ?>">Get Involved</a>
     <a href="sponsor.php" class="<?= $active==='sponsor'?'on':'' ?>">Sponsor</a>
-    <a href="#">Shop</a>
+    <a href="gallery.php" class="<?= $active==='gallery'?'on':'' ?>">Gallery</a>
     <a href="contact.php" class="<?= $active==='contact'?'on':'' ?>">Contact</a>
     <a href="sponsor.php" class="pill">Sponsor Now</a>
   </nav>
