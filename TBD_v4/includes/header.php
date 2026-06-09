@@ -12,12 +12,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=1">
+<link rel="stylesheet" href="css/site.css?v=2">
 </head>
 <body>
 <header><div class="bar">
   <a class="brand" href="index.php"><img src="assets/brand/logo.png" alt="The Big Draw"></a>
-  <nav class="links">
+  <button class="navtoggle" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="links" id="navlinks">
     <a href="#">About</a>
     <a href="tournament.php" class="<?= $active==='tour'?'on':'' ?>">Tournament</a>
     <a href="#">Get Involved</a>

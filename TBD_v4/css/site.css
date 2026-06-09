@@ -21,6 +21,14 @@ header{background:var(--cream);position:relative;z-index:10}
 .links .pill{background:var(--orange);color:#fff;padding:9px 16px;border-radius:8px;box-shadow:0 8px 18px -8px rgba(242,101,34,.7)}
 .links .pill:hover{filter:brightness(1.05)}
 
+/* hamburger button (mobile only) */
+.navtoggle{display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:44px;height:40px;padding:9px 8px;border:0;background:transparent;cursor:pointer}
+.navtoggle span{display:block;height:3px;border-radius:3px;background:var(--ink);transition:transform .25s,opacity .2s}
+.bar.open .navtoggle span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.bar.open .navtoggle span:nth-child(2){opacity:0}
+.bar.open .navtoggle span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
 /* poster slices */
 .slice{position:relative;width:100%;max-width:var(--col);margin:0 auto;overflow:hidden;line-height:0;background:var(--cream)}
 .slice img{display:block;width:100%}
@@ -84,12 +92,22 @@ footer.foot .tag{font-family:"Archivo Black";text-transform:uppercase;font-size:
 footer.foot .sub{font-size:13px;font-weight:600;margin-top:8px;opacity:.85}
 
 /* responsive */
-@media (max-width:680px){
-  .links{gap:12px;font-size:11.5px}
+@media (max-width:760px){
   .rules,.contact-grid{grid-template-columns:1fr}
 }
-@media (max-width:540px){
-  .bar{flex-direction:column;gap:10px;padding:12px 16px}
-  .links{flex-wrap:wrap;justify-content:center;gap:9px 14px}
+@media (max-width:680px){
+  .bar{position:relative}
+  .navtoggle{display:flex}
+  /* links collapse into a dropdown panel under the bar */
+  .links{position:absolute;top:100%;left:0;right:0;z-index:20;
+    flex-direction:column;align-items:stretch;gap:0;
+    background:var(--cream);border-top:1px solid var(--line);
+    box-shadow:0 14px 26px -14px rgba(22,38,74,.4);
+    max-height:0;overflow:hidden;visibility:hidden;
+    transition:max-height .28s ease,visibility 0s linear .28s}
+  .bar.open .links{max-height:80vh;visibility:visible;transition:max-height .3s ease}
+  .links a{padding:14px 22px;font-size:14px;border-bottom:1px solid var(--line)}
+  .links a:last-child{border-bottom:0}
+  .links .pill{margin:12px 22px 16px;border-radius:8px;text-align:center;padding:13px 16px;font-size:14px}
   .pagehead{padding:34px 0 32px}
 }
