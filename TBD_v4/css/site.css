@@ -4,7 +4,8 @@
   --magenta:#E5388C; --purple:#6D28D9; --blue:#2563EB; --gold:#F6A91B;
   /* --teal is the brand green; matched to the logo (#48B888) per Jayna's markup */
   --cream:#F6ECD7; --paper:#FBF4E6; --line:#e4d8bd;
-  --grad:linear-gradient(100deg,#2563EB,#6D28D9 38%,#E5388C 68%,#F26522);
+  /* brand gradient runs the whole way to yellow (signage), used everywhere */
+  --grad:linear-gradient(100deg,#2563EB,#6D28D9 26%,#E5388C 50%,#F26522 74%,#F6A91B);
   --col:760px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -138,9 +139,6 @@ header{background:var(--cream);position:relative;z-index:10}
 .sponsors-past img{display:block;width:100%;height:auto;opacity:.6;transition:opacity .3s}
 .sponsors-past:hover img{opacity:1}
 .muted{color:#5a6052;font-weight:600;font-size:16px;line-height:1.6;max-width:62ch}
-
-/* registration header — full blue→yellow signage gradient (Jayna) */
-.pagehead.signage{background:linear-gradient(100deg,#2563EB,#6D28D9 26%,#E5388C 50%,#F26522 74%,#F6A91B)}
 
 /* how it works — step row inside the header */
 .steps{display:flex;align-items:flex-start;justify-content:center;gap:4px;margin-top:26px;flex-wrap:wrap;list-style:none}

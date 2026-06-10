@@ -4,7 +4,7 @@
   include 'includes/header.php';
 ?>
 
-<section class="pagehead signage"><div class="col">
+<section class="pagehead"><div class="col">
   <div class="eyebrow">Register · Volleyball for Good</div>
   <h1>Registration</h1>
   <p>Team sign-ups for The Big Draw — November 1st, 2026 at Aussie&rsquo;s Grill &amp; Beach Bar, Austin.</p>
