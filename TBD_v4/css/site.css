@@ -1,7 +1,8 @@
 /* The Big Draw — v4: poster sliced into pages, shared brand chrome */
 :root{
-  --orange:#F26522; --orange-d:#d8551a; --ink:#16264A; --teal:#15A88C;
+  --orange:#F26522; --orange-d:#d8551a; --ink:#16264A; --teal:#48B888;
   --magenta:#E5388C; --purple:#6D28D9; --blue:#2563EB; --gold:#F6A91B;
+  /* --teal is the brand green; matched to the logo (#48B888) per Jayna's markup */
   --cream:#F6ECD7; --paper:#FBF4E6; --line:#e4d8bd;
   --grad:linear-gradient(100deg,#2563EB,#6D28D9 38%,#E5388C 68%,#F26522);
   --col:760px;
@@ -18,7 +19,7 @@ header{background:var(--cream);position:relative;z-index:10}
 .brand img{height:40px;display:block}
 .links{display:flex;align-items:center;gap:18px;font-weight:800;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
 .links a:hover,.links a.on{color:var(--orange)}
-.links .pill{background:var(--teal);color:#fff;padding:9px 16px;border-radius:8px;box-shadow:0 8px 18px -8px rgba(21,168,140,.7)}
+.links .pill{background:var(--teal);color:#fff;padding:9px 16px;border-radius:8px;box-shadow:0 8px 18px -8px rgba(72,184,136,.7)}
 .links .pill:hover{filter:brightness(1.05)}
 
 /* hamburger button (mobile only) */
@@ -41,7 +42,7 @@ header{background:var(--cream);position:relative;z-index:10}
 .hot{position:absolute;display:block;z-index:2;border-radius:8px;-webkit-tap-highlight-color:transparent}
 .hot:hover{box-shadow:0 0 0 3px rgba(229,56,140,.6) inset}
 .hot:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
-.slice.edit .hot{background:rgba(21,168,140,.28);outline:2px dashed #0f7d68}
+.slice.edit .hot{background:rgba(72,184,136,.28);outline:2px dashed #0f7d68}
 .slice.edit .hot::after{content:attr(data-label);position:absolute;left:0;top:0;
   font:600 11px/1.4 system-ui,sans-serif;color:#0a3d33;background:#7fffe0;padding:1px 5px;border-radius:0 0 5px 0;white-space:nowrap}
 
@@ -80,7 +81,7 @@ header{background:var(--cream);position:relative;z-index:10}
 .field label{font-family:"Archivo Black";text-transform:uppercase;font-size:11px;letter-spacing:.08em;color:var(--orange-d)}
 .field input,.field select,.field textarea{font-family:"Archivo",sans-serif;font-size:15px;font-weight:600;color:var(--ink);
   background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:11px 13px;width:100%}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(21,168,140,.18)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(72,184,136,.18)}
 .lead-form .btn{cursor:pointer;width:100%;margin-top:4px}
 .form-success{margin-top:14px;background:#e7f7f1;border:1px solid #bfe9da;color:#0f6a55;border-radius:10px;padding:12px 14px;font-weight:700;font-size:14px}
 .field .opt{font-weight:600;color:#9a9486;text-transform:none;letter-spacing:0}
@@ -110,12 +111,12 @@ header{background:var(--cream);position:relative;z-index:10}
 .pillstate{flex:none;font-family:"Archivo Black";text-transform:uppercase;font-size:11.5px;letter-spacing:.04em;
   color:#fff;padding:8px 14px;border-radius:999px;white-space:nowrap;line-height:1.1}
 .pillstate.is-open{background:var(--orange);box-shadow:0 8px 18px -10px rgba(242,101,34,.8)}
-.pillstate.is-closed{background:var(--teal);box-shadow:0 8px 18px -10px rgba(21,168,140,.8)}
+.pillstate.is-closed{background:var(--teal);box-shadow:0 8px 18px -10px rgba(72,184,136,.8)}
 .tier-note{font-weight:700;color:#3c4257;font-size:14.5px;margin:14px 0 0}
 .perks{list-style:none;margin:14px 0 0;display:grid;gap:9px}
 .perks li{position:relative;padding-left:26px;font-weight:600;color:#3c4257;font-size:14.5px;line-height:1.5}
 .perks li::before{content:"";position:absolute;left:4px;top:.45em;width:9px;height:9px;border-radius:50%;
-  background:var(--teal);box-shadow:0 0 0 3px rgba(21,168,140,.18)}
+  background:var(--teal);box-shadow:0 0 0 3px rgba(72,184,136,.18)}
 
 /* home sponsors wall — grouped by level, logo size scales with level */
 .sponsors-home .kicker{margin-bottom:18px}
@@ -138,6 +139,27 @@ header{background:var(--cream);position:relative;z-index:10}
 .sponsors-past:hover img{opacity:1}
 .muted{color:#5a6052;font-weight:600;font-size:16px;line-height:1.6;max-width:62ch}
 
+/* registration header — full blue→yellow signage gradient (Jayna) */
+.pagehead.signage{background:linear-gradient(100deg,#2563EB,#6D28D9 26%,#E5388C 50%,#F26522 74%,#F6A91B)}
+
+/* how it works — step row inside the header */
+.steps{display:flex;align-items:flex-start;justify-content:center;gap:4px;margin-top:26px;flex-wrap:wrap;list-style:none}
+.step{flex:1 1 130px;max-width:168px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;
+  color:#fff;font-family:"Archivo Black";text-transform:uppercase;font-size:12px;letter-spacing:.03em;line-height:1.15}
+.step-ico{width:48px;height:48px}
+.step-ico svg{width:100%;height:100%;display:block}
+.step-sep{align-self:center;color:#fff;opacity:.55;font-size:24px;line-height:1;margin-top:4px}
+@media (max-width:560px){ .step-sep{display:none} }
+
+/* how it works — choose your division */
+.divisions{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.division{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:30px 26px;text-align:center}
+.division-ico{display:inline-grid;place-items:center;width:66px;height:66px;color:var(--teal)}
+.division-ico svg{width:100%;height:100%;display:block}
+.division h3{font-size:22px;color:var(--ink);margin:10px 0 8px}
+.division p{font-weight:600;color:#3c4257;font-size:14.5px;line-height:1.55}
+@media (max-width:760px){ .divisions{grid-template-columns:1fr} }
+
 /* gallery */
 .yeartabs{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap}
 .ytab{font-family:"Archivo Black";text-transform:uppercase;font-size:13px;letter-spacing:.04em;
@@ -155,8 +177,8 @@ header{background:var(--cream);position:relative;z-index:10}
 
 /* footer */
 footer.foot{background:var(--ink);color:#cdd4e6;text-align:center;padding:30px 18px}
-footer.foot .t{color:#7fe0c4}
-footer.foot a{color:#7fe0c4}
+footer.foot .t{color:#48B888}
+footer.foot a{color:#48B888}
 footer.foot .tag{font-family:"Archivo Black";text-transform:uppercase;font-size:clamp(16px,2.4vw,24px)}
 footer.foot .sub{font-size:13px;font-weight:600;margin-top:8px;opacity:.85}
 

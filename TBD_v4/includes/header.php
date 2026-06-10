@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=7">
+<link rel="stylesheet" href="css/site.css?v=8">
 </head>
 <body>
 <header><div class="bar">
@@ -24,7 +24,7 @@
   </button>
   <nav class="links" id="navlinks">
     <a href="register.php" class="<?= $active==='register'?'on':'' ?>">Register</a>
-    <a href="tournament.php" class="<?= $active==='tour'?'on':'' ?>">Tournament</a>
+    <a href="tournament.php" class="<?= $active==='tour'?'on':'' ?>">How It Works</a>
     <a href="volunteer.php" class="<?= $active==='involve'?'on':'' ?>">Get Involved</a>
     <a href="sponsor.php" class="<?= $active==='sponsor'?'on':'' ?>">Sponsor</a>
     <a href="gallery.php" class="<?= $active==='gallery'?'on':'' ?>">Gallery</a>

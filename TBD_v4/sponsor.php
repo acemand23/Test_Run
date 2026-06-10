@@ -83,7 +83,7 @@
 
   <div class="cta-row">
     <a href="<?= $sponsor_mailto ?>" class="btn grad">Become a sponsor →</a>
-    <a href="tournament.php" class="btn line">Tournament details</a>
+    <a href="tournament.php" class="btn line">How it works</a>
   </div>
 </div></section>
 
