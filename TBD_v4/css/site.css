@@ -18,7 +18,7 @@ header{background:var(--cream);position:relative;z-index:10}
 .brand img{height:40px;display:block}
 .links{display:flex;align-items:center;gap:18px;font-weight:800;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase}
 .links a:hover,.links a.on{color:var(--orange)}
-.links .pill{background:var(--orange);color:#fff;padding:9px 16px;border-radius:8px;box-shadow:0 8px 18px -8px rgba(242,101,34,.7)}
+.links .pill{background:var(--teal);color:#fff;padding:9px 16px;border-radius:8px;box-shadow:0 8px 18px -8px rgba(21,168,140,.7)}
 .links .pill:hover{filter:brightness(1.05)}
 
 /* hamburger button (mobile only) */
