@@ -13,7 +13,7 @@
 <section class="block"><div class="col">
   <div class="soon">
     <div class="soon-badge">Coming Soon</div>
-    <h2>Registration is opening September 2026</h2>
+    <h2>Registration is opening August 2026</h2>
     <p>We&rsquo;re putting the finishing touches on sign-ups. Check back shortly &mdash; or drop us a note and we&rsquo;ll let you know the moment it goes live.</p>
     <div class="cta-row">
       <a href="<?= $notify ?>" class="btn grad">Notify me &rarr;</a>
