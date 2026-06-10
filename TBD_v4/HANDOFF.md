@@ -36,7 +36,7 @@ tournament, contact, volunteer, gallery.
 
 | Page | Nav label | Status | Notes |
 |------|-----------|--------|-------|
-| `index.php` | (logo) | ✅ done | Top of poster (hero + mission). Header chopped off the image (5.5%) and replaced by the shared nav. Register-Now hotspot over the button (→ register.php). Reachable via the logo (no "About" nav item). |
+| `index.php` | (logo) | ✅ done | Top of poster (hero + mission) + an **"Our Sponsors"** section after the poster / before the footer. Header chopped off the image (5.5%) and replaced by the shared nav. Register-Now hotspot over the button (→ register.php). Reachable via the logo (no "About" nav item). |
 | `register.php` | Register | ✅ holder | "Coming Soon" placeholder (gradient header + centered notice + "Notify me" mailto). All register actions route here while sign-ups aren't open. |
 | `sponsor.php` | Sponsor / Sponsor Now | ✅ done | Gradient page header + **editable HTML tier cards** (number, name, price, perks, availability pill) driven by a `$tiers` array at the top of the file. "Become a sponsor" mailto CTA. (Was a poster slice; rebuilt so text/prices/availability are editable without touching the image.) |
 | `tournament.php` | Tournament | ✅ done | "Rules of the Game" — gradient header + 8-rule grid + CTAs. (Menu says **Tournament**, singular — deliberate.) |
@@ -82,6 +82,13 @@ tournament, contact, volunteer, gallery.
   (Pre-event work · Morning-of setup · Run of show · Tear down · Wherever you
   need me), and a notes box. On submit it builds a `mailto:` to the director
   with all fields formatted in the body. No server backend required.
+- **Home sponsors:** `index.php` has a `$sponsors` array (each: `name`, `logo`,
+  optional `url`, `level` = presenting|court|team|inkind). The "Our Sponsors"
+  section groups logos by level and **sizes them by level** (presenting largest →
+  inkind smallest; `.lvl-*` in `css/site.css`). While the array is empty it shows
+  the **2025 sponsor wall faded** (`assets/sponsors/sponsors-2025.png`, pulled from
+  the old site's `ch1.png`) + a "Become a sponsor" CTA. Add 2026 sponsors to the
+  array (drop logos in `assets/sponsors/`) and the leveled wall replaces the fade.
 - **Sponsor tiers:** `sponsor.php` renders the `$tiers` array (name, price, perks,
   `avail` label, `state` = `open` orange pill / `closed` teal pill). Edit that
   array to change any package — no image editing. Styles: `.tiers/.tier/.perks/
