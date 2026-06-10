@@ -1,6 +1,6 @@
 # The Big Draw — v4 site · Handoff / Continue notes
 
-_Last updated: 2026-06-09_
+_Last updated: 2026-06-10_
 
 Load this file at the start of a new session to pick up exactly where we left off.
 
@@ -37,11 +37,11 @@ tournament, contact, volunteer, gallery.
 | Page | Nav label | Status | Notes |
 |------|-----------|--------|-------|
 | `index.php` | (logo) / About | ✅ done | Top of poster (hero + mission). Header chopped off the image (5.5%) and replaced by the shared nav. Register-Now hotspot over the button. |
-| `sponsor.php` | Sponsor / Sponsor Now | ✅ done | Bottom of poster (Sponsorship Packages + footer art, 57.5%→100%). "Become a sponsor" mailto hotspot. |
+| `sponsor.php` | Sponsor / Sponsor Now | ✅ done | Gradient page header + **editable HTML tier cards** (number, name, price, perks, availability pill) driven by a `$tiers` array at the top of the file. "Become a sponsor" mailto CTA. (Was a poster slice; rebuilt so text/prices/availability are editable without touching the image.) |
 | `tournament.php` | Tournament | ✅ done | "Rules of the Game" — gradient header + 8-rule grid + CTAs. (Menu says **Tournament**, singular — deliberate.) |
 | `contact.php` | Contact | ✅ done | Sample contact form (name/email/topic/message). JS-only confirmation, no real send yet. |
 | `volunteer.php` | Get Involved | ✅ done | Volunteer signup form (see below). Emails the director via `mailto:`. |
-| `gallery.php` | Gallery | ⏳ built, **needs photos** | Replaces "Shop". Past-Years tabs + grid + lightbox; auto-loads `assets/gallery/<year>/`. Currently empty → "Photos coming soon." |
+| `gallery.php` | Gallery | ✅ done | Replaces "Shop". Past-Years tabs + grid + lightbox; auto-loads `assets/gallery/<year>/`. Photos added for **2022 (7)** and **2023 (8 + a thank-you graphic)**. |
 
 ### Nav (shared, in `includes/header.php`)
 `About → index.php` · `Tournament` · `Get Involved → volunteer.php` · `Sponsor` ·
@@ -53,13 +53,15 @@ tournament, contact, volunteer, gallery.
 
 ## Key technical decisions / how things work
 
-- **Poster slicing (home & sponsor):** one image `assets/poster.png`, shown twice
-  via CSS in `css/site.css`. `.slice.home` shows poster 5.5%→57.5%; `.slice.spon`
-  shows 57.5%→100%. Done with `aspect-ratio` + a negative `margin-top` percentage
+- **Poster slicing (home only):** one image `assets/poster.png`. `.slice.home`
+  shows poster 5.5%→57.5% via `aspect-ratio` + a negative `margin-top` percentage
   on the `<img>`. No image cropping needed; scales cleanly on mobile.
-  - Trade-off: text in those two slices is **not selectable / not screen-reader
-    text** (alt text added). Tournament/Contact/Volunteer/Gallery are real HTML.
-    Future work: progressively replace sliced regions with real HTML.
+  - Trade-off: text in the home slice is **not selectable / not screen-reader
+    text** (alt text added). Every other page is real HTML.
+  - `sponsor.php` used to show the bottom slice (57.5%→100%) but was **rebuilt as
+    HTML tier cards** so the package text/prices/availability are editable — see the
+    `$tiers` array at the top of `sponsor.php`. `.slice.spon` CSS is now unused but
+    left in place. Future work: do the same for the home hero/mission.
 - **Hotspots:** transparent `<a class="hot">` boxes positioned with %-based
   inline styles over the artwork. Add `#edit` to any URL (e.g.
   `…/index.php#edit`) to reveal the boxes for fine-tuning. Toggle JS is in
@@ -77,23 +79,23 @@ tournament, contact, volunteer, gallery.
   (Pre-event work · Morning-of setup · Run of show · Tear down · Wherever you
   need me), and a notes box. On submit it builds a `mailto:` to the director
   with all fields formatted in the body. No server backend required.
-- **CSS cache-busting:** `header.php` links `css/site.css?v=3`. **Bump the `?v=`
+- **Sponsor tiers:** `sponsor.php` renders the `$tiers` array (name, price, perks,
+  `avail` label, `state` = `open` orange pill / `closed` teal pill). Edit that
+  array to change any package — no image editing. Styles: `.tiers/.tier/.perks/
+  .pillstate` in `css/site.css`.
+- **CSS cache-busting:** `header.php` links `css/site.css?v=4`. **Bump the `?v=`
   when you change CSS** so browsers reload it.
 
 ---
 
 ## OPEN ITEMS — do these next
 
-1. **Gallery photos (BLOCKED on network allowlist).**
-   - This environment cannot reach `tbdvolleyball.com` → `Host not in allowlist`.
-   - User chose: **allowlist the domain.** Network policy is fixed per session,
-     so it must be added in the environment settings **and a new session started**.
-   - **To do once reachable:** fetch `https://tbdvolleyball.com/photo_index.php?year=2022`
-     and `?year=2023`, find the real photo file URLs, download them into
-     `TBD_v4/assets/gallery/2022/` and `.../2023/`, commit. Grid auto-populates.
-   - ❓ Photos may be served from a **separate image host/CDN** — allowlist that
-     host too. Confirm where photos are served from.
-   - Docs: https://code.claude.com/docs/en/claude-code-on-the-web
+1. **Gallery photos — ✅ DONE (2026-06-10).** The session was teleported to a local
+   machine (no network allowlist), then fetched `tbdvolleyball.com/photo_index.php`
+   for 2022 & 2023 (needs a browser User-Agent — the WAF returns 406 otherwise),
+   downloaded the photos into `TBD_v4/assets/gallery/2022|2023/`, downscaled the
+   2023 originals to 1600px, and deployed. Photos are on the **same host** — no
+   separate CDN.
 
 2. **Director email (placeholder).** `volunteer.php` uses
    `$director_email = 'director@tbdvolleyball.com'` (marked TODO). **Replace with

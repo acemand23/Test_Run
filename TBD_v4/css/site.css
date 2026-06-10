@@ -89,6 +89,25 @@ header{background:var(--cream);position:relative;z-index:10}
 .check{display:flex;align-items:center;gap:10px;padding:7px 0;font-weight:600;font-size:14.5px;color:var(--ink);cursor:pointer}
 .check input{width:18px;height:18px;accent-color:var(--teal);cursor:pointer}
 
+/* sponsorship tiers (sponsor.php — rebuilt from the poster as editable HTML) */
+.tiers{display:flex;flex-direction:column;gap:16px}
+.tier{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 24px;position:relative}
+.tier-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.tier-n{flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-family:"Archivo Black";font-size:20px;color:#fff;background:var(--grad);box-shadow:0 8px 18px -8px rgba(109,40,217,.7)}
+.tier-id{flex:1 1 200px}
+.tier-id h3{font-size:20px;color:var(--ink);line-height:1.05}
+.tier-price{font-family:"Archivo Black";color:var(--orange-d);font-size:22px;margin-top:5px}
+.pillstate{flex:none;font-family:"Archivo Black";text-transform:uppercase;font-size:11.5px;letter-spacing:.04em;
+  color:#fff;padding:8px 14px;border-radius:999px;white-space:nowrap;line-height:1.1}
+.pillstate.is-open{background:var(--orange);box-shadow:0 8px 18px -10px rgba(242,101,34,.8)}
+.pillstate.is-closed{background:var(--teal);box-shadow:0 8px 18px -10px rgba(21,168,140,.8)}
+.tier-note{font-weight:700;color:#3c4257;font-size:14.5px;margin:14px 0 0}
+.perks{list-style:none;margin:14px 0 0;display:grid;gap:9px}
+.perks li{position:relative;padding-left:26px;font-weight:600;color:#3c4257;font-size:14.5px;line-height:1.5}
+.perks li::before{content:"";position:absolute;left:4px;top:.45em;width:9px;height:9px;border-radius:50%;
+  background:var(--teal);box-shadow:0 0 0 3px rgba(21,168,140,.18)}
+
 /* gallery */
 .yeartabs{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap}
 .ytab{font-family:"Archivo Black";text-transform:uppercase;font-size:13px;letter-spacing:.04em;
