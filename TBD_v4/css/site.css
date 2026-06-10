@@ -144,16 +144,16 @@ header{background:var(--cream);position:relative;z-index:10}
 .steps{display:flex;align-items:flex-start;justify-content:center;gap:4px;margin-top:26px;flex-wrap:wrap;list-style:none}
 .step{flex:1 1 130px;max-width:168px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;
   color:#fff;font-family:"Archivo Black";text-transform:uppercase;font-size:12px;letter-spacing:.03em;line-height:1.15}
-.step-ico{width:48px;height:48px}
-.step-ico svg{width:100%;height:100%;display:block}
+.step-ico{height:58px;display:flex;align-items:center;justify-content:center}
+.step-ico img{height:100%;width:auto;display:block}
 .step-sep{align-self:center;color:#fff;opacity:.55;font-size:24px;line-height:1;margin-top:4px}
 @media (max-width:560px){ .step-sep{display:none} }
 
 /* how it works — choose your division */
 .divisions{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .division{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:30px 26px;text-align:center}
-.division-ico{display:inline-grid;place-items:center;width:66px;height:66px;color:var(--teal)}
-.division-ico svg{width:100%;height:100%;display:block}
+.division-ico{display:inline-flex;align-items:center;justify-content:center;height:84px;margin-bottom:6px}
+.division-ico img{height:100%;width:auto;display:block}
 .division h3{font-size:22px;color:var(--ink);margin:10px 0 8px}
 .division p{font-weight:600;color:#3c4257;font-size:14.5px;line-height:1.55}
 @media (max-width:760px){ .divisions{grid-template-columns:1fr} }
