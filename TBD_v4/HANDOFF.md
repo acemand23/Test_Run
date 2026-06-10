@@ -36,7 +36,8 @@ tournament, contact, volunteer, gallery.
 
 | Page | Nav label | Status | Notes |
 |------|-----------|--------|-------|
-| `index.php` | (logo) / About | ✅ done | Top of poster (hero + mission). Header chopped off the image (5.5%) and replaced by the shared nav. Register-Now hotspot over the button. |
+| `index.php` | (logo) | ✅ done | Top of poster (hero + mission). Header chopped off the image (5.5%) and replaced by the shared nav. Register-Now hotspot over the button (→ register.php). Reachable via the logo (no "About" nav item). |
+| `register.php` | Register | ✅ holder | "Coming Soon" placeholder (gradient header + centered notice + "Notify me" mailto). All register actions route here while sign-ups aren't open. |
 | `sponsor.php` | Sponsor / Sponsor Now | ✅ done | Gradient page header + **editable HTML tier cards** (number, name, price, perks, availability pill) driven by a `$tiers` array at the top of the file. "Become a sponsor" mailto CTA. (Was a poster slice; rebuilt so text/prices/availability are editable without touching the image.) |
 | `tournament.php` | Tournament | ✅ done | "Rules of the Game" — gradient header + 8-rule grid + CTAs. (Menu says **Tournament**, singular — deliberate.) |
 | `contact.php` | Contact | ✅ done | Sample contact form (name/email/topic/message). JS-only confirmation, no real send yet. |
@@ -44,8 +45,10 @@ tournament, contact, volunteer, gallery.
 | `gallery.php` | Gallery | ✅ done | Replaces "Shop". Past-Years tabs + grid + lightbox; auto-loads `assets/gallery/<year>/`. Photos added for **2022 (7)** and **2023 (8 + a thank-you graphic)**. |
 
 ### Nav (shared, in `includes/header.php`)
-`About → index.php` · `Tournament` · `Get Involved → volunteer.php` · `Sponsor` ·
-`Gallery` · `Contact` · **Sponsor Now** pill → sponsor.php.
+`Register → register.php` · `Tournament` · `Get Involved → volunteer.php` ·
+`Sponsor` · `Gallery` · `Contact` · **Sponsor Now** pill → sponsor.php.
+- The logo links to `index.php` (the home/About page); there is no separate
+  "About" nav item — it was replaced by "Register".
 - Mobile: collapses to a **hamburger** dropdown (≤680px), animates to an X.
 - Active page is highlighted (orange).
 
@@ -104,12 +107,14 @@ tournament, contact, volunteer, gallery.
 3. **Contact form is sample-only.** `contact.php` doesn't actually send. Decide:
    `mailto:` (like volunteer.php), PHP `mail()`, or a form service (Formspree).
 
-4. **Registration link placeholder.** `header.php` sets
-   `$register_url = 'https://vballmanager.com/'` (TODO: the specific event reg URL).
-   Used by the Register-Now hotspot and Tournament CTA.
+4. **Registration is a "coming soon" holder.** `register.php` is a placeholder;
+   `header.php` sets `$register_url = 'register.php'`, so the nav "Register" link,
+   the home poster Register hotspot, and the Tournament "Register Now" button all
+   route there. When sign-ups open, point `$register_url` at the real
+   vballmanager.com event URL (or build the form into `register.php`).
 
-5. **Nav placeholders now resolved:** About→index (done). All nav items point
-   somewhere real now.
+5. **Nav:** "About" was removed and replaced with "Register" (→ register.php).
+   All nav items point somewhere real.
 
 ---
 
