@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATX Beach — v4 (Four Volleyballs)</title>
+    <meta name="description" content="ATX Beach v4 — radically minimal landing: four volleyballs (Play, Train, ATX Juniors, Host an Event). Logo, balls, nothing else.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+      :root{
+        --paper:#f7f4ec;
+        --ink:#0c2b3a;
+        --line:#15323f;
+        --teal:#1aa6b7;
+        --coral:#ff6b4a;
+        --sun:#ffc14d;
+        --plum:#5a4fcf;
+      }
+      *{box-sizing:border-box;margin:0;padding:0}
+      html,body{height:100%}
+      body{
+        font-family:'Inter',system-ui,sans-serif;
+        background:var(--paper);
+        color:var(--ink);
+        min-height:100vh;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        padding:48px 24px 80px;
+        -webkit-font-smoothing:antialiased;
+      }
+      .top{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:48px}
+      .logo img{height:44px;display:block}
+      .top .kicker{
+        font-family:'JetBrains Mono',monospace;
+        font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+        color:rgba(12,43,58,.55);
+      }
+
+      /* 4 floating volleyballs */
+      .balls{
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:60px 80px;
+        width:min(760px,92vw);
+        margin:18px 0 8px;
+      }
+      .ball{
+        display:flex;flex-direction:column;align-items:center;gap:22px;
+        text-decoration:none;color:inherit;
+        transition:transform .3s cubic-bezier(.2,.7,.2,1);
+      }
+      .ball:hover{transform:translateY(-6px) rotate(-3deg)}
+      .ball:nth-child(2):hover,
+      .ball:nth-child(3):hover{transform:translateY(-6px) rotate(3deg)}
+
+      .vb{width:100%;max-width:240px;aspect-ratio:1;display:block;filter:drop-shadow(0 14px 22px rgba(12,43,58,.18))}
+      .ball .label{
+        font-family:'Oswald',sans-serif;
+        font-weight:700;
+        font-size:clamp(1.05rem,2vw,1.35rem);
+        letter-spacing:.14em;
+        text-transform:uppercase;
+        line-height:1;
+      }
+      .ball .sub{
+        font-family:'JetBrains Mono',monospace;
+        font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+        color:rgba(12,43,58,.55);
+        margin-top:-12px;
+      }
+
+      .menu{
+        margin-top:46px;display:flex;gap:22px;flex-wrap:wrap;justify-content:center;
+        font-family:'Oswald',sans-serif;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;
+      }
+      .menu a{color:rgba(12,43,58,.55);text-decoration:none;transition:color .2s}
+      .menu a:hover{color:var(--ink)}
+
+      @media (max-width:540px){
+        .balls{gap:36px 36px}
+      }
+    </style>
+</head>
+<body>
+  <div class="top">
+    <a class="logo" href="../index.html"><img src="images/photos/logo-dark.png" alt="ATX Beach"
+      onerror="this.onerror=null;this.src='images/photos/logo-white.png';this.style.filter='invert(1)'"></a>
+    <span class="kicker">Austin's Largest Sand Volleyball Venue</span>
+  </div>
+
+  <div class="balls">
+    <a class="ball" href="play.html" aria-label="Play">
+      <svg class="vb" viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="94" fill="#1aa6b7" stroke="#0c2b3a" stroke-width="3"/>
+        <path d="M100 6 C 86 70 114 130 100 194" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+        <path d="M100 6 C 32 50 32 150 100 194" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+        <path d="M100 6 C 168 50 168 150 100 194" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+      <span class="label">Play</span>
+      <span class="sub">Open Play &amp; Courts</span>
+    </a>
+    <a class="ball" href="train.html" aria-label="Train">
+      <svg class="vb" viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="94" fill="#ff6b4a" stroke="#0c2b3a" stroke-width="3"/>
+        <path d="M100 6 C 86 70 114 130 100 194" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+        <path d="M100 6 C 32 50 32 150 100 194" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+        <path d="M100 6 C 168 50 168 150 100 194" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+      <span class="label">Train</span>
+      <span class="sub">Clinics &amp; Coaching</span>
+    </a>
+    <a class="ball" href="juniors.html" aria-label="ATX Juniors">
+      <svg class="vb" viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="94" fill="#ffc14d" stroke="#0c2b3a" stroke-width="3"/>
+        <path d="M100 6 C 86 70 114 130 100 194" fill="none" stroke="#0c2b3a" stroke-width="6" stroke-linecap="round" opacity=".75"/>
+        <path d="M100 6 C 32 50 32 150 100 194" fill="none" stroke="#0c2b3a" stroke-width="6" stroke-linecap="round" opacity=".75"/>
+        <path d="M100 6 C 168 50 168 150 100 194" fill="none" stroke="#0c2b3a" stroke-width="6" stroke-linecap="round" opacity=".75"/>
+      </svg>
+      <span class="label">ATX Juniors</span>
+      <span class="sub">Youth Programs</span>
+    </a>
+    <a class="ball" href="events.html" aria-label="Host an Event">
+      <svg class="vb" viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="94" fill="#5a4fcf" stroke="#0c2b3a" stroke-width="3"/>
+        <path d="M100 6 C 86 70 114 130 100 194" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+        <path d="M100 6 C 32 50 32 150 100 194" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+        <path d="M100 6 C 168 50 168 150 100 194" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+      <span class="label">Host an Event</span>
+      <span class="sub">Private &middot; Tournaments &middot; Sponsor</span>
+    </a>
+  </div>
+
+  <nav class="menu" aria-label="Quick links">
+    <a href="events.html#tournaments">Tournaments</a>
+    <a href="events.html#major">Major Events</a>
+    <a href="play.html">Book a Court</a>
+    <a href="events.html#host">Contact</a>
+  </nav>
+</body>
+</html>

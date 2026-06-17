@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATX Beach — v3 (Wild Card)</title>
+    <meta name="description" content="ATX Beach v3 — minimal landing inspired by an Uno Wild Draw 4 card. Four volleyball tiles: Play, Train, ATX Juniors, Host an Event.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+      :root{
+        --bg:#0d0d0f;
+        --frame:#000;
+        --teal:#1aa6b7;
+        --coral:#ff6b4a;
+        --sun:#ffc14d;
+        --plum:#5a4fcf;
+        --ink:#15191c;
+        --paper:#f7f7f5;
+      }
+      *{box-sizing:border-box;margin:0;padding:0}
+      html,body{height:100%}
+      body{
+        font-family:'Inter',system-ui,sans-serif;
+        background:radial-gradient(1200px 800px at 50% 30%, #15323f 0%, var(--bg) 70%);
+        color:#fff;
+        min-height:100vh;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        padding:36px 20px 60px;
+        -webkit-font-smoothing:antialiased;
+      }
+      .top{
+        display:flex;flex-direction:column;align-items:center;gap:6px;
+        margin-bottom:32px;
+      }
+      .logo img{height:42px;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4))}
+      .top .kicker{
+        font-family:'JetBrains Mono',monospace;
+        font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+        color:rgba(255,255,255,.55);
+      }
+
+      .stage{display:flex;justify-content:center;align-items:center;flex:1;padding:10px 0}
+
+      /* Uno-style Wild card */
+      .card{
+        position:relative;
+        width:min(560px,92vw);
+        aspect-ratio:1/1.45;
+        background:var(--frame);
+        border-radius:28px;
+        padding:22px;
+        box-shadow:
+          0 50px 100px -20px rgba(0,0,0,.7),
+          0 30px 60px -30px rgba(0,0,0,.5);
+        transform:rotate(-5deg);
+        transition:transform .5s cubic-bezier(.2,.7,.2,1);
+      }
+      .card:hover{transform:rotate(0deg) scale(1.015)}
+
+      /* tilted white oval behind tiles, classic Wild card */
+      .card::after{
+        content:"";position:absolute;left:50%;top:50%;
+        width:118%;height:46%;
+        transform:translate(-50%,-50%) rotate(-22deg);
+        background:#fff;border-radius:50%;z-index:1;
+        box-shadow:0 0 0 3px rgba(0,0,0,.06) inset;
+      }
+
+      .quads{
+        position:relative;z-index:2;
+        display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;
+        gap:10px;width:100%;height:100%;
+      }
+      .quad{
+        position:relative;
+        display:flex;flex-direction:column;align-items:center;justify-content:center;
+        gap:10px;
+        color:#fff;text-decoration:none;
+        border-radius:14px;
+        overflow:hidden;
+        transition:transform .25s ease, filter .25s ease;
+        box-shadow:inset 0 -6px 0 rgba(0,0,0,.18);
+      }
+      .quad:hover{transform:translateY(-2px) scale(1.02);filter:brightness(1.08) saturate(1.05)}
+      .q-play   {background:var(--teal)}
+      .q-train  {background:var(--coral)}
+      .q-juniors{background:var(--sun);color:var(--ink)}
+      .q-host   {background:var(--plum)}
+
+      .vb{width:58%;max-width:140px;height:auto;display:block;filter:drop-shadow(0 6px 10px rgba(0,0,0,.18))}
+      .quad .label{
+        font-family:'Oswald',sans-serif;
+        font-weight:700;
+        font-size:clamp(.9rem, 1.6vw, 1.1rem);
+        letter-spacing:.12em;
+        text-transform:uppercase;
+        text-align:center;line-height:1.05;
+        padding:0 6px;
+      }
+
+      /* Uno corner badges */
+      .corner{
+        position:absolute;z-index:3;
+        font-family:'Oswald',sans-serif;font-weight:700;
+        color:#fff;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+        display:flex;flex-direction:column;align-items:center;line-height:1;gap:3px;
+      }
+      .corner .big{font-size:24px}
+      .corner.tl{top:12px;left:16px}
+      .corner.br{bottom:12px;right:16px;transform:rotate(180deg)}
+
+      .hint{
+        margin-top:28px;
+        font-family:'JetBrains Mono',monospace;
+        font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+        color:rgba(255,255,255,.45);
+      }
+      .menu{
+        margin-top:12px;display:flex;gap:18px;flex-wrap:wrap;justify-content:center;
+        font-family:'Oswald',sans-serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+      }
+      .menu a{color:rgba(255,255,255,.55);text-decoration:none;transition:color .2s}
+      .menu a:hover{color:#fff}
+
+      @media (max-width:520px){
+        .card{transform:rotate(-3deg)}
+        .vb{width:50%}
+      }
+    </style>
+</head>
+<body>
+  <div class="top">
+    <a class="logo" href="../index.html"><img src="images/photos/logo-white.png" alt="ATX Beach"></a>
+    <span class="kicker">Austin's Largest Sand Volleyball Venue</span>
+  </div>
+
+  <div class="stage">
+    <div class="card" aria-label="Pick a tile">
+      <span class="corner tl"><span class="big">+4</span>ATX</span>
+      <span class="corner br"><span class="big">+4</span>ATX</span>
+
+      <div class="quads">
+        <a class="quad q-play" href="play.html">
+          <svg class="vb" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="94" fill="#fff" stroke="#0c2b3a" stroke-width="4"/>
+            <path d="M100 6 C 86 70 114 130 100 194" fill="none" stroke="#0c2b3a" stroke-width="5" stroke-linecap="round"/>
+            <path d="M100 6 C 32 50 32 150 100 194" fill="none" stroke="#0c2b3a" stroke-width="5" stroke-linecap="round"/>
+            <path d="M100 6 C 168 50 168 150 100 194" fill="none" stroke="#0c2b3a" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+          <span class="label">Play</span>
+        </a>
+        <a class="quad q-train" href="train.html">
+          <svg class="vb" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="94" fill="#fff" stroke="#0c2b3a" stroke-width="4"/>
+            <path d="M100 6 C 86 70 114 130 100 194" fill="none" stroke="#0c2b3a" stroke-width="5" stroke-linecap="round"/>
+            <path d="M100 6 C 32 50 32 150 100 194" fill="none" stroke="#0c2b3a" stroke-width="5" stroke-linecap="round"/>
+            <path d="M100 6 C 168 50 168 150 100 194" fill="none" stroke="#0c2b3a" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+          <span class="label">Train</span>
+        </a>
+        <a class="quad q-juniors" href="juniors.html">
+          <svg class="vb" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="94" fill="#fff" stroke="#0c2b3a" stroke-width="4"/>
+            <path d="M100 6 C 86 70 114 130 100 194" fill="none" stroke="#0c2b3a" stroke-width="5" stroke-linecap="round"/>
+            <path d="M100 6 C 32 50 32 150 100 194" fill="none" stroke="#0c2b3a" stroke-width="5" stroke-linecap="round"/>
+            <path d="M100 6 C 168 50 168 150 100 194" fill="none" stroke="#0c2b3a" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+          <span class="label">ATX Juniors</span>
+        </a>
+        <a class="quad q-host" href="events.html">
+          <svg class="vb" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="94" fill="#fff" stroke="#0c2b3a" stroke-width="4"/>
+            <path d="M100 6 C 86 70 114 130 100 194" fill="none" stroke="#0c2b3a" stroke-width="5" stroke-linecap="round"/>
+            <path d="M100 6 C 32 50 32 150 100 194" fill="none" stroke="#0c2b3a" stroke-width="5" stroke-linecap="round"/>
+            <path d="M100 6 C 168 50 168 150 100 194" fill="none" stroke="#0c2b3a" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+          <span class="label">Host an Event</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <p class="hint">Pick your card</p>
+  <nav class="menu" aria-label="Quick links">
+    <a href="play.html">Play</a>
+    <a href="train.html">Train</a>
+    <a href="juniors.html">Juniors</a>
+    <a href="events.html">Host</a>
+    <a href="events.html#tournaments">Tournaments</a>
+  </nav>
+</body>
+</html>
