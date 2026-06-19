@@ -146,6 +146,11 @@ def main():
     os.makedirs(v3, exist_ok=True); os.makedirs(v4, exist_ok=True)
 
     render(f"{v3}/volleyball-white.png", base=(252,250,243), seam=(20,32,42))
+    # UNO-style colored balls for the v3 Wild Card landing
+    render(f"{v3}/volleyball-blue.png",   base=(60,130,215),  seam=(255,253,245))
+    render(f"{v3}/volleyball-yellow.png", base=(240,213,48),  seam=(20,32,42))
+    render(f"{v3}/volleyball-green.png",  base=(50,180,80),   seam=(255,253,245))
+    render(f"{v3}/volleyball-red.png",    base=(215,50,50),   seam=(255,253,245))
     render(f"{v4}/volleyball-teal.png",  base=(26,166,183),  seam=(255,253,245))
     render(f"{v4}/volleyball-coral.png", base=(255,107,74),  seam=(255,253,245))
     render(f"{v4}/volleyball-sun.png",   base=(255,193,77),  seam=(20,32,42))

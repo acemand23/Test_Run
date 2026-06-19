@@ -4,173 +4,289 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATX Beach — v3 (Wild Card)</title>
-    <meta name="description" content="ATX Beach v3 — minimal landing inspired by an Uno Wild Draw 4 card. Four volleyball tiles: Play, Train, ATX Juniors, Host an Event.">
+    <meta name="description" content="ATX Beach v3 — Uno Wild Draw 4 style landing with four colored volleyball tiles (Play, Train, Host, Juniors), plus venue info and contact below.">
+    <meta property="og:title" content="ATX Beach v3 — Wild Card">
+    <meta property="og:description" content="Pick your tile: Play, Train, Host, ATX Juniors.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <style>
-      :root{
-        --bg:#0d0d0f;
-        --frame:#000;
-        --teal:#1aa6b7;
-        --coral:#ff6b4a;
-        --sun:#ffc14d;
-        --plum:#5a4fcf;
-        --ink:#15191c;
-        --paper:#f7f7f5;
+      :root {
+        --blue:#3c82d7;
+        --yellow:#f0d530;
+        --green:#32b450;
+        --red:#d73232;
+        --card-frame:#0d0d0f;
       }
-      *{box-sizing:border-box;margin:0;padding:0}
-      html,body{height:100%}
-      body{
-        font-family:'Inter',system-ui,sans-serif;
-        background:radial-gradient(1200px 800px at 50% 30%, #15323f 0%, var(--bg) 70%);
+
+      /* --- HERO CARD STAGE --- */
+      .wild-stage{
+        position:relative;
+        background:radial-gradient(1100px 700px at 50% 30%, #15323f 0%, var(--navy-deep) 70%);
+        padding:64px 24px 84px;
+        min-height:calc(100vh - 60px);
+        display:flex;flex-direction:column;align-items:center;justify-content:center;
         color:#fff;
-        min-height:100vh;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        padding:36px 20px 60px;
-        -webkit-font-smoothing:antialiased;
       }
-      .top{
-        display:flex;flex-direction:column;align-items:center;gap:6px;
+      .wild-stage .tag-line{
+        font-family:'JetBrains Mono',monospace;
+        font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+        color:var(--sun);margin-bottom:14px;
+      }
+      .wild-stage h1{
+        font-family:var(--font-display);
+        text-transform:uppercase;letter-spacing:-.5px;
+        font-size:clamp(2rem,5vw,3.4rem);font-weight:700;
+        line-height:.95;text-align:center;
         margin-bottom:32px;
       }
-      .logo img{height:42px;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4))}
-      .top .kicker{
-        font-family:'JetBrains Mono',monospace;
-        font-size:11px;letter-spacing:.22em;text-transform:uppercase;
-        color:rgba(255,255,255,.55);
-      }
+      .wild-stage h1 span{color:var(--sun)}
 
-      .stage{display:flex;justify-content:center;align-items:center;flex:1;padding:10px 0}
-
-      /* Uno-style Wild card */
-      .card{
+      /* --- WILD CARD --- */
+      .wild-card{
         position:relative;
         width:min(560px,92vw);
-        aspect-ratio:1/1.45;
-        background:var(--frame);
-        border-radius:28px;
-        padding:22px;
+        aspect-ratio:1/1.42;
+        background:linear-gradient(180deg,#1a1a1f 0%,#0a0a0c 100%);
+        border-radius:30px;
+        padding:18px;
         box-shadow:
-          0 50px 100px -20px rgba(0,0,0,.7),
-          0 30px 60px -30px rgba(0,0,0,.5);
-        transform:rotate(-5deg);
+          0 60px 100px -30px rgba(0,0,0,.7),
+          0 25px 60px -30px rgba(0,0,0,.55),
+          inset 0 0 0 2px rgba(255,255,255,.05);
+        transform:rotate(-4deg);
         transition:transform .5s cubic-bezier(.2,.7,.2,1);
       }
-      .card:hover{transform:rotate(0deg) scale(1.015)}
-
-      /* tilted white oval behind tiles, classic Wild card */
-      .card::after{
+      .wild-card:hover{transform:rotate(0deg) scale(1.015)}
+      /* metallic edge stripes around the card */
+      .wild-card::before{
+        content:"";position:absolute;inset:6px;border-radius:24px;
+        background:
+          repeating-linear-gradient(180deg,
+            rgba(255,255,255,.04) 0 2px,
+            rgba(0,0,0,.18) 2px 6px);
+        pointer-events:none;z-index:1;
+      }
+      /* tilted white oval behind quads */
+      .wild-card::after{
         content:"";position:absolute;left:50%;top:50%;
-        width:118%;height:46%;
+        width:118%;height:42%;
         transform:translate(-50%,-50%) rotate(-22deg);
-        background:#fff;border-radius:50%;z-index:1;
+        background:#fff;border-radius:50%;z-index:2;
         box-shadow:0 0 0 3px rgba(0,0,0,.06) inset;
       }
-
       .quads{
-        position:relative;z-index:2;
+        position:relative;z-index:3;
         display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;
-        gap:10px;width:100%;height:100%;
+        gap:8px;width:100%;height:100%;
       }
       .quad{
         position:relative;
-        display:flex;flex-direction:column;align-items:center;justify-content:center;
-        gap:10px;
-        color:#fff;text-decoration:none;
-        border-radius:14px;
-        overflow:hidden;
+        display:flex;align-items:center;justify-content:center;
+        text-decoration:none;color:#fff;
+        border-radius:14px;overflow:hidden;
         transition:transform .25s ease, filter .25s ease;
-        box-shadow:inset 0 -6px 0 rgba(0,0,0,.18);
+        box-shadow:inset 0 -8px 0 rgba(0,0,0,.18);
       }
       .quad:hover{transform:translateY(-2px) scale(1.02);filter:brightness(1.08) saturate(1.05)}
-      .q-play   {background:var(--teal)}
-      .q-train  {background:var(--coral)}
-      .q-juniors{background:var(--sun);color:var(--ink)}
-      .q-host   {background:var(--plum)}
+      .q-play   {background:var(--blue)}
+      .q-train  {background:var(--yellow)}
+      .q-host   {background:var(--green)}
+      .q-juniors{background:var(--red)}
 
-      .vb{width:58%;max-width:140px;height:auto;display:block;filter:drop-shadow(0 6px 10px rgba(0,0,0,.18))}
-      .quad .label{
-        font-family:'Oswald',sans-serif;
-        font-weight:700;
-        font-size:clamp(.9rem, 1.6vw, 1.1rem);
-        letter-spacing:.12em;
-        text-transform:uppercase;
-        text-align:center;line-height:1.05;
-        padding:0 6px;
+      .vb-wrap{position:relative;width:80%;max-width:160px}
+      .vb-wrap img{width:100%;height:auto;display:block}
+      .vb-label{
+        position:absolute;left:50%;top:52%;transform:translate(-50%,-50%) rotate(-3deg);
+        background:#fff5c2;
+        color:#0c2b3a;
+        font-family:var(--font-display);
+        font-weight:700;font-size:clamp(.78rem,1.6vw,1rem);
+        letter-spacing:.14em;text-transform:uppercase;
+        padding:4px 12px;border-radius:4px;
+        box-shadow:0 2px 4px rgba(0,0,0,.25);
+        white-space:nowrap;
       }
+      .q-train .vb-label{background:#fffae0}
 
       /* Uno corner badges */
       .corner{
-        position:absolute;z-index:3;
-        font-family:'Oswald',sans-serif;font-weight:700;
-        color:#fff;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+        position:absolute;z-index:4;
+        font-family:var(--font-display);font-weight:700;color:#fff;
+        font-size:11px;letter-spacing:.1em;text-transform:uppercase;
         display:flex;flex-direction:column;align-items:center;line-height:1;gap:3px;
       }
-      .corner .big{font-size:24px}
-      .corner.tl{top:12px;left:16px}
-      .corner.br{bottom:12px;right:16px;transform:rotate(180deg)}
+      .corner .big{font-size:24px;color:var(--sun)}
+      .corner.tl{top:18px;left:22px}
+      .corner.br{bottom:18px;right:22px;transform:rotate(180deg)}
 
-      .hint{
-        margin-top:28px;
+      .scroll-hint{
+        margin-top:42px;
+        display:flex;flex-direction:column;align-items:center;gap:6px;
         font-family:'JetBrains Mono',monospace;
-        font-size:11px;letter-spacing:.24em;text-transform:uppercase;
-        color:rgba(255,255,255,.45);
+        font-size:10px;letter-spacing:.28em;text-transform:uppercase;
+        color:rgba(255,255,255,.5);
+        text-decoration:none;
       }
-      .menu{
-        margin-top:12px;display:flex;gap:18px;flex-wrap:wrap;justify-content:center;
-        font-family:'Oswald',sans-serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
-      }
-      .menu a{color:rgba(255,255,255,.55);text-decoration:none;transition:color .2s}
-      .menu a:hover{color:#fff}
+      .scroll-hint .chev{font-size:18px;line-height:1;animation:bob 1.6s ease-in-out infinite}
+      @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 
-      @media (max-width:520px){
-        .card{transform:rotate(-3deg)}
-        .vb{width:50%}
+      @media (max-width:540px){
+        .wild-card{transform:rotate(-2deg)}
       }
     </style>
 </head>
-<body>
-  <div class="top">
-    <a class="logo" href="../index.html"><img src="images/photos/logo-white.png" alt="ATX Beach"></a>
-    <span class="kicker">Austin's Largest Sand Volleyball Venue</span>
-  </div>
+<body class="page-home">
 
-  <div class="stage">
-    <div class="card" aria-label="Pick a tile">
-      <span class="corner tl"><span class="big">+4</span>ATX</span>
-      <span class="corner br"><span class="big">+4</span>ATX</span>
-
-      <div class="quads">
-        <a class="quad q-play" href="play.html">
-          <img class="vb" src="images/photos/volleyball-white.png" alt="" aria-hidden="true">
-          <span class="label">Play</span>
-        </a>
-        <a class="quad q-train" href="train.html">
-          <img class="vb" src="images/photos/volleyball-white.png" alt="" aria-hidden="true">
-          <span class="label">Train</span>
-        </a>
-        <a class="quad q-juniors" href="juniors.html">
-          <img class="vb" src="images/photos/volleyball-white.png" alt="" aria-hidden="true">
-          <span class="label">ATX Juniors</span>
-        </a>
-        <a class="quad q-host" href="events.html">
-          <img class="vb" src="images/photos/volleyball-white.png" alt="" aria-hidden="true">
-          <span class="label">Host an Event</span>
-        </a>
-      </div>
+<!-- ============ TOP NAV (header) ============ -->
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="brand"><img src="images/photos/logo-white.png" alt="ATX Beach" class="brand-logo"></a>
+        <ul class="nav-links">
+            <li><a href="play.html">Play</a></li>
+            <li><a href="train.html">Train</a></li>
+            <li><a href="events.html">Host</a></li>
+            <li><a href="juniors.html">ATX Juniors</a></li>
+            <li><a href="#policies">Venue Info</a></li>
+            <li><a href="#contact" class="nav-cta">Contact</a></li>
+        </ul>
     </div>
-  </div>
+</nav>
 
-  <p class="hint">Pick your card</p>
-  <nav class="menu" aria-label="Quick links">
-    <a href="play.html">Play</a>
-    <a href="train.html">Train</a>
-    <a href="juniors.html">Juniors</a>
-    <a href="events.html">Host</a>
-    <a href="events.html#tournaments">Tournaments</a>
-  </nav>
+<!-- ============ WILD CARD HERO ============ -->
+<section class="wild-stage" id="top">
+    <span class="tag-line">Austin's Largest Sand Volleyball Venue</span>
+    <h1>Pick your <span>card.</span></h1>
+
+    <div class="wild-card" aria-label="Pick a tile">
+        <span class="corner tl"><span class="big">+4</span>ATX</span>
+        <span class="corner br"><span class="big">+4</span>ATX</span>
+
+        <div class="quads">
+            <a class="quad q-play" href="play.html">
+                <div class="vb-wrap">
+                    <img src="images/photos/volleyball-blue.png" alt="" aria-hidden="true">
+                    <span class="vb-label">Play</span>
+                </div>
+            </a>
+            <a class="quad q-train" href="train.html">
+                <div class="vb-wrap">
+                    <img src="images/photos/volleyball-yellow.png" alt="" aria-hidden="true">
+                    <span class="vb-label">Train</span>
+                </div>
+            </a>
+            <a class="quad q-host" href="events.html">
+                <div class="vb-wrap">
+                    <img src="images/photos/volleyball-green.png" alt="" aria-hidden="true">
+                    <span class="vb-label">Host</span>
+                </div>
+            </a>
+            <a class="quad q-juniors" href="juniors.html">
+                <div class="vb-wrap">
+                    <img src="images/photos/volleyball-red.png" alt="" aria-hidden="true">
+                    <span class="vb-label">Juniors</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <a href="#policies" class="scroll-hint" aria-label="Scroll for venue info">
+        <span>Scroll for venue info</span>
+        <span class="chev">&#x2304;</span>
+    </a>
+</section>
+
+<!-- ============ POLICIES / VENUE INFO ============ -->
+<section class="section policies" id="policies">
+    <div class="wrap">
+        <div class="section-head">
+            <span class="eyebrow">Venue Info</span>
+            <h2>Good to know before you go</h2>
+            <p>8 pro courts under 200-ft shade runways, plus the <strong style="color:var(--sun);">Turtle Shack</strong> bar &mdash; 7 TVs, cold drinks, and concessions. One consistent set of rules across the whole venue: check in at Turtle Shack when required, and complete your waiver before you play.</p>
+        </div>
+        <div class="policy-grid" id="turtle">
+            <div class="policy"><strong>Food</strong>Any &amp; all outside food is welcome &mdash; bring the cooler.</div>
+            <div class="policy"><strong>Drinks</strong>No outside beverages, except coffee, smoothies, and water.</div>
+            <div class="policy"><strong>Not Allowed</strong>No dogs, no glass, and no smoking anywhere at the venue.</div>
+            <div class="policy"><strong>Chairs</strong>Chairs are welcome &mdash; get comfortable courtside.</div>
+            <div class="policy"><strong>Canopies &amp; Tents</strong>Allowed, as long as they don't block walkways or others' views.</div>
+            <div class="policy note"><strong>Before You Play</strong>Check in at Turtle Shack when required and complete your waiver first.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact" id="contact">
+    <div class="wrap">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2>Get in touch</h2>
+                <p class="lead">Questions about training, private events, sponsorships, or just where to start? Reach out and we'll route you to the right person.</p>
+                <ul class="info-list">
+                    <li><span class="label">Visit</span><a href="https://maps.google.com/?q=11000+Middle+Fiskville+Road+Bldg+E+Austin+TX+78753" target="_blank" rel="noopener">11000 Middle Fiskville Rd, Bldg E<br>Austin, TX 78753</a></li>
+                    <li><span class="label">Call / Text</span><a href="tel:+15128789459">(512) 878-9459</a></li>
+                    <li><span class="label">Email</span><a href="mailto:info@atxbeach.com">info@atxbeach.com</a></li>
+                    <li><span class="label">Hours</span><span>Open daily, 8:00 a.m. &ndash; 12:00 a.m.</span></li>
+                </ul>
+            </div>
+
+            <form class="lead-form" id="leadForm" novalidate>
+                <h3>Send us a note</h3>
+                <p class="sub">Tell us what you're after and we'll follow up fast.</p>
+                <div class="field"><label for="name">Name</label><input type="text" id="name" name="name" placeholder="Your name" required></div>
+                <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="you@example.com" required></div>
+                <div class="field">
+                    <label for="topic">I'm interested in</label>
+                    <select id="topic" name="topic">
+                        <option>Open Play / Booking a Court</option>
+                        <option>Adult Training &amp; Clinics</option>
+                        <option>ATX Juniors</option>
+                        <option>Hosting / Tournaments &amp; Events</option>
+                        <option>Memberships</option>
+                        <option>Private Events / Rentals</option>
+                        <option>Sponsorships / Partnerships</option>
+                        <option>Something else</option>
+                    </select>
+                </div>
+                <div class="field"><label for="message">Message</label><textarea id="message" name="message" placeholder="How can we help?"></textarea></div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+                <div class="form-success" id="formSuccess">Thanks! This is a sample form &mdash; connect it to your CRM (Copper) or Mailchimp to capture real leads.</div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+    <div class="wrap">
+        <div class="foot-inner">
+            <span class="foot-brand">ATX BEACH</span>
+            <ul class="foot-links">
+                <li><a href="play.html">Play</a></li>
+                <li><a href="train.html">Train</a></li>
+                <li><a href="events.html">Host</a></li>
+                <li><a href="juniors.html">ATX Juniors</a></li>
+                <li><a href="#policies">Venue Info</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <p class="foot-fine">&copy; 2026 ATX Beach &mdash; 11000 Middle Fiskville Rd, Bldg E, Austin, TX 78753.</p>
+    </div>
+</footer>
+
+<script>
+(function () {
+    var form = document.getElementById('leadForm');
+    var success = document.getElementById('formSuccess');
+    if (form) form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+        success.style.display = 'block';
+        form.querySelector('button[type="submit"]').textContent = 'Message Sent';
+    });
+})();
+</script>
+
 </body>
 </html>
