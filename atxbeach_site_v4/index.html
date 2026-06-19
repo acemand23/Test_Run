@@ -4,63 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATX Beach — v4 (Four Volleyballs)</title>
-    <meta name="description" content="ATX Beach v4 — radically minimal landing: four volleyballs (Play, Train, ATX Juniors, Host an Event). Logo, balls, nothing else.">
+    <meta name="description" content="ATX Beach v4 — radically minimal landing: four photoreal volleyballs (Play, Train, Host, ATX Juniors), with venue info and contact below.">
+    <meta property="og:title" content="ATX Beach v4 — Four Volleyballs">
+    <meta property="og:description" content="Pick a ball: Play, Train, Host, ATX Juniors.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <style>
-      :root{
-        --paper:#f7f4ec;
-        --ink:#0c2b3a;
-        --line:#15323f;
-        --teal:#1aa6b7;
-        --coral:#ff6b4a;
-        --sun:#ffc14d;
-        --plum:#5a4fcf;
+      /* --- Four-Volleyballs hero --- */
+      .balls-stage{
+        position:relative;
+        background:#f7f4ec;
+        padding:64px 24px 84px;
+        min-height:calc(100vh - 60px);
+        display:flex;flex-direction:column;align-items:center;justify-content:center;
+        color:var(--navy);
       }
-      *{box-sizing:border-box;margin:0;padding:0}
-      html,body{height:100%}
-      body{
-        font-family:'Inter',system-ui,sans-serif;
-        background:var(--paper);
-        color:var(--ink);
-        min-height:100vh;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        padding:48px 24px 80px;
-        -webkit-font-smoothing:antialiased;
-      }
-      .top{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:48px}
-      .logo img{height:44px;display:block}
-      .top .kicker{
+      .balls-stage .tag-line{
         font-family:'JetBrains Mono',monospace;
-        font-size:11px;letter-spacing:.22em;text-transform:uppercase;
-        color:rgba(12,43,58,.55);
+        font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+        color:var(--accent-deep);margin-bottom:14px;
       }
+      .balls-stage h1{
+        font-family:var(--font-display);
+        text-transform:uppercase;letter-spacing:-.5px;
+        font-size:clamp(2rem,5vw,3.2rem);font-weight:700;
+        line-height:.95;text-align:center;margin-bottom:42px;
+      }
+      .balls-stage h1 span{color:var(--coral)}
 
-      /* 4 floating volleyballs */
       .balls{
         display:grid;
         grid-template-columns:repeat(2,minmax(0,1fr));
-        gap:60px 80px;
+        gap:48px 76px;
         width:min(760px,92vw);
-        margin:18px 0 8px;
       }
       .ball{
-        display:flex;flex-direction:column;align-items:center;gap:22px;
+        display:flex;flex-direction:column;align-items:center;gap:18px;
         text-decoration:none;color:inherit;
         transition:transform .3s cubic-bezier(.2,.7,.2,1);
       }
       .ball:hover{transform:translateY(-6px) rotate(-3deg)}
       .ball:nth-child(2):hover,
       .ball:nth-child(3):hover{transform:translateY(-6px) rotate(3deg)}
-
-      .vb{width:100%;max-width:240px;height:auto;display:block}
+      .ball img{width:100%;max-width:220px;height:auto;display:block}
       .ball .label{
-        font-family:'Oswald',sans-serif;
+        font-family:var(--font-display);
         font-weight:700;
-        font-size:clamp(1.05rem,2vw,1.35rem);
+        font-size:clamp(1.05rem,2vw,1.3rem);
         letter-spacing:.14em;
         text-transform:uppercase;
         line-height:1;
@@ -69,56 +61,166 @@
         font-family:'JetBrains Mono',monospace;
         font-size:11px;letter-spacing:.2em;text-transform:uppercase;
         color:rgba(12,43,58,.55);
-        margin-top:-12px;
+        margin-top:-10px;
       }
 
-      .menu{
-        margin-top:46px;display:flex;gap:22px;flex-wrap:wrap;justify-content:center;
-        font-family:'Oswald',sans-serif;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;
+      .scroll-hint{
+        margin-top:46px;
+        display:flex;flex-direction:column;align-items:center;gap:6px;
+        font-family:'JetBrains Mono',monospace;
+        font-size:10px;letter-spacing:.28em;text-transform:uppercase;
+        color:rgba(12,43,58,.5);
+        text-decoration:none;
       }
-      .menu a{color:rgba(12,43,58,.55);text-decoration:none;transition:color .2s}
-      .menu a:hover{color:var(--ink)}
+      .scroll-hint .chev{font-size:18px;line-height:1;animation:bob 1.6s ease-in-out infinite}
+      @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 
       @media (max-width:540px){
-        .balls{gap:36px 36px}
+        .balls{gap:30px 30px}
       }
     </style>
 </head>
-<body>
-  <div class="top">
-    <a class="logo" href="../index.html"><img src="images/photos/logo-dark.png" alt="ATX Beach"
-      onerror="this.onerror=null;this.src='images/photos/logo-white.png';this.style.filter='invert(1)'"></a>
-    <span class="kicker">Austin's Largest Sand Volleyball Venue</span>
-  </div>
+<body class="page-home">
 
-  <div class="balls">
-    <a class="ball" href="play.html" aria-label="Play">
-      <img class="vb" src="images/photos/volleyball-teal.png" alt="" aria-hidden="true">
-      <span class="label">Play</span>
-      <span class="sub">Open Play &amp; Courts</span>
-    </a>
-    <a class="ball" href="train.html" aria-label="Train">
-      <img class="vb" src="images/photos/volleyball-coral.png" alt="" aria-hidden="true">
-      <span class="label">Train</span>
-      <span class="sub">Clinics &amp; Coaching</span>
-    </a>
-    <a class="ball" href="juniors.html" aria-label="ATX Juniors">
-      <img class="vb" src="images/photos/volleyball-sun.png" alt="" aria-hidden="true">
-      <span class="label">ATX Juniors</span>
-      <span class="sub">Youth Programs</span>
-    </a>
-    <a class="ball" href="events.html" aria-label="Host an Event">
-      <img class="vb" src="images/photos/volleyball-plum.png" alt="" aria-hidden="true">
-      <span class="label">Host an Event</span>
-      <span class="sub">Private &middot; Tournaments &middot; Sponsor</span>
-    </a>
-  </div>
+<!-- ============ TOP NAV (header) ============ -->
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="brand"><img src="images/photos/logo-white.png" alt="ATX Beach" class="brand-logo"></a>
+        <ul class="nav-links">
+            <li><a href="play.html">Play</a></li>
+            <li><a href="train.html">Train</a></li>
+            <li><a href="events.html">Host</a></li>
+            <li><a href="juniors.html">ATX Juniors</a></li>
+            <li><a href="#policies">Venue Info</a></li>
+            <li><a href="#contact" class="nav-cta">Contact</a></li>
+        </ul>
+    </div>
+</nav>
 
-  <nav class="menu" aria-label="Quick links">
-    <a href="events.html#tournaments">Tournaments</a>
-    <a href="events.html#major">Major Events</a>
-    <a href="play.html">Book a Court</a>
-    <a href="events.html#host">Contact</a>
-  </nav>
+<!-- ============ FOUR-VOLLEYBALLS HERO ============ -->
+<section class="balls-stage" id="top">
+    <span class="tag-line">Austin's Largest Sand Volleyball Venue</span>
+    <h1>Pick your <span>ball.</span></h1>
+
+    <div class="balls">
+        <a class="ball" href="play.html" aria-label="Play">
+            <img src="images/photos/volleyball-blue.png" alt="" aria-hidden="true">
+            <span class="label">Play</span>
+            <span class="sub">Open Play &amp; Courts</span>
+        </a>
+        <a class="ball" href="train.html" aria-label="Train">
+            <img src="images/photos/volleyball-yellow.png" alt="" aria-hidden="true">
+            <span class="label">Train</span>
+            <span class="sub">Clinics &amp; Coaching</span>
+        </a>
+        <a class="ball" href="events.html" aria-label="Host an Event">
+            <img src="images/photos/volleyball-green.png" alt="" aria-hidden="true">
+            <span class="label">Host</span>
+            <span class="sub">Private &middot; Tournaments &middot; Sponsor</span>
+        </a>
+        <a class="ball" href="juniors.html" aria-label="ATX Juniors">
+            <img src="images/photos/volleyball-red.png" alt="" aria-hidden="true">
+            <span class="label">ATX Juniors</span>
+            <span class="sub">Youth Programs</span>
+        </a>
+    </div>
+
+    <a href="#policies" class="scroll-hint" aria-label="Scroll for venue info">
+        <span>Scroll for venue info</span>
+        <span class="chev">&#x2304;</span>
+    </a>
+</section>
+
+<!-- ============ POLICIES / VENUE INFO ============ -->
+<section class="section policies" id="policies">
+    <div class="wrap">
+        <div class="section-head">
+            <span class="eyebrow">Venue Info</span>
+            <h2>Good to know before you go</h2>
+            <p>8 pro courts under 200-ft shade runways, plus the <strong style="color:var(--sun);">Turtle Shack</strong> bar &mdash; 7 TVs, cold drinks, and concessions. One consistent set of rules across the whole venue: check in at Turtle Shack when required, and complete your waiver before you play.</p>
+        </div>
+        <div class="policy-grid" id="turtle">
+            <div class="policy"><strong>Food</strong>Any &amp; all outside food is welcome &mdash; bring the cooler.</div>
+            <div class="policy"><strong>Drinks</strong>No outside beverages, except coffee, smoothies, and water.</div>
+            <div class="policy"><strong>Not Allowed</strong>No dogs, no glass, and no smoking anywhere at the venue.</div>
+            <div class="policy"><strong>Chairs</strong>Chairs are welcome &mdash; get comfortable courtside.</div>
+            <div class="policy"><strong>Canopies &amp; Tents</strong>Allowed, as long as they don't block walkways or others' views.</div>
+            <div class="policy note"><strong>Before You Play</strong>Check in at Turtle Shack when required and complete your waiver first.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact" id="contact">
+    <div class="wrap">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2>Get in touch</h2>
+                <p class="lead">Questions about training, private events, sponsorships, or just where to start? Reach out and we'll route you to the right person.</p>
+                <ul class="info-list">
+                    <li><span class="label">Visit</span><a href="https://maps.google.com/?q=11000+Middle+Fiskville+Road+Bldg+E+Austin+TX+78753" target="_blank" rel="noopener">11000 Middle Fiskville Rd, Bldg E<br>Austin, TX 78753</a></li>
+                    <li><span class="label">Call / Text</span><a href="tel:+15128789459">(512) 878-9459</a></li>
+                    <li><span class="label">Email</span><a href="mailto:info@atxbeach.com">info@atxbeach.com</a></li>
+                    <li><span class="label">Hours</span><span>Open daily, 8:00 a.m. &ndash; 12:00 a.m.</span></li>
+                </ul>
+            </div>
+
+            <form class="lead-form" id="leadForm" novalidate>
+                <h3>Send us a note</h3>
+                <p class="sub">Tell us what you're after and we'll follow up fast.</p>
+                <div class="field"><label for="name">Name</label><input type="text" id="name" name="name" placeholder="Your name" required></div>
+                <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="you@example.com" required></div>
+                <div class="field">
+                    <label for="topic">I'm interested in</label>
+                    <select id="topic" name="topic">
+                        <option>Open Play / Booking a Court</option>
+                        <option>Adult Training &amp; Clinics</option>
+                        <option>ATX Juniors</option>
+                        <option>Hosting / Tournaments &amp; Events</option>
+                        <option>Memberships</option>
+                        <option>Private Events / Rentals</option>
+                        <option>Sponsorships / Partnerships</option>
+                        <option>Something else</option>
+                    </select>
+                </div>
+                <div class="field"><label for="message">Message</label><textarea id="message" name="message" placeholder="How can we help?"></textarea></div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+                <div class="form-success" id="formSuccess">Thanks! This is a sample form &mdash; connect it to your CRM (Copper) or Mailchimp to capture real leads.</div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+    <div class="wrap">
+        <div class="foot-inner">
+            <span class="foot-brand">ATX BEACH</span>
+            <ul class="foot-links">
+                <li><a href="play.html">Play</a></li>
+                <li><a href="train.html">Train</a></li>
+                <li><a href="events.html">Host</a></li>
+                <li><a href="juniors.html">ATX Juniors</a></li>
+                <li><a href="#policies">Venue Info</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <p class="foot-fine">&copy; 2026 ATX Beach &mdash; 11000 Middle Fiskville Rd, Bldg E, Austin, TX 78753.</p>
+    </div>
+</footer>
+
+<script>
+(function () {
+    var form = document.getElementById('leadForm');
+    var success = document.getElementById('formSuccess');
+    if (form) form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+        success.style.display = 'block';
+        form.querySelector('button[type="submit"]').textContent = 'Message Sent';
+    });
+})();
+</script>
+
 </body>
 </html>
