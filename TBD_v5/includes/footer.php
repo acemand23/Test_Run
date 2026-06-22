@@ -1,7 +1,10 @@
-<footer class="foot">
-  <div class="tag">The Draw is <span class="t">Random.</span> The Impact is <span class="t">Real.</span></div>
-  <div class="sub">Questions? <a href="mailto:questions@tbdvolleyball.com">questions@tbdvolleyball.com</a> · Benefiting Big Brothers Big Sisters of Central Texas</div>
-</footer>
+<footer class="foot"><div class="foot-inner">
+  <div class="foot-tag">The Draw is <span class="t">Random.</span><br>The Impact is <span class="t">Real.</span></div>
+  <div class="foot-meta">
+    <div>Questions? <a href="mailto:questions@tbdvolleyball.com">questions@tbdvolleyball.com</a></div>
+    <div class="sub">Benefiting Big Brothers Big Sisters of Central Texas</div>
+  </div>
+</div></footer>
 
 <script>
   // mobile hamburger menu
