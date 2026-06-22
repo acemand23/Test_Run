@@ -34,8 +34,19 @@ header{background:var(--cream);position:relative;z-index:10}
 /* poster slices */
 .slice{position:relative;width:100%;max-width:var(--col);margin:0 auto;overflow:hidden;line-height:0;background:var(--cream)}
 .slice img{display:block;width:100%}
-.slice.home{aspect-ratio:1024 / 799}
-.slice.home img{margin-top:-8.25%}      /* show poster 5.5% -> 57.5% */
+.slice.home{aspect-ratio:1024 / 811;container-type:inline-size}
+.slice.home img{margin-top:0}           /* poster image is already cropped to the hero */
+
+/* event details overlaid on the poster as HTML text (date/time/location).
+   positioned over the baked-in icons; font-size in cqw so it scales with the poster. */
+.poster-ov{position:absolute;z-index:3;transform:translateY(-50%);white-space:nowrap;
+  color:#0a1430;font-family:"Saira Condensed","Archivo",sans-serif;font-weight:700;
+  text-transform:uppercase;letter-spacing:.01em;line-height:1;pointer-events:none;
+  /* cream halo keeps the text legible where the time/location cross the bridge artwork */
+  text-shadow:0 0 2px #FEFAF2,0 0 3px #FEFAF2,0 0 5px #FEFAF2}
+.ov-date{left:8.6%; top:59.1%; font-size:2.7cqw}
+.ov-time{left:40%;  top:59.1%; font-size:2.7cqw}
+.ov-loc {left:8.2%; top:63.5%; font-size:2.7cqw}
 .slice.spon{aspect-ratio:1024 / 653}
 .slice.spon img{margin-top:-86.25%}      /* show poster 57.5% -> 100% */
 
