@@ -31,7 +31,7 @@
 
   <!-- ►► EVENT DETAILS — edit this text to update the poster (no image editing needed) -->
   <span class="poster-ov ov-date">November 7th, 2026</span>
-  <span class="poster-ov ov-time">9AM &ndash; 6PM</span>
+  <span class="poster-ov ov-time">9AM &ndash; 8PM</span>
   <span class="poster-ov ov-loc">Aussies Grill &amp; Beach Bar</span>
 
   <!-- Register Now button hotspot -->
