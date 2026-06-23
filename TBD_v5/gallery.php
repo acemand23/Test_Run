@@ -1,13 +1,19 @@
 <?php
   $title='Gallery — The Big Draw'; $active='gallery';
-  // auto-discover photos: assets/gallery/<year>/*.jpg|png|webp
+  // auto-discover media: assets/gallery/<year>/  (images + videos)
   $root  = __DIR__.'/assets/gallery';
   $years = [];
   if (is_dir($root)) {
     foreach (glob($root.'/*', GLOB_ONLYDIR) as $dir) {
-      $imgs = glob($dir.'/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}', GLOB_BRACE);
-      sort($imgs);
-      if ($imgs) $years[basename($dir)] = $imgs;
+      $files = glob($dir.'/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP,mp4,MP4,mov,MOV,webm,WEBM}', GLOB_BRACE);
+      sort($files);
+      $items = [];
+      foreach ($files as $f) {
+        $ext  = strtolower(pathinfo($f, PATHINFO_EXTENSION));
+        $type = in_array($ext, ['mp4','mov','webm'], true) ? 'video' : 'image';
+        $items[] = ['file'=>basename($f), 'type'=>$type];
+      }
+      if ($items) $years[basename($dir)] = $items;
     }
     krsort($years, SORT_NATURAL); // newest year first
   }
@@ -32,13 +38,26 @@
   </div>
   <?php endif; ?>
 
-  <?php $i=0; foreach ($years as $y=>$imgs): ?>
+  <?php $i=0; foreach ($years as $y=>$items): ?>
   <div class="gallery-grid<?= $i===0?' on':'' ?>" data-year="<?= htmlspecialchars($y) ?>">
-    <?php foreach ($imgs as $img):
-            $src = 'assets/gallery/'.rawurlencode($y).'/'.rawurlencode(basename($img)); ?>
-      <a class="shot" href="<?= $src ?>">
+    <?php foreach ($items as $it):
+            $src = 'assets/gallery/'.rawurlencode($y).'/'.rawurlencode($it['file']); ?>
+      <?php if ($it['type']==='video'):
+              $base     = pathinfo($it['file'], PATHINFO_FILENAME);
+              $posterFs = $root.'/'.$y.'/thumbs/'.$base.'.jpg';
+              $poster   = 'assets/gallery/'.rawurlencode($y).'/thumbs/'.rawurlencode($base).'.jpg'; ?>
+      <a class="shot is-video" href="<?= $src ?>" data-type="video">
+        <?php if (is_file($posterFs)): ?>
+        <img loading="lazy" src="<?= $poster ?>" alt="The Big Draw <?= htmlspecialchars($y) ?> video">
+        <?php else: ?>
+        <video src="<?= $src ?>#t=0.1" preload="metadata" muted playsinline></video>
+        <?php endif; ?>
+      </a>
+      <?php else: ?>
+      <a class="shot" href="<?= $src ?>" data-type="image">
         <img loading="lazy" src="<?= $src ?>" alt="The Big Draw <?= htmlspecialchars($y) ?>">
       </a>
+      <?php endif; ?>
     <?php endforeach; ?>
   </div>
   <?php $i++; endforeach; ?>
@@ -47,12 +66,14 @@
 
 <div class="lightbox" id="lightbox" hidden>
   <button class="lb-close" aria-label="Close">&times;</button>
-  <img id="lbimg" src="" alt="">
+  <img id="lbimg" src="" alt="" hidden>
+  <video id="lbvid" controls playsinline hidden></video>
 </div>
 
 <script>
   (function(){
-    // year tabs
+    // year tabs — pause any playing video when switching
+    var lbvid = document.getElementById('lbvid');
     document.querySelectorAll('.ytab').forEach(function(tab){
       tab.addEventListener('click', function(){
         var y = tab.dataset.year;
@@ -60,13 +81,25 @@
         document.querySelectorAll('.gallery-grid').forEach(function(g){ g.classList.toggle('on', g.dataset.year===y); });
       });
     });
-    // lightbox
-    var lb = document.getElementById('lightbox'), img = document.getElementById('lbimg');
+    // lightbox (images + videos)
+    var lb = document.getElementById('lightbox'), lbimg = document.getElementById('lbimg');
     document.querySelectorAll('.shot').forEach(function(a){
-      a.addEventListener('click', function(e){ e.preventDefault(); img.src = a.getAttribute('href'); lb.hidden = false; });
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        var href = a.getAttribute('href');
+        if (a.dataset.type === 'video') {
+          lbimg.hidden = true; lbimg.src = '';
+          lbvid.src = href; lbvid.hidden = false; lbvid.play();
+        } else {
+          lbvid.pause(); lbvid.src = ''; lbvid.hidden = true;
+          lbimg.src = href; lbimg.hidden = false;
+        }
+        lb.hidden = false;
+      });
     });
-    function close(){ lb.hidden = true; img.src = ''; }
+    function close(){ lb.hidden = true; lbimg.src=''; lbimg.hidden=true; lbvid.pause(); lbvid.src=''; lbvid.hidden=true; }
     lb.addEventListener('click', close);
+    lbvid.addEventListener('click', function(e){ e.stopPropagation(); }); // don't close when using video controls
     document.querySelector('.lb-close').addEventListener('click', function(e){ e.stopPropagation(); close(); });
     addEventListener('keydown', function(e){ if (e.key==='Escape') close(); });
   })();
