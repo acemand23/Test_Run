@@ -66,7 +66,7 @@
 <section class="pagehead"><div class="col">
   <div class="eyebrow">Sponsor · Volleyball for Good</div>
   <h1>Sponsorship Packages</h1>
-  <p>Put your brand in front of the Austin beach-volleyball community while helping send local kids a mentor. Every package supports Big Brothers Big Sisters of Central Texas — pick the level that fits.</p>
+  <p>Put your brand in front of the Austin beach-volleyball community while helping match local kids to mentors. Every package supports Big Brothers Big Sisters of Central Texas — pick the level that fits.</p>
 </div></section>
 
 <section class="block"><div class="col">
