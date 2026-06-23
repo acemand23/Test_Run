@@ -27,7 +27,7 @@
      the image anymore — they're HTML text overlaid on the icons below, so updating the
      event details is a one-line edit here (no image editing). -->
 <div class="slice home">
-  <img src="assets/poster.png?v=6" alt="The Big Draw — Blind Draw 4s beach volleyball tournament, November 7th, 2026 at Aussies Grill & Beach Bar. Volleyball for Good, benefiting Big Brothers Big Sisters.">
+  <img src="assets/poster.png?v=7" alt="The Big Draw — Blind Draw 4s beach volleyball tournament, November 7th, 2026 at Aussies Grill & Beach Bar. Volleyball for Good, benefiting Big Brothers Big Sisters.">
 
   <!-- ►► EVENT DETAILS — edit this text to update the poster (no image editing needed) -->
   <span class="poster-ov ov-date">November 7th, 2026</span>
