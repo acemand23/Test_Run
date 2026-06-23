@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700;800;900&family=Saira+Condensed:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=19">
+<link rel="stylesheet" href="css/site.css?v=20">
 </head>
 <body class="<?= htmlspecialchars($body_class ?? '') ?>">
 <header><div class="bar">
