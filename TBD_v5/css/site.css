@@ -123,8 +123,21 @@ header{background:var(--cream);position:relative;z-index:10}
   color:#fff;padding:8px 14px;border-radius:999px;white-space:nowrap;line-height:1.1}
 .pillstate.is-open{background:var(--orange);box-shadow:0 8px 18px -10px rgba(242,101,34,.8)}
 .pillstate.is-closed{background:var(--teal);box-shadow:0 8px 18px -10px rgba(72,184,136,.8)}
-.tier-note{font-weight:700;color:#3c4257;font-size:14.5px;margin:14px 0 0}
-.perks{list-style:none;margin:14px 0 0;display:grid;gap:9px}
+.tier-desc{font-weight:600;color:#3c4257;font-size:15px;line-height:1.55;margin:14px 0 0}
+.tier-desc + .tier-desc{margin-top:9px}
+.tier-note{font-weight:700;color:var(--ink);font-size:14px;margin:14px 0 0}
+.perks{list-style:none;margin:12px 0 0;display:grid;gap:9px}
+
+/* sponsor page — closing "Become a Sponsor" block */
+.sponsor-close{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:40px 32px;text-align:center}
+.sponsor-close h2{font-size:clamp(26px,4.4vw,40px);color:var(--ink);line-height:1}
+.sponsor-close .close-tag{font-family:"Archivo Black";text-transform:uppercase;letter-spacing:.01em;
+  font-size:clamp(16px,2.4vw,23px);margin-top:14px;color:var(--ink)}
+.sponsor-close .close-tag .t{color:var(--teal)}
+.sponsor-close .close-body{font-weight:600;color:#3c4257;font-size:16px;line-height:1.6;max-width:62ch;margin:16px auto 0}
+.sponsor-close .close-q{font-weight:700;color:var(--ink);font-size:15px;margin-top:14px}
+.sponsor-close .close-q a{color:var(--teal)}
+.sponsor-close .cta-row{justify-content:center;margin-top:22px}
 .perks li{position:relative;padding-left:26px;font-weight:600;color:#3c4257;font-size:14.5px;line-height:1.5}
 .perks li::before{content:"";position:absolute;left:4px;top:.45em;width:9px;height:9px;border-radius:50%;
   background:var(--teal);box-shadow:0 0 0 3px rgba(72,184,136,.18)}
