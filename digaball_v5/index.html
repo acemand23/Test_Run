@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Digaball — the volleyball company</title>
+<meta name="description" content="Digaball develops and markets the sport of volleyball, indoor and outdoor. Thirty years on the sand and court, led by Coach Duke. Now training in Austin, TX." />
+
+<!-- Google Fonts: Fredoka approximates Feather Bold (rounded heavy display); Nunito for body -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+  /* =========================================================
+     DIGABALL — Duolingo design system translation
+     Owl green dominant · chunky 4px press shadows · rounded joy
+     ========================================================= */
+  :root{
+    /* Owl green family */
+    --green:        #58cc02;
+    --green-deep:   #58a700;  /* press / shadow */
+    --green-deeper: #3f9500;  /* hero text base for contrast */
+    --green-light:  #89e219;  /* hover */
+    --green-pale:   #dbf8c5;  /* soft surface */
+
+    /* Secondary accents */
+    --orange:       #ff9600;
+    --orange-deep:  #cc7a00;
+    --pink:         #ce82ff;
+    --pink-deep:    #a84fe0;
+    --blue:         #1cb0f6;
+    --blue-deep:    #1488c2;
+    --red:          #ff4b4b;
+    --yellow:       #ffc800;
+
+    /* Surface + ink */
+    --snow:   #ffffff;
+    --eel:    #f7f7f7;
+    --swan:   #e5e5e5;
+    --wolf:   #777777;
+    --hare:   #afafaf;
+    --ink:    #3c3c3c;
+
+    /* Sand (subject material) */
+    --sand:       #f0d9a3;
+    --sand-deep:  #e3bf73;
+
+    --radius-card: 16px;
+    --radius-btn:  16px;
+    --shadow-press: 4px;
+    --container: 1080px;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    font-family:'Nunito', 'Helvetica Neue', system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    color:var(--ink);
+    background:var(--snow);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Fredoka','DIN Round Pro','Helvetica Neue',sans-serif;
+    font-weight:700;
+    line-height:1.12;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  a{ color:var(--blue-deep); }
+
+  img{ max-width:100%; display:block; }
+
+  /* Skip link */
+  .skip{
+    position:absolute; left:12px; top:-60px;
+    background:var(--green); color:#fff; padding:10px 16px;
+    border-radius:12px; font-family:'Fredoka',sans-serif; font-weight:600;
+    z-index:200; transition:top .15s ease;
+  }
+  .skip:focus{ top:12px; }
+
+  /* Global focus ring */
+  :focus-visible{
+    outline:3px solid var(--blue);
+    outline-offset:3px;
+    border-radius:8px;
+  }
+
+  .container{
+    width:100%;
+    max-width:var(--container);
+    margin-inline:auto;
+    padding-inline:20px;
+  }
+
+  /* ============ Buttons (chunky press affordance) ============ */
+  .btn{
+    --bg:var(--green);
+    --bg-hover:var(--green-light);
+    --sh:var(--green-deep);
+    --fg:#fff;
+    display:inline-flex; align-items:center; justify-content:center; gap:.55em;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600; font-size:1rem; letter-spacing:.01em;
+    text-decoration:none; text-align:center;
+    color:var(--fg);
+    background:var(--bg);
+    border:2px solid transparent;
+    border-bottom:var(--shadow-press) solid var(--sh);
+    border-radius:var(--radius-btn);
+    padding:13px 24px 12px;
+    cursor:pointer;
+    transition:transform .09s ease, border-bottom-width .09s ease, background-color .12s ease;
+    user-select:none;
+    white-space:nowrap;
+  }
+  .btn:hover{ background:var(--bg-hover); }
+  .btn:active{ transform:translateY(4px); border-bottom-width:0; }
+
+  .btn--orange{ --bg:var(--orange); --bg-hover:#ffaa2b; --sh:var(--orange-deep); }
+  .btn--blue{   --bg:var(--blue);   --bg-hover:#46c0f8; --sh:var(--blue-deep);  }
+  .btn--pink{   --bg:var(--pink);   --bg-hover:#d99bff; --sh:var(--pink-deep);  --fg:#3a1357; }
+  .btn--white{
+    --bg:#fff; --bg-hover:#fff; --sh:#d3e9bd; --fg:var(--green-deep);
+    border:2px solid #e7f4d6; border-bottom:var(--shadow-press) solid #c9e6a6;
+  }
+  .btn--white:hover{ --fg:var(--green-deeper); }
+  .btn--ghost{
+    --bg:#fff; --bg-hover:#fafafa; --sh:var(--swan); --fg:var(--wolf);
+    border:2px solid var(--swan); border-bottom:var(--shadow-press) solid var(--swan);
+  }
+  .btn--ghost:hover{ --fg:var(--ink); border-color:var(--hare); }
+  .btn--lg{ font-size:1.125rem; padding:16px 30px 15px; }
+  .btn--block{ width:100%; }
+
+  /* ============ Chips / pills / badges ============ */
+  .chip{
+    display:inline-flex; align-items:center; gap:.4em;
+    font-family:'Fredoka',sans-serif; font-weight:600; font-size:.8rem;
+    letter-spacing:.02em;
+    padding:6px 14px;
+    border-radius:9999px;
+    background:var(--eel); color:var(--wolf);
+    border:2px solid var(--swan);
+    white-space:nowrap;
+  }
+  .chip--green{ background:var(--green-pale); color:#3c7a00; border-color:#bfe89a; }
+  .chip--orange{ background:#fff1dc; color:#a85f00; border-color:#ffd79a; }
+  .chip--pink{ background:#f7e9ff; color:#7a2bb5; border-color:#e6c3ff; }
+  .chip--blue{ background:#e3f6ff; color:#0b6ea3; border-color:#bce8ff; }
+  .chip--solid-green{ background:var(--green); color:#fff; border-color:var(--green-deep); }
+  .chip--onhero{
+    background:rgba(255,255,255,.16); color:#fff;
+    border-color:rgba(255,255,255,.45);
+  }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:.5em;
+    font-family:'Fredoka',sans-serif; font-weight:600;
+    font-size:.78rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--green-deep);
+  }
+  .eyebrow::before{
+    content:""; width:26px; height:4px; border-radius:9999px;
+    background:var(--green); display:inline-block;
+  }
+
+  /* ============ Header ============ */
+  .site-header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:saturate(140%) blur(8px);
+    border-bottom:2px solid var(--swan);
+  }
+  .header-inner{
+    display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px;
+    padding-block:12px;
+  }
+  .wordmark{
+    display:inline-flex; align-items:center; gap:9px;
+    text-decoration:none; flex:0 0 auto;
+  }
+  .wordmark__ball{ width:34px; height:34px; flex:0 0 auto; }
+  .wordmark__text{
+    font-family:'Fredoka',sans-serif; font-weight:700;
+    font-size:1.5rem; letter-spacing:.01em; line-height:1;
+    color:var(--green); margin:0;
+  }
+  .site-nav{
+    flex:1 1 100%;
+    order:3;
+    display:flex; gap:6px;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding-bottom:2px;
+  }
+  .site-nav::-webkit-scrollbar{ display:none; }
+  .site-nav a{
+    font-family:'Fredoka',sans-serif; font-weight:600; font-size:.95rem;
+    color:var(--wolf); text-decoration:none;
+    padding:7px 12px; border-radius:9999px;
+    white-space:nowrap; transition:background-color .12s, color .12s;
+  }
+  .site-nav a:hover{ background:var(--green-pale); color:var(--green-deep); }
+  .header-cta{ margin-left:auto; order:2; }
+  .header-cta .btn{ padding:9px 18px; font-size:.95rem; }
+
+  /* ============ Section scaffolding ============ */
+  main{ display:block; }
+  section{ scroll-margin-top:96px; }
+  .section{ padding-block:64px; }
+  .section--tint{ background:var(--eel); }
+  .section__head{ max-width:680px; margin-bottom:36px; }
+  .section__title{
+    font-size:clamp(1.7rem, 4.4vw, 2.3rem);
+    margin:14px 0 10px;
+  }
+  .section__lead{
+    font-size:1.05rem; color:var(--wolf); margin:0;
+  }
+
+  /* ============ Hero ============ */
+  .hero{
+    background:
+      radial-gradient(120% 90% at 82% 8%, rgba(137,226,25,.55) 0%, rgba(137,226,25,0) 55%),
+      linear-gradient(168deg, #5bc700 0%, #47a802 52%, var(--green-deeper) 100%);
+    color:#fff;
+    overflow:hidden;
+    position:relative;
+  }
+  .hero__inner{
+    display:grid; gap:30px;
+    padding-block:54px 64px;
+  }
+  .hero__copy{ max-width:620px; }
+  .hero__title{
+    color:#fff;
+    font-size:clamp(2.3rem, 8.5vw, 3.6rem);
+    line-height:1.04;
+    text-shadow:0 2px 0 rgba(0,0,0,.10);
+    margin:16px 0 0;
+  }
+  .hero__sub{
+    font-size:1.12rem; font-weight:600;
+    line-height:1.5;
+    color:#f3ffe6;
+    margin:16px 0 0; max-width:34em;
+  }
+  .hero .eyebrow{ color:#eaffd4; }
+  .hero .eyebrow::before{ background:#eaffd4; }
+  .hero__cta{
+    display:flex; flex-wrap:wrap; gap:14px;
+    margin-top:28px;
+  }
+  .hero__stats{
+    display:flex; flex-wrap:wrap; gap:10px;
+    margin-top:26px;
+  }
+
+  /* Mascot stage */
+  .mascot-stage{
+    position:relative;
+    align-self:center; justify-self:center;
+    width:min(330px, 82vw);
+    aspect-ratio:1/1;
+    display:grid; place-items:center;
+  }
+  .mascot-spot{
+    position:absolute; inset:6% 6% 14% 6%;
+    border-radius:50%;
+    background:radial-gradient(circle at 50% 38%, rgba(255,255,255,.30), rgba(255,255,255,0) 62%);
+  }
+  .mascot{
+    position:relative; z-index:2;
+    width:62%;
+    transform-origin:center bottom;
+    animation:bounce 2.4s cubic-bezier(.34,1.56,.64,1) infinite;
+    filter:drop-shadow(0 8px 0 rgba(0,0,0,.06));
+  }
+  .mascot .pupil{ transform-origin:center; animation:blink 5.2s infinite; }
+  .mascot-shadow{
+    position:absolute; z-index:1;
+    bottom:9%; left:50%; width:46%; height:18px;
+    transform:translateX(-50%);
+    background:radial-gradient(ellipse at center, rgba(0,0,0,.22), rgba(0,0,0,0) 70%);
+    animation:shadowPulse 2.4s ease-in-out infinite;
+  }
+  /* Sand mound under the mascot */
+  .mascot-sand{
+    position:absolute; z-index:0;
+    bottom:2%; left:50%; transform:translateX(-50%);
+    width:78%; height:26%;
+    background:linear-gradient(180deg, var(--sand) 0%, var(--sand-deep) 100%);
+    border-radius:50% 50% 46% 46%/70% 70% 100% 100%;
+    box-shadow:inset 0 6px 0 rgba(255,255,255,.4);
+  }
+  .speech{
+    position:absolute; z-index:3; top:2%; right:-2%;
+    background:#fff; color:var(--green-deep);
+    font-family:'Fredoka',sans-serif; font-weight:600; font-size:1rem;
+    padding:9px 16px; border-radius:14px;
+    border:2px solid #e7f4d6; border-bottom:4px solid #c9e6a6;
+    animation:pop 2.4s cubic-bezier(.34,1.56,.64,1) infinite;
+  }
+  .speech::after{
+    content:""; position:absolute; left:18px; bottom:-9px;
+    width:14px; height:14px; background:#fff;
+    border-right:2px solid #c9e6a6; border-bottom:2px solid #c9e6a6;
+    transform:rotate(45deg);
+  }
+
+  @keyframes bounce{
+    0%,100%{ transform:translateY(0) scaleY(1); }
+    12%{ transform:translateY(2%) scaleY(.94); }
+    45%{ transform:translateY(-15%) scaleY(1.03); }
+    78%{ transform:translateY(0) scaleY(1); }
+  }
+  @keyframes shadowPulse{
+    0%,100%{ transform:translateX(-50%) scale(1); opacity:.85; }
+    45%{ transform:translateX(-50%) scale(.7); opacity:.5; }
+  }
+  @keyframes pop{
+    0%,40%,100%{ transform:translateY(0) rotate(-2deg); }
+    50%{ transform:translateY(-4px) rotate(-2deg); }
+  }
+  @keyframes blink{
+    0%,93%,100%{ transform:scaleY(1); }
+    96%{ transform:scaleY(.08); }
+  }
+
+  /* ============ Mission banner ============ */
+  .mission{
+    display:flex; gap:18px; align-items:flex-start;
+    background:var(--green-pale);
+    border:2px solid #bfe89a; border-bottom:4px solid #bfe89a;
+    border-radius:var(--radius-card);
+    padding:22px 24px;
+    margin-bottom:40px;
+  }
+  .mission__icon{
+    flex:0 0 auto; width:46px; height:46px; border-radius:14px;
+    background:var(--green); color:#fff;
+    display:grid; place-items:center;
+    border-bottom:4px solid var(--green-deep);
+    font-size:1.4rem;
+  }
+  .mission__label{
+    font-family:'Fredoka',sans-serif; font-weight:600;
+    text-transform:uppercase; letter-spacing:.12em; font-size:.72rem;
+    color:#3c7a00; margin:0 0 4px;
+  }
+  .mission__quote{
+    font-family:'Fredoka',sans-serif; font-weight:500;
+    font-size:1.18rem; line-height:1.4; color:#2f5e00; margin:0;
+  }
+
+  /* ============ Coach cards ============ */
+  .coach-grid{
+    display:grid; gap:20px;
+    grid-template-columns:1fr;
+  }
+  .coach{
+    background:#fff;
+    border:2px solid var(--swan); border-bottom:4px solid var(--swan);
+    border-radius:var(--radius-card);
+    padding:22px;
+    transition:transform .12s ease, border-color .12s ease;
+  }
+  .coach:hover{ transform:translateY(-2px); border-color:var(--hare); }
+  .coach__top{ display:flex; align-items:center; gap:14px; margin-bottom:14px; }
+  .coach__avatar{
+    flex:0 0 auto; width:58px; height:58px; border-radius:50%;
+    display:grid; place-items:center;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:1.4rem; color:#fff;
+    border-bottom:4px solid rgba(0,0,0,.18);
+  }
+  .coach__avatar--green{ background:var(--green); }
+  .coach__avatar--orange{ background:var(--orange); }
+  .coach__name{ font-size:1.25rem; }
+  .coach__role{ font-size:.92rem; color:var(--wolf); font-weight:700; }
+  .coach__creds{ list-style:none; margin:0; padding:0; display:grid; gap:9px; }
+  .coach__creds li{
+    position:relative; padding-left:28px; font-size:.97rem; color:var(--ink);
+  }
+  .coach__creds li::before{
+    content:""; position:absolute; left:0; top:3px;
+    width:18px; height:18px; border-radius:50%;
+    background:var(--green-pale);
+    box-shadow:inset 0 0 0 2px var(--green);
+  }
+  .coach__creds li::after{
+    content:""; position:absolute; left:6px; top:8px;
+    width:6px; height:6px; border-radius:50%; background:var(--green);
+  }
+
+  /* ============ Timeline (3-point skill path) ============ */
+  .timeline{
+    display:grid; gap:16px;
+    grid-template-columns:1fr;
+    margin-top:36px;
+    counter-reset:step;
+  }
+  .timeline__intro{
+    font-family:'Fredoka',sans-serif; font-weight:600; font-size:1.1rem;
+    color:var(--ink); margin:0 0 6px;
+  }
+  .tnode{
+    display:flex; gap:16px; align-items:flex-start;
+    background:#fff;
+    border:2px solid var(--swan); border-bottom:4px solid var(--swan);
+    border-radius:var(--radius-card);
+    padding:18px 20px;
+  }
+  .tnode__bubble{
+    flex:0 0 auto;
+    width:56px; height:56px; border-radius:50%;
+    display:grid; place-items:center;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:.92rem; color:#fff;
+    border-bottom:5px solid rgba(0,0,0,.2);
+    text-align:center; line-height:1;
+  }
+  .tnode__bubble--up{ background:var(--green); }
+  .tnode__bubble--down{ background:var(--red); border-bottom-color:#cc3b3b; }
+  .tnode__bubble--now{ background:var(--orange); }
+  .tnode.is-active .tnode__bubble{ animation:nodePulse 1.6s ease-in-out infinite; }
+  .tnode__era{
+    font-family:'Fredoka',sans-serif; font-weight:600; font-size:1.12rem;
+    margin:0 0 2px; color:var(--ink);
+  }
+  .tnode__desc{ margin:0; font-size:.97rem; color:var(--wolf); }
+  @keyframes nodePulse{
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.06); }
+  }
+
+  /* ============ Ventures ============ */
+  .ventures{ display:grid; gap:22px; }
+
+  .venture{
+    background:#fff;
+    border:2px solid var(--swan); border-bottom:4px solid var(--swan);
+    border-radius:var(--radius-card);
+    padding:26px;
+    transition:transform .12s ease, border-color .12s ease;
+  }
+  .venture:hover{ transform:translateY(-3px); border-color:var(--hare); }
+  .venture__head{ display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-bottom:14px; }
+  .venture__icon{
+    flex:0 0 auto; width:54px; height:54px; border-radius:16px;
+    display:grid; place-items:center; font-size:1.5rem; color:#fff;
+    border-bottom:4px solid rgba(0,0,0,.18);
+  }
+  .venture__title{ font-size:1.4rem; }
+  .venture__body{ color:var(--ink); font-size:1.02rem; margin:0 0 18px; max-width:54ch; }
+  .venture__cta{ display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+  .venture__note{ font-size:.85rem; color:var(--wolf); font-weight:700; }
+
+  /* Heart venture — Sand Training (largest, owl-green dominant) */
+  .venture--heart{
+    background:linear-gradient(160deg, #62d40a 0%, #4eb302 100%);
+    color:#fff;
+    border:2px solid var(--green-deep); border-bottom:5px solid #3f8a00;
+    padding:30px;
+  }
+  .venture--heart .venture__title{ color:#fff; font-size:clamp(1.6rem,4.5vw,2rem); }
+  .venture--heart .venture__body{ color:#f2ffe5; font-size:1.08rem; }
+  .venture--heart .venture__icon{ background:rgba(255,255,255,.2); border-bottom-color:rgba(0,0,0,.18); }
+  .venture--heart .venture__note{ color:#eaffd4; }
+
+  .venture__icon--green{ background:var(--green); }
+  .venture__icon--orange{ background:var(--orange); }
+  .venture__icon--blue{ background:var(--blue); }
+  .venture__icon--pink{ background:var(--pink); color:#3a1357; }
+
+  /* two-up grid for the smaller ventures */
+  .ventures__row{ display:grid; gap:22px; grid-template-columns:1fr; }
+
+  /* Reaction Trainer gamified panel */
+  .trainer-game{
+    background:#fff7ec;
+    border:2px solid #ffe0b0; border-bottom:4px solid #ffe0b0;
+    border-radius:14px;
+    padding:16px 18px;
+    margin:4px 0 18px;
+  }
+  .trainer-game__row{
+    display:flex; flex-wrap:wrap; align-items:center; gap:10px;
+    margin-bottom:12px;
+  }
+  .xp-flame{
+    display:inline-flex; align-items:center; gap:.4em;
+    font-family:'Fredoka',sans-serif; font-weight:600; color:#a85f00;
+    font-size:.9rem;
+  }
+  .progress{
+    height:16px; border-radius:9999px; background:var(--swan);
+    overflow:hidden; position:relative;
+  }
+  .progress__fill{
+    height:100%; width:64%;
+    background:linear-gradient(90deg, var(--orange), #ffb43d);
+    border-radius:9999px;
+    position:relative;
+    animation:fillGrow .9s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  .progress__fill::after{
+    content:""; position:absolute; inset:2px 4px auto 4px; height:4px;
+    background:rgba(255,255,255,.55); border-radius:9999px;
+  }
+  .progress__label{
+    display:flex; justify-content:space-between;
+    font-size:.78rem; font-weight:800; color:#a85f00; margin-top:7px;
+  }
+  @keyframes fillGrow{ from{ width:0; } to{ width:64%; } }
+
+  /* ============ Events ============ */
+  .events{ display:grid; gap:16px; grid-template-columns:1fr; }
+  .event{
+    display:flex; align-items:center; gap:18px;
+    background:#fff;
+    border:2px solid var(--swan); border-bottom:4px solid var(--swan);
+    border-radius:var(--radius-card);
+    padding:18px 20px;
+  }
+  .event__date{
+    flex:0 0 auto; width:84px; text-align:center;
+    background:var(--blue); color:#fff; border-radius:14px;
+    border-bottom:4px solid var(--blue-deep);
+    padding:10px 6px;
+  }
+  .event__date b{ font-family:'Fredoka',sans-serif; font-weight:700; font-size:1.05rem; display:block; }
+  .event__date span{ font-size:.72rem; font-weight:800; letter-spacing:.04em; }
+  .event__name{ font-family:'Fredoka',sans-serif; font-weight:600; font-size:1.15rem; margin:0; }
+  .event__meta{ margin:2px 0 0; color:var(--wolf); font-size:.9rem; font-weight:700; }
+
+  /* ============ Contact ============ */
+  .contact-grid{ display:grid; gap:24px; grid-template-columns:1fr; }
+  .form-card, .contact-card{
+    background:#fff;
+    border:2px solid var(--swan); border-bottom:4px solid var(--swan);
+    border-radius:var(--radius-card);
+    padding:26px;
+  }
+  .field{ display:block; margin-bottom:16px; }
+  .field > span{
+    display:block; font-family:'Fredoka',sans-serif; font-weight:600;
+    font-size:.9rem; color:var(--ink); margin-bottom:6px;
+  }
+  .field input, .field select, .field textarea{
+    width:100%; font-family:'Nunito',sans-serif; font-size:1rem; color:var(--ink);
+    background:#fff; border:2px solid var(--swan); border-radius:12px;
+    padding:12px 14px;
+  }
+  .field textarea{ resize:vertical; min-height:96px; }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:none; border-color:var(--blue);
+    box-shadow:0 0 0 3px rgba(28,176,246,.2);
+  }
+  .contact-card h3{ font-size:1.3rem; margin-bottom:8px; }
+  .contact-card p{ color:var(--ink); }
+  .contact-line{
+    display:flex; align-items:center; gap:12px;
+    background:var(--green-pale); border:2px solid #bfe89a;
+    border-radius:14px; padding:12px 16px; margin-top:14px;
+  }
+  .contact-line a{ font-family:'Fredoka',sans-serif; font-weight:600; color:var(--green-deep); text-decoration:none; }
+  .contact-line a:hover{ text-decoration:underline; }
+  .editable-hint{
+    font-size:.8rem; color:var(--wolf); font-weight:700;
+    background:var(--eel); border:2px dashed var(--hare);
+    border-radius:10px; padding:8px 12px; margin-top:14px;
+  }
+
+  /* ============ Footer ============ */
+  .site-footer{
+    background:linear-gradient(160deg, #4eb302 0%, var(--green-deeper) 100%);
+    color:#eaffd4;
+    padding-block:40px;
+  }
+  .footer-inner{ display:grid; gap:18px; }
+  .footer-brand{ display:flex; align-items:center; gap:10px; }
+  .footer-brand .wordmark__text{ color:#fff; }
+  .footer-nav{ display:flex; flex-wrap:wrap; gap:6px 18px; }
+  .footer-nav a{
+    color:#eaffd4; text-decoration:none; font-family:'Fredoka',sans-serif;
+    font-weight:600; font-size:.95rem;
+  }
+  .footer-nav a:hover{ color:#fff; text-decoration:underline; }
+  .footer-legal{
+    font-size:.9rem; color:#d6f5b9; font-weight:700;
+    border-top:2px solid rgba(255,255,255,.25); padding-top:16px;
+  }
+
+  /* ============ Desktop (single breakpoint ~720px) ============ */
+  @media (min-width:720px){
+    .header-inner{ flex-wrap:nowrap; }
+    .site-nav{
+      flex:1 1 auto; order:0; justify-content:center;
+      overflow:visible; padding-bottom:0;
+    }
+    .header-cta{ order:0; }
+
+    .hero__inner{
+      grid-template-columns:1.15fr .85fr;
+      align-items:center;
+      padding-block:72px 84px;
+    }
+    .mascot-stage{ width:min(380px, 38vw); }
+
+    .coach-grid{ grid-template-columns:1fr 1fr; }
+    .timeline{ grid-template-columns:repeat(3,1fr); align-items:stretch; }
+    .tnode{ flex-direction:column; }
+
+    .ventures__row{ grid-template-columns:1fr 1fr; }
+    .venture--heart{ display:grid; grid-template-columns:1.4fr 1fr; gap:30px; align-items:center; }
+    .venture--heart .venture__media{ align-self:stretch; }
+
+    .events{ grid-template-columns:1fr 1fr; }
+    .contact-grid{ grid-template-columns:1.1fr .9fr; align-items:start; }
+
+    .footer-inner{ grid-template-columns:auto 1fr; align-items:center; }
+    .footer-nav{ justify-content:flex-end; }
+    .footer-legal{ grid-column:1 / -1; }
+
+    .section__title{ font-size:clamp(2rem, 3.4vw, 2.4rem); }
+  }
+
+  /* ============ Reduced motion: kill pulse/press/bounce ============ */
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *,*::before,*::after{
+      animation:none !important;
+      transition:none !important;
+    }
+    .btn:active{ transform:none; border-bottom-width:var(--shadow-press); }
+    .progress__fill{ width:64%; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- =================== HEADER =================== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="wordmark" href="#top" aria-label="Digaball home">
+      <!-- Styled wordmark (preferred over legacy assets/Title.gif) -->
+      <svg class="wordmark__ball" viewBox="0 0 100 100" role="img" aria-hidden="true" focusable="false">
+        <circle cx="50" cy="50" r="46" fill="#fff" stroke="#58cc02" stroke-width="6"/>
+        <g fill="none" stroke="#58cc02" stroke-width="6" stroke-linecap="round">
+          <path d="M50 5 C 41 33 41 67 50 95"/>
+          <path d="M9 31 C 36 46 56 48 95 38"/>
+          <path d="M15 76 C 39 60 61 60 92 73"/>
+        </g>
+      </svg>
+      <span class="wordmark__text">DIGABALL</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#training">Training</a>
+      <a href="#app">App</a>
+      <a href="#software">Software</a>
+      <a href="#music">Music</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-cta">
+      <a class="btn" href="#training">Train with us</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<span id="top"></span>
+
+<!-- =================== HERO =================== -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <p class="eyebrow">Indoor &amp; outdoor · Austin, TX</p>
+      <h1 class="hero__title" id="hero-title">Digaball — the volleyball company.</h1>
+      <p class="hero__sub">
+        We develop and market the sport of volleyball, indoor and outdoor. Thirty years
+        on the sand and the court, led by Coach Duke. Come train where the game grows.
+      </p>
+
+      <div class="hero__cta">
+        <a class="btn btn--white btn--lg" href="#training">Train with us</a>
+        <a class="btn btn--lg" href="#about" style="--bg:rgba(255,255,255,.16); --bg-hover:rgba(255,255,255,.28); --sh:rgba(0,0,0,.18); --fg:#fff; border:2px solid rgba(255,255,255,.5);">Meet Coach Duke</a>
+      </div>
+
+      <div class="hero__stats" role="list" aria-label="Highlights">
+        <span class="chip chip--onhero" role="listitem">30+ years coaching</span>
+        <span class="chip chip--onhero" role="listitem">Gold 2000 · Silver 2014</span>
+        <span class="chip chip--onhero" role="listitem">AVP Pro Coach</span>
+      </div>
+    </div>
+
+    <!-- Friendly volleyball mascot bouncing on the sand -->
+    <div class="mascot-stage" aria-hidden="true">
+      <div class="mascot-spot"></div>
+      <div class="mascot-sand"></div>
+      <div class="mascot-shadow"></div>
+      <span class="speech">Let's dig!</span>
+      <svg class="mascot" viewBox="0 0 120 120" role="img" focusable="false">
+        <circle cx="60" cy="60" r="54" fill="#ffffff" stroke="#3c3c3c" stroke-width="3.5"/>
+        <g fill="none" stroke="#58cc02" stroke-width="5" stroke-linecap="round">
+          <path d="M60 7 C 50 38 50 70 60 113"/>
+          <path d="M12 38 C 42 54 66 56 112 44"/>
+          <path d="M18 90 C 46 72 74 72 108 86"/>
+        </g>
+        <!-- face -->
+        <g>
+          <ellipse cx="44" cy="58" rx="9" ry="11" fill="#fff" stroke="#3c3c3c" stroke-width="2.5"/>
+          <ellipse cx="74" cy="58" rx="9" ry="11" fill="#fff" stroke="#3c3c3c" stroke-width="2.5"/>
+          <circle class="pupil" cx="46" cy="60" r="4" fill="#3c3c3c"/>
+          <circle class="pupil" cx="76" cy="60" r="4" fill="#3c3c3c"/>
+          <path d="M48 78 Q 59 90 72 78" fill="none" stroke="#3c3c3c" stroke-width="3.5" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- =================== ABOUT / COACH =================== -->
+<section class="section" id="about" aria-labelledby="about-title">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">About Digaball</p>
+      <h2 class="section__title" id="about-title">Coaches who built the game in Austin</h2>
+      <p class="section__lead">
+        Digaball is the umbrella for the development and marketing of volleyball, indoor and
+        outdoor. It starts with two people who have given the sport three decades.
+      </p>
+    </div>
+
+    <!-- Mission (verbatim) -->
+    <div class="mission">
+      <span class="mission__icon" aria-hidden="true">🏐</span>
+      <div>
+        <p class="mission__label">Our mission</p>
+        <p class="mission__quote">
+          Our mission is to train athletes to be the best at our sport, and to promote the
+          sport so that our athletes have a future sport to play.
+        </p>
+      </div>
+    </div>
+
+    <div class="coach-grid">
+      <article class="coach">
+        <div class="coach__top">
+          <span class="coach__avatar coach__avatar--green" aria-hidden="true">AD</span>
+          <div>
+            <h3 class="coach__name">Anthony “Coach Duke” Duke</h3>
+            <p class="coach__role">Co-Owner · Coach · Trainer · Promoter · DJ</p>
+          </div>
+        </div>
+        <ul class="coach__creds">
+          <li>30+ years coaching volleyball, indoor and outdoor.</li>
+          <li>Coached the UT Women's Indoor club to a Gold National Title (2000) and Silver (2014).</li>
+          <li>AVP Pro Coach, 2018–2020.</li>
+        </ul>
+      </article>
+
+      <article class="coach">
+        <div class="coach__top">
+          <span class="coach__avatar coach__avatar--orange" aria-hidden="true">JD</span>
+          <div>
+            <h3 class="coach__name">Jayna Duke</h3>
+            <p class="coach__role">Co-Owner &amp; Trainer</p>
+          </div>
+        </div>
+        <ul class="coach__creds">
+          <li>Top-50 US sand player, 2009–2017.</li>
+          <li>Career-high national ranking of #35 in 2016.</li>
+          <li>Trains sand fundamentals, ball control, and reads.</li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- History as a 3-point path -->
+    <p class="timeline__intro" style="margin-top:40px;">A short history of the sport we promote</p>
+    <ol class="timeline">
+      <li class="tnode">
+        <span class="tnode__bubble tnode__bubble--up" aria-hidden="true">'90s</span>
+        <div>
+          <p class="tnode__era">The boom</p>
+          <p class="tnode__desc">Early '90s — beach volleyball explodes in popularity across the country.</p>
+        </div>
+      </li>
+      <li class="tnode">
+        <span class="tnode__bubble tnode__bubble--down" aria-hidden="true">2000</span>
+        <div>
+          <p class="tnode__era">The collapse</p>
+          <p class="tnode__desc">By 2000 the pro scene falls apart and the momentum stalls.</p>
+        </div>
+      </li>
+      <li class="tnode is-active">
+        <span class="tnode__bubble tnode__bubble--now" aria-hidden="true">2015</span>
+        <div>
+          <p class="tnode__era">The comeback</p>
+          <p class="tnode__desc">2015 — named the fastest-growing sport in collegiate history.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- =================== VENTURES =================== -->
+<section class="section section--tint" id="ventures" aria-labelledby="ventures-title">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">What we do</p>
+      <h2 class="section__title" id="ventures-title">Four ways we grow the game</h2>
+      <p class="section__lead">Sand training is the heart. Everything else exists to put more people on more courts.</p>
+    </div>
+
+    <div class="ventures">
+
+      <!-- 1) Sand Training — THE HEART -->
+      <article class="venture venture--heart" id="training" aria-labelledby="training-title">
+        <div class="venture__media">
+          <div class="venture__head">
+            <span class="venture__icon" aria-hidden="true">🏖️</span>
+            <h3 class="venture__title" id="training-title">Digaball Sand Training</h3>
+          </div>
+          <p class="venture__body">
+            Private and group sand training in Austin. Footwork, ball control, reads, and
+            reaction — built one rep at a time, the way the pros learn it.
+          </p>
+          <!-- TODO: confirm with Coach Duke -->
+          <span class="chip chip--onhero" style="margin-bottom:18px;">⭐ Now accepting new training clients for 2026</span>
+          <div class="venture__cta">
+            <a class="btn btn--white btn--lg" href="#contact">Train with us</a>
+            <span class="venture__note">Austin, TX · indoor &amp; outdoor</span>
+          </div>
+        </div>
+        <div aria-hidden="true" style="display:grid; place-items:center;">
+          <svg viewBox="0 0 120 120" width="150" height="150" role="img" focusable="false" style="filter:drop-shadow(0 6px 0 rgba(0,0,0,.12));">
+            <circle cx="60" cy="60" r="52" fill="#fff" stroke="#3f8a00" stroke-width="3"/>
+            <g fill="none" stroke="#58cc02" stroke-width="5" stroke-linecap="round">
+              <path d="M60 9 C 50 39 50 71 60 111"/>
+              <path d="M13 39 C 43 55 67 57 111 45"/>
+              <path d="M19 89 C 47 71 75 71 107 85"/>
+            </g>
+          </svg>
+        </div>
+      </article>
+
+      <div class="ventures__row">
+        <!-- 2) Reaction Trainer — gamified -->
+        <article class="venture" id="app" aria-labelledby="app-title">
+          <div class="venture__head">
+            <span class="venture__icon venture__icon--orange" aria-hidden="true">⚡</span>
+            <h3 class="venture__title" id="app-title">Reaction Trainer</h3>
+            <span class="chip chip--orange">App coming soon</span>
+          </div>
+          <p class="venture__body">
+            A phone app that sharpens volleyball reaction time and hand-eye coordination.
+            Train your eyes like you train your body.
+          </p>
+
+          <!-- Gamified preview: XP / streak / progress, "start your streak" feel -->
+          <div class="trainer-game" role="group" aria-label="Reaction Trainer preview stats">
+            <div class="trainer-game__row">
+              <span class="chip chip--orange">Level 3</span>
+              <span class="xp-flame">🔥 7-day streak</span>
+              <span class="xp-flame" style="margin-left:auto;">1,240 XP</span>
+            </div>
+            <div class="progress" role="img" aria-label="Daily goal 32 of 50 reps complete">
+              <div class="progress__fill"></div>
+            </div>
+            <div class="progress__label"><span>Daily goal</span><span>32 / 50 reps</span></div>
+          </div>
+
+          <div class="venture__cta">
+            <!-- TODO: confirm with Coach Duke -->
+            <a class="btn btn--orange" href="#contact">⚡ Notify me</a>
+            <span class="venture__note">Start your streak first</span>
+          </div>
+        </article>
+
+        <!-- 3) vballmanager -->
+        <article class="venture" id="software" aria-labelledby="software-title">
+          <div class="venture__head">
+            <span class="venture__icon venture__icon--blue" aria-hidden="true">📊</span>
+            <h3 class="venture__title" id="software-title">vballmanager</h3>
+            <span class="chip chip--blue">In beta</span>
+          </div>
+          <p class="venture__body">
+            Club-owned software for leagues, tournaments, and facilities. Live scoring and
+            Stripe Connect payouts, all in one place — built by people who run events.
+          </p>
+          <div class="venture__cta">
+            <a class="btn btn--blue" href="https://vballmanager.com">Visit vballmanager.com</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- 4) Coach Duke AI Music -->
+      <article class="venture" id="music" aria-labelledby="music-title">
+        <div class="venture__head">
+          <span class="venture__icon venture__icon--pink" aria-hidden="true">🎧</span>
+          <h3 class="venture__title" id="music-title">Coach Duke AI Music</h3>
+          <span class="chip chip--pink">DJ project</span>
+        </div>
+        <p class="venture__body">
+          Coach Duke's DJ project: AI-generated sand-volleyball music to keep the courts
+          moving between points and through every tournament weekend.
+        </p>
+        <div class="venture__cta">
+          <!-- TODO: confirm with Coach Duke -->
+          <a class="btn btn--pink" href="#">Listen</a>
+          <span class="venture__note">Tracks dropping soon</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- =================== EVENTS =================== -->
+<section class="section" id="events" aria-labelledby="events-title">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">On the calendar</p>
+      <h2 class="section__title" id="events-title">Upcoming tournaments</h2>
+      <p class="section__lead">Where you'll find the Dukes this season.</p>
+    </div>
+
+    <!-- TODO: confirm with Coach Duke — placeholder events, dates may be stale -->
+    <div class="events">
+      <article class="event">
+        <div class="event__date" aria-hidden="true">
+          <b>Apr 23</b><span>–27</span>
+        </div>
+        <div>
+          <h3 class="event__name">Hawaii Dino Tournament</h3>
+          <p class="event__meta">April 23–27 · outdoor sand</p>
+        </div>
+      </article>
+
+      <article class="event">
+        <div class="event__date" aria-hidden="true">
+          <b>Aug 26</b><span>–Sep 2</span>
+        </div>
+        <div>
+          <h3 class="event__name">Aspen Motherlode Tournament</h3>
+          <p class="event__meta">August 26 – September 2 · outdoor sand</p>
+        </div>
+      </article>
+    </div>
+
+    <p class="editable-hint">Editable placeholder — tournament names and dates to be confirmed each season.</p>
+  </div>
+</section>
+
+<!-- =================== CONTACT =================== -->
+<section class="section section--tint" id="contact" aria-labelledby="contact-title">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">Get on the sand</p>
+      <h2 class="section__title" id="contact-title">Train with us</h2>
+      <p class="section__lead">Tell us where you play. We'll match you with the right sessions for 2026.</p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Training inquiry block -->
+      <form class="form-card" aria-label="Training inquiry" onsubmit="return false;">
+        <label class="field">
+          <span>Your name</span>
+          <input type="text" name="name" autocomplete="name" placeholder="Jordan Rivera" />
+        </label>
+        <label class="field">
+          <span>Email</span>
+          <input type="email" name="email" autocomplete="email" placeholder="you@example.com" />
+        </label>
+        <label class="field">
+          <span>What do you play?</span>
+          <select name="discipline">
+            <option>Outdoor sand</option>
+            <option>Indoor</option>
+            <option>Both — indoor &amp; outdoor</option>
+            <option>New to volleyball</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Tell us about your goals</span>
+          <textarea name="message" placeholder="I want to sharpen my reads and footwork before the spring season…"></textarea>
+        </label>
+        <button class="btn btn--block btn--lg" type="submit">Send inquiry</button>
+      </form>
+
+      <!-- Direct contact -->
+      <aside class="contact-card">
+        <h3>Rather just email?</h3>
+        <p>Reach Coach Duke and Jayna directly and we'll get you set up with a training plan.</p>
+        <div class="contact-line">
+          <span aria-hidden="true">✉️</span>
+          <!-- TODO: confirm with Coach Duke — real address TBD -->
+          <a href="mailto:info@digaball.com">info@digaball.com</a>
+        </div>
+        <p class="editable-hint">Placeholder address — real training inbox to be confirmed.</p>
+        <div style="margin-top:18px; display:flex; flex-wrap:wrap; gap:10px;">
+          <span class="chip chip--green">⭐ Accepting 2026 clients</span>
+          <span class="chip">Austin, TX</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- =================== FOOTER =================== -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <svg class="wordmark__ball" viewBox="0 0 100 100" role="img" aria-hidden="true" focusable="false">
+        <circle cx="50" cy="50" r="46" fill="#fff" stroke="#dbf8c5" stroke-width="6"/>
+        <g fill="none" stroke="#89e219" stroke-width="6" stroke-linecap="round">
+          <path d="M50 5 C 41 33 41 67 50 95"/>
+          <path d="M9 31 C 36 46 56 48 95 38"/>
+          <path d="M15 76 C 39 60 61 60 92 73"/>
+        </g>
+      </svg>
+      <span class="wordmark__text">DIGABALL</span>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="#training">Training</a>
+      <a href="#app">App</a>
+      <a href="#software">Software</a>
+      <a href="#music">Music</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <p class="footer-legal">© 2026 Digaball · indoor &amp; outdoor volleyball · Austin, TX</p>
+  </div>
+</footer>
+
+</body>
+</html>

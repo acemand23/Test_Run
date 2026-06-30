@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digaball — the volleyball company</title>
+<meta name="description" content="Digaball is the volleyball company led by Coach Duke: sand training in Austin, plus the Reaction Trainer app, vballmanager software, and Coach Duke AI Music. Indoor & outdoor, 30 years.">
+
+<!-- Self-contained mockup. Only external resource is Google Fonts (allowed). No external images: all art is CSS/SVG. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   DIGABALL — NEOBRUTALISM design system
+   Tokens faithfully from DESIGN_SOURCE.md:
+   Primary #FDC800 · Secondary #432DD7 · Success #16A34A
+   Warning #D97706 · Danger #DC2626 · Surface #FBFBF9 · Text #1C293C
+   Type: Inter (display+body) / JetBrains Mono (mono)
+   Scale 13/15/17/21/27/35 · weights to 900 · Spacing 4/8/12/16/24/32
+   Neobrutalist conventions: thick ink borders, hard offset shadows,
+   zero radius, blocky color-blocked cards, big heavy headings.
+   ============================================================ */
+
+:root{
+  --yellow:#FDC800;   /* Primary  — CTA emphasis (ALWAYS ink text, never white) */
+  --indigo:#432DD7;   /* Secondary*/
+  --green:#16A34A;    /* Success  — status: LIVE */
+  --amber:#D97706;    /* Warning  — status: COMING SOON / BETA */
+  --red:#DC2626;      /* Danger   — status: NEW */
+  --surface:#FBFBF9;  /* Surface  — backgrounds & cards */
+  --ink:#1C293C;      /* Text + borders + shadows */
+  --white:#ffffff;
+
+  /* type scale (px tokens from spec) */
+  --fs-xs:13px; --fs-sm:15px; --fs-base:17px; --fs-md:21px; --fs-lg:27px; --fs-xl:35px;
+
+  /* neobrutalist structure */
+  --bd:3px solid var(--ink);
+  --bd-thick:4px solid var(--ink);
+  --sh:6px 6px 0 var(--ink);
+  --sh-sm:4px 4px 0 var(--ink);
+  --sh-lg:10px 10px 0 var(--ink);
+  --sh-y:6px 6px 0 var(--yellow);     /* hard shadow for use on dark bands */
+
+  --maxw:1140px;
+}
+
+*{box-sizing:border-box;}
+html{scroll-padding-top:118px;}
+@media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth;} }
+
+body{
+  margin:0;
+  font-family:"Inter",system-ui,-apple-system,sans-serif;
+  font-size:var(--fs-base);
+  line-height:1.55;
+  color:var(--ink);
+  background:var(--surface);
+  -webkit-font-smoothing:antialiased;
+  /* faint sand grain on the warm surface */
+  background-image:radial-gradient(rgba(28,41,60,.05) 1px, transparent 1px);
+  background-size:7px 7px;
+}
+
+img,svg{display:block;max-width:100%;}
+a{color:inherit;}
+
+/* -------- focus: visible high-contrast ring, contextual color -------- */
+:focus-visible{ outline:4px solid var(--indigo); outline-offset:3px; }
+.band--indigo :focus-visible,
+.band--ink :focus-visible,
+.btn--ink:focus-visible{ outline-color:var(--yellow); }
+
+/* -------- layout helpers -------- */
+.wrap{ max-width:var(--maxw); margin-inline:auto; padding-inline:20px; }
+.band{ padding-block:clamp(48px,8vw,92px); border-bottom:var(--bd-thick); position:relative; }
+.band--surface{ background:var(--surface); }
+.band--indigo{ background:var(--indigo); color:var(--surface); }
+.band--ink{ background:var(--ink); color:var(--surface); }
+.band--yellow{ background:var(--yellow); color:var(--ink); }
+
+/* -------- mono utility (labels / data / scoreboard) -------- */
+.mono{ font-family:"JetBrains Mono",ui-monospace,monospace; }
+
+.eyebrow{
+  font-family:"JetBrains Mono",monospace;
+  font-weight:700; font-size:var(--fs-xs);
+  text-transform:uppercase; letter-spacing:.14em;
+  display:inline-block;
+  background:var(--ink); color:var(--surface);
+  padding:6px 12px; border:var(--bd);
+  box-shadow:var(--sh-sm);
+  margin-bottom:20px;
+}
+.band--indigo .eyebrow{ background:var(--yellow); color:var(--ink); box-shadow:4px 4px 0 var(--surface); }
+.band--ink .eyebrow{ background:var(--yellow); color:var(--ink); box-shadow:4px 4px 0 var(--surface); }
+.band--yellow .eyebrow{ box-shadow:4px 4px 0 rgba(28,41,60,.35); }
+
+/* big section heading */
+.h-sec{
+  font-weight:900; line-height:.98; letter-spacing:-.02em;
+  font-size:clamp(2rem,5.5vw,3.4rem);
+  margin:0 0 14px; text-wrap:balance;
+}
+.sec-lead{ font-size:var(--fs-md); max-width:62ch; margin:0 0 8px; }
+.band--indigo .sec-lead{ color:#E7E3FF; }
+
+/* ============================================================
+   WORDMARK  — "DIGABALL" blocky on yellow, ink border + hard shadow
+   ============================================================ */
+.wordmark{
+  display:inline-block;
+  font-family:"Inter",sans-serif; font-weight:900;
+  text-transform:uppercase; letter-spacing:-.01em;
+  background:var(--yellow); color:var(--ink);
+  border:var(--bd-thick);
+  box-shadow:var(--sh);
+  padding:.18em .42em .24em;
+  line-height:.9;
+}
+.wordmark--sm{ font-size:22px; box-shadow:var(--sh-sm); border:var(--bd); padding:.22em .4em .28em; }
+.wordmark--xl{ font-size:clamp(2.9rem,11vw,6.2rem); box-shadow:var(--sh-lg); }
+
+/* ============================================================
+   BUTTONS  — primary yellow; ink/indigo/ghost variants. Press interaction.
+   ============================================================ */
+.btn{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:"Inter",sans-serif; font-weight:800; font-size:var(--fs-base);
+  text-transform:uppercase; letter-spacing:.02em; text-decoration:none;
+  background:var(--yellow); color:var(--ink);
+  border:var(--bd-thick);
+  box-shadow:var(--sh);
+  padding:14px 22px; cursor:pointer;
+  transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+.btn .arw{ font-family:"JetBrains Mono",monospace; font-weight:800; }
+.btn:hover{ transform:translate(3px,3px); box-shadow:var(--sh-sm); }
+.btn:active{ transform:translate(6px,6px); box-shadow:0 0 0 var(--ink); }
+.btn--ink{ background:var(--ink); color:var(--surface); }
+.btn--indigo{ background:var(--indigo); color:var(--white); }
+.btn--ghost{ background:var(--surface); color:var(--ink); }
+.btn--lg{ font-size:var(--fs-md); padding:18px 30px; }
+.btn--block{ width:100%; justify-content:center; }
+/* shadows that read on dark/indigo bands */
+.band--indigo .btn--ink,
+.band--ink .btn{ box-shadow:var(--sh-y); border-color:var(--surface); }
+.band--indigo .btn--ink:hover,
+.band--ink .btn:hover{ box-shadow:4px 4px 0 var(--yellow); }
+
+/* ============================================================
+   STATUS CHIPS — colored indicator + literal text label (a11y: not color-only)
+   ============================================================ */
+.chip{
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--surface); color:var(--ink);
+  border:var(--bd); box-shadow:var(--sh-sm);
+  font-family:"JetBrains Mono",monospace; font-weight:700; font-size:var(--fs-xs);
+  text-transform:uppercase; letter-spacing:.05em;
+  padding:7px 12px 7px 9px;
+}
+.chip i{ width:14px; height:14px; border:2px solid var(--ink); display:block; flex:none; }
+.chip[data-s="live"] i{ background:var(--green); }
+.chip[data-s="soon"] i{ background:var(--amber); }
+.chip[data-s="beta"] i{ background:var(--indigo); }
+.chip[data-s="new"]  i{ background:var(--red); }
+
+/* small mono fact tags */
+.fact{
+  font-family:"JetBrains Mono",monospace; font-weight:700; font-size:var(--fs-xs);
+  text-transform:uppercase; letter-spacing:.04em;
+  border:var(--bd); padding:8px 12px; background:var(--surface); color:var(--ink);
+}
+
+/* ============================================================
+   HEADER  — sticky, wordmark + wrapping mono nav
+   ============================================================ */
+.site-header{
+  position:sticky; top:0; z-index:50;
+  background:var(--surface);
+  border-bottom:var(--bd-thick);
+}
+.site-header .wrap{
+  display:flex; flex-wrap:wrap; align-items:center; gap:14px 18px;
+  padding-block:12px;
+}
+.brand{ text-decoration:none; line-height:0; }
+.brand:focus-visible{ outline-offset:5px; }
+.site-nav{ margin-left:auto; }
+.site-nav ul{
+  list-style:none; margin:0; padding:0;
+  display:flex; flex-wrap:wrap; gap:6px;
+}
+.site-nav a{
+  font-family:"JetBrains Mono",monospace; font-weight:700; font-size:var(--fs-xs);
+  text-transform:uppercase; letter-spacing:.08em; text-decoration:none;
+  color:var(--ink); padding:8px 11px; border:2px solid transparent;
+  transition:background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+.site-nav a:hover{ background:var(--yellow); border:2px solid var(--ink); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero .wrap{
+  display:grid; grid-template-columns:1fr; gap:34px;
+  padding-block:clamp(40px,7vw,72px);
+}
+.hero-eyebrow{ margin-bottom:22px; }
+.hero h1{ margin:0 0 22px; }
+.hero h1 .hero-rest{
+  display:block; margin-top:18px;
+  font-weight:900; letter-spacing:-.02em; line-height:1;
+  font-size:clamp(1.7rem,5vw,3rem);
+}
+.hero h1 .hero-rest b{ color:var(--indigo); }
+.hero-sub{ font-size:var(--fs-md); max-width:54ch; margin:0 0 26px; }
+.hero-cta{ display:flex; flex-wrap:wrap; gap:14px; align-items:center; margin-bottom:26px; }
+.hero-facts{ display:flex; flex-wrap:wrap; gap:10px; }
+
+/* hero signature: sand court diagram + SVG volleyball */
+.court{
+  position:relative;
+  background:var(--indigo);
+  border:var(--bd-thick); box-shadow:var(--sh-lg);
+  aspect-ratio:5/4; width:100%;
+  padding:18px; overflow:hidden;
+}
+.court::before{ /* court boundary line */
+  content:""; position:absolute; inset:16px;
+  border:3px solid var(--surface);
+}
+.court::after{ /* net / center line */
+  content:""; position:absolute; left:16px; right:16px; top:50%;
+  height:0; border-top:3px dashed var(--surface); transform:translateY(-50%);
+}
+.court .ball{
+  position:absolute; width:52%; left:6%; bottom:8%;
+  filter:drop-shadow(7px 7px 0 var(--ink));
+  transform:rotate(-8deg);
+}
+.court-tag{
+  position:absolute; right:14px; top:14px;
+  font-family:"JetBrains Mono",monospace; font-weight:700; font-size:var(--fs-xs);
+  text-transform:uppercase; letter-spacing:.08em;
+  background:var(--yellow); color:var(--ink);
+  border:var(--bd); padding:6px 10px;
+}
+
+/* ============================================================
+   TICKER STRIP (static, no motion) — DIG · SET · SPIKE
+   ============================================================ */
+.ticker{
+  background:var(--yellow); color:var(--ink);
+  border-bottom:var(--bd-thick);
+  font-family:"JetBrains Mono",monospace; font-weight:800; font-size:var(--fs-sm);
+  text-transform:uppercase; letter-spacing:.18em;
+  padding:12px 0; overflow:hidden; white-space:nowrap;
+}
+.ticker span{ padding-inline:8px; }
+.ticker .dot{ color:var(--indigo); }
+
+/* ============================================================
+   ABOUT / COACH
+   ============================================================ */
+.mission{
+  font-weight:900; letter-spacing:-.015em; line-height:1.06;
+  font-size:clamp(1.55rem,4.2vw,2.7rem);
+  max-width:24ch; margin:0;
+}
+.mission b{ color:var(--yellow); }
+.mission-by{
+  display:block; margin-top:24px;
+  font-family:"JetBrains Mono",monospace; font-weight:700; font-size:var(--fs-sm);
+  letter-spacing:.06em; text-transform:uppercase; color:#E7E3FF;
+}
+
+.people{ display:grid; grid-template-columns:1fr; gap:24px; margin-top:8px; }
+.person{
+  background:var(--surface); border:var(--bd-thick); box-shadow:var(--sh);
+  padding:24px;
+}
+.person-top{ display:flex; align-items:center; gap:16px; margin-bottom:16px; }
+.monogram{
+  flex:none; width:64px; height:64px;
+  display:grid; place-items:center;
+  font-weight:900; font-size:var(--fs-lg);
+  border:var(--bd-thick);
+}
+.monogram--indigo{ background:var(--indigo); color:var(--white); }
+.monogram--yellow{ background:var(--yellow); color:var(--ink); }
+.person h3{ margin:0; font-size:var(--fs-lg); font-weight:900; line-height:1; }
+.person .role{
+  margin-top:6px;
+  font-family:"JetBrains Mono",monospace; font-weight:700; font-size:var(--fs-xs);
+  text-transform:uppercase; letter-spacing:.05em; color:var(--indigo);
+}
+.creds{ list-style:none; margin:0; padding:0; }
+.creds li{ padding:9px 0 9px 26px; position:relative; border-top:2px solid rgba(28,41,60,.14); font-size:var(--fs-sm); }
+.creds li:first-child{ border-top:none; }
+.creds li::before{ content:"▸"; position:absolute; left:2px; color:var(--indigo); font-weight:800; }
+
+/* timeline (real chronological sequence — years carry the info) */
+.timeline-head{ margin:48px 0 18px; font-weight:900; font-size:var(--fs-lg); letter-spacing:-.01em; }
+.timeline{ display:grid; grid-template-columns:1fr; gap:16px; }
+.tl{
+  background:var(--surface); border:var(--bd-thick); box-shadow:var(--sh-sm);
+  padding:20px; position:relative;
+}
+.tl .yr{
+  display:inline-block; margin-bottom:10px;
+  font-family:"JetBrains Mono",monospace; font-weight:800; font-size:var(--fs-sm);
+  letter-spacing:.04em; text-transform:uppercase;
+  background:var(--ink); color:var(--surface); padding:5px 10px; border:var(--bd);
+}
+.tl--up .yr{ background:var(--green); color:var(--white); }
+.tl--down .yr{ background:var(--red); color:var(--white); }
+.tl--grow .yr{ background:var(--yellow); color:var(--ink); }
+.tl h4{ margin:0 0 6px; font-size:var(--fs-md); font-weight:900; line-height:1.05; }
+.tl p{ margin:0; font-size:var(--fs-sm); }
+.tl-arrow{ display:none; }
+
+/* ============================================================
+   VENTURES — Sand Training = the heart (largest, yellow)
+   ============================================================ */
+.ventures{ display:grid; grid-template-columns:1fr; gap:22px; }
+.vc{
+  border:var(--bd-thick); box-shadow:var(--sh);
+  padding:26px; display:flex; flex-direction:column; gap:14px;
+  background:var(--surface);
+}
+.vc .vc-kicker{
+  font-family:"JetBrains Mono",monospace; font-weight:700; font-size:var(--fs-xs);
+  text-transform:uppercase; letter-spacing:.1em; color:var(--indigo);
+}
+.vc h3{ margin:0; font-weight:900; letter-spacing:-.01em; line-height:1; font-size:var(--fs-lg); }
+.vc p{ margin:0; font-size:var(--fs-sm); }
+.vc .vc-cta{ margin-top:auto; }
+
+/* the heart */
+.vc--heart{
+  background:var(--yellow); color:var(--ink);
+  box-shadow:var(--sh-lg);
+}
+.vc--heart .vc-kicker{ color:var(--ink); }
+.vc--heart h3{ font-size:clamp(1.9rem,5vw,2.8rem); }
+.vc--heart .vc-lead{ font-size:var(--fs-md); max-width:46ch; }
+.vc-heart-mark{
+  font-family:"JetBrains Mono",monospace; font-weight:800; font-size:var(--fs-xs);
+  letter-spacing:.1em; text-transform:uppercase;
+  align-self:flex-start; background:var(--ink); color:var(--yellow);
+  border:var(--bd); padding:5px 10px;
+}
+/* music venture pops indigo */
+.vc--music{ background:var(--indigo); color:var(--white); }
+.vc--music .vc-kicker{ color:var(--yellow); }
+.vc--music p{ color:#E7E3FF; }
+
+/* ============================================================
+   EVENTS — dark scoreboard band, light cards
+   ============================================================ */
+.events{ display:grid; grid-template-columns:1fr; gap:16px; margin-top:8px; }
+.event{
+  background:var(--surface); color:var(--ink);
+  border:var(--bd-thick); box-shadow:var(--sh-y);
+  padding:18px 20px;
+  display:grid; grid-template-columns:1fr; gap:6px;
+}
+.event .ev-when{
+  font-family:"JetBrains Mono",monospace; font-weight:800; font-size:var(--fs-sm);
+  letter-spacing:.03em; text-transform:uppercase; color:var(--indigo);
+}
+.event h3{ margin:0; font-size:var(--fs-md); font-weight:900; line-height:1.05; }
+.event .ev-where{ font-size:var(--fs-sm); }
+.events-note{
+  margin-top:18px; font-family:"JetBrains Mono",monospace; font-size:var(--fs-xs);
+  letter-spacing:.04em; color:#C9D2DE;
+}
+
+/* ============================================================
+   CONTACT — yellow band, ink buttons
+   ============================================================ */
+.contact-grid{ display:grid; grid-template-columns:1fr; gap:28px; align-items:start; }
+.contact-card{
+  background:var(--surface); border:var(--bd-thick); box-shadow:var(--sh);
+  padding:26px;
+}
+.contact-card dl{ margin:0; }
+.contact-card dt{
+  font-family:"JetBrains Mono",monospace; font-weight:700; font-size:var(--fs-xs);
+  text-transform:uppercase; letter-spacing:.08em; color:var(--indigo);
+  margin-top:16px;
+}
+.contact-card dt:first-child{ margin-top:0; }
+.contact-card dd{ margin:4px 0 0; font-size:var(--fs-base); }
+.contact-actions{ display:flex; flex-wrap:wrap; gap:14px; margin-top:8px; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer{ background:var(--ink); color:var(--surface); padding-block:40px; }
+.site-footer .wrap{ display:grid; gap:22px; }
+.footer-line{
+  font-family:"JetBrains Mono",monospace; font-weight:700; font-size:var(--fs-sm);
+  letter-spacing:.05em; text-transform:uppercase;
+}
+.footer-line .dot{ color:var(--yellow); padding-inline:8px; }
+.footer-nav{ display:flex; flex-wrap:wrap; gap:8px 16px; }
+.footer-nav a{
+  font-family:"JetBrains Mono",monospace; font-weight:700; font-size:var(--fs-xs);
+  text-transform:uppercase; letter-spacing:.06em; text-decoration:none; color:var(--surface);
+}
+.footer-nav a:hover{ color:var(--yellow); text-decoration:underline; }
+
+.skip-link{
+  position:absolute; left:-9999px; top:8px;
+  background:var(--ink); color:var(--surface); padding:10px 16px;
+  border:var(--bd); font-weight:800; z-index:100;
+}
+.skip-link:focus{ left:12px; }
+
+/* ============================================================
+   RESPONSIVE — single breakpoint ~720px (mobile-first)
+   ============================================================ */
+@media (min-width:720px){
+  .hero .wrap{ grid-template-columns:1.15fr .85fr; align-items:center; }
+  .people{ grid-template-columns:1fr 1fr; }
+  .timeline{ grid-template-columns:1fr 1fr 1fr; align-items:start; }
+  .tl-arrow{
+    display:grid; place-items:center;
+    font-family:"JetBrains Mono",monospace; font-weight:800; font-size:var(--fs-lg);
+    color:var(--ink);
+  }
+  .ventures{ grid-template-columns:1fr 1fr; }
+  .vc--heart{ grid-column:1 / -1; flex-direction:row; flex-wrap:wrap; align-items:center; gap:24px; }
+  .vc--heart .vc-heart-main{ flex:1 1 340px; display:flex; flex-direction:column; gap:14px; }
+  .vc--heart .vc-heart-side{ flex:1 1 240px; display:flex; flex-direction:column; gap:14px; align-items:flex-start; }
+  .events{ grid-template-columns:1fr 1fr; }
+  .event{ grid-template-columns:auto 1fr; align-items:baseline; gap:6px 18px; }
+  .event h3{ grid-column:2; }
+  .event .ev-when{ grid-row:1 / span 2; }
+  .event .ev-where{ grid-column:2; }
+  .contact-grid{ grid-template-columns:1fr 1fr; }
+  .site-footer .wrap{ grid-template-columns:1fr auto; align-items:center; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{ animation:none !important; transition:none !important; }
+  .btn:hover,.btn:active{ transform:none; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Digaball — home">
+      <span class="wordmark wordmark--sm">Digaball</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#training">Training</a></li>
+        <li><a href="#app">App</a></li>
+        <li><a href="#software">Software</a></li>
+        <li><a href="#music">Music</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<span id="top"></span>
+
+<!-- ============================ HERO ============================ -->
+<section class="band band--surface hero" aria-labelledby="hero-title">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow hero-eyebrow mono">≈30 yrs · indoor &amp; outdoor · Austin, TX</span>
+      <h1 id="hero-title">
+        <span class="wordmark wordmark--xl">Digaball</span>
+        <span class="hero-rest">— the <b>volleyball</b> company.</span>
+      </h1>
+      <p class="hero-sub">
+        The development and marketing of volleyball — indoor and outdoor.
+        Thirty years of coaching, training, and promoting the sport, led by Anthony
+        &ldquo;Coach Duke&rdquo; Duke. Sand training in Austin is the heart of it all.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn--lg" href="#contact">Train with us <span class="arw" aria-hidden="true">&rsaquo;</span></a>
+        <a class="btn btn--ghost btn--lg" href="#ventures">See what we do</a>
+      </div>
+      <div class="hero-facts">
+        <span class="fact">≈30 yrs coaching</span>
+        <span class="fact">Gold national '00</span>
+        <span class="fact">AVP pro coach</span>
+      </div>
+    </div>
+
+    <!-- signature visual: sand court + volleyball (CSS + SVG, decorative) -->
+    <div class="court" aria-hidden="true">
+      <span class="court-tag">Sand court · ATX</span>
+      <svg class="ball" viewBox="0 0 200 200" role="img" aria-hidden="true">
+        <circle cx="100" cy="100" r="92" fill="#FDC800" stroke="#1C293C" stroke-width="8"/>
+        <g fill="none" stroke="#1C293C" stroke-width="6" stroke-linecap="round">
+          <path d="M100 10 C 150 62, 50 138, 100 190"/>
+          <path d="M100 10 C 150 62, 50 138, 100 190" transform="rotate(120 100 100)"/>
+          <path d="M100 10 C 150 62, 50 138, 100 190" transform="rotate(240 100 100)"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TICKER ============================ -->
+<div class="ticker" aria-hidden="true">
+  <span>Dig</span><span class="dot">●</span><span>Set</span><span class="dot">●</span><span>Spike</span><span class="dot">●</span>
+  <span>Sand</span><span class="dot">●</span><span>Austin</span><span class="dot">●</span>
+  <span>Dig</span><span class="dot">●</span><span>Set</span><span class="dot">●</span><span>Spike</span><span class="dot">●</span>
+  <span>Indoor</span><span class="dot">●</span><span>Outdoor</span><span class="dot">●</span>
+  <span>Dig</span><span class="dot">●</span><span>Set</span><span class="dot">●</span><span>Spike</span>
+</div>
+
+<!-- ============================ MISSION (indigo) ============================ -->
+<section class="band band--indigo" aria-labelledby="mission-head">
+  <div class="wrap">
+    <span class="eyebrow mono">The mission</span>
+    <h2 id="mission-head" class="mission">
+      Train athletes to be the <b>best</b> at our sport — and promote the sport so our
+      athletes have a <b>future sport</b> to play.
+    </h2>
+    <span class="mission-by">— Digaball, est. by Coach Duke</span>
+  </div>
+</section>
+
+<!-- ============================ ABOUT / COACH ============================ -->
+<section class="band band--surface" id="about" aria-labelledby="about-head">
+  <div class="wrap">
+    <span class="eyebrow mono">Who runs it</span>
+    <h2 id="about-head" class="h-sec">Coached, trained &amp; promoted by the Dukes.</h2>
+    <p class="sec-lead">A husband-and-wife shop with three decades on the court and the sand — national titles, pro tours, and a top-50 US ranking between them.</p>
+
+    <div class="people">
+      <article class="person">
+        <div class="person-top">
+          <span class="monogram monogram--indigo" aria-hidden="true">AD</span>
+          <div>
+            <h3>Anthony &ldquo;Coach Duke&rdquo; Duke</h3>
+            <p class="role">Co-owner · Coach · Trainer · Promoter · DJ</p>
+          </div>
+        </div>
+        <ul class="creds">
+          <li>30+ years coaching, training, and promoting volleyball.</li>
+          <li>Coached UT Women's Indoor club to a Gold National Title (2000) and Silver (2014).</li>
+          <li>AVP Pro Coach, 2018&ndash;2020.</li>
+        </ul>
+      </article>
+
+      <article class="person">
+        <div class="person-top">
+          <span class="monogram monogram--yellow" aria-hidden="true">JD</span>
+          <div>
+            <h3>Jayna Duke</h3>
+            <p class="role">Co-owner · Trainer</p>
+          </div>
+        </div>
+        <ul class="creds">
+          <li>Top-50 US sand player, 2009&ndash;2017.</li>
+          <li>Career-high national ranking of #35 (2016).</li>
+          <li>Trains sand fundamentals, defense, and movement.</li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- HISTORY: real chronological sequence — years are the markers -->
+    <h3 class="timeline-head">The sport's arc — and why now.</h3>
+    <div class="timeline">
+      <article class="tl tl--up">
+        <span class="yr mono">Early '90s</span>
+        <h4>The boom</h4>
+        <p>Beach and indoor volleyball surge in popularity across the US — a first golden era for the sport.</p>
+      </article>
+      <div class="tl-arrow" aria-hidden="true">&rarr;</div>
+      <article class="tl tl--down">
+        <span class="yr mono">2000</span>
+        <h4>The collapse</h4>
+        <p>The wave breaks. Pro and grassroots structures contract, and the sport loses momentum.</p>
+      </article>
+      <div class="tl-arrow" aria-hidden="true">&rarr;</div>
+      <article class="tl tl--grow">
+        <span class="yr mono">2015</span>
+        <h4>Fastest-growing</h4>
+        <p>Volleyball returns as the fastest-growing sport in collegiate history — the comeback Digaball is built for.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ VENTURES ============================ -->
+<section class="band band--surface" id="ventures" aria-labelledby="ventures-head">
+  <div class="wrap">
+    <span class="eyebrow mono">One company, four ventures</span>
+    <h2 id="ventures-head" class="h-sec">Built around the sand.</h2>
+    <p class="sec-lead">Sand training is the heart. Everything else exists to help athletes train better, compete easier, and grow the game.</p>
+
+    <div class="ventures">
+
+      <!-- 1) SAND TRAINING — THE HEART -->
+      <article class="vc vc--heart" id="training">
+        <div class="vc-heart-main">
+          <span class="vc-heart-mark mono">The heart ● Venture 01</span>
+          <span class="vc-kicker">Digaball Sand Training · Austin</span>
+          <h3>Sand Training</h3>
+          <p class="vc-lead">One-on-one and small-group sand coaching with Coach Duke and Jayna — fundamentals, defense, movement, and the competitive reps that make players.</p>
+        </div>
+        <div class="vc-heart-side">
+          <!-- TODO: confirm with Coach Duke -->
+          <span class="chip" data-s="live"><i aria-hidden="true"></i>Now accepting 2026 clients</span>
+          <a class="btn btn--ink btn--lg" href="#contact">Train with us <span class="arw" aria-hidden="true">&rsaquo;</span></a>
+        </div>
+      </article>
+
+      <!-- 2) REACTION TRAINER -->
+      <article class="vc" id="app">
+        <span class="vc-kicker">Mobile app</span>
+        <h3>Reaction Trainer</h3>
+        <span class="chip" data-s="soon"><i aria-hidden="true"></i>App coming soon</span>
+        <p>A phone app that trains volleyball reaction time and hand-eye coordination — drill anywhere, track your speed, sharpen your read.</p>
+        <!-- TODO: confirm with Coach Duke — notify link/destination TBD -->
+        <div class="vc-cta"><a class="btn btn--ghost" href="#">Notify me <span class="arw" aria-hidden="true">&rsaquo;</span></a></div>
+      </article>
+
+      <!-- 3) VBALLMANAGER -->
+      <article class="vc" id="software">
+        <span class="vc-kicker">Software</span>
+        <h3>vballmanager</h3>
+        <span class="chip" data-s="beta"><i aria-hidden="true"></i>In beta</span>
+        <p>Club-owned league, tournament, and facility software — live scoring and Stripe Connect payouts, built so clubs keep control of their events.</p>
+        <div class="vc-cta">
+          <a class="btn" href="https://vballmanager.com" target="_blank" rel="noopener">Visit vballmanager.com <span class="arw" aria-hidden="true">&rsaquo;</span></a>
+        </div>
+      </article>
+
+      <!-- 4) COACH DUKE AI MUSIC -->
+      <article class="vc vc--music" id="music">
+        <span class="vc-kicker">Coach Duke, DJ</span>
+        <h3>Coach Duke AI Music</h3>
+        <span class="chip" data-s="new"><i aria-hidden="true"></i>New project</span>
+        <p>Coach Duke's DJ project: AI-generated sand-volleyball music to warm up, train, and play to. Soundtracking the court.</p>
+        <!-- TODO: confirm with Coach Duke — listen link TBD -->
+        <div class="vc-cta"><a class="btn btn--ink" href="#">Listen <span class="arw" aria-hidden="true">&rsaquo;</span></a></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ EVENTS (scoreboard) ============================ -->
+<section class="band band--ink" id="events" aria-labelledby="events-head">
+  <div class="wrap">
+    <span class="eyebrow mono">On the calendar</span>
+    <h2 id="events-head" class="h-sec">Upcoming tournaments.</h2>
+    <p class="sec-lead" style="color:#C9D2DE;">Where you'll find the Dukes this season.</p>
+
+    <!-- TODO: confirm with Coach Duke — events & dates are editable placeholders, may be stale -->
+    <div class="events">
+      <article class="event">
+        <span class="ev-when mono">Apr 23&ndash;27</span>
+        <h3>Hawaii Dino Tournament</h3>
+        <span class="ev-where">Hawaii</span>
+      </article>
+      <article class="event">
+        <span class="ev-when mono">Aug 26&ndash;Sep 2</span>
+        <h3>Aspen Motherlode Tournament</h3>
+        <span class="ev-where">Aspen, CO</span>
+      </article>
+    </div>
+    <p class="events-note mono">// Placeholder schedule — dates subject to change.</p>
+  </div>
+</section>
+
+<!-- ============================ CONTACT ============================ -->
+<section class="band band--yellow" id="contact" aria-labelledby="contact-head">
+  <div class="wrap">
+    <span class="eyebrow mono">Get on the sand</span>
+    <h2 id="contact-head" class="h-sec">Ready to train?</h2>
+    <p class="sec-lead">We're accepting new sand-training clients for the 2026 season. Tell us your level and goals, and we'll set up your first session.</p>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <dl>
+          <dt>Training inquiries</dt>
+          <dd>New clients, all levels &mdash; juniors, adults, and competitive players.</dd>
+          <dt>Where</dt>
+          <dd>Sand courts in Austin, TX. Indoor &amp; outdoor coaching available.</dd>
+          <dt>Email</dt>
+          <!-- TODO: confirm with Coach Duke — real address TBD; placeholder below -->
+          <dd><a href="mailto:info@digaball.com">info@digaball.com</a></dd>
+        </dl>
+      </div>
+      <div>
+        <div class="contact-actions">
+          <!-- TODO: confirm with Coach Duke — real address TBD -->
+          <a class="btn btn--ink btn--lg" href="mailto:info@digaball.com?subject=Sand%20Training%20%E2%80%94%202026%20inquiry">Email Coach Duke <span class="arw" aria-hidden="true">&rsaquo;</span></a>
+          <a class="btn btn--ghost btn--lg" href="#training">Back to training</a>
+        </div>
+        <p style="margin-top:18px; font-size:var(--fs-sm);">Prefer to see the sport's tech? Check
+          <a href="https://vballmanager.com" target="_blank" rel="noopener"><strong>vballmanager.com</strong></a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#top" aria-label="Digaball — home" style="display:inline-block; margin-bottom:16px;">
+        <span class="wordmark wordmark--sm">Digaball</span>
+      </a>
+      <p class="footer-line">&copy; Digaball <span class="dot">·</span> Indoor &amp; outdoor volleyball <span class="dot">·</span> Austin, TX</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="#training">Training</a>
+      <a href="#app">App</a>
+      <a href="#software">Software</a>
+      <a href="#music">Music</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
