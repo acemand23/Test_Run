@@ -283,11 +283,13 @@ a{color:inherit;text-decoration:none;}
 .person{display:flex;flex-direction:column;}
 .person__media{
   aspect-ratio:4/5;width:100%;
-  background:var(--grey-900);
+  background:var(--grey-100);
+  border:1px solid var(--grey-200);
   border-radius:0;            /* imagery: zero radius */
   position:relative;overflow:hidden;
 }
 .person__media svg{position:absolute;inset:0;width:100%;height:100%;}
+.person__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .person__tag{
   position:absolute;left:0;bottom:0;
   background:var(--black);color:var(--white);
@@ -592,15 +594,8 @@ a{color:inherit;text-decoration:none;}
     <div class="people">
       <article class="person">
         <div class="person__media">
-          <!-- Coach Duke: abstract serve/spike silhouette + court line, monochrome -->
-          <svg viewBox="0 0 400 500" role="img" aria-label="Abstract athletic portrait of Coach Duke">
-            <rect width="400" height="500" fill="#1a1a1c"/>
-            <circle cx="270" cy="120" r="150" fill="#222224"/>
-            <line x1="0" y1="430" x2="400" y2="378" stroke="#3a3a3c" stroke-width="2"/>
-            <circle cx="300" cy="90" r="34" fill="none" stroke="#4a4a4c" stroke-width="2"/>
-            <path d="M283 74 L300 90 L317 74 M283 106 L300 90 L317 106" stroke="#4a4a4c" stroke-width="2" fill="none"/>
-            <circle cx="300" cy="90" r="6" fill="#D30005"/>
-          </svg>
+          <!-- Coach Duke: illustrated portrait, cropped to fill the 4:5 spot -->
+          <img src="assets/aduke.png" alt="Illustrated portrait of Anthony &ldquo;Coach Duke&rdquo; Duke holding a volleyball" style="object-position:50% 26%;">
           <span class="person__tag">Coach Duke</span>
         </div>
         <h3 class="person__name">Anthony “Coach Duke” Duke</h3>
@@ -610,14 +605,8 @@ a{color:inherit;text-decoration:none;}
 
       <article class="person">
         <div class="person__media">
-          <!-- Jayna: ranking arc, monochrome -->
-          <svg viewBox="0 0 400 500" role="img" aria-label="Abstract athletic portrait of Jayna Duke">
-            <rect width="400" height="500" fill="#1a1a1c"/>
-            <circle cx="140" cy="150" r="160" fill="#222224"/>
-            <line x1="0" y1="400" x2="400" y2="448" stroke="#3a3a3c" stroke-width="2"/>
-            <path d="M70 360 Q 200 120 330 360" fill="none" stroke="#4a4a4c" stroke-width="2"/>
-            <circle cx="200" cy="150" r="6" fill="#D30005"/>
-          </svg>
+          <!-- Jayna Duke: illustrated portrait, cropped to fill the 4:5 spot -->
+          <img src="assets/jduke.png" alt="Illustrated portrait of Jayna Duke going up at the net" style="object-position:50% 42%;">
           <span class="person__tag">Jayna Duke</span>
         </div>
         <h3 class="person__name">Jayna Duke</h3>
