@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digaball Sand Training — Social Flyer (draft)</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--black:#111;--red:#D30005;--grey:#6f6f71;--line:#e5e5e5;--bg:#f6f5f2;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--black);font-family:Inter,-apple-system,sans-serif;padding:48px 24px 80px;}
+  .wrap{max-width:1040px;margin:0 auto;}
+  .logo{height:52px;margin-bottom:22px;}
+  h1{font-family:Oswald,sans-serif;text-transform:uppercase;font-weight:700;font-size:clamp(30px,6vw,52px);line-height:.95;letter-spacing:-.01em;}
+  .sub{color:#333;font-size:17px;line-height:1.55;max-width:60ch;margin:14px 0 6px;}
+  .ey{font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.16em;font-weight:600;font-size:13px;color:var(--grey);display:flex;align-items:center;gap:9px;margin-bottom:10px;}
+  .ey::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--red);}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:40px;}
+  @media(max-width:720px){.grid{grid-template-columns:1fr;}}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;}
+  .card h2{font-family:Oswald,sans-serif;text-transform:uppercase;font-size:22px;font-weight:700;letter-spacing:.01em;}
+  .card .dim{font-family:Oswald,sans-serif;color:var(--grey);font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin:2px 0 16px;}
+  .shot{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#eee;}
+  .links{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  .btn{font-family:Oswald,sans-serif;text-transform:uppercase;font-weight:600;font-size:13px;letter-spacing:.06em;
+       text-decoration:none;padding:10px 16px;border-radius:30px;border:1.5px solid var(--black);color:var(--black);}
+  .btn.solid{background:var(--black);color:#fff;}
+  .btn.solid:hover{background:var(--grey);}
+  .btn:hover{border-color:var(--grey);color:var(--grey);}
+  .notes{margin-top:40px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 26px;}
+  .notes h3{font-family:Oswald,sans-serif;text-transform:uppercase;font-size:15px;letter-spacing:.06em;margin-bottom:10px;}
+  .notes ul{margin:0;padding-left:20px;color:#333;font-size:15px;line-height:1.7;}
+  .notes b{color:var(--red);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <img class="logo" src="assets/logo.png" alt="Digaball">
+  <p class="ey">Draft · Social flyer</p>
+  <h1>Sand Training Flyer</h1>
+  <p class="sub">Instagram-ready flyer for Digaball Sand Training with Coach Duke, in the V4 (Nike) brand. Exact export sizes below — tap “Download PNG” to post, or “Open live” to view the source.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Square</h2>
+      <p class="dim">1080 × 1080 · IG feed post</p>
+      <img class="shot" src="exports/digaball-flyer-square.png" alt="Digaball sand training flyer — square" loading="lazy">
+      <div class="links">
+        <a class="btn solid" href="exports/digaball-flyer-square.png" download>Download PNG</a>
+        <a class="btn" href="square.html" target="_blank" rel="noopener">Open live</a>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Story</h2>
+      <p class="dim">1080 × 1920 · IG story / reel cover</p>
+      <img class="shot" src="exports/digaball-flyer-story.png" alt="Digaball sand training flyer — story" loading="lazy">
+      <div class="links">
+        <a class="btn solid" href="exports/digaball-flyer-story.png" download>Download PNG</a>
+        <a class="btn" href="story.html" target="_blank" rel="noopener">Open live</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="notes">
+    <h3>Placeholders to confirm</h3>
+    <ul>
+      <li><b>Email</b> — currently <code>info@digaball.com</code>. Send the real training-inquiry address and I'll swap it.</li>
+      <li><b>QR code</b> — points to <code>digaball.com</code>. Can retarget to a booking page or the new site.</li>
+      <li>Text is editable — session types, pricing, or a phone number can be added on request.</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digaball Sand Training — IG Square (1080×1080)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--black:#111;--red:#D30005;--grey:#6f6f71;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:#2a2a2a;}
+  /* Exact IG square canvas */
+  .flyer{width:1080px;height:1080px;background:#fff;color:var(--black);
+         font-family:Inter,-apple-system,sans-serif;position:relative;overflow:hidden;
+         display:flex;flex-direction:column;}
+  /* header */
+  .hdr{display:flex;align-items:center;justify-content:space-between;padding:46px 56px 0;}
+  .hdr img{height:58px;width:auto;display:block;}
+  .tag{font-family:Oswald,sans-serif;text-transform:uppercase;font-weight:600;font-size:20px;
+       letter-spacing:.16em;color:#fff;background:var(--black);padding:9px 16px;}
+  .tag .r{color:var(--red);}
+  /* main split */
+  .main{flex:1;display:grid;grid-template-columns:1.02fr .98fr;align-items:stretch;padding-top:26px;min-height:0;}
+  .txt{padding:22px 18px 22px 56px;display:flex;flex-direction:column;justify-content:center;}
+  .ey{font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.2em;font-weight:600;
+      font-size:18px;color:var(--grey);display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+  .ey::before{content:"";width:11px;height:11px;border-radius:50%;background:var(--red);}
+  .h1{font-family:Oswald,sans-serif;text-transform:uppercase;font-weight:700;font-size:92px;line-height:.88;letter-spacing:-.005em;}
+  .rule{width:110px;height:9px;background:var(--red);margin:24px 0;}
+  .lead{font-size:25px;line-height:1.35;color:#2c2c2c;max-width:20ch;font-weight:500;}
+  .badge{margin-top:32px;align-self:flex-start;background:var(--red);color:#fff;font-family:Oswald,sans-serif;
+         text-transform:uppercase;font-weight:700;font-size:29px;letter-spacing:.02em;padding:14px 24px;}
+  .img{position:relative;border-left:2px solid var(--black);overflow:hidden;background:#f4f4f4;}
+  .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 15%;}
+  /* footer */
+  .ftr{background:var(--black);color:#fff;display:flex;align-items:center;gap:26px;padding:24px 56px;}
+  .qr{width:118px;height:118px;background:#fff;padding:9px;flex:none;}
+  .qr img{width:100%;height:100%;display:block;}
+  .info{display:flex;flex-direction:column;gap:3px;}
+  .info .big{font-family:Oswald,sans-serif;text-transform:uppercase;font-weight:700;font-size:33px;letter-spacing:.01em;}
+  .info .sm{font-size:19px;color:#cfcfcf;}
+  .creds{margin-left:auto;text-align:right;font-family:Oswald,sans-serif;text-transform:uppercase;
+         font-weight:600;font-size:16px;letter-spacing:.05em;color:#bdbdbd;line-height:1.55;max-width:22ch;}
+  .creds .r{color:#ff5a5f;}
+</style>
+</head>
+<body>
+<div class="flyer">
+  <div class="hdr">
+    <img src="assets/logo.png" alt="Digaball">
+    <span class="tag">Austin,&nbsp;<span class="r">TX</span></span>
+  </div>
+  <div class="main">
+    <div class="txt">
+      <div class="ey">Sand · Indoor · Outdoor</div>
+      <h1 class="h1">Sand<br>Volley&shy;ball<br>Training</h1>
+      <div class="rule"></div>
+      <p class="lead">Private &amp; small-group coaching on the Austin sand with Coach Duke.</p>
+      <span class="badge">Now Booking · 2026</span>
+    </div>
+    <!-- Coach Duke ink portrait -->
+    <div class="img"><img src="assets/aduke.png" alt="Coach Duke" style="object-position:52% 14%;"></div>
+  </div>
+  <div class="ftr">
+    <div class="qr"><img src="assets/qr.png" alt="Scan for digaball.com"></div>
+    <div class="info">
+      <span class="big">digaball.com</span>
+      <!-- TODO: confirm real training-inquiry email with Coach Duke -->
+      <span class="sm">info@digaball.com</span>
+    </div>
+    <div class="creds">35+ Years · UT Gold 2000 / Silver 2014 · <span class="r">AVP</span> Pro Coach</div>
+  </div>
+</div>
+</body>
+</html>
