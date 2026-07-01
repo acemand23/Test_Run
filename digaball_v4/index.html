@@ -713,22 +713,50 @@ a{color:inherit;text-decoration:none;}
       <!-- vballmanager -->
       <article class="vcard" id="software">
         <div class="vcard__media">
-          <svg viewBox="0 0 400 250" role="img" aria-label="Scoreboard grid representing league software">
-            <rect width="400" height="250" fill="#1a1a1c"/>
-            <g stroke="#2e2e30" stroke-width="2">
-              <line x1="40" y1="70" x2="360" y2="70"/><line x1="40" y1="125" x2="360" y2="125"/><line x1="40" y1="180" x2="360" y2="180"/>
-              <line x1="133" y1="50" x2="133" y2="200"/><line x1="226" y1="50" x2="226" y2="200"/><line x1="319" y1="50" x2="319" y2="200"/>
+          <!-- Monochrome mock of vballmanager's real "Events" dashboard (labels from the live site) -->
+          <svg viewBox="0 0 400 250" role="img" aria-label="vballmanager events dashboard: club calendar with live scoring">
+            <rect width="400" height="250" fill="#141416"/>
+            <!-- app bar -->
+            <rect x="0" y="0" width="400" height="30" fill="#1f1f22"/>
+            <circle cx="16" cy="15" r="4" fill="#3a3a3c"/>
+            <text x="30" y="19" fill="#8a8a8c" font-family="Inter,sans-serif" font-size="10" font-weight="600">Demo Club</text>
+            <text x="182" y="19" fill="#e9e9ea" font-family="Inter,sans-serif" font-size="10" font-weight="600">Events</text>
+            <rect x="180" y="25" width="44" height="2" fill="#D30005"/>
+            <rect x="345" y="7" width="43" height="16" rx="8" fill="none" stroke="#3a3a3c"/>
+            <text x="366" y="18" fill="#9a9a9c" font-family="Inter,sans-serif" font-size="8" text-anchor="middle">Login</text>
+            <!-- rent a court banner -->
+            <rect x="14" y="42" width="372" height="26" rx="5" fill="#26262b"/>
+            <text x="26" y="59" fill="#d2d2d4" font-family="Inter,sans-serif" font-size="10" font-weight="600">Rent a Court</text>
+            <rect x="330" y="48" width="46" height="14" rx="7" fill="#3a3a3c"/>
+            <text x="353" y="58" fill="#eaeaea" font-family="Inter,sans-serif" font-size="7" text-anchor="middle">Book Now</text>
+            <!-- week grid -->
+            <g stroke="#2a2a2d" stroke-width="1">
+              <line x1="14" y1="82" x2="386" y2="82"/>
+              <line x1="14" y1="150" x2="386" y2="150"/>
+              <line x1="67" y1="78" x2="67" y2="150"/><line x1="120" y1="78" x2="120" y2="150"/><line x1="173" y1="78" x2="173" y2="150"/><line x1="226" y1="78" x2="226" y2="150"/><line x1="279" y1="78" x2="279" y2="150"/><line x1="332" y1="78" x2="332" y2="150"/>
             </g>
-            <rect x="48" y="78" width="40" height="14" fill="#3a3a3c"/>
-            <rect x="141" y="133" width="50" height="14" fill="#3a3a3c"/>
-            <rect x="234" y="78" width="36" height="14" fill="#3a3a3c"/>
-            <circle cx="333" cy="170" r="7" fill="#D30005"/>
+            <g fill="#6a6a6c" font-family="Inter,sans-serif" font-size="7">
+              <text x="20" y="90">19</text><text x="73" y="90">20</text><text x="126" y="90">21</text><text x="179" y="90">22</text><text x="232" y="90">23</text><text x="285" y="90">24</text><text x="338" y="90">25</text>
+            </g>
+            <!-- event chips -->
+            <rect x="18" y="98" width="46" height="18" rx="3" fill="#303035"/><text x="22" y="110" fill="#c8c8ca" font-family="Inter,sans-serif" font-size="6">Singles Mixer</text>
+            <rect x="71" y="120" width="46" height="18" rx="3" fill="#303035"/><text x="75" y="132" fill="#c8c8ca" font-family="Inter,sans-serif" font-size="6">Night 6v6</text>
+            <rect x="283" y="98" width="46" height="18" rx="3" fill="#303035"/><text x="287" y="110" fill="#c8c8ca" font-family="Inter,sans-serif" font-size="6">Open Gym</text>
+            <!-- coming up: live-scoring row -->
+            <text x="16" y="172" fill="#8a8a8c" font-family="Inter,sans-serif" font-size="8" font-weight="600">Coming Up</text>
+            <rect x="14" y="180" width="372" height="26" rx="4" fill="#1c1c1f"/>
+            <circle cx="26" cy="193" r="3" fill="#D30005"/>
+            <text x="36" y="196" fill="#cfcfcf" font-family="Inter,sans-serif" font-size="8">Monday Night 6v6 · Live scoring</text>
+            <text x="322" y="196" fill="#e9e9ea" font-family="Inter,sans-serif" font-size="9" font-weight="700">21–18</text>
+            <rect x="14" y="212" width="372" height="24" rx="4" fill="#1c1c1f"/>
+            <text x="26" y="227" fill="#cfcfcf" font-family="Inter,sans-serif" font-size="8">Blind Draw</text>
+            <rect x="300" y="217" width="76" height="14" rx="7" fill="#2a2a2e"/><text x="338" y="227" fill="#9a9a9c" font-family="Inter,sans-serif" font-size="7" text-anchor="middle">Tournament</text>
           </svg>
         </div>
         <div class="vcard__body">
-          <p class="eyebrow vcard__eyebrow">Software · In beta</p>
+          <p class="eyebrow vcard__eyebrow">Software · Club-owned · Beta</p>
           <h3 class="vcard__title">vballmanager</h3>
-          <p class="vcard__copy">Club-owned league, tournament, and facility software. Live scoring and Stripe Connect payouts. Now in beta.</p>
+          <p class="vcard__copy">Courts, leagues, tournaments, training, and members on one system — live scoring and Stripe Connect payouts. Your organization, your data — not ours.</p>
           <a class="vcard__cta" href="https://vballmanager.com">Visit vballmanager.com <span aria-hidden="true">→</span></a>
         </div>
       </article>
