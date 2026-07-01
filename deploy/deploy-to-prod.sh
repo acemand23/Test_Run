@@ -1,45 +1,36 @@
 #!/usr/bin/env bash
 # ---------------------------------------------------------------------------
-# Surgical production deploy for the Digaball V4 flagship.
+# Deploy the Digaball V4 flagship to production.
 #
-# Copies ONLY V4's files from this repo checkout into public_html:
-#     digaball_v4/index.html   ->  public_html/index.html   (asset paths namespaced)
-#     digaball_v4/assets/*     ->  public_html/dgassets/*
+# It's exactly what you did by hand: copy /beta/digaball_v4/* up to the web root.
+#     digaball_v4/index.html  ->  public_html/index.html
+#     digaball_v4/assets/*    ->  public_html/assets/*
 #
-# It never uses --delete on public_html, so every OTHER folder that shares that
-# directory (beta/, your other subsites, ...) is left completely untouched.
-# Idempotent — safe to run on every push.
+# Plain overlay copy — NO --delete anywhere under public_html — so every other
+# folder that shares the root (beta/, your other subsites) is left untouched.
+# Idempotent; safe to run on every push.
 #
-# Runs ON THE SERVER (cPanel). Triggered by:
-#   • .cpanel.yml  (cPanel Git Version Control "Deploy"), or
-#   • cron:  cd ~/repos/digaball && git pull --ff-only && bash deploy/deploy-to-prod.sh
+# Runs ON THE SERVER from the beta checkout. Automate via cron (see
+# deploy/README.md) or the cPanel .cpanel.yml trigger.
 #
-# Overridable env: PUBLIC_HTML (default ~/public_html), NS (default dgassets).
-# NOTE: this script does NOT touch .htaccess — that's a one-time setup (see
-#       deploy/README.md) so repeated deploys can't clobber the domain's rules.
+# Overridable env: PUBLIC_HTML (default ~/public_html).
 # ---------------------------------------------------------------------------
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SRC="$REPO_DIR/digaball_v4"
 PUBLIC_HTML="${PUBLIC_HTML:-$HOME/public_html}"
-NS="${NS:-dgassets}"
 
-[ -d "$SRC" ]          || { echo "ERROR: source '$SRC' not found";        exit 1; }
-[ -d "$PUBLIC_HTML" ]  || { echo "ERROR: PUBLIC_HTML '$PUBLIC_HTML' not found"; exit 1; }
+[ -d "$SRC" ]         || { echo "ERROR: source '$SRC' not found";            exit 1; }
+[ -d "$PUBLIC_HTML" ] || { echo "ERROR: PUBLIC_HTML '$PUBLIC_HTML' not found"; exit 1; }
 
-mkdir -p "$PUBLIC_HTML/$NS"
-
-# 1) homepage — rewrite asset paths  assets/ -> $NS/  (atomic replace)
-sed "s#assets/#$NS/#g" "$SRC/index.html" > "$PUBLIC_HTML/.index.html.tmp"
-mv -f "$PUBLIC_HTML/.index.html.tmp" "$PUBLIC_HTML/index.html"
-
-# 2) assets — mirror ONLY into the namespaced folder. --delete here is safe:
-#    it can only affect files inside $PUBLIC_HTML/$NS, nothing else.
+# Copy index.html + assets/ into the web root (exclude the dev-only design spec).
 if command -v rsync >/dev/null 2>&1; then
-  rsync -a --delete --exclude 'Title.gif' "$SRC/assets/" "$PUBLIC_HTML/$NS/"
+  rsync -a --exclude 'DESIGN_SOURCE.md' "$SRC"/ "$PUBLIC_HTML"/
 else
-  cp -f "$SRC/assets/"*.png "$PUBLIC_HTML/$NS/" 2>/dev/null || true
+  cp -f "$SRC/index.html" "$PUBLIC_HTML/index.html"
+  mkdir -p "$PUBLIC_HTML/assets"
+  cp -f "$SRC/assets/"* "$PUBLIC_HTML/assets/"
 fi
 
-echo "[$(date -u +%FT%TZ)] Deployed V4 -> $PUBLIC_HTML (index.html + $NS/). Siblings untouched."
+echo "[$(date -u +%FT%TZ)] Deployed V4 -> $PUBLIC_HTML (index.html + assets/). Siblings untouched."
