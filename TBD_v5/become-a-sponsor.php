@@ -31,9 +31,10 @@
 
   <p class="bb-instruct">Enter the amount for your chosen level as your gift below.</p>
   <div class="bb-frame">
-    <iframe title="The Big Draw donation form"
-            src="https://host.nxt.blackbaud.com/donor-form?svcid=renxt&amp;formId=edce5290-bfdc-4ab4-8ac5-d089a7d1bfa5&amp;envid=p--K_lwkjaikKw84Z7Hr2ixg&amp;zone=usa"
-            loading="lazy" frameborder="0"></iframe>
+    <!-- Blackbaud embedded donor form (loader auto-sizes the height) -->
+    <div data-blackbaud-standard-form-id="998cb21b-f1a1-4d73-b58d-25ed2aa6bc69" data-svc-id="renxt"></div>
+    <script src="https://sky.blackbaudcdn.net/static/og-web-loader/1/main.js" data-envid="p--K_lwkjaikKw84Z7Hr2ixg" data-zone="usa"></script>
+    <noscript><a href="https://host.nxt.blackbaud.com/donor-form?svcid=renxt&amp;formId=998cb21b-f1a1-4d73-b58d-25ed2aa6bc69&amp;envid=p--K_lwkjaikKw84Z7Hr2ixg&amp;zone=usa">Open the donation form &rarr;</a></noscript>
   </div>
 
   <p class="bb-inkind">Donating goods or services instead? <a href="sponsor-in-kind.php">Offer an in-kind donation &rarr;</a></p>

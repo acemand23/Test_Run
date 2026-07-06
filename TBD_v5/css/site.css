@@ -161,9 +161,8 @@ header{background:var(--cream);position:relative;z-index:10}
 .summary-links{margin-top:14px;font-weight:700;font-size:14px}
 .summary-links a{color:var(--teal)}
 .bb-instruct{font-weight:700;color:var(--ink);font-size:15px;margin:32px 0 14px}
-.bb-frame{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
-.bb-frame iframe{display:block;width:100%;min-height:1200px;border:0} /* fits the Blackbaud form (~1140px measured) + validation buffer; scrolls internally if it grows */
-@media (max-width:700px){.bb-frame iframe{min-height:1330px}}
+.bb-frame{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;min-height:420px;max-width:602px} /* min-height = placeholder while the loader boots; max-width hugs Blackbaud's 600px form */
+.bb-frame iframe{display:block;width:100%;border:0} /* height is set by Blackbaud's og-web-loader; don't constrain it */
 .bb-inkind{font-weight:600;color:#3c4257;font-size:14.5px;margin-top:22px}
 .bb-inkind a{color:var(--teal);font-weight:700}
 
