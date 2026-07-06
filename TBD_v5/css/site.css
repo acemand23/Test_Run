@@ -142,6 +142,30 @@ header{background:var(--cream);position:relative;z-index:10}
 .perks li::before{content:"";position:absolute;left:4px;top:.45em;width:9px;height:9px;border-radius:50%;
   background:var(--teal);box-shadow:0 0 0 3px rgba(72,184,136,.18)}
 
+/* sponsor cards are clickable — the whole card links to checkout / in-kind */
+.tier{transition:transform .15s,box-shadow .15s,border-color .15s}
+.tier:hover{transform:translateY(-2px);border-color:#d7c69c;box-shadow:0 16px 30px -22px rgba(20,30,60,.5)}
+.tier-go{display:inline-block;margin-top:16px;font-family:"Archivo Black";text-transform:uppercase;
+  font-size:12.5px;letter-spacing:.04em;color:var(--orange-d)}
+.tier-go::after{content:"";position:absolute;inset:0;border-radius:16px} /* stretched link -> whole card is clickable */
+.tier:hover .tier-go{color:var(--magenta)}
+.tier:focus-within{border-color:var(--teal);box-shadow:0 0 0 3px rgba(72,184,136,.18)}
+
+/* become-a-sponsor.php — price summary of the paid levels + embedded donor form */
+.sponsor-summary{list-style:none;display:flex;flex-direction:column;gap:10px;margin:0}
+.sponsor-summary li{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.ss-name{font-family:"Archivo Black";text-transform:uppercase;font-size:15px;letter-spacing:.01em;color:var(--ink)}
+.ss-avail{flex:1;font-weight:600;color:#7a8072;font-size:13px}
+.ss-price{font-family:"Archivo Black";color:var(--orange-d);font-size:20px;white-space:nowrap}
+.summary-links{margin-top:14px;font-weight:700;font-size:14px}
+.summary-links a{color:var(--teal)}
+.bb-instruct{font-weight:700;color:var(--ink);font-size:15px;margin:32px 0 14px}
+.bb-frame{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+.bb-frame iframe{display:block;width:100%;min-height:2000px;border:0} /* Blackbaud form; height may be tuned after a live check */
+.bb-inkind{font-weight:600;color:#3c4257;font-size:14.5px;margin-top:22px}
+.bb-inkind a{color:var(--teal);font-weight:700}
+
 /* home sponsors wall — grouped by level, logo size scales with level */
 .sponsors-home .kicker{margin-bottom:18px}
 .sponsor-tier{margin-bottom:30px}
