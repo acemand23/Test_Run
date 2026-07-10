@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brain Rocks™ — Zero thoughts. Total clarity.</title>
+<meta name="description" content="A hand-selected mineral shaped like a brain, engineered to do absolutely nothing — flawlessly, forever. No apps, no charging, no notifications. $40.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪨</text></svg>">
+<style>
+  :root{
+    --stone:#E7E4DD;
+    --stone-2:#DED9CF;
+    --vellum:#F5F3EE;
+    --ink:#1E201C;
+    --ink-soft:#5A5B52;
+    --line:#CBC6BA;
+    --ochre:#A9743B;
+    --monitor-bg:#0E100E;
+    --monitor:#46E08A;
+    --maxw:1120px;
+    --pad:clamp(20px,5vw,64px);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--stone);
+    color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;
+    font-size:clamp(1rem,.55vw + .9rem,1.12rem);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad);}
+
+  .display{font-family:"Fraunces",Georgia,serif;font-weight:400;line-height:.98;letter-spacing:-.015em;}
+  .mono{font-family:"Space Mono",ui-monospace,monospace;}
+  .eyebrow{
+    font-family:"Space Mono",monospace;font-size:.72rem;font-weight:700;
+    letter-spacing:.28em;text-transform:uppercase;color:var(--ochre);margin:0;
+  }
+
+  /* ---------- top bar ---------- */
+  .topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--stone) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  .topbar__inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:64px;}
+  .brand{display:flex;align-items:baseline;gap:.5rem;text-decoration:none;}
+  .brand__mark{font-family:"Fraunces",serif;font-weight:500;font-size:1.15rem;letter-spacing:-.01em;}
+  .brand__sup{font-family:"Space Mono",monospace;font-size:.6rem;color:var(--ink-soft);letter-spacing:.1em;}
+  .topbar__meta{display:flex;align-items:center;gap:1.1rem;}
+  .topbar__tag{font-family:"Space Mono",monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);}
+  @media(max-width:640px){.topbar__tag{display:none;}}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:.55rem;
+    font-family:"Space Mono",monospace;font-size:.82rem;font-weight:700;letter-spacing:.04em;
+    text-decoration:none;cursor:pointer;border:1px solid var(--ink);
+    padding:.7rem 1.15rem;border-radius:999px;background:var(--ink);color:var(--stone);
+    transition:transform .15s ease,background .2s ease,color .2s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn--ghost{background:transparent;color:var(--ink);}
+  .btn--ghost:hover{background:var(--ink);color:var(--stone);}
+  .btn--sm{padding:.5rem .9rem;font-size:.74rem;}
+  .btn:focus-visible,a:focus-visible{outline:2px solid var(--ochre);outline-offset:3px;}
+
+  /* ---------- hero ---------- */
+  .hero{padding-top:clamp(2.5rem,7vw,5.5rem);padding-bottom:clamp(2rem,5vw,4rem);}
+  .hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center;}
+  .hero__title{font-size:clamp(3rem,9vw,6.4rem);margin:1rem 0 0;}
+  .hero__title em{font-style:italic;color:var(--ochre);}
+  .hero__sub{max-width:44ch;color:var(--ink-soft);margin:1.4rem 0 2rem;font-size:1.08rem;}
+  .hero__cta{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;}
+  .hero__note{font-family:"Space Mono",monospace;font-size:.7rem;letter-spacing:.1em;color:var(--ink-soft);text-transform:uppercase;margin-top:1.6rem;}
+
+  /* rock specimen plate */
+  .stage{position:relative;}
+  .plate{position:relative;margin:0;border-radius:18px;overflow:hidden;border:1px solid var(--line);
+    box-shadow:0 34px 60px -26px rgba(55,45,30,.5);background:#c9c9cd;}
+  .plate__img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:46% 50%;
+    display:block;transition:transform .7s ease;}
+  .plate:hover .plate__img{transform:scale(1.035);}
+  .plate__spot{position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(120% 90% at 50% 28%,rgba(255,255,255,.30),rgba(255,255,255,0) 55%);}
+  .plate__cap{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;justify-content:space-between;
+    align-items:baseline;gap:1rem;padding:1.6rem 1.1rem .9rem;
+    font-family:"Space Mono",monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#3a382f;
+    background:linear-gradient(to top,rgba(236,233,226,.96),rgba(236,233,226,0));}
+  .plate__cap b{color:var(--ink);}
+
+  /* ---------- monitor (signature) ---------- */
+  .monitor{
+    margin-top:2.2rem;background:var(--monitor-bg);border-radius:14px;overflow:hidden;
+    box-shadow:inset 0 0 0 1px rgba(70,224,138,.18),0 14px 30px rgba(20,25,20,.22);
+  }
+  .monitor__head{display:flex;justify-content:space-between;align-items:center;padding:.7rem 1rem .3rem;}
+  .monitor__label{font-family:"Space Mono",monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#8a9c8f;}
+  .monitor__hz{font-family:"Space Mono",monospace;font-size:.78rem;color:var(--monitor);letter-spacing:.05em;}
+  .monitor__hz b{font-size:1.05rem;}
+  .monitor__screen{position:relative;height:88px;}
+  .monitor__screen svg{width:100%;height:100%;display:block;}
+  .trace{fill:none;stroke:var(--monitor);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 4px rgba(70,224,138,.65));}
+  .trace-run{animation:scan 7s linear infinite;}
+  @keyframes scan{from{transform:translateX(0);}to{transform:translateX(-240px);}}
+  .pulse{fill:var(--monitor);}
+  .pulse-anim{animation:blip 2.6s ease-in-out infinite;transform-origin:center;}
+  @keyframes blip{0%,88%,100%{opacity:.35;r:2.4px;}92%{opacity:1;r:3.4px;}}
+  .monitor__foot{padding:.35rem 1rem .8rem;font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.1em;color:#6f8175;text-transform:uppercase;}
+
+  /* ---------- section frame ---------- */
+  .section{padding-block:clamp(3.5rem,8vw,6.5rem);border-top:1px solid var(--line);}
+  .section__head{max-width:56ch;margin-bottom:clamp(2rem,4vw,3rem);}
+  .section__title{font-size:clamp(2rem,5vw,3.2rem);margin:.6rem 0 0;}
+
+  /* ---------- spec sheet ---------- */
+  .specs{display:grid;grid-template-columns:1fr;border-top:1px solid var(--line);}
+  .spec{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem;align-items:baseline;padding:.95rem 0;border-bottom:1px solid var(--line);}
+  .spec__k{font-family:"Space Mono",monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);}
+  .spec__v{font-family:"Fraunces",serif;font-size:1.15rem;text-align:right;}
+  .spec__v .unit{font-family:"Space Mono",monospace;font-size:.72rem;color:var(--ink-soft);margin-left:.35rem;letter-spacing:.05em;}
+  @media(min-width:720px){.specs{grid-template-columns:1fr 1fr;column-gap:clamp(2rem,5vw,4rem);}.specs .spec:nth-last-child(2):nth-child(odd){}}
+
+  /* ---------- features ---------- */
+  .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+  .feature{background:var(--vellum);padding:clamp(1.4rem,3vw,2rem);}
+  .feature__no{font-family:"Space Mono",monospace;font-size:.7rem;color:var(--ochre);letter-spacing:.1em;}
+  .feature__h{font-family:"Fraunces",serif;font-size:1.4rem;margin:.7rem 0 .5rem;line-height:1.1;}
+  .feature__p{color:var(--ink-soft);font-size:.98rem;margin:0;}
+
+  /* ---------- quotes ---------- */
+  .quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(1.4rem,3vw,2.4rem);}
+  .quote{margin:0;}
+  .quote__p{font-family:"Fraunces",serif;font-size:1.35rem;line-height:1.35;margin:0 0 .8rem;}
+  .quote__p::before{content:"\201C";color:var(--ochre);}
+  .quote__p::after{content:"\201D";color:var(--ochre);}
+  .quote__c{font-family:"Space Mono",monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);}
+
+  /* ---------- buy ---------- */
+  .buy{text-align:center;}
+  .buy__price{font-family:"Fraunces",serif;font-size:clamp(5rem,18vw,11rem);line-height:.85;letter-spacing:-.03em;margin:0;}
+  .buy__price sup{font-size:.34em;vertical-align:.9em;color:var(--ochre);}
+  .buy__copy{max-width:36ch;margin:1.4rem auto 2rem;color:var(--ink-soft);}
+  .buy__cta{display:inline-flex;flex-direction:column;align-items:center;gap:.9rem;}
+  .toast{
+    font-family:"Space Mono",monospace;font-size:.74rem;letter-spacing:.06em;color:var(--ink);
+    background:var(--vellum);border:1px solid var(--line);border-radius:999px;padding:.5rem 1rem;
+    opacity:0;transform:translateY(6px);transition:opacity .3s ease,transform .3s ease;
+  }
+  .toast.show{opacity:1;transform:none;}
+
+  /* ---------- footer ---------- */
+  .foot{border-top:1px solid var(--line);padding-block:2.4rem;}
+  .foot__inner{display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between;align-items:baseline;}
+  .foot__fine{max-width:52ch;color:var(--ink-soft);font-size:.86rem;margin:0;}
+  .foot__meta{font-family:"Space Mono",monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);}
+
+  @media(max-width:820px){
+    .hero__grid{grid-template-columns:1fr;}
+    .hero__copy{order:2;}
+    .stage{order:1;max-width:440px;margin-inline:auto;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .stage__rock,.trace-run,.pulse-anim{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar__inner">
+    <a class="brand" href="#top">
+      <span class="brand__mark">Brain&nbsp;Rocks</span>
+      <span class="brand__sup">™ / cognitive-grade mineral</span>
+    </a>
+    <div class="topbar__meta">
+      <span class="topbar__tag">In stock · ships flat</span>
+      <a class="btn btn--sm" href="#buy">Add to cart — $40</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <p class="eyebrow">Introducing Brain Rocks™</p>
+        <h1 class="display hero__title">Zero thoughts.<br><em>Total clarity.</em></h1>
+        <p class="hero__sub">A hand-selected mineral shaped exactly like a brain, engineered to do absolutely nothing — flawlessly, forever. No apps. No charging. No notifications. Just forty dollars of pure, uninterrupted stillness.</p>
+        <div class="hero__cta">
+          <a class="btn" href="#buy">Add one to cart — $40</a>
+          <a class="btn btn--ghost" href="#specs">Read the spec sheet ↓</a>
+        </div>
+        <p class="hero__note">As reviewed by no one · Recommended by itself</p>
+      </div>
+
+      <div class="stage">
+        <figure class="plate">
+          <img class="plate__img" src="assets/brain-rock.jpg" alt="A smooth, brain-shaped tan pebble — a single Brain Rocks™ unit.">
+          <span class="plate__spot" aria-hidden="true"></span>
+          <figcaption class="plate__cap"><span>Specimen 001</span><b>Individually dumb</b></figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <!-- SIGNATURE: cognitive activity monitor -->
+      <figure class="monitor" role="img" aria-label="A live cognitive-activity monitor reading a flat line at 0.0 hertz.">
+        <div class="monitor__head">
+          <span class="monitor__label">Live cognitive activity</span>
+          <span class="monitor__hz"><b>0.0</b> Hz</span>
+        </div>
+        <div class="monitor__screen">
+          <svg viewBox="0 0 480 88" preserveAspectRatio="none">
+            <g class="trace-run">
+              <path class="trace" d="M0,44 H120 l4,-1 l4,1 H236 l3,1 l3,-1 H360 l5,-1 l4,1 H480"></path>
+              <path class="trace" d="M480,44 H600 l4,-1 l4,1 H716 l3,1 l3,-1 H840 l5,-1 l4,1 H960" transform="translate(0)"></path>
+            </g>
+            <circle class="pulse pulse-anim" cx="452" cy="44" r="2.6"></circle>
+          </svg>
+        </div>
+        <figcaption class="monitor__foot">Sampling every neuron · found none</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- SPECS -->
+  <section class="section" id="specs">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow">Technical specifications</p>
+        <h2 class="display section__title">Everything it does, in full.</h2>
+      </div>
+      <div class="specs">
+        <div class="spec"><span class="spec__k">Model</span><span class="spec__v">Classic</span></div>
+        <div class="spec"><span class="spec__k">Material</span><span class="spec__v">100% mineral</span></div>
+        <div class="spec"><span class="spec__k">Weight</span><span class="spec__v">~180<span class="unit">g, varies</span></span></div>
+        <div class="spec"><span class="spec__k">Cognitive output</span><span class="spec__v">0.0<span class="unit">Hz</span></span></div>
+        <div class="spec"><span class="spec__k">Onboard storage</span><span class="spec__v">None</span></div>
+        <div class="spec"><span class="spec__k">Battery</span><span class="spec__v">∞<span class="unit">none req.</span></span></div>
+        <div class="spec"><span class="spec__k">Connectivity</span><span class="spec__v">Fully offline</span></div>
+        <div class="spec"><span class="spec__k">Thoughts / day</span><span class="spec__v">0</span></div>
+        <div class="spec"><span class="spec__k">Mood</span><span class="spec__v">Stable</span></div>
+        <div class="spec"><span class="spec__k">Warranty</span><span class="spec__v">4.5<span class="unit">billion yrs</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow">Why Brain Rocks</p>
+        <h2 class="display section__title">Peace of mind, minus the mind.</h2>
+      </div>
+      <div class="features">
+        <article class="feature">
+          <span class="feature__no">01</span>
+          <h3 class="feature__h">Never interrupts</h3>
+          <p class="feature__p">It has never once spoken. It has no plans to start. The quietest device you'll ever own.</p>
+        </article>
+        <article class="feature">
+          <span class="feature__no">02</span>
+          <h3 class="feature__h">Emotionally unshakeable</h3>
+          <p class="feature__p">Drop it, ignore it, forget it in a drawer. It feels exactly the same about you either way.</p>
+        </article>
+        <article class="feature">
+          <span class="feature__no">03</span>
+          <h3 class="feature__h">Zero maintenance</h3>
+          <p class="feature__p">No updates, no charging, no subscription. Water optional. Sunlight tolerated.</p>
+        </article>
+        <article class="feature">
+          <span class="feature__no">04</span>
+          <h3 class="feature__h">Works during outages</h3>
+          <p class="feature__p">Fully operational without power, Wi-Fi, or a pulse. Performance is identical in every scenario.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTES -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow">Owner reviews</p>
+        <h2 class="display section__title">People are speechless. So is it.</h2>
+      </div>
+      <div class="quotes">
+        <figure class="quote">
+          <p class="quote__p">I asked it a hard question. It respected me enough to say nothing.</p>
+          <figcaption class="quote__c">— D., Austin · verified owner</figcaption>
+        </figure>
+        <figure class="quote">
+          <p class="quote__p">Smartest thing I own that has never once judged me.</p>
+          <figcaption class="quote__c">— M.R. · repeat customer</figcaption>
+        </figure>
+        <figure class="quote">
+          <p class="quote__p">Ten stars. It has never let me down, because it has never done a thing.</p>
+          <figcaption class="quote__c">— Anon · owns three</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUY -->
+  <section class="section buy" id="buy">
+    <div class="wrap">
+      <p class="eyebrow">One rock. One price.</p>
+      <p class="display buy__price"><sup>$</sup>40</p>
+      <p class="buy__copy">A single Brain Rocks™ unit, hand-selected for maximum resemblance to a brain and minimum resemblance to a thought. Ships flat. Arrives calm.</p>
+      <div class="buy__cta">
+        <button class="btn" id="cartBtn" type="button">Add to cart — $40</button>
+        <span class="toast" id="toast" role="status" aria-live="polite">Added to cart. It hasn't noticed.</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <p class="foot__fine">Brain Rocks™ is, legally and geologically, a rock. Any resemblance to intelligence is coincidental and non-binding. Not a toy, a tool, a therapist, or a supplement. Do not consult before operating heavy machinery.</p>
+    <p class="foot__meta">A Digaball side quest · Austin, TX · 2026</p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var btn=document.getElementById('cartBtn');
+    var toast=document.getElementById('toast');
+    if(!btn||!toast)return;
+    var t;
+    btn.addEventListener('click',function(){
+      toast.classList.add('show');
+      clearTimeout(t);
+      t=setTimeout(function(){toast.classList.remove('show');},2600);
+    });
+  })();
+</script>
+</body>
+</html>
