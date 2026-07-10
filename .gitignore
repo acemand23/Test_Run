@@ -1,2 +1,6 @@
 .DS_Store
 deploy/dist/
+
+# Local-only session notes (contain internal infra notes; repo deploys publicly to /beta/)
+resume.md
+resume.sh
