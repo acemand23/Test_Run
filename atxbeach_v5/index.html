@@ -85,16 +85,16 @@
     position:relative; flex:1 1 auto;
     padding:26px clamp(16px,3vw,40px) 30px;
     display:flex; flex-direction:column;
-    /* the big raked sand field */
+    /* ATX blue ocean field — sand courts float on top */
     background:
-      repeating-linear-gradient(115deg, rgba(0,0,0,.028) 0 2px, transparent 2px 15px),
-      radial-gradient(120% 90% at 50% -10%, var(--sand-hi), transparent 60%),
-      linear-gradient(160deg,var(--sand-mid) 0%, var(--sand-lo) 100%);
+      repeating-linear-gradient(115deg, rgba(255,255,255,.04) 0 2px, transparent 2px 16px),
+      radial-gradient(130% 95% at 50% -12%, rgba(37,195,214,.5), transparent 62%),
+      linear-gradient(162deg, #0e4257 0%, #08222e 100%);
   }
-  /* film grain over the sand (self-contained SVG noise) */
+  /* subtle water-shimmer grain over the blue (self-contained SVG noise) */
   .stage::before{
     content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
-    mix-blend-mode:multiply; opacity:.10;
+    mix-blend-mode:soft-light; opacity:.5;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size:200px 200px;
   }
@@ -105,12 +105,12 @@
   .stage__intro .eyebrow{
     font-family:var(--font-display); font-weight:600;
     font-size:.72rem; letter-spacing:3px; text-transform:uppercase;
-    color:#7a5a2c;
+    color:var(--sun);
   }
   .stage__intro h1{
     font-family:var(--font-display); font-weight:700; text-transform:uppercase;
     font-size:clamp(1.15rem,2.6vw,1.9rem); letter-spacing:.5px; line-height:1.05;
-    color:#3a2c14; margin-top:4px;
+    color:#fff; margin-top:4px; text-shadow:0 2px 14px rgba(0,0,0,.28);
   }
   .stage__intro h1 span{color:var(--coral)}
 
@@ -167,6 +167,10 @@
   .court__net::before{left:-6px}
   .court__net::after{right:-6px}
 
+  /* content is split into two court halves so text never sits on the net */
+  .court__half{position:relative; z-index:3; display:flex; flex-direction:column}
+  .court__half--b{margin-top:auto}
+
   /* court number chip, like a real venue court sign */
   .court__num{
     position:absolute; top:16px; right:16px; z-index:3;
@@ -192,7 +196,7 @@
   .court__label u{text-decoration:none; display:block; height:4px; width:44px; margin-top:10px; background:var(--c); border-radius:3px}
 
   .court__desc{
-    position:relative; z-index:3; margin-top:auto;
+    position:relative; z-index:3; margin-top:0;
     font-size:.9rem; line-height:1.45; color:#4a3a20; max-width:26ch;
   }
   .court__cta{
@@ -238,6 +242,22 @@
   .venue__meta a{color:rgba(255,255,255,.8)}
   .venue__meta a:hover{color:#fff}
   .venue__meta .dot{opacity:.35}
+  /* keep footer text clear of the floating waiver button on desktop */
+  @media (min-width:561px){ .venue{ padding-left:196px } }
+
+  /* ============ SIGN-WAIVER FLOATING BUTTON (bottom-left) ============ */
+  .waiver-fab{
+    position:fixed; left:16px; bottom:14px; z-index:80;
+    display:inline-flex; align-items:center; gap:9px;
+    background:var(--coral); color:#fff;
+    font-family:var(--font-display); font-weight:600;
+    font-size:.82rem; letter-spacing:1.2px; text-transform:uppercase;
+    padding:11px 18px; border-radius:999px;
+    box-shadow:0 12px 26px -8px rgba(0,0,0,.6), 0 0 0 3px rgba(255,255,255,.16);
+    transition:transform .18s ease, background .2s ease;
+  }
+  .waiver-fab:hover{ transform:translateY(-2px); background:#e8512f }
+  .waiver-fab svg{ width:16px; height:16px; display:block; flex:none }
 
   /* ============ RESPONSIVE ============ */
   @media (max-width:1000px){
@@ -248,9 +268,31 @@
     :root{--ticker-h:44px}
     .ticker__flag{display:none}
     .courts{grid-template-columns:1fr; gap:14px}
-    .court{min-height:200px}
-    .court__net{top:50%}
-    .venue{justify-content:center; text-align:center}
+    /* phone: courts are wide + short, so orient the net VERTICALLY down
+       the middle with the title on the left half and details on the right */
+    .court{min-height:172px; flex-direction:row; align-items:stretch}
+    .court__half{justify-content:center; flex:1 1 0; min-width:0}
+    .court__half--a{padding-right:16px}
+    .court__half--b{margin-top:0; padding-left:18px}
+    .court__label{font-size:clamp(1.5rem,7vw,2rem)}
+    .court__desc{max-width:none}
+    .court__num{top:10px; right:12px}
+    /* net rotated to vertical */
+    .court__net{
+      top:14px; bottom:14px; left:50%; right:auto; transform:translateX(-50%);
+      width:16px; height:auto;
+      border-top:none; border-bottom:none;
+      border-left:2px solid rgba(20,25,28,.7);
+      border-right:2px solid rgba(20,25,28,.7);
+    }
+    .court__net::before,.court__net::after{
+      left:50%; right:auto; transform:translateX(-50%);
+      width:28px; height:8px; top:auto; bottom:auto;
+    }
+    .court__net::before{top:-6px}
+    .court__net::after{bottom:-6px}
+    .venue{justify-content:center; text-align:center; padding:14px 18px 58px}
+    .waiver-fab{left:12px; bottom:12px; font-size:.74rem; padding:10px 14px}
   }
   @media (prefers-reduced-motion:reduce){
     .ticker__track{animation:none}
@@ -303,37 +345,53 @@
     <a class="court" href="train.html" style="--c:#ff6b4a">
       <span class="court__num">Court 01</span>
       <span class="court__net" aria-hidden="true"></span>
-      <span class="court__tag">Adult Clinics &amp; Memberships</span>
-      <span class="court__label">Train<u></u></span>
-      <span class="court__desc">Clinics, coaching, and memberships for every level — get better on the sand.</span>
-      <span class="court__cta">Start Training <span class="court__arrow">→</span></span>
+      <span class="court__half court__half--a">
+        <span class="court__tag">Adult Clinics &amp; Memberships</span>
+        <span class="court__label">Train<u></u></span>
+      </span>
+      <span class="court__half court__half--b">
+        <span class="court__desc">Clinics, coaching, and memberships for every level — get better on the sand.</span>
+        <span class="court__cta">Start Training <span class="court__arrow">→</span></span>
+      </span>
     </a>
 
     <a class="court" href="juniors.html" style="--c:#f0a423">
       <span class="court__num">Court 02</span>
       <span class="court__net" aria-hidden="true"></span>
-      <span class="court__tag">Youth Programs</span>
-      <span class="court__label">Juniors<u></u></span>
-      <span class="court__desc">Camps, clinics, and competitive pathways that grow young players on and off the sand.</span>
-      <span class="court__cta">Explore Juniors <span class="court__arrow">→</span></span>
+      <span class="court__half court__half--a">
+        <span class="court__tag">Youth Programs</span>
+        <span class="court__label">Juniors<u></u></span>
+      </span>
+      <span class="court__half court__half--b">
+        <span class="court__desc">Camps, clinics, and competitive pathways that grow young players on and off the sand.</span>
+        <span class="court__cta">Explore Juniors <span class="court__arrow">→</span></span>
+      </span>
     </a>
 
     <a class="court" href="play.html" style="--c:#1aa6b7">
       <span class="court__num">Court 03</span>
       <span class="court__net" aria-hidden="true"></span>
-      <span class="court__tag">Open Play &amp; Court Rentals</span>
-      <span class="court__label">Play<u></u></span>
-      <span class="court__desc">Reserve one of 8 pro courts or drop into open play. Check in and hit the sand.</span>
-      <span class="court__cta">Book &amp; Play <span class="court__arrow">→</span></span>
+      <span class="court__half court__half--a">
+        <span class="court__tag">Open Play &amp; Court Rentals</span>
+        <span class="court__label">Play<u></u></span>
+      </span>
+      <span class="court__half court__half--b">
+        <span class="court__desc">Reserve one of 8 pro courts or drop into open play. Check in and hit the sand.</span>
+        <span class="court__cta">Book &amp; Play <span class="court__arrow">→</span></span>
+      </span>
     </a>
 
     <a class="court" href="events.html" style="--c:#5a4fcf">
       <span class="court__num">Court 04</span>
       <span class="court__net" aria-hidden="true"></span>
-      <span class="court__tag">Tournaments &amp; Rentals</span>
-      <span class="court__label">Host Events<u></u></span>
-      <span class="court__desc">Tournaments, leagues, corporate &amp; private events — book the whole venue and bar.</span>
-      <span class="court__cta">Host With Us <span class="court__arrow">→</span></span>
+      <span class="court__half court__half--a">
+        <span class="court__tag">Tournaments &amp; Rentals</span>
+        <span class="court__label">Host Events<u></u></span>
+      </span>
+      <span class="court__half court__half--b">
+        <span class="court__desc">Tournaments, leagues, corporate &amp; private events — book the whole venue and bar.</span>
+        <span class="court__cta">Host With Us <span class="court__arrow">→</span></span>
+      </span>
     </a>
 
   </div>
@@ -348,6 +406,12 @@
     <a href="https://maps.google.com/?q=11000+Middle+Fiskville+Road+Bldg+E+Austin+TX+78753" target="_blank" rel="noopener">11000 Middle Fiskville Rd, Austin</a>
   </span>
 </footer>
+
+<!-- ============ SIGN WAIVER (floating, bottom-left) ============ -->
+<a class="waiver-fab" href="play.html" aria-label="Sign your waiver">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+  Sign Waiver
+</a>
 
 </body>
 </html>
