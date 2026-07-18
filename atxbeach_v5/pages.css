@@ -78,8 +78,6 @@ h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.05}
     linear-gradient(115deg,color-mix(in srgb,var(--c) 60%,transparent) 0%,transparent 58%)}
 .phero::after{content:"";position:absolute;inset:14px;z-index:-1;pointer-events:none;
   border:3px solid rgba(251,247,238,.5);border-radius:5px}
-.phero__num{position:absolute;top:24px;right:24px;z-index:1;font-family:var(--font-display);font-weight:700;font-size:.74rem;
-  letter-spacing:1px;color:#fff;background:var(--c);padding:4px 10px;border-radius:4px;box-shadow:0 3px 8px rgba(0,0,0,.28)}
 .phero .wrap{position:relative;z-index:1}
 .breadcrumb{font-size:.82rem;font-weight:600;color:rgba(255,255,255,.72);margin-bottom:14px}
 .breadcrumb a{color:rgba(255,255,255,.72)}

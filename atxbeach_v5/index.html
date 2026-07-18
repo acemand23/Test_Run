@@ -182,15 +182,6 @@
   }
   .court:hover .court__photo,.court:focus-visible .court__photo{transform:scale(1.06)}
 
-  /* court number chip, like a real venue court sign */
-  .court__num{
-    position:absolute; top:16px; right:16px; z-index:5;
-    font-family:var(--font-display); font-weight:700; font-size:.72rem;
-    letter-spacing:1px; color:#fff;
-    background:var(--c); padding:3px 8px; border-radius:3px;
-    box-shadow:0 2px 6px rgba(0,0,0,.18);
-  }
-
   .court__tag{
     position:relative; z-index:3; margin-top:6px;
     font-family:var(--font-display); font-weight:600;
@@ -283,11 +274,10 @@
        the middle with the title on the left half and details on the right */
     .court{min-height:172px; flex-direction:row; align-items:stretch}
     .court__half{justify-content:center; flex:1 1 0; min-width:0}
-    .court__half--a{flex:1 1 0; padding-right:0}
-    .court__half--b{flex:1 1 0; margin-top:0; padding-top:0; padding-left:18px}
+    .court__half--a{flex:1 1 0; padding-right:8px}
+    .court__half--b{flex:1 1 0; margin-top:0; padding-top:0; padding-left:22px}
     .court__label{font-size:clamp(1.5rem,7vw,2rem)}
     .court__desc{max-width:none}
-    .court__num{top:10px; right:12px}
     /* net rotated to vertical */
     .court__net{
       top:14px; bottom:14px; left:50%; right:auto; transform:translateX(-50%);
@@ -298,7 +288,7 @@
     }
     .court__net::before,.court__net::after{
       left:50%; right:auto; transform:translateX(-50%);
-      width:28px; height:8px; top:auto; bottom:auto;
+      width:18px; height:8px; top:auto; bottom:auto;
     }
     .court__net::before{top:-6px}
     .court__net::after{bottom:-6px}
@@ -348,13 +338,11 @@
 <main class="stage">
   <div class="stage__intro">
     <span class="eyebrow">Austin's Largest Sand Volleyball Venue</span>
-    <h1>Look down. <span>Pick your court.</span></h1>
   </div>
 
   <div class="courts">
 
     <a class="court" href="play.html" style="--c:#1aa6b7">
-      <span class="court__num">Court 01</span>
       <span class="court__net" aria-hidden="true"></span>
       <span class="court__half court__half--a court__photo" style="background-image:url(images/photos/action-43.jpg)" aria-hidden="true"></span>
       <span class="court__half court__half--b">
@@ -366,7 +354,6 @@
     </a>
 
     <a class="court" href="juniors.html" style="--c:#f0a423">
-      <span class="court__num">Court 02</span>
       <span class="court__net" aria-hidden="true"></span>
       <span class="court__half court__half--a court__photo" style="background-image:url(images/site/social-3.jpg)" aria-hidden="true"></span>
       <span class="court__half court__half--b">
@@ -378,7 +365,6 @@
     </a>
 
     <a class="court" href="train.html" style="--c:#ff6b4a">
-      <span class="court__num">Court 03</span>
       <span class="court__net" aria-hidden="true"></span>
       <span class="court__half court__half--a court__photo" style="background-image:url(images/photos/action-87.jpg)" aria-hidden="true"></span>
       <span class="court__half court__half--b">
@@ -390,7 +376,6 @@
     </a>
 
     <a class="court" href="events.html" style="--c:#5a4fcf">
-      <span class="court__num">Court 04</span>
       <span class="court__net" aria-hidden="true"></span>
       <span class="court__half court__half--a court__photo" style="background-image:url(images/photos/play-3983.jpg)" aria-hidden="true"></span>
       <span class="court__half court__half--b">
