@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Research — Volleyball Reaction Trainer — Digaball</title>
+<link rel="icon" type="image/png" href="../assets/logo.png">
+<link rel="apple-touch-icon" href="../assets/logo.png">
+<meta name="description" content="Peer-reviewed examples from related reaction-training research — FITLIGHT, visual-stimulus programs, exergames and stroboscopic training. Summarized for education only; these independent studies did not test the Digaball Volleyball Reaction Trainer.">
+<meta name="robots" content="index,follow">
+
+<meta property="og:title" content="The Research Behind Reaction Training — Digaball">
+<meta property="og:description" content="A plain-language summary of independent, peer-reviewed research on reaction training in adolescent athletes. Educational only — not a claim about the Digaball app.">
+<meta property="og:type" content="article">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   DIGABALL — Volleyball Reaction Trainer · Research reference
+   Same design system as the VRT landing page:
+   Monochrome UI · massive uppercase display · red accent
+   ============================================================ */
+
+:root{
+  --black:#111111;
+  --white:#FFFFFF;
+  --snow:#FAFAFA;
+  --grey-100:#F5F5F5;
+  --grey-200:#E5E5E5;
+  --grey-300:#CACACB;
+  --grey-500:#707072;
+  --grey-700:#39393B;
+  --grey-800:#28282A;
+  --grey-900:#1F1F21;
+  --red:#D30005;
+  --focus:#275DC5;
+
+  --font-display:'Oswald','Arial Narrow Bold','Arial Narrow',sans-serif;
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+
+  --maxw:1440px;
+  --readw:74ch;
+  --pad:clamp(1rem,5vw,3rem);
+  --nav-h:60px;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+
+body{
+  margin:0;
+  background:var(--white);
+  color:var(--black);
+  font-family:var(--font-body);
+  font-weight:400;
+  font-size:16px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+img,svg{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;}
+
+.skip{
+  position:absolute;left:8px;top:-100px;z-index:1000;
+  background:var(--black);color:var(--white);
+  padding:12px 20px;border-radius:30px;
+  font-family:var(--font-body);font-weight:500;
+  transition:top .15s ease;
+}
+.skip:focus{top:8px;}
+
+/* ---------- Reusable type ---------- */
+.display{
+  font-family:var(--font-display);font-weight:700;text-transform:uppercase;
+  line-height:.9;letter-spacing:-.01em;margin:0;
+}
+.eyebrow{
+  font-family:var(--font-body);font-weight:600;text-transform:uppercase;
+  letter-spacing:.18em;font-size:.72rem;margin:0;
+}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-family:var(--font-body);font-weight:500;font-size:1rem;line-height:1.5;
+  padding:14px 30px;border-radius:30px;border:1.5px solid transparent;
+  cursor:pointer;min-height:48px;
+  transition:background-color .2s ease,color .2s ease,border-color .2s ease;
+}
+.btn .arr{transition:transform .2s ease;}
+.btn:hover .arr{transform:translateX(4px);}
+.btn--primary{background:var(--black);color:var(--white);}
+.btn--primary:hover{background:var(--grey-500);}
+.btn--light{background:var(--white);color:var(--black);}
+.btn--light:hover{background:var(--grey-300);}
+.btn--ghost-inv{background:transparent;color:var(--white);border-color:rgba(255,255,255,.45);}
+.btn--ghost-inv:hover{border-color:var(--white);background:rgba(255,255,255,.1);}
+
+/* ---------- Promo bar ---------- */
+.promo{
+  background:var(--black);color:var(--white);text-align:center;
+  font-family:var(--font-body);font-weight:500;font-size:.75rem;letter-spacing:.04em;
+  padding:9px var(--pad);
+}
+.promo .dot{color:var(--red);}
+
+/* ---------- Header / nav ---------- */
+.site-header{position:sticky;top:0;z-index:100;background:var(--white);box-shadow:0 1px 0 0 var(--grey-200);}
+.nav{max-width:var(--maxw);margin:0 auto;min-height:var(--nav-h);display:flex;align-items:center;gap:1.5rem;padding:0 var(--pad);}
+.wordmark{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:var(--font-display);font-weight:700;text-transform:uppercase;
+  font-size:1.5rem;letter-spacing:.02em;line-height:1;color:var(--black);white-space:nowrap;
+}
+.wordmark__mark{height:34px;width:auto;}
+.nav__links{display:flex;gap:1.75rem;align-items:center;margin-left:auto;list-style:none;padding:0;}
+.nav__links a:not(.btn){font-family:var(--font-body);font-weight:500;font-size:.95rem;color:var(--black);transition:color .2s ease;padding:6px 0;}
+.nav__links a:not(.btn):hover{color:var(--grey-500);}
+.nav__links a[aria-current="page"]{border-bottom:2px solid var(--red);}
+.nav__cta{margin-left:.5rem;}
+.nav__toggle{display:none;margin-left:auto;background:var(--grey-100);border:none;width:48px;height:48px;border-radius:50%;align-items:center;justify-content:center;cursor:pointer;}
+.nav__toggle span,.nav__toggle span::before,.nav__toggle span::after{content:"";display:block;width:18px;height:2px;background:var(--black);position:relative;transition:transform .2s ease,opacity .2s ease;}
+.nav__toggle span::before{position:absolute;top:-6px;}
+.nav__toggle span::after{position:absolute;top:6px;}
+.nav__toggle[aria-expanded="true"] span{background:transparent;}
+.nav__toggle[aria-expanded="true"] span::before{transform:translateY(6px) rotate(45deg);}
+.nav__toggle[aria-expanded="true"] span::after{transform:translateY(-6px) rotate(-45deg);}
+
+/* ---------- Layout helpers ---------- */
+.section{padding-block:clamp(2.75rem,6vw,4.5rem);}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad);}
+.bg-dark{background:var(--black);color:var(--white);}
+.bg-snow{background:var(--snow);}
+.bg-grey{background:var(--grey-100);}
+.rule{border:0;border-top:1px solid var(--grey-200);margin:0;}
+
+/* ---------- Breadcrumb ---------- */
+.crumb{max-width:var(--maxw);margin:0 auto;padding:1rem var(--pad) 0;font-size:.8rem;color:var(--grey-500);font-weight:500;}
+.crumb a{transition:color .2s ease;}
+.crumb a:hover{color:var(--black);}
+.crumb span{color:var(--grey-300);margin:0 .5rem;}
+
+/* ============================================================
+   HERO (compact — this is a reference page, not a pitch)
+   ============================================================ */
+.hero{position:relative;background:var(--black);color:var(--white);overflow:hidden;isolation:isolate;}
+.hero__media{position:absolute;inset:0;z-index:-2;}
+.hero__media::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(120% 90% at 82% 6%, var(--grey-800) 0%, rgba(40,40,42,0) 55%),
+    radial-gradient(80% 70% at 10% 100%, var(--grey-900) 0%, rgba(31,31,33,0) 60%),
+    linear-gradient(180deg,#0e0e0f 0%, #161617 60%, #0c0c0d 100%);
+}
+.hero__grid{position:absolute;inset:0;z-index:-1;opacity:.5;}
+.hero__inner{
+  max-width:var(--maxw);margin:0 auto;
+  padding:clamp(2.5rem,6vw,4.5rem) var(--pad) clamp(2.5rem,6vw,4rem);
+  position:relative;
+}
+.hero__eyebrow{color:var(--grey-300);margin-bottom:1.2rem;}
+.hero__title{font-size:clamp(2.1rem,6vw,4.4rem);max-width:18ch;}
+.hero__title .accent{color:var(--red);}
+.hero__sub{margin:1.4rem 0 0;max-width:60ch;color:#d8d8da;font-size:clamp(1rem,1.6vw,1.15rem);line-height:1.65;}
+.hero__meta{margin:1.6rem 0 0;font-size:.78rem;color:var(--grey-500);letter-spacing:.02em;}
+
+/* ============================================================
+   PROSE
+   ============================================================ */
+.prose{max-width:var(--readw);}
+.prose p{color:var(--grey-700);font-size:1.02rem;line-height:1.75;margin:0 0 1.15rem;}
+.prose p:last-child{margin-bottom:0;}
+.prose strong{color:var(--black);font-weight:600;}
+.prose a:not(.btn){border-bottom:1px solid var(--red);transition:color .2s ease;}
+.prose a:not(.btn):hover{color:var(--red);}
+
+.h2{font-size:clamp(1.7rem,4.5vw,3rem);margin:0 0 .35rem;}
+.h3{font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:clamp(1.15rem,2.4vw,1.6rem);line-height:1;margin:0 0 .9rem;}
+.sec-eyebrow{color:var(--grey-500);margin-bottom:.6rem;}
+.sec-head{margin-bottom:clamp(1.5rem,3.5vw,2.5rem);}
+
+/* ---------- Callouts ---------- */
+.callout{
+  border:1px solid var(--grey-200);border-left:4px solid var(--red);
+  background:var(--white);padding:clamp(1.25rem,3vw,2rem);
+  max-width:var(--readw);
+}
+.callout--dark{background:var(--grey-900);border-color:var(--grey-800);border-left-color:var(--red);color:#d8d8da;}
+.callout--dark p{color:#c9c9cc;}
+.callout--dark strong{color:var(--white);}
+.callout .h3{margin-bottom:.8rem;}
+.callout p{color:var(--grey-700);font-size:.97rem;line-height:1.7;margin:0 0 1rem;}
+.callout p:last-child{margin-bottom:0;}
+
+/* ---------- Table of contents ---------- */
+.toc{
+  border:1px solid var(--grey-200);background:var(--snow);
+  padding:clamp(1.1rem,2.5vw,1.6rem);max-width:var(--readw);
+}
+.toc ol{margin:0;padding-left:1.2rem;columns:2;column-gap:2rem;}
+.toc li{margin:0 0 .4rem;font-size:.93rem;color:var(--grey-700);break-inside:avoid;}
+.toc a:hover{color:var(--red);}
+@media (max-width:640px){.toc ol{columns:1;}}
+
+/* ---------- Evidence table ---------- */
+.tablewrap{overflow-x:auto;border:1px solid var(--grey-200);-webkit-overflow-scrolling:touch;}
+table.evidence{border-collapse:collapse;width:100%;min-width:1080px;font-size:.87rem;}
+table.evidence caption{text-align:left;padding:1rem 1.1rem;color:var(--grey-500);font-size:.82rem;border-bottom:1px solid var(--grey-200);}
+table.evidence th,table.evidence td{padding:.85rem 1.1rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--grey-200);}
+table.evidence thead th{
+  background:var(--black);color:var(--white);
+  font-family:var(--font-body);font-weight:600;text-transform:uppercase;
+  letter-spacing:.1em;font-size:.66rem;white-space:nowrap;
+}
+table.evidence tbody tr:nth-child(even){background:var(--snow);}
+table.evidence tbody th{font-weight:600;color:var(--black);white-space:nowrap;}
+table.evidence td{color:var(--grey-700);line-height:1.55;}
+table.evidence td a{border-bottom:1px solid var(--grey-300);word-break:break-word;}
+table.evidence td a:hover{color:var(--red);border-bottom-color:var(--red);}
+.scrollhint{font-size:.78rem;color:var(--grey-500);margin:.6rem 0 0;}
+
+/* ---------- Findings ---------- */
+.findings{display:grid;gap:clamp(1.5rem,3vw,2.25rem);max-width:var(--readw);}
+.finding{border-top:1px solid var(--grey-200);padding-top:1.4rem;}
+.finding__num{
+  font-family:var(--font-display);font-weight:700;font-size:.9rem;letter-spacing:.14em;
+  color:var(--red);text-transform:uppercase;margin:0 0 .5rem;
+}
+.finding__lede{font-weight:600;color:var(--black);}
+.finding p{color:var(--grey-700);font-size:1.02rem;line-height:1.75;margin:0 0 1rem;}
+.finding p:last-child{margin-bottom:0;}
+
+/* ---------- Effect-size bars ---------- */
+.bars{display:grid;gap:.9rem;max-width:var(--readw);}
+.bar__label{font-size:.86rem;color:var(--grey-700);margin:0 0 .35rem;}
+.bar__track{display:flex;align-items:center;gap:.7rem;}
+.bar__fill{height:14px;background:var(--black);border-radius:2px;}
+.bar__fill--accent{background:var(--red);}
+.bar__val{font-family:var(--font-display);font-weight:700;font-size:1rem;line-height:1;color:var(--black);}
+
+/* ---------- Protocol cards ---------- */
+.protocols{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--grey-200);border:1px solid var(--grey-200);}
+.protocol{background:var(--white);padding:clamp(1.4rem,3vw,2.1rem);}
+.protocol__dose{
+  display:inline-block;font-family:var(--font-body);font-weight:600;text-transform:uppercase;
+  letter-spacing:.12em;font-size:.66rem;color:var(--red);margin-bottom:.7rem;
+}
+.protocol p{color:var(--grey-700);font-size:.97rem;line-height:1.65;margin:0;}
+@media (max-width:860px){.protocols{grid-template-columns:1fr;}}
+
+/* ---------- Pathway flow ---------- */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;align-items:stretch;}
+.flow__col{display:grid;gap:.7rem;align-content:start;}
+.flow__head{
+  font-family:var(--font-body);font-weight:600;text-transform:uppercase;
+  letter-spacing:.12em;font-size:.64rem;color:var(--grey-500);margin:0 0 .2rem;
+}
+.flow__node{
+  border:1px solid var(--grey-300);border-radius:10px;padding:.85rem 1rem;
+  font-size:.9rem;line-height:1.45;color:var(--grey-700);background:var(--white);
+}
+.flow__node--start{background:var(--black);color:var(--white);border-color:var(--black);}
+.flow__node--end{border-color:var(--red);color:var(--black);font-weight:600;}
+@media (max-width:860px){.flow{grid-template-columns:1fr;}}
+
+/* ---------- References ---------- */
+.refs{list-style:none;margin:0;padding:0;max-width:var(--readw);counter-reset:ref;}
+.refs li{
+  border-top:1px solid var(--grey-200);padding:1rem 0;
+  font-size:.94rem;line-height:1.6;color:var(--grey-700);
+}
+.refs li:last-child{border-bottom:1px solid var(--grey-200);}
+.refs em{color:var(--black);}
+.refs a{border-bottom:1px solid var(--grey-300);word-break:break-word;}
+.refs a:hover{color:var(--red);border-bottom-color:var(--red);}
+
+/* ---------- CTA ---------- */
+.cta{position:relative;overflow:hidden;isolation:isolate;}
+.cta__grid{position:absolute;inset:0;z-index:-1;opacity:.5;}
+.cta__inner{text-align:center;}
+.cta__title{font-size:clamp(2rem,6vw,4rem);margin:.6rem 0 1.2rem;}
+.cta__copy{color:#d8d8da;font-size:1.02rem;line-height:1.65;max-width:46ch;margin:0 auto 2rem;}
+.cta__actions{display:flex;flex-wrap:wrap;gap:.85rem;justify-content:center;}
+
+/* ---------- Footer ---------- */
+.site-footer{background:var(--black);color:var(--white);padding:clamp(2.5rem,6vw,4rem) var(--pad);border-top:1px solid var(--grey-800);}
+.footer__inner{max-width:var(--maxw);margin:0 auto;display:flex;flex-wrap:wrap;gap:1.5rem 2.5rem;align-items:center;justify-content:space-between;}
+.footer__brand{font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:1.6rem;letter-spacing:.02em;}
+.footer__brandrow{display:flex;align-items:center;gap:.8rem;}
+.footer__mark{width:52px;height:52px;flex:none;border-radius:12px;background:var(--white);padding:6px;object-fit:contain;}
+.footer__meta{color:var(--grey-500);font-size:.85rem;letter-spacing:.02em;}
+.footer__links{display:flex;flex-wrap:wrap;gap:1.25rem;list-style:none;margin:0;padding:0;}
+.footer__links a{font-weight:500;font-size:.85rem;color:var(--grey-300);transition:color .2s ease;}
+.footer__links a:hover{color:var(--white);}
+.footer__legal{max-width:var(--maxw);margin:1.75rem auto 0;color:var(--grey-500);font-size:.76rem;line-height:1.6;border-top:1px solid var(--grey-800);padding-top:1.25rem;}
+
+/* ---------- Responsive nav ---------- */
+@media (max-width:720px){
+  .nav__links{
+    position:fixed;inset:var(--nav-h) 0 auto 0;flex-direction:column;align-items:flex-start;gap:0;
+    background:var(--white);padding:1rem var(--pad) 1.5rem;box-shadow:0 1px 0 0 var(--grey-200);
+    transform:translateY(-12px);opacity:0;visibility:hidden;
+    transition:opacity .2s ease,transform .2s ease,visibility .2s ease;
+  }
+  .nav__links.open{transform:translateY(0);opacity:1;visibility:visible;}
+  .nav__links li{width:100%;}
+  .nav__links a{display:block;width:100%;padding:14px 0;font-size:1.1rem;border-bottom:1px solid var(--grey-200);}
+  .nav__cta{margin:1rem 0 0;}
+  .nav__cta .btn{width:100%;justify-content:center;}
+  .nav__toggle{display:inline-flex;}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============ PROMO BAR ============ -->
+<div class="promo" role="region" aria-label="Announcement">
+  <span class="dot">●</span>&nbsp; Volleyball Reaction Trainer — coming soon to iOS &amp; Android · Join the early list
+</div>
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="site-header">
+  <nav class="nav" aria-label="Primary">
+    <a class="wordmark" href="../index.html" aria-label="Digaball home">
+      <img class="wordmark__mark" src="../assets/logo.png" alt="" width="34" height="34" aria-hidden="true">
+      <span>Digaball</span>
+    </a>
+
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+      <span></span>
+    </button>
+
+    <ul class="nav__links" id="navLinks">
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#how">How it works</a></li>
+      <li><a href="research.html" aria-current="page">Research</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li class="nav__cta"><a class="btn btn--primary" href="index.html#download">Get the app</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- breadcrumb -->
+<nav class="crumb" aria-label="Breadcrumb">
+  <a href="../index.html">Digaball</a><span aria-hidden="true">/</span><a href="index.html">Volleyball Reaction Trainer</a><span aria-hidden="true">/</span>Research
+</nav>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" aria-labelledby="page-title">
+  <div class="hero__media" aria-hidden="true">
+    <svg class="hero__grid" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <pattern id="net" width="46" height="46" patternUnits="userSpaceOnUse">
+          <path d="M46 0H0V46" fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="1200" height="700" fill="url(#net)"/>
+    </svg>
+  </div>
+
+  <div class="hero__inner">
+    <p class="eyebrow hero__eyebrow">Reference · Independent research</p>
+    <h1 class="display hero__title" id="page-title">Peer-reviewed examples from <span class="accent">related</span> reaction-training research</h1>
+    <p class="hero__sub">A plain-language summary of what independent researchers have found when they studied reaction-training methods — FITLIGHT® systems, visual-stimulus programs, exergames and stroboscopic training — mostly in athletes aged 13–18.</p>
+    <p class="hero__meta">Educational summary · Not medical, coaching or performance advice · These studies did not test the Digaball™ Volleyball Reaction Trainer</p>
+  </div>
+</section>
+
+<!-- ============ DISCLAIMER ============ -->
+<section class="section" id="notice" aria-labelledby="notice-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow sec-eyebrow">Read this first</p>
+      <h2 class="display h2" id="notice-title">Important notice and disclaimer.</h2>
+    </div>
+
+    <div class="callout">
+      <p>This page summarizes findings reported in independent, third-party research involving reaction-training methods such as FITLIGHT® systems, visual-stimulus programs, exergames, and stroboscopic training. <strong>The studies summarized here did not test, evaluate, validate, or endorse the Digaball™ Volleyball Reaction Trainer unless a study expressly states otherwise.</strong></p>
+
+      <p>The information is provided solely for general educational and informational purposes. It is not medical advice, healthcare advice, sports-medicine advice, coaching instruction, or a guarantee of athletic improvement. The reported results are specific to the participants, devices, protocols, sports, durations, outcome measures, and study designs used in each cited study. Results from those studies should not be interpreted as results that a user will obtain from the Digaball™ Volleyball Reaction Trainer or from any other product.</p>
+
+      <p>Individual results will vary. No representation or warranty is made regarding the completeness, accuracy, reliability, applicability, or continued validity of the summarized information. Research may later be corrected, updated, disputed, or retracted. Users, parents, coaches, and organizations are responsible for determining whether any training activity is appropriate and should consult qualified medical, athletic-training, or coaching professionals when appropriate.</p>
+
+      <p>To the fullest extent permitted by applicable law, Digaball™ and its owners, operators, affiliates, and contributors disclaim liability for decisions, injuries, losses, damages, or other consequences arising from reliance on this page or from attempting to reproduce any research protocol described here.</p>
+
+      <p><strong>Trademarks and no endorsement:</strong> Digaball™ is a trademark used in connection with the Digaball™ Volleyball Reaction Trainer. Certain studies discussed in this report used third-party products or systems, including FITLIGHT®. Those names are included solely to identify the equipment or methodology reported by the study authors. FITLIGHT® and all other third-party names, marks, and product names are the property of their respective owners. Their inclusion does not imply that any third party has tested, evaluated, approved, sponsored, endorsed, or is affiliated with Digaball™ or the Digaball™ Volleyball Reaction Trainer. Likewise, Digaball™ does not claim ownership of those third-party marks and does not use third-party research to claim that its product is identical or equivalent to the systems studied.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ============ HOW TO READ + TOC ============ -->
+<section class="section bg-snow" id="how-to-read" aria-labelledby="how-to-read-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow sec-eyebrow">Context</p>
+      <h2 class="display h2" id="how-to-read-title">How to read this report.</h2>
+    </div>
+
+    <div class="prose" style="margin-bottom:clamp(1.75rem,4vw,2.5rem)">
+      <p>The percentages, effect sizes, statistical values, and other outcomes below are <strong>published study results from related reaction-training interventions</strong>. They are presented as examples of what researchers observed under specific research conditions — not as claims about what the Digaball™ Volleyball Reaction Trainer will produce.</p>
+      <p>When a finding identifies FITLIGHT® or another named system, that identification describes the intervention used in the cited study. The study did not evaluate Digaball™ unless expressly stated, and its results should not be interpreted as evidence that Digaball™ will produce the same or similar outcomes.</p>
+    </div>
+
+    <nav class="toc" aria-label="On this page">
+      <p class="eyebrow sec-eyebrow" style="margin-bottom:.8rem">On this page</p>
+      <ol>
+        <li><a href="#notice">Important notice and disclaimer</a></li>
+        <li><a href="#summary">Executive summary</a></li>
+        <li><a href="#comparison">Comparison of the evidence</a></li>
+        <li><a href="#light">Light-based and exergame trainers</a></li>
+        <li><a href="#strobe">Stroboscopic and vision-based trainers</a></li>
+        <li><a href="#effects">Selected effect sizes in context</a></li>
+        <li><a href="#protocols">Protocols reported in the literature</a></li>
+        <li><a href="#pathway">Intervention pathway</a></li>
+        <li><a href="#gaps">Gaps, limitations, future research</a></li>
+        <li><a href="#references">References</a></li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<!-- ============ EXECUTIVE SUMMARY ============ -->
+<section class="section" id="summary" aria-labelledby="summary-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow sec-eyebrow">The short version</p>
+      <h2 class="display h2" id="summary-title">Executive summary.</h2>
+    </div>
+    <div class="prose">
+      <p>Published research suggests that some reaction-training interventions may improve certain reaction-related outcomes in adolescents, but the strength of evidence varies sharply by device, outcome, and study design. The most convincing signals come from sports-specific light-based systems such as FITLIGHT® and from stroboscopic visual training, which show improvements in simple reaction time, reactive reaction time, peripheral-vision-dependent responses, visual-motor coordination, and some near-transfer sport skills such as dribbling speed or reactive agility. Two recent meta-analyses on stroboscopic training also report meaningful pooled effects on reaction-related outcomes, with adolescent subgroups often showing the clearest gains.</p>
+      <p>For 13–18-year-olds specifically, the literature is promising but still thinner than coaches may expect. Several primary studies fall directly in or very near the target range, including junior basketball, soccer, handball, volleyball, and mixed team-sport samples. However, many studies are small, quasi-experimental, or sport-specific, and several use coach-designed outcome tests rather than universally standardized reaction-time batteries. That means the practical signal is stronger than the methodological certainty.</p>
+      <p>A cautious interpretation of the literature is that reaction-training tools may be used as a supplement — not a replacement — for normal sport practice. The best-supported use cases are short, focused blocks embedded inside sport-specific sessions, especially when drills preserve perception–action coupling: reacting to unpredictable lights, dribbling while responding to cues, lower-limb or upper-limb responses to bilateral/unilateral stimuli, or brief stroboscopic work during open-skill tasks. Evidence for far transfer to full game performance is still limited, and one adolescent soccer RCT found within-group improvements but weak between-group superiority for most reaction measures.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPARISON TABLE ============ -->
+<section class="section bg-snow" id="comparison" aria-labelledby="comparison-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow sec-eyebrow">Side by side</p>
+      <h2 class="display h2" id="comparison-title">Comparison of the evidence.</h2>
+    </div>
+
+    <div class="tablewrap">
+      <table class="evidence">
+        <caption>Study designs, populations, doses and reported outcomes. All results belong to the cited studies and describe the systems those researchers used.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Study</th>
+            <th scope="col">Type</th>
+            <th scope="col">Population</th>
+            <th scope="col">Reaction trainer and dose</th>
+            <th scope="col">Main outcomes</th>
+            <th scope="col">Effect size or key statistic</th>
+            <th scope="col">DOI / stable ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Wang et al., 2025</th>
+            <td>Systematic review and meta-analysis</td>
+            <td>9 studies; 323 athletes overall; adolescent subgroup ≤18 years, 3 studies, n=122</td>
+            <td>Stroboscopic glasses; subgroup analysis of program duration, frequency, duty cycle</td>
+            <td>Reaction time improved overall; decision-making not clearly improved</td>
+            <td>RT SMD = -0.82, p = 0.007; adolescent subgroup SMD = -0.32, p = 0.05</td>
+            <td><a href="https://doi.org/10.3389/fpsyg.2025.1697425" rel="noopener nofollow" target="_blank">10.3389/fpsyg.2025.1697425</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Luo et al., 2025</th>
+            <td>Systematic review and meta-analysis</td>
+            <td>Collegiate-athlete literature; adolescent subgroup 10–18 years identified</td>
+            <td>Stroboscopic glasses; subgrouped by weeks, frequency, session length, duty cycle</td>
+            <td>Time-based and accuracy-based sport outcomes improved</td>
+            <td>Time-based SMD = -0.61, p = 0.045; accuracy SMD = 0.73, p &lt; 0.01; adolescent subgroup showed larger gains</td>
+            <td><a href="https://doi.org/10.1038/s41598-025-10393-4" rel="noopener nofollow" target="_blank">10.1038/s41598-025-10393-4</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Wilkins et al., 2018</th>
+            <td>Pilot controlled case study</td>
+            <td>6 elite youth football goalkeepers, ages 16–19</td>
+            <td>Senaptec strobe glasses; 7 weeks; 14×45 min + 1×5 min</td>
+            <td>Visual response time improved consistently in the training group; minimal changes on most other visual-perceptual tests</td>
+            <td>No formal inferential statistics due to sample size; consistent VRT improvement in SVT group</td>
+            <td><a href="https://doi.org/10.1007/s41465-017-0038-z" rel="noopener nofollow" target="_blank">10.1007/s41465-017-0038-z</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Hassan et al., 2022</th>
+            <td>Controlled pre-post trial</td>
+            <td>20 basketball players; experimental n=10, age 14.80±0.79; control n=10, age 14.60±0.70</td>
+            <td>FITLIGHT® reactive-agility drills; 8 weeks; 4 sessions/week; 32 units</td>
+            <td>Visual reaction time, reactive agility, dribbling skill</td>
+            <td>Experimental group improved modified agility t-test by 11% and dribbling t-test by 19%; study reports significant visual RT gains</td>
+            <td><a href="https://doi.org/10.3390/sports10110176" rel="noopener nofollow" target="_blank">10.3390/sports10110176</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Steff &amp; Badau, 2024</th>
+            <td>Pilot pre-post study</td>
+            <td>19 basketball players, ages 13–14</td>
+            <td>FITLIGHT®-based reaction drills; 8 weeks; 3 sessions/week</td>
+            <td>Upper-limb RT, upper-limb reactive RT, lower-limb RT</td>
+            <td>Upper-limb RT d = 0.380, p = 0.029; upper-limb reactive RT d = 1.524, p &lt; 0.001; lower-limb RT d = 0.419, p &lt; 0.001</td>
+            <td><a href="https://doi.org/10.26659/pm3.2024.25.1.17" rel="noopener nofollow" target="_blank">10.26659/pm3.2024.25.1.17</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Theofilou et al., 2022</th>
+            <td>Randomized controlled trial</td>
+            <td>38 male soccer players completed; ages 10–15</td>
+            <td>Visual-stimuli program integrated before soccer; 6 months; 5×/week; 15 min/session</td>
+            <td>FITLIGHT® simple RT, VR RT, repeated sprint, cognitive function</td>
+            <td>Simple RT improved by 11.76%, p = 0.002; repeated sprint +13.36%, p &lt; 0.001; between-group superiority on most RT measures was limited</td>
+            <td><a href="https://doi.org/10.3390/s22176680" rel="noopener nofollow" target="_blank">10.3390/s22176680</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Badau et al., 2022</th>
+            <td>Quasi-experimental pre-post study</td>
+            <td>360 junior athletes, ages 13–14, across basketball, handball, volleyball</td>
+            <td>FITLIGHT® exergame program; 12 weeks; 3×/week; 30 min/session</td>
+            <td>Motor simple RT, recognition RT, cognitive RT</td>
+            <td>Significant progress in all tests; Cohen’s d ranged from 0.459–0.640 for simple RT, 0.469–0.675 for recognition RT, and 0.438–0.719 for cognitive RT</td>
+            <td><a href="https://doi.org/10.3390/ijerph19095598" rel="noopener nofollow" target="_blank">10.3390/ijerph19095598</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Badau et al., 2023</th>
+            <td>Quasi-experimental pre-post study</td>
+            <td>412 active junior players; mean age 17.43±2.35; study limitation notes athletes 16–18 only</td>
+            <td>FITLIGHT® peripheral-vision program; 6 weeks; 2×/week; 30 min/session</td>
+            <td>Manual RT to unilateral and bilateral peripheral stimuli; 6-light test</td>
+            <td>Bilateral-stimulus effects were large overall, d range 0.509–0.752; some female and basketball subgroups &gt;0.8; p values 0.001 to 0.032 across tests</td>
+            <td><a href="https://doi.org/10.3390/bioengineering10060697" rel="noopener nofollow" target="_blank">10.3390/bioengineering10060697</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Steff et al., 2024</th>
+            <td>Randomized controlled pre-post study</td>
+            <td>70 male junior basketball players; U14 n=36, U16 n=34</td>
+            <td>Basketball-specific FITLIGHT® program; 18 weeks; 3×/week; 60 min + 20 min warm-up</td>
+            <td>Reactive coordination, reactive RT, hand-eye coordination, movement-combination capacity</td>
+            <td>Experimental groups showed significant pre-post gains, p &lt; 0.05, with Cohen’s d &gt; 0.8; control effects were small to medium</td>
+            <td><a href="https://doi.org/10.3390/s24113482" rel="noopener nofollow" target="_blank">10.3390/s24113482</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Hassan, 2025</th>
+            <td>Randomized controlled pre-post study</td>
+            <td>28 female basketball players; EG n=14, mean age 18.29; CG n=14, mean age 18.50</td>
+            <td>FITLIGHT® program; 10 weeks; 4 sessions/week</td>
+            <td>Right-hand RT, left-hand RT, reactive time, reactive time with dribbling</td>
+            <td>Post-test between-group Cohen’s d = 0.51 to 0.88; reactive time with dribbling d = 0.88; all post-test between-group p &lt; .001</td>
+            <td><a href="https://doi.org/10.2196/70519" rel="noopener nofollow" target="_blank">10.2196/70519</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollhint">Scroll the table sideways to see every column.</p>
+  </div>
+</section>
+
+<!-- ============ FINDINGS — LIGHT-BASED ============ -->
+<section class="section" id="light" aria-labelledby="light-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow sec-eyebrow">Findings 1–7</p>
+      <h2 class="display h2" id="light-title">Direct light-based and exergame trainers.</h2>
+    </div>
+
+    <div class="findings">
+      <article class="finding">
+        <p class="finding__num">Finding 01</p>
+        <p><span class="finding__lede">In adolescent basketball players around age 14–15, FITLIGHT®-based reactive-agility drills improved sport-relevant reaction measures and basketball skills over 8 weeks.</span> Hassan and colleagues studied two groups of youth basketball players, 10 in the experimental group and 10 in control, both around 14.6–14.8 years old. The FITLIGHT® intervention ran for 8 weeks with 4 training units per week, for 32 sessions total. The study targeted visual reaction time and dribbling through reactive agility drills with and without a ball. The accessible study page reports an 11% improvement in the modified agility t-test and a 19% improvement in dribbling-related agility, alongside significant visual-reaction gains. The main limitations are the very small sample and incomplete abstract-level access to all table values in the web extract. For coaches and parents, the practical implication is straightforward: if the goal is basketball-specific reactivity, light-based drills should be embedded into movement and ball-handling, not isolated as generic “reaction games.”</p>
+      </article>
+
+      <article class="finding">
+        <p class="finding__num">Finding 02</p>
+        <p><span class="finding__lede">A pilot study in 13–14-year-old basketball players found that FITLIGHT® can improve both simple and reactive reaction time, with the largest effect on upper-limb reactive responses.</span> Steff and Badau followed 19 young athletes for 8 weeks, three sessions per week, using specialized FITLIGHT® drills that trained upper- and lower-limb responses. Mean upper-limb reaction time fell from 0.351 to 0.335 s, upper-limb reactive reaction time from 0.545 to 0.455 s, and lower-limb reaction time from 0.556 to 0.523 s. The paired tests were significant for all three outcomes, but the standout effect was upper-limb reactive RT, with Cohen’s d = 1.524; upper-limb simple RT was smaller at d = 0.380, and lower-limb RT was d = 0.419. Because it was a one-group pilot without a control arm, maturation and concurrent basketball practice cannot be ruled out. Still, for real-world programming, this study suggests that adolescents may benefit most from drills that require conditional responses rather than merely fast touches to a target.</p>
+      </article>
+
+      <article class="finding">
+        <p class="finding__num">Finding 03</p>
+        <p><span class="finding__lede">In a large junior-sport sample aged 13–14, a 12-week FITLIGHT® exergame program improved motor, recognition, and cognitive reaction time, with mostly medium-to-large effects.</span> Badau and colleagues studied 360 athletes from basketball, handball, and volleyball, average age 13.6 years, using a 12-week program performed 3 times per week for 30 minutes. The intervention combined FITLIGHT® with coded cards and 24 exercises split across motor simple reaction time, recognition reaction time, and cognitive reaction time subprograms. Across sports and sexes, simple RT, recognition RT, and cognitive RT all improved significantly, with Cohen’s d values ranging from 0.459–0.640, 0.469–0.675, and 0.438–0.719, respectively. Female athletes tended to improve more than male athletes. The study’s main weaknesses are the non-RCT design and reliance on mixed computerized tests rather than a unified sport-performance endpoint. Practically, this is one of the best signals that short, gamified, cue-rich reaction work can scale across multiple team sports in early adolescence.</p>
+      </article>
+
+      <article class="finding">
+        <p class="finding__num">Finding 04</p>
+        <p><span class="finding__lede">Peripheral-vision-oriented FITLIGHT® drills appear especially useful for older adolescents in handball and basketball, but the endpoint is often “number of correct reactions” rather than pure milliseconds.</span> In a study of 412 active junior players, mean age 17.43 years, Badau and colleagues ran a 6-week program with 2 weekly 30-minute sessions and 15 exercises built around unilateral and bilateral peripheral stimuli. The largest effects appeared on more complex bilateral tasks and the six-light test, where effect sizes were generally large and sometimes very large, especially in basketball and handball subgroups. Female samples improved more than male samples across all four tests. The most important limitation is methodological: the authors explicitly note the absence of a control group and that the study measured reactions completed in preset time windows rather than pure reaction-speed latency. For coaches, the implication is that peripheral-vision drills are worth using when the sport requires monitoring multiple off-center cues, but they should not be mistaken for identical substitutes for laboratory RT measurement.</p>
+      </article>
+
+      <article class="finding">
+        <p class="finding__num">Finding 05</p>
+        <p><span class="finding__lede">A larger controlled basketball study supports FITLIGHT® for coordinative development and reactive upper-limb timing in U14 and U16 players over a full 18-week block.</span> Steff and colleagues randomized 70 male basketball players into U14 and U16 experimental and control groups. The experimental program ran for 18 weeks, 3 times per week, 60 minutes per session plus a 20-minute warm-up, and used basketball-specific FITLIGHT® exercises. Outcomes included reactive reaction time, choice reactive reaction, reactive hand–eye coordination, and reactive movement-combination capacity. The experimental groups improved significantly from initial to final test at p &lt; 0.05, with Cohen’s d values above 0.8, while control-group effects stayed small to medium. The main limitation is sport and sex specificity: only male junior basketball players were studied. Still, this is one of the strongest youth-controlled FITLIGHT® studies and supports use of reaction trainers as part of a sustained coordinative block rather than a short novelty period.</p>
+      </article>
+
+      <article class="finding">
+        <p class="finding__num">Finding 06</p>
+        <p><span class="finding__lede">In female basketball players at the upper edge of the target range, a 10-week FITLIGHT® program produced moderate-to-large between-group improvements in reaction and dribbling-linked reactivity.</span> Hassan studied 28 female basketball players randomly assigned to experimental and control groups, with mean ages of 18.29 and 18.50 years. The FITLIGHT® program ran for 10 weeks with 4 sessions per week and targeted visual-motor coordination and dribbling speed. Post-intervention between-group effects were moderate for right-hand RT (d = 0.51), larger for left-hand RT (d = 0.71), large for reactive time (d = 0.84), and largest for reactive time with dribbling (d = 0.88), all with p &lt; .001 at post-test. The main caveat is age: these athletes were essentially late adolescents or young adults. For practitioners working with 16–18-year-olds, though, this study supports pairing reaction cues with technical ball tasks rather than training RT in isolation.</p>
+      </article>
+
+      <article class="finding">
+        <p class="finding__num">Finding 07</p>
+        <p><span class="finding__lede">Not every short FITLIGHT® block produces extra benefit beyond normal team training.</span> In an Italian youth-basketball intervention, 58 male players with mean age 15 years were randomized, and 49 completed a 3-week preseason program of 25-minute FITLIGHT® sessions added to 5 training days per week. FITLIGHT® drills targeted footwork, shooting, dribbling, decision-making, hand–eye coordination, and peripheral awareness. Both groups improved over time, but the paper concludes that the short, massed FITLIGHT® addition did not generate extra executive-function benefits compared with the control condition; it did, however, raise perceived effort without lowering enjoyment. The authors explicitly note that 8–12 weeks of cognitive-motor training appear more promising than 3 weeks. For coaches, this is an important guardrail: reaction trainers are unlikely to be magic in overload-heavy microcycles, and more is not always better.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINDINGS — STROBOSCOPIC ============ -->
+<section class="section bg-snow" id="strobe" aria-labelledby="strobe-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow sec-eyebrow">Findings 8–10</p>
+      <h2 class="display h2" id="strobe-title">Stroboscopic and integrated vision-based trainers.</h2>
+    </div>
+
+    <div class="findings">
+      <article class="finding">
+        <p class="finding__num">Finding 08</p>
+        <p><span class="finding__lede">The best current pooled evidence on stroboscopic visual training indicates a meaningful overall effect on reaction time, with adolescents showing at least modest subgroup benefit.</span> Wang and colleagues synthesized 9 studies involving 323 athletes and found a significant overall effect for reaction time, SMD = -0.82, 95% CI -1.42 to -0.22, p = 0.007, while decision-making ability did not improve significantly. In subgroup analysis, adolescent athletes under 18 improved to a small-but-borderline-significant extent, SMD = -0.32, p = 0.05. The same review suggests that 1–6 weeks, 1–2 sessions per week, and around 10 minutes per session may be a favorable dosage for reaction outcomes, especially with lower strobe frequencies and duty cycles. Heterogeneity was high, so these numbers should guide programming, not dictate it. For parents and coaches, the implication is that strobe glasses are most defensible as short supplemental perceptual training, especially in open-skill sports.</p>
+      </article>
+
+      <article class="finding">
+        <p class="finding__num">Finding 09</p>
+        <p><span class="finding__lede">A second meta-analysis focused on collegiate-athlete studies found that stroboscopic training improves both time-based and accuracy-based sport outcomes, and that adolescent subgroups may gain the most.</span> Luo and colleagues reported significant pooled effects on time-based outcomes, SMD = -0.61, p = 0.045, and accuracy-based outcomes, SMD = 0.73, p &lt; 0.01. Subgroup analyses suggested that 6–10 weeks, 2–3 sessions per week, and 10–20 minutes per session were the most effective broad settings. Notably, the paper reports that adolescent athletes aged 10–18 showed the most pronounced improvements among age subgroups. The limitation is that the review’s evidence base is largely collegiate, so the adolescent inference comes from subgrouping rather than a pure youth-only dataset. Even so, for late adolescents in ball sports, the review supports using stroboscopic drills when the aim is to improve both timing and movement accuracy under visually demanding conditions.</p>
+      </article>
+
+      <article class="finding">
+        <p class="finding__num">Finding 10</p>
+        <p><span class="finding__lede">Vision-based training can improve reaction-related measures in young soccer players, but one genuine youth RCT suggests that superiority over well-run ordinary training may be smaller than the within-group gains imply.</span> In Theofilou and colleagues’ randomized trial, 38 boys aged 10–15 completed a 6-month intervention. The experimental group did 15 minutes of visual-stimuli training 5 times per week before normal soccer, while controls continued standard training. The intervention group improved simple RT by 11.76% (p = 0.002), repeated sprint by 13.36% (p &lt; 0.001), and pen-to-point cognitive function by roughly 72% for both hands, but between-group analyses did not show significant differences for most measurements, and VR-based RT did not improve significantly. This makes the study unusually useful because it tempers enthusiasm: reaction trainers can help, but ordinary soccer practice also develops many of the same capacities. For coaches and parents, that means investment in reaction technology is most justified when it solves a specific training problem, such as repetition of unpredictable cueing, peripheral scanning, or stimulus-rich warm-ups that regular practice does not already provide.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EFFECT SIZES ============ -->
+<section class="section" id="effects" aria-labelledby="effects-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow sec-eyebrow">Scale guide only</p>
+      <h2 class="display h2" id="effects-title">Selected effect sizes in context.</h2>
+    </div>
+
+    <div class="prose" style="margin-bottom:2rem">
+      <p>The chart below uses absolute standardized effects reported in the primary reviews and selected adolescent studies. It is meant only as a scale guide, <strong>not a head-to-head ranking</strong>, because outcomes differ across studies.</p>
+    </div>
+
+    <div class="bars" role="img" aria-label="Bar chart of absolute standardized effect sizes: upper-limb reactive reaction time in Steff and Badau 2024 is 1.52; reactive time with dribbling in Hassan 2025 is 0.88; overall reaction time in the Wang 2025 meta-analysis is 0.82; accuracy-based outcomes in the Luo 2025 meta-analysis are 0.73; time-based outcomes in the Luo 2025 meta-analysis are 0.61.">
+      <div class="bar">
+        <p class="bar__label">Upper-limb reactive RT — Steff &amp; Badau 2024</p>
+        <div class="bar__track"><span class="bar__fill bar__fill--accent" style="width:100%;max-width:640px"></span><span class="bar__val">1.52</span></div>
+      </div>
+      <div class="bar">
+        <p class="bar__label">Reactive time with dribbling — Hassan 2025</p>
+        <div class="bar__track"><span class="bar__fill" style="width:57.9%;max-width:371px"></span><span class="bar__val">0.88</span></div>
+      </div>
+      <div class="bar">
+        <p class="bar__label">Overall RT — Wang 2025 meta-analysis</p>
+        <div class="bar__track"><span class="bar__fill" style="width:53.9%;max-width:345px"></span><span class="bar__val">0.82</span></div>
+      </div>
+      <div class="bar">
+        <p class="bar__label">Accuracy-based outcomes — Luo 2025 meta-analysis</p>
+        <div class="bar__track"><span class="bar__fill" style="width:48.0%;max-width:307px"></span><span class="bar__val">0.73</span></div>
+      </div>
+      <div class="bar">
+        <p class="bar__label">Time-based outcomes — Luo 2025 meta-analysis</p>
+        <div class="bar__track"><span class="bar__fill" style="width:40.1%;max-width:257px"></span><span class="bar__val">0.61</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROTOCOLS ============ -->
+<section class="section bg-snow" id="protocols" aria-labelledby="protocols-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow sec-eyebrow">Educational context</p>
+      <h2 class="display h2" id="protocols-title">Protocols reported in the literature.</h2>
+    </div>
+
+    <div class="callout" style="margin-bottom:clamp(1.75rem,4vw,2.5rem)">
+      <p>The following section describes training structures reported in, or cautiously inferred from, the cited literature. It is included for educational context only and is <strong>not a personalized training prescription</strong>. For athletes ages 13–18, parents, coaches, and qualified professionals should determine whether a particular activity is appropriate.</p>
+      <p>Across the current literature, successful protocols usually preserve movement relevance, constrain duration, and require a direct response to unpredictable cues. FITLIGHT® and stroboscopic systems appear most credible when they sit inside open-skill drills rather than abstract tapping tasks. A separate review on peripheral-vision tools likewise concluded that tools requiring action responses, especially FITLIGHT® and Dynavision-like setups, are the most plausible candidates for transfer to sports tasks.</p>
+    </div>
+
+    <div class="protocols">
+      <article class="protocol">
+        <span class="protocol__dose">2×/week · 6–8 weeks · 12–18 min</span>
+        <h3 class="h3">Reactive agility in invasion sports</h3>
+        <p>Work after warm-up across three drill families: light-triggered lateral shuffles and close-outs; dribble-or-pass decisions from random light cues; and ball-carrying or dribbling through t-test or Illinois-style patterns with reactive light triggers. Start with single-color one-action mappings; progress to two- or three-color rule changes; then add a ball and a live defender shadow. This protocol is most directly supported by the adolescent basketball studies showing gains in reactive agility, dribbling, and reactive timing with FITLIGHT®.</p>
+      </article>
+
+      <article class="protocol">
+        <span class="protocol__dose">3×/week · 8 weeks · 10–15 min</span>
+        <h3 class="h3">Upper-limb reactive speed</h3>
+        <p>Place 4–6 lights on a wall or rack at varying heights. Block 1 uses simple touch responses; block 2 uses conditional hand responses, such as right hand for red and left hand for blue; block 3 adds catch-and-release tasks with a basketball, handball, or tennis ball after each light response. Progression should prioritize reactivity before sheer volume. This structure tracks the pilot evidence showing that upper-limb reactive RT improved more than simple RT in 13–14-year-old basketball players.</p>
+      </article>
+
+      <article class="protocol">
+        <span class="protocol__dose">2×/week · 6 weeks · 12–15 min</span>
+        <h3 class="h3">Peripheral-vision reaction work</h3>
+        <p>Put lights at shoulder height 30–60 degrees off center, with athletes maintaining a forward central fixation while reacting to unilateral or bilateral cues. Start with bilateral visual detection and simple responses, then progress to off-hand catches, deflections, or passes after the cue, and finally to partner-fed balls arriving immediately after the peripheral cue. This is the clearest evidence-based way to train “see more, react sooner” in older adolescents. Because the underlying studies often count successful responses rather than measure pure milliseconds, treat this as perceptual–reactive training, not a lab RT substitute.</p>
+      </article>
+
+      <article class="protocol">
+        <span class="protocol__dose">1–2×/week · 4–6 weeks · 8–10 min</span>
+        <h3 class="h3">Brief stroboscopic adjunct training</h3>
+        <p>Pair strobe glasses with open-skill tasks such as catching, receiving, or controlled one-on-one reads. Keep sessions short and technically clean. Begin with easier strobe conditions and simple receiving tasks, then progress to more difficult duty cycles or faster ball trajectories, but avoid long, fatiguing blocks. The dosing recommendation comes from the best available stroboscopic review, which found stronger reaction-time effects with short, moderate-frequency exposure rather than prolonged, high-frequency loading.</p>
+      </article>
+
+      <article class="protocol">
+        <span class="protocol__dose">3×/week · 20–30 min</span>
+        <h3 class="h3">Low-equipment exergame substitution</h3>
+        <p>If a team lacks a dedicated light system, a coach can still apply the literature’s principles with tablet- or screen-based cueing, using rapid visual discrimination tasks followed immediately by sport-specific movements. The strongest evidence for this approach is in early adolescents, where exergame-style programs improved simple, recognition, and cognitive reaction time across multiple sports. The main caution is transfer: always finish exergame work with a real ball, real footwork, or real passing/receiving to preserve sport specificity.</p>
+      </article>
+
+      <article class="protocol">
+        <span class="protocol__dose">Guardrails</span>
+        <h3 class="h3">Implementation rules</h3>
+        <p>Keep sessions short enough that attention quality stays high. Prefer unpredictable cues over fixed sequences. Pair cueing with movement, a ball, or an opponent whenever possible. Use progression by decision complexity before progression by fatigue. And, crucially, do not assume that more weekly volume is automatically better: one youth-basketball study found that a short, massed 3-week add-on raised effort without yielding extra executive-function gains beyond normal practice.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PATHWAY ============ -->
+<section class="section" id="pathway" aria-labelledby="pathway-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow sec-eyebrow">How researchers describe the mechanism</p>
+      <h2 class="display h2" id="pathway-title">Intervention pathway.</h2>
+    </div>
+
+    <div class="prose" style="margin-bottom:clamp(1.75rem,4vw,2.5rem)">
+      <p>The current literature suggests a fairly consistent pathway from reaction-trainer exposure to performance change. Light-based or stroboscopic constraints increase visual-cue processing demands, which pushes athletes to detect cues sooner, link cue perception to the correct response more efficiently, and maintain attention under uncertainty; when drills remain sport-specific, those near-transfer gains can become faster reactive movements, cleaner dribbling or receiving, and better accuracy under time pressure. <strong>The transfer is strongest when the response looks like the sport.</strong></p>
+    </div>
+
+    <div class="flow">
+      <div class="flow__col">
+        <p class="flow__head">Exposure</p>
+        <div class="flow__node flow__node--start">Reaction trainer exposure — FITLIGHT®, exergames, strobe glasses</div>
+      </div>
+      <div class="flow__col">
+        <p class="flow__head">Demands</p>
+        <div class="flow__node">More efficient cue detection</div>
+        <div class="flow__node">Greater perception–action coupling</div>
+        <div class="flow__node">Higher attentional and peripheral-vision demand</div>
+      </div>
+      <div class="flow__col">
+        <p class="flow__head">Adaptations</p>
+        <div class="flow__node">Faster simple or choice reaction time</div>
+        <div class="flow__node">Better reactive agility and technical execution</div>
+        <div class="flow__node">More stable visual-motor coordination</div>
+      </div>
+      <div class="flow__col">
+        <p class="flow__head">Outcome</p>
+        <div class="flow__node">Near-transfer sport gains</div>
+        <div class="flow__node flow__node--end">Best practical use: short, sport-specific, moderate dose</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GAPS ============ -->
+<section class="section bg-snow" id="gaps" aria-labelledby="gaps-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow sec-eyebrow">What we still don't know</p>
+      <h2 class="display h2" id="gaps-title">Gaps, limitations, and future research.</h2>
+    </div>
+    <div class="prose">
+      <p>The major gap is not whether reaction trainers can work, but under what exact conditions they work best for adolescents. Small samples remain common, especially in the most age-relevant basketball and goalkeeper studies. Several FITLIGHT® papers are pilots or quasi-experiments without full control groups, and many outcomes are coach-designed or device-specific rather than standardized across studies. This makes synthesis possible, but not neat.</p>
+      <p>A second gap is transfer. Near transfer to reactive agility, dribbling, or hand–eye tasks is fairly visible, but far transfer to match performance, tactical decisions, or long-term competition outcomes is still underdeveloped. The adolescent soccer RCT is especially instructive here: within-group changes were clear, yet between-group superiority on most reaction measures was limited. That is a warning not to oversell technology when conventional practice may already produce similar gains.</p>
+      <p>A third gap is population coverage. Basketball dominates the adolescent FITLIGHT® literature; girls and non-basketball athletes are less represented, though female improvements were notable in some multisport and female-basketball studies. There is also a narrow age clustering around 13–18 or late-adolescent 18-year-olds, with relatively little high-quality work tracking maturation stage, biological age, or retention after training stops.</p>
+      <p>Future research should prioritize adequately powered randomized trials in 13–18-year-olds, shared reaction-time metrics in milliseconds plus sport-performance outcomes, retention testing after 4–12 weeks, and direct comparisons of light-based, stroboscopic, and exergame protocols against well-matched active controls. The field also needs more female-specific samples, more head-to-head dose studies, and more transparent reporting of device settings so that practitioners can reproduce successful protocols.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REFERENCES ============ -->
+<section class="section" id="references" aria-labelledby="references-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow sec-eyebrow">Sources</p>
+      <h2 class="display h2" id="references-title">References.</h2>
+    </div>
+
+    <ul class="refs">
+      <li>Badau, D., Badau, A., Ene-Voiculescu, C., Larion, A., Ene-Voiculescu, V., Mihaila, I., Fleancu, J. L., Tudor, V., Tifrea, C., Cotovanu, A. S., &amp; Abramiuc, A. (2022). The impact of implementing an exergame program on the level of reaction time optimization in handball, volleyball, and basketball players. <em>International Journal of Environmental Research and Public Health, 19</em>(9), 5598. <a href="https://doi.org/10.3390/ijerph19095598" rel="noopener nofollow" target="_blank">doi:10.3390/ijerph19095598</a></li>
+
+      <li>Badau, D., Stoica, A. M., Litoi, M. F., Badau, A., Duta, D., Hantau, C. G., Sabau, A. M., Oancea, B. M., Ciocan, C. V., Fleancu, J. L., &amp; Gozu, B. (2023). The impact of peripheral vision on manual reaction time using Fitlight technology for handball, basketball and volleyball players. <em>Bioengineering, 10</em>(6), 697. <a href="https://doi.org/10.3390/bioengineering10060697" rel="noopener nofollow" target="_blank">doi:10.3390/bioengineering10060697</a></li>
+
+      <li>Hassan, A. K. (2025). FITLIGHT training and its influence on visual-motor reactions and dribbling speed in female basketball players: Prospective evaluation study. <em>JMIR Serious Games, 13</em>, e70519. <a href="https://doi.org/10.2196/70519" rel="noopener nofollow" target="_blank">doi:10.2196/70519</a></li>
+
+      <li>Hassan, A. K., Alhumaid, M. M., &amp; Hamad, B. E. (2022). The effect of using reactive agility exercises with the FITLIGHT training system on the speed of visual reaction time and dribbling skill of basketball players. <em>Sports, 10</em>(11), 176. <a href="https://doi.org/10.3390/sports10110176" rel="noopener nofollow" target="_blank">doi:10.3390/sports10110176</a></li>
+
+      <li>Luo, Y., Cao, Y., Pan, X., Li, S., Koh, D., &amp; Shi, Y. (2025). Effects of stroboscopic visual training on reaction time and movement accuracy in collegiate athletes: A systematic review and meta-analysis. <em>Scientific Reports, 15</em>, 25151. <a href="https://doi.org/10.1038/s41598-025-10393-4" rel="noopener nofollow" target="_blank">doi:10.1038/s41598-025-10393-4</a></li>
+
+      <li>Steff, N., &amp; Badau, D. (2024). A pilot study regarding the development of reaction time through the implementation of Fitlight technology in the training of basketball players aged 13–14 years. <em>Health, Sports &amp; Rehabilitation Medicine, 25</em>(1), 17–22. <a href="https://doi.org/10.26659/pm3.2024.25.1.17" rel="noopener nofollow" target="_blank">doi:10.26659/pm3.2024.25.1.17</a></li>
+
+      <li>Steff, N., Badau, D., &amp; Badau, A. (2024). Study on the impact of implementing an exercise program using Fitlight technology for the development of upper limb coordinative abilities in basketball players. <em>Sensors, 24</em>(11), 3482. <a href="https://doi.org/10.3390/s24113482" rel="noopener nofollow" target="_blank">doi:10.3390/s24113482</a></li>
+
+      <li>Theofilou, G., Ladakis, I., Mavroidi, C., Kilintzis, V., Mirachtsis, T., Chouvarda, I., &amp; Kouidi, E. (2022). The effects of a visual stimuli training program on reaction time, cognitive function, and fitness in young soccer players. <em>Sensors, 22</em>(17), 6680. <a href="https://doi.org/10.3390/s22176680" rel="noopener nofollow" target="_blank">doi:10.3390/s22176680</a></li>
+
+      <li>Wang, R., and colleagues. (2025). Effects of stroboscopic visual training on reaction time and decision-making ability in athletes: A systematic review and meta-analysis. <em>Frontiers in Psychology</em>. <a href="https://doi.org/10.3389/fpsyg.2025.1697425" rel="noopener nofollow" target="_blank">doi:10.3389/fpsyg.2025.1697425</a></li>
+
+      <li>Wilkins, L., Nelson, C., &amp; Tweddle, S. (2018). Stroboscopic visual training: A pilot study with three elite youth football goalkeepers. <em>Journal of Cognitive Enhancement, 2</em>(1), 3–11. <a href="https://doi.org/10.1007/s41465-017-0038-z" rel="noopener nofollow" target="_blank">doi:10.1007/s41465-017-0038-z</a></li>
+
+      <li>Vater, C., and colleagues. (2021). The top five peripheral vision tools in sport. <em>Current Sports Medicine Reports</em>. <a href="https://pubmed.ncbi.nlm.nih.gov/34285176/" rel="noopener nofollow" target="_blank">PMID: 34285176</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ FINAL DISCLAIMER ============ -->
+<section class="section bg-dark" id="final-disclaimer" aria-labelledby="final-disclaimer-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow" style="color:var(--grey-500);margin-bottom:.6rem">In closing</p>
+      <h2 class="display h2" id="final-disclaimer-title">Final reliance disclaimer.</h2>
+    </div>
+
+    <div class="callout callout--dark">
+      <p><strong>Trademark notice:</strong> Digaball™ is a trademark of its owner. All other trademarks, service marks, product names, and company names belong to their respective owners.</p>
+
+      <p>This report is a good-faith summary of third-party research available when the report was prepared. It does not establish that the Digaball™ Volleyball Reaction Trainer is clinically proven, scientifically validated, or capable of producing any specific percentage, effect size, reaction-time reduction, or athletic outcome. The app is a supplemental training and entertainment tool and does not replace live volleyball practice, professional coaching, medical care, rehabilitation, or sports-performance assessment.</p>
+
+      <p>By using this information, readers accept responsibility for their own decisions and for appropriately supervising minors and training activities. Nothing on this page creates a professional, advisory, medical, coaching, fiduciary, or other special relationship.</p>
+
+      <p style="font-style:italic;color:var(--grey-500)">This disclaimer is intended to reduce risk but cannot eliminate all potential legal liability. Applicable consumer-protection, advertising, product-liability, privacy, and other laws may limit the enforceability of disclaimers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="section bg-dark cta" aria-labelledby="cta-title" style="border-top:1px solid var(--grey-800)">
+  <svg class="cta__grid" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect width="1200" height="400" fill="url(#net)"/>
+  </svg>
+  <div class="wrap cta__inner">
+    <p class="eyebrow" style="color:var(--grey-500)">Back to the app</p>
+    <h2 class="display cta__title" id="cta-title">Train the reaction.</h2>
+    <p class="cta__copy">The Volleyball Reaction Trainer is a one-minute, phone-based drill built by Coach Duke — coming soon to iOS and Android for $2.99.</p>
+    <div class="cta__actions">
+      <a class="btn btn--light" href="index.html">Back to the Reaction Trainer <span class="arr" aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost-inv" href="index.html#faq">Read the FAQ</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="footer__inner">
+    <div>
+      <div class="footer__brandrow">
+        <img class="footer__mark" src="../assets/logo.png" alt="Digaball logo" width="52" height="52">
+        <p class="footer__brand">Digaball</p>
+      </div>
+      <p class="footer__meta">© <span id="year">2026</span> Digaball · Volleyball Reaction Trainer · Austin, TX</p>
+    </div>
+    <ul class="footer__links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="index.html">Reaction Trainer</a></li>
+      <li><a href="index.html#how">How it works</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+  <p class="footer__legal">Educational summary only. The independent studies referenced on this page did not test, evaluate, validate, or endorse the Digaball™ Volleyball Reaction Trainer. FITLIGHT®, Senaptec and all other third-party marks are the property of their respective owners, and their inclusion does not imply affiliation or endorsement. Nothing here is medical, healthcare, sports-medicine or coaching advice, or a guarantee of athletic improvement.</p>
+</footer>
+
+<script>
+  (function(){
+    var btn = document.getElementById('navToggle');
+    var links = document.getElementById('navLinks');
+    if(btn && links){
+      btn.addEventListener('click', function(){
+        var open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        btn.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+        links.classList.toggle('open', !open);
+      });
+      links.addEventListener('click', function(e){
+        if(e.target.closest('a')){
+          btn.setAttribute('aria-expanded','false');
+          btn.setAttribute('aria-label','Open menu');
+          links.classList.remove('open');
+        }
+      });
+    }
+    var y = document.getElementById('year');
+    if(y){ y.textContent = new Date().getFullYear(); }
+  })();
+</script>
+</body>
+</html>
