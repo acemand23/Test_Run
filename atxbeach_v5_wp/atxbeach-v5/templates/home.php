@@ -1,0 +1,422 @@
+<?php
+if (!defined('ABSPATH')) exit;
+$ATXB = ATXBEACH_ASSETS;
+$LINK = [
+    'index'   => esc_url(home_url('/')),
+    'play'    => esc_url(home_url('/play/')),
+    'train'   => esc_url(home_url('/train/')),
+    'juniors' => esc_url(home_url('/juniors/')),
+    'events'  => esc_url(home_url('/events/')),
+];
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATX Beach — Austin's Largest Sand Volleyball Venue</title>
+<meta name="description" content="ATX Beach — Austin's largest sand volleyball venue. 8 lit pro courts, white sand, full bar. Pick a court: Train, ATX Juniors, Play, or Host Events.">
+<meta property="og:title" content="ATX Beach — Look Down. Pick Your Court.">
+<meta property="og:description" content="8 lit pro sand courts, white sand, full bar. Train · Juniors · Play · Host Events.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<?php wp_head(); ?>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* brand tokens (from ATX Beach styles.css) */
+    --black:#0d0d0f; --navy:#0c2b3a; --navy-deep:#071c27;
+    --teal:#1aa6b7; --coral:#ff6b4a; --gold:#f0a423; --purple:#5a4fcf; --sun:#ffc14d;
+    --paint:#fbf7ee;                 /* court line paint */
+    --sand-lo:#d8bf90;               /* raked / ungroomed sand */
+    --sand-mid:#e7d2a6;
+    --sand-hi:#f3e6c8;               /* groomed court sand */
+    --ink:#15191c;
+    --font-display:'Oswald','Arial Narrow',system-ui,sans-serif;
+    --font-body:'Inter',system-ui,-apple-system,Helvetica,Arial,sans-serif;
+    --ticker-h:48px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--font-body); color:var(--ink);
+    background:var(--sand-mid);
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh; display:flex; flex-direction:column;
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* ============ NEWS / DEALS TICKER ============ */
+  .ticker{
+    position:sticky; top:0; z-index:50;
+    height:var(--ticker-h);
+    display:flex; align-items:center; gap:0;
+    background:linear-gradient(180deg,#0f3346,#071c27);
+    color:#fff; overflow:hidden;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .ticker__brand{
+    display:flex; align-items:center; gap:10px;
+    padding:0 16px; height:100%;
+    background:var(--black); flex:none; z-index:2;
+  }
+  .ticker__brand img{height:24px;width:auto;display:block}
+  .ticker__flag{
+    flex:none; align-self:stretch; display:flex; align-items:center;
+    padding:0 14px; font-family:var(--font-display); font-weight:700;
+    font-size:.72rem; letter-spacing:1.5px; text-transform:uppercase;
+    background:var(--coral); color:#fff; z-index:2;
+  }
+  .ticker__viewport{flex:1 1 auto; overflow:hidden; position:relative; align-self:stretch}
+  .ticker__track{
+    display:flex; width:max-content; height:100%; align-items:center;
+    animation:marquee 46s linear infinite; will-change:transform;
+  }
+  .ticker:hover .ticker__track{animation-play-state:paused}
+  .ticker__group{display:flex; align-items:center; flex:none}
+  .ticker__item{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:0 26px; white-space:nowrap;
+    font-size:.86rem; font-weight:500; color:rgba(255,255,255,.92);
+  }
+  .ticker__item b{color:var(--sun); font-weight:700}
+  .ticker__item::after{content:"";width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.32);margin-left:26px}
+  .ticker__cta{
+    flex:none; align-self:stretch; display:flex; align-items:center;
+    padding:0 18px; background:var(--teal); color:#fff;
+    font-family:var(--font-display); font-weight:600; font-size:.78rem;
+    letter-spacing:1px; text-transform:uppercase; z-index:2;
+    transition:background .2s;
+  }
+  .ticker__cta:hover{background:#12879a}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ============ SAND STAGE ============ */
+  .stage{
+    position:relative; flex:1 1 auto;
+    padding:26px clamp(16px,3vw,40px) 30px;
+    display:flex; flex-direction:column;
+    /* ATX blue ocean field — sand courts float on top */
+    background:
+      repeating-linear-gradient(115deg, rgba(255,255,255,.04) 0 2px, transparent 2px 16px),
+      radial-gradient(130% 95% at 50% -12%, rgba(37,195,214,.5), transparent 62%),
+      linear-gradient(162deg, #0e4257 0%, #08222e 100%);
+  }
+  /* subtle water-shimmer grain over the blue (self-contained SVG noise) */
+  .stage::before{
+    content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+    mix-blend-mode:soft-light; opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:200px 200px;
+  }
+  .stage__intro{
+    position:relative; z-index:1; text-align:center;
+    margin:2px 0 20px;
+  }
+  .stage__intro .eyebrow{
+    font-family:var(--font-display); font-weight:600;
+    font-size:.72rem; letter-spacing:3px; text-transform:uppercase;
+    color:var(--sun);
+  }
+  .stage__intro h1{
+    font-family:var(--font-display); font-weight:700; text-transform:uppercase;
+    font-size:clamp(1.15rem,2.6vw,1.9rem); letter-spacing:.5px; line-height:1.05;
+    color:#fff; margin-top:4px; text-shadow:0 2px 14px rgba(0,0,0,.28);
+  }
+  .stage__intro h1 span{color:var(--coral)}
+
+  /* ============ COURTS GRID ============ */
+  .courts{
+    position:relative; z-index:1;
+    flex:1 1 auto; display:grid; gap:clamp(14px,2vw,26px);
+    grid-template-columns:repeat(4,1fr);
+    max-width:1240px; width:100%; margin:0 auto; align-items:stretch;
+  }
+
+  .court{
+    position:relative; display:flex; flex-direction:column;
+    min-height:clamp(300px,52vh,520px);
+    padding:22px 20px;
+    background:
+      radial-gradient(130% 80% at 50% 0%, rgba(255,255,255,.10), transparent 55%),
+      linear-gradient(180deg,var(--sand-hi),#ecdcb6);
+    border-radius:6px;
+    box-shadow:0 1px 0 rgba(255,255,255,.5) inset, 0 14px 26px -18px rgba(60,40,10,.5);
+    overflow:hidden; isolation:isolate;
+    color:#3a2c14;
+    transition:transform .22s ease, box-shadow .28s ease, filter .28s ease;
+  }
+  /* painted court boundary (inner sideline) */
+  .court::before{
+    content:""; position:absolute; inset:12px; z-index:1; pointer-events:none;
+    border:3px solid rgba(251,247,238,.92);
+    border-radius:3px;
+    box-shadow:0 0 0 1px rgba(120,90,40,.18), 0 0 0 1px rgba(120,90,40,.18) inset;
+  }
+  /* faint grain inside the groomed court */
+  .court::after{
+    content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+    mix-blend-mode:multiply; opacity:.07;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
+  }
+
+  /* the net across the middle */
+  .court__net{
+    position:absolute; left:12px; right:12px; top:50%; transform:translateY(-50%);
+    height:16px; z-index:4; pointer-events:none;
+    background:
+      repeating-linear-gradient(90deg, rgba(20,25,28,.55) 0 1px, transparent 1px 6px),
+      repeating-linear-gradient(0deg, rgba(20,25,28,.55) 0 1px, transparent 1px 6px);
+    border-top:2px solid rgba(20,25,28,.7);
+    border-bottom:2px solid rgba(20,25,28,.7);
+    opacity:.5;
+  }
+  .court__net::before,.court__net::after{
+    content:""; position:absolute; top:-6px; width:8px; height:28px; border-radius:2px;
+    background:#2a2018;
+  }
+  .court__net::before{left:-6px}
+  .court__net::after{right:-6px}
+
+  /* each court is split in two: a real photo (top) + the sand label panel (bottom) */
+  .court__half{position:relative; z-index:3; display:flex; flex-direction:column}
+  .court__half--a{flex:1 1 0}
+  .court__half--b{flex:1 1 0; justify-content:flex-start; padding-top:22px}
+  .court__photo{
+    padding:0; overflow:hidden; background-size:cover; background-position:center top;
+    transition:transform .5s ease;
+  }
+  .court__photo::after{
+    content:""; position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, rgba(8,26,34,.18) 0%, transparent 24%,
+      rgba(20,25,28,.04) 74%, rgba(236,220,182,.55) 100%);
+  }
+  .court:hover .court__photo,.court:focus-visible .court__photo{transform:scale(1.06)}
+
+  .court__tag{
+    position:relative; z-index:3; margin-top:6px;
+    font-family:var(--font-display); font-weight:600;
+    font-size:.68rem; letter-spacing:1.6px; text-transform:uppercase;
+    color:color-mix(in srgb, var(--c) 78%, #3a2c14);
+  }
+  .court__label{
+    position:relative; z-index:3; margin-top:2px;
+    font-family:var(--font-display); font-weight:700; text-transform:uppercase;
+    font-size:clamp(1.7rem,3vw,2.5rem); line-height:.95; letter-spacing:.5px;
+    color:#2c2110;
+    text-shadow:0 1px 0 rgba(255,255,255,.5);
+  }
+  .court__label u{text-decoration:none; display:block; height:4px; width:44px; margin-top:10px; background:var(--c); border-radius:3px}
+
+  .court__desc{
+    position:relative; z-index:3; margin-top:0;
+    font-size:.9rem; line-height:1.45; color:#4a3a20; max-width:26ch;
+  }
+  .court__cta{
+    position:relative; z-index:3; margin-top:14px;
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--font-display); font-weight:600; font-size:.82rem;
+    letter-spacing:1.5px; text-transform:uppercase; color:#fff;
+    background:var(--c); align-self:flex-start;
+    padding:9px 16px; border-radius:4px;
+    box-shadow:0 6px 16px -8px var(--c);
+  }
+  .court__arrow{transition:transform .2s}
+
+  /* ---- hover: the court "lights up" (nod to 8 lit courts) ---- */
+  .court:hover, .court:focus-visible{
+    transform:translateY(-4px);
+    filter:brightness(1.04);
+    box-shadow:
+      0 0 0 2px color-mix(in srgb,var(--c) 55%,transparent),
+      0 22px 40px -20px var(--c),
+      0 0 60px -10px color-mix(in srgb,var(--c) 55%,transparent);
+    outline:none;
+  }
+  .court:hover::before,.court:focus-visible::before{
+    border-color:#fff;
+    box-shadow:0 0 12px rgba(255,255,255,.5), 0 0 0 1px rgba(120,90,40,.18) inset;
+  }
+  .court:hover .court__arrow,.court:focus-visible .court__arrow{transform:translateX(5px)}
+
+  /* ============ VENUE FOOTER STRIP ============ */
+  .venue{
+    background:var(--black); color:rgba(255,255,255,.8);
+    padding:14px clamp(16px,3vw,40px);
+    display:flex; flex-wrap:wrap; align-items:center; gap:10px 26px;
+    justify-content:space-between; font-size:.82rem;
+  }
+  .venue__pitch{
+    font-family:var(--font-display); font-weight:600; letter-spacing:1.5px;
+    text-transform:uppercase; color:#fff; font-size:.8rem;
+  }
+  .venue__pitch b{color:var(--sun); font-weight:700}
+  .venue__meta{display:flex; flex-wrap:wrap; gap:6px 20px; align-items:center}
+  .venue__meta a{color:rgba(255,255,255,.8)}
+  .venue__meta a:hover{color:#fff}
+  .venue__meta .dot{opacity:.35}
+  /* keep footer text clear of the floating waiver button on desktop */
+  @media (min-width:561px){ .venue{ padding-left:196px } }
+
+  /* ============ SIGN-WAIVER FLOATING BUTTON (bottom-left) ============ */
+  .waiver-fab{
+    position:fixed; left:16px; bottom:14px; z-index:80;
+    display:inline-flex; align-items:center; gap:9px;
+    background:var(--coral); color:#fff;
+    font-family:var(--font-display); font-weight:600;
+    font-size:.82rem; letter-spacing:1.2px; text-transform:uppercase;
+    padding:11px 18px; border-radius:999px;
+    box-shadow:0 12px 26px -8px rgba(0,0,0,.6), 0 0 0 3px rgba(255,255,255,.16);
+    transition:transform .18s ease, background .2s ease;
+  }
+  .waiver-fab:hover{ transform:translateY(-2px); background:#e8512f }
+  .waiver-fab svg{ width:16px; height:16px; display:block; flex:none }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:1000px){
+    .courts{grid-template-columns:repeat(2,1fr)}
+    .court{min-height:clamp(280px,40vh,420px)}
+  }
+  @media (max-width:560px){
+    :root{--ticker-h:44px}
+    .ticker__flag{display:none}
+    .courts{grid-template-columns:1fr; gap:14px}
+    /* phone: courts are wide + short, so orient the net VERTICALLY down
+       the middle with the title on the left half and details on the right */
+    .court{min-height:172px; flex-direction:row; align-items:stretch}
+    .court__half{justify-content:center; flex:1 1 0; min-width:0}
+    .court__half--a{flex:1 1 0; padding-right:8px}
+    .court__half--b{flex:1 1 0; margin-top:0; padding-top:0; padding-left:22px}
+    .court__label{font-size:clamp(1.5rem,7vw,2rem)}
+    .court__desc{max-width:none}
+    /* net rotated to vertical */
+    .court__net{
+      top:14px; bottom:14px; left:50%; right:auto; transform:translateX(-50%);
+      width:16px; height:auto;
+      border-top:none; border-bottom:none;
+      border-left:2px solid rgba(20,25,28,.7);
+      border-right:2px solid rgba(20,25,28,.7);
+    }
+    .court__net::before,.court__net::after{
+      left:50%; right:auto; transform:translateX(-50%);
+      width:18px; height:8px; top:auto; bottom:auto;
+    }
+    .court__net::before{top:-6px}
+    .court__net::after{bottom:-6px}
+    .venue{justify-content:center; text-align:center; padding:14px 18px 58px}
+    .waiver-fab{left:12px; bottom:12px; font-size:.74rem; padding:10px 14px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .ticker__track{animation:none}
+    .court{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NEWS / DEALS TICKER ============ -->
+<div class="ticker" role="region" aria-label="Latest news and deals">
+  <a class="ticker__brand" href="<?php echo $LINK['index']; ?>" aria-label="ATX Beach home">
+    <img src="<?php echo $ATXB; ?>images/photos/logo-white.png" alt="ATX Beach">
+  </a>
+  <span class="ticker__flag" aria-hidden="true">News &amp; Deals</span>
+  <div class="ticker__viewport">
+    <div class="ticker__track">
+      <div class="ticker__group">
+        <span class="ticker__item"><b>NEW</b> Summer memberships are open — train year-round on 8 pro courts</span>
+        <span class="ticker__item">🏐 Coed 4s &amp; 6s leagues forming now — grab your team's spot</span>
+        <span class="ticker__item">🎉 Book the whole venue — corporate &amp; private events, 8 courts + full bar</span>
+        <span class="ticker__item">☀️ Open play daily — check in at the Turtle Shack</span>
+        <span class="ticker__item"><b>DEAL</b> New-player clinic — first session on us</span>
+        <span class="ticker__item">🧒 ATX Juniors summer camps — spots filling fast</span>
+        <span class="ticker__item">🍹 Turtle Shack: full bar, 7 TVs, cold drinks &amp; concessions</span>
+      </div>
+      <div class="ticker__group" aria-hidden="true">
+        <span class="ticker__item"><b>NEW</b> Summer memberships are open — train year-round on 8 pro courts</span>
+        <span class="ticker__item">🏐 Coed 4s &amp; 6s leagues forming now — grab your team's spot</span>
+        <span class="ticker__item">🎉 Book the whole venue — corporate &amp; private events, 8 courts + full bar</span>
+        <span class="ticker__item">☀️ Open play daily — check in at the Turtle Shack</span>
+        <span class="ticker__item"><b>DEAL</b> New-player clinic — first session on us</span>
+        <span class="ticker__item">🧒 ATX Juniors summer camps — spots filling fast</span>
+        <span class="ticker__item">🍹 Turtle Shack: full bar, 7 TVs, cold drinks &amp; concessions</span>
+      </div>
+    </div>
+  </div>
+  <a class="ticker__cta" href="<?php echo $LINK['play']; ?>">Book a Court</a>
+</div>
+
+<!-- ============ SAND STAGE — LOOK STRAIGHT DOWN ============ -->
+<main class="stage">
+  <div class="stage__intro">
+    <span class="eyebrow">Austin's Largest Sand Volleyball Venue</span>
+  </div>
+
+  <div class="courts">
+
+    <a class="court" href="<?php echo $LINK['play']; ?>" style="--c:#1aa6b7">
+      <span class="court__net" aria-hidden="true"></span>
+      <span class="court__half court__half--a court__photo" style="background-image:url(<?php echo $ATXB; ?>images/photos/action-43.jpg)" aria-hidden="true"></span>
+      <span class="court__half court__half--b">
+        <span class="court__tag">Open Play &amp; Court Rentals</span>
+        <span class="court__label">Play<u></u></span>
+        <span class="court__desc">Reserve one of 8 pro courts or drop into open play. Check in and hit the sand.</span>
+        <span class="court__cta">Book &amp; Play <span class="court__arrow">→</span></span>
+      </span>
+    </a>
+
+    <a class="court" href="<?php echo $LINK['juniors']; ?>" style="--c:#f0a423">
+      <span class="court__net" aria-hidden="true"></span>
+      <span class="court__half court__half--a court__photo" style="background-image:url(<?php echo $ATXB; ?>images/site/social-3.jpg)" aria-hidden="true"></span>
+      <span class="court__half court__half--b">
+        <span class="court__tag">Youth Programs</span>
+        <span class="court__label">Juniors<u></u></span>
+        <span class="court__desc">Camps, clinics, and competitive pathways that grow young players on and off the sand.</span>
+        <span class="court__cta">Explore Juniors <span class="court__arrow">→</span></span>
+      </span>
+    </a>
+
+    <a class="court" href="<?php echo $LINK['train']; ?>" style="--c:#ff6b4a">
+      <span class="court__net" aria-hidden="true"></span>
+      <span class="court__half court__half--a court__photo" style="background-image:url(<?php echo $ATXB; ?>images/photos/action-87.jpg)" aria-hidden="true"></span>
+      <span class="court__half court__half--b">
+        <span class="court__tag">Adult Clinics &amp; Memberships</span>
+        <span class="court__label">Train<u></u></span>
+        <span class="court__desc">Clinics, coaching, and memberships for every level — get better on the sand.</span>
+        <span class="court__cta">Start Training <span class="court__arrow">→</span></span>
+      </span>
+    </a>
+
+    <a class="court" href="<?php echo $LINK['events']; ?>" style="--c:#5a4fcf">
+      <span class="court__net" aria-hidden="true"></span>
+      <span class="court__half court__half--a court__photo" style="background-image:url(<?php echo $ATXB; ?>images/photos/play-3983.jpg)" aria-hidden="true"></span>
+      <span class="court__half court__half--b">
+        <span class="court__tag">Tournaments &amp; Rentals</span>
+        <span class="court__label">Host Events<u></u></span>
+        <span class="court__desc">Tournaments, leagues, corporate &amp; private events — book the whole venue and bar.</span>
+        <span class="court__cta">Host With Us <span class="court__arrow">→</span></span>
+      </span>
+    </a>
+
+  </div>
+</main>
+
+<!-- ============ VENUE STRIP ============ -->
+<footer class="venue">
+  <span class="venue__pitch"><b>8 lit pro courts</b> · white sand · full bar · leagues &amp; tournaments</span>
+  <span class="venue__meta">
+    <span>Open daily 8a–12a</span><span class="dot">·</span>
+    <a href="tel:+15128789459">(512) 878-9459</a><span class="dot">·</span>
+    <a href="https://maps.google.com/?q=11000+Middle+Fiskville+Road+Bldg+E+Austin+TX+78753" target="_blank" rel="noopener">11000 Middle Fiskville Rd, Austin</a>
+  </span>
+</footer>
+
+<!-- ============ SIGN WAIVER (floating, bottom-left) ============ -->
+<a class="waiver-fab" href="<?php echo $LINK['play']; ?>" aria-label="Sign your waiver">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+  Sign Waiver
+</a>
+
+<?php wp_footer(); ?>
+</body>
+</html>

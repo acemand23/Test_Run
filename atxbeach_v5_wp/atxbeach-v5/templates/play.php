@@ -1,0 +1,148 @@
+<?php
+if (!defined('ABSPATH')) exit;
+$ATXB = ATXBEACH_ASSETS;
+$LINK = [
+    'index'   => esc_url(home_url('/')),
+    'play'    => esc_url(home_url('/play/')),
+    'train'   => esc_url(home_url('/train/')),
+    'juniors' => esc_url(home_url('/juniors/')),
+    'events'  => esc_url(home_url('/events/')),
+];
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Play — Open Play &amp; Court Reservations | ATX Beach</title>
+<meta name="description" content="Reserve one of 8 pro sand volleyball courts or drop into open play at ATX Beach in Austin. Check in at the Turtle Shack, sign your waiver, and get on the sand. Booking via YourCourts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<?php wp_head(); ?>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo $ATXB; ?>pages.css">
+</head>
+<body class="page-play">
+
+<!-- ticker -->
+<div class="ticker" role="region" aria-label="Latest news and deals">
+  <a class="ticker__brand" href="<?php echo $LINK['index']; ?>" aria-label="ATX Beach home"><img src="<?php echo $ATXB; ?>images/photos/logo-white.png" alt="ATX Beach"></a>
+  <span class="ticker__flag" aria-hidden="true">News &amp; Deals</span>
+  <div class="ticker__viewport"><div class="ticker__track">
+    <div class="ticker__group">
+      <span class="ticker__item"><b>NEW</b> Summer memberships are open — train year-round on 8 pro courts</span>
+      <span class="ticker__item">🏐 Coed 4s &amp; 6s leagues forming now — grab your team's spot</span>
+      <span class="ticker__item">🎉 Book the whole venue — corporate &amp; private events, 8 courts + full bar</span>
+      <span class="ticker__item">☀️ Open play daily — check in at the Turtle Shack</span>
+      <span class="ticker__item"><b>DEAL</b> New-player clinic — first session on us</span>
+      <span class="ticker__item">🧒 ATX Juniors summer camps — spots filling fast</span>
+      <span class="ticker__item">🍹 Turtle Shack: full bar, 7 TVs, cold drinks &amp; concessions</span>
+    </div>
+    <div class="ticker__group" aria-hidden="true">
+      <span class="ticker__item"><b>NEW</b> Summer memberships are open — train year-round on 8 pro courts</span>
+      <span class="ticker__item">🏐 Coed 4s &amp; 6s leagues forming now — grab your team's spot</span>
+      <span class="ticker__item">🎉 Book the whole venue — corporate &amp; private events, 8 courts + full bar</span>
+      <span class="ticker__item">☀️ Open play daily — check in at the Turtle Shack</span>
+      <span class="ticker__item"><b>DEAL</b> New-player clinic — first session on us</span>
+      <span class="ticker__item">🧒 ATX Juniors summer camps — spots filling fast</span>
+      <span class="ticker__item">🍹 Turtle Shack: full bar, 7 TVs, cold drinks &amp; concessions</span>
+    </div>
+  </div></div>
+  <a class="ticker__cta" href="https://atxbeach.com/book-a-court/" target="_blank" rel="noopener">Book a Court</a>
+</div>
+
+<main>
+  <!-- court-style hero -->
+  <header class="phero" style="background-image:url(<?php echo $ATXB; ?>images/photos/action-87.jpg)">
+    <div class="wrap">
+      <div class="breadcrumb"><a href="<?php echo $LINK['index']; ?>">Home</a> &rsaquo; Play</div>
+      <span class="eyebrow">Open Play &amp; Court Reservations</span>
+      <h1>Get on the sand.</h1>
+      <p>Reserve one of our 8 pro courts for your crew, or drop into open play and jump straight into games. Reservations and open play run through YourCourts.</p>
+      <div class="actions">
+        <a href="https://atxbeach.com/book-a-court/" target="_blank" rel="noopener" class="btn btn-accent">Book a Court</a>
+        <a href="https://atxbeach.com/book-a-court/" target="_blank" rel="noopener" class="btn btn-ghost">Join Open Play</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- how it works -->
+  <section class="panel"><div class="wrap">
+    <div class="panel-head">
+      <span class="eyebrow">How it works</span>
+      <h2>From reservation to first serve</h2>
+      <p>Three quick steps and you're playing. New here? Open play is the easiest way to get a game going.</p>
+    </div>
+    <div class="cards">
+      <div class="sand card"><span class="num">1</span><h3>Reserve or drop in</h3><p>Book a court by the hour through YourCourts, or grab a spot in an open play session — no full team required.</p></div>
+      <div class="sand card"><span class="num">2</span><h3>Check in &amp; sign your waiver</h3><p>Stop by the Turtle Shack to check in. Every player completes a waiver before stepping on the sand.</p></div>
+      <div class="sand card"><span class="num">3</span><h3>Play ball</h3><p>Eight pro-grade courts under 200-ft shade runways. Grab water at the Turtle Shack and play.</p></div>
+    </div>
+  </div></section>
+
+  <!-- details + booking -->
+  <section class="panel"><div class="wrap">
+    <div class="split">
+      <div class="sand prose">
+        <h2>Open play &amp; court rentals</h2>
+        <p>Whether you're rallying with friends or looking to meet new players, ATX Beach keeps the courts busy from morning to midnight.</p>
+        <h3>Court reservations</h3>
+        <ul>
+          <li>Book any of 8 professional-grade sand courts by the hour.</li>
+          <li>Great for groups, leagues, birthday games, and practice.</li>
+          <li>Shaded by 200-ft runway structures — playable through Austin summers.</li>
+        </ul>
+        <h3>Open play</h3>
+        <ul>
+          <li>Drop in solo or with a partner and rotate into games.</li>
+          <li>All levels welcome — from first-timers to competitive players.</li>
+          <li>Check the live schedule in YourCourts for today's sessions.</li>
+        </ul>
+        <h3>What to bring</h3>
+        <ul>
+          <li>Outside food is welcome — bring a cooler. (No outside drinks except coffee, smoothies &amp; water.)</li>
+          <li>Chairs are welcome; canopies are fine if they don't block walkways or views.</li>
+          <li>Sunscreen, water, and your A-game.</li>
+        </ul>
+      </div>
+      <aside class="sand aside">
+        <span class="label">Powered by YourCourts</span>
+        <h3>Ready to play?</h3>
+        <p>Reserve a court or find an open play session. Waivers and check-in are handled at the venue.</p>
+        <a href="https://atxbeach.com/book-a-court/" target="_blank" rel="noopener" class="btn btn-accent">Book a Court</a>
+        <a href="https://atxbeach.com/book-a-court/" target="_blank" rel="noopener" class="btn btn-outline">See Open Play Times</a>
+        <p class="fine">Opens YourCourts in a new tab.</p>
+      </aside>
+    </div>
+  </div></section>
+
+  <!-- cta -->
+  <section class="panel"><div class="wrap">
+    <div class="cta">
+      <h2>Bring the crew. We've got the courts.</h2>
+      <p>Eight courts, shade for days, and the Turtle Shack bar steps away. Book your spot and we'll see you on the sand.</p>
+      <div class="actions">
+        <a href="https://atxbeach.com/book-a-court/" target="_blank" rel="noopener" class="btn btn-accent">Book Now</a>
+        <a href="<?php echo $LINK['index']; ?>" class="btn btn-ghost">Back to Courts</a>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<footer class="venue">
+  <span class="venue__pitch"><b>8 lit pro courts</b> · white sand · full bar · leagues &amp; tournaments</span>
+  <span class="venue__meta">
+    <span>Open daily 8a–12a</span><span class="dot">·</span>
+    <a href="tel:+15128789459">(512) 878-9459</a><span class="dot">·</span>
+    <a href="https://maps.google.com/?q=11000+Middle+Fiskville+Road+Bldg+E+Austin+TX+78753" target="_blank" rel="noopener">11000 Middle Fiskville Rd, Austin</a>
+  </span>
+</footer>
+
+<a class="waiver-fab" href="<?php echo $LINK['play']; ?>" aria-label="Sign your waiver">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+  Sign Waiver
+</a>
+
+<?php wp_footer(); ?>
+</body>
+</html>

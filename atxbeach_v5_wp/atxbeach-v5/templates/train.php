@@ -1,0 +1,167 @@
+<?php
+if (!defined('ABSPATH')) exit;
+$ATXB = ATXBEACH_ASSETS;
+$LINK = [
+    'index'   => esc_url(home_url('/')),
+    'play'    => esc_url(home_url('/play/')),
+    'train'   => esc_url(home_url('/train/')),
+    'juniors' => esc_url(home_url('/juniors/')),
+    'events'  => esc_url(home_url('/events/')),
+];
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Train — Adult Clinics, Coaching &amp; Memberships | ATX Beach</title>
+<meta name="description" content="Level up your beach volleyball game with adult clinics, group and private coaching, and memberships at ATX Beach in Austin. Led by award-winning coach Will Buchanan. Training and memberships via TeamUp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<?php wp_head(); ?>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo $ATXB; ?>pages.css">
+</head>
+<body class="page-train">
+
+<div class="ticker" role="region" aria-label="Latest news and deals">
+  <a class="ticker__brand" href="<?php echo $LINK['index']; ?>" aria-label="ATX Beach home"><img src="<?php echo $ATXB; ?>images/photos/logo-white.png" alt="ATX Beach"></a>
+  <span class="ticker__flag" aria-hidden="true">News &amp; Deals</span>
+  <div class="ticker__viewport"><div class="ticker__track">
+    <div class="ticker__group">
+      <span class="ticker__item"><b>NEW</b> Summer memberships are open — train year-round on 8 pro courts</span>
+      <span class="ticker__item">🏐 Coed 4s &amp; 6s leagues forming now — grab your team's spot</span>
+      <span class="ticker__item">🎉 Book the whole venue — corporate &amp; private events, 8 courts + full bar</span>
+      <span class="ticker__item">☀️ Open play daily — check in at the Turtle Shack</span>
+      <span class="ticker__item"><b>DEAL</b> New-player clinic — first session on us</span>
+      <span class="ticker__item">🧒 ATX Juniors summer camps — spots filling fast</span>
+      <span class="ticker__item">🍹 Turtle Shack: full bar, 7 TVs, cold drinks &amp; concessions</span>
+    </div>
+    <div class="ticker__group" aria-hidden="true">
+      <span class="ticker__item"><b>NEW</b> Summer memberships are open — train year-round on 8 pro courts</span>
+      <span class="ticker__item">🏐 Coed 4s &amp; 6s leagues forming now — grab your team's spot</span>
+      <span class="ticker__item">🎉 Book the whole venue — corporate &amp; private events, 8 courts + full bar</span>
+      <span class="ticker__item">☀️ Open play daily — check in at the Turtle Shack</span>
+      <span class="ticker__item"><b>DEAL</b> New-player clinic — first session on us</span>
+      <span class="ticker__item">🧒 ATX Juniors summer camps — spots filling fast</span>
+      <span class="ticker__item">🍹 Turtle Shack: full bar, 7 TVs, cold drinks &amp; concessions</span>
+    </div>
+  </div></div>
+  <a class="ticker__cta" href="https://atxbeach.com/book-a-court/" target="_blank" rel="noopener">Book a Court</a>
+</div>
+
+<main>
+  <header class="phero" style="background-image:url(<?php echo $ATXB; ?>images/site/throwback.jpg)">
+    <div class="wrap">
+      <div class="breadcrumb"><a href="<?php echo $LINK['index']; ?>">Home</a> &rsaquo; Train</div>
+      <span class="eyebrow">Adult Training &amp; Clinics</span>
+      <h1>Level up your game.</h1>
+      <p>Clinics, group sessions, and private coaching for every skill level — led by award-winning coach Will Buchanan. Register and manage memberships through TeamUp.</p>
+      <div class="actions">
+        <a href="https://goteamup.com/p/9142954-atx-beach/" target="_blank" rel="noopener" class="btn btn-accent">Browse Training</a>
+        <a href="#memberships" class="btn btn-ghost">See Memberships</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="panel"><div class="wrap">
+    <div class="panel-head">
+      <span class="eyebrow">Ways to train</span>
+      <h2>Find the right format for you</h2>
+      <p>From your first time on the sand to tournament-ready reps, there's a track that fits your goals and schedule.</p>
+    </div>
+    <div class="cards">
+      <div class="sand card"><span class="num">A</span><h3>Adult Clinics</h3><p>Skill-based group clinics covering passing, setting, hitting, defense, and game strategy. Beginner through advanced.</p></div>
+      <div class="sand card"><span class="num">B</span><h3>Private &amp; Small-Group</h3><p>One-on-one or small-group coaching tailored to your goals. The fastest way to fix mechanics and level up.</p></div>
+      <div class="sand card"><span class="num">C</span><h3>Drop-In Sessions</h3><p>Structured reps and live play in a coached environment. A great bridge between clinics and open play.</p></div>
+    </div>
+  </div></section>
+
+  <section class="panel"><div class="wrap">
+    <div class="split">
+      <div class="sand prose">
+        <h2>Coaching built to make you better</h2>
+        <p>ATX Beach training is led by award-winning coach Will Buchanan, with a curriculum that meets players where they are — and pushes them further. Programs run for beginners learning the basics all the way to competitive players sharpening for tournaments.</p>
+        <h3>What you'll work on</h3>
+        <ul>
+          <li>Ball-control fundamentals: passing, setting, and serving.</li>
+          <li>Offense and defense systems for 2s, 4s, and 6s.</li>
+          <li>Reading the game, shot selection, and in-match strategy.</li>
+          <li>Beach-specific movement, conditioning, and footwork in the sand.</li>
+        </ul>
+        <h3>Who it's for</h3>
+        <ul>
+          <li>New players who want a confident, fun start.</li>
+          <li>Indoor players making the move to the sand.</li>
+          <li>Competitive athletes prepping for tournaments and the TruVolley rating system.</li>
+        </ul>
+      </div>
+      <aside class="sand aside">
+        <span class="label">Powered by TeamUp</span>
+        <h3>Register for training</h3>
+        <p>Browse the current clinic and coaching schedule and grab your spot.</p>
+        <a href="https://goteamup.com/p/9142954-atx-beach/" target="_blank" rel="noopener" class="btn btn-accent">View Schedule</a>
+        <a href="<?php echo $LINK['index']; ?>" class="btn btn-outline">Back to Courts</a>
+        <p class="fine">Opens TeamUp in a new tab.</p>
+      </aside>
+    </div>
+  </div></section>
+
+  <section class="panel" id="memberships"><div class="wrap">
+    <div class="panel-head">
+      <span class="eyebrow">Memberships</span>
+      <h2>Train more. Save more. Play year-round.</h2>
+      <p>Memberships are managed in TeamUp. Pick the level that matches how often you want to be on the sand — sample tiers below.</p>
+    </div>
+    <div class="tiers">
+      <div class="sand tier">
+        <span class="ribbon">Starter</span><h3>Drop-In</h3>
+        <div class="price">Pay as you go <span>/ session</span></div>
+        <ul><li>Join any clinic or open play</li><li>No commitment</li><li>Great for visitors &amp; first-timers</li></ul>
+        <a href="https://goteamup.com/p/9142954-atx-beach/" target="_blank" rel="noopener" class="btn btn-outline">Get Started</a>
+      </div>
+      <div class="sand tier featured">
+        <span class="ribbon">Most Popular</span><h3>Monthly Member</h3>
+        <div class="price">Monthly <span>/ recurring</span></div>
+        <ul><li>Discounted clinics &amp; sessions</li><li>Priority registration</li><li>Member-only events</li></ul>
+        <a href="https://goteamup.com/p/9142954-atx-beach/" target="_blank" rel="noopener" class="btn btn-accent">Become a Member</a>
+      </div>
+      <div class="sand tier">
+        <span class="ribbon">All-In</span><h3>Unlimited</h3>
+        <div class="price">Best value <span>/ recurring</span></div>
+        <ul><li>Unlimited clinics &amp; drop-ins</li><li>Best per-session value</li><li>Perks across the venue</li></ul>
+        <a href="https://goteamup.com/p/9142954-atx-beach/" target="_blank" rel="noopener" class="btn btn-outline">Go Unlimited</a>
+      </div>
+    </div>
+    <p class="note">Tiers and pricing shown are samples — see TeamUp for current membership options.</p>
+  </div></section>
+
+  <section class="panel"><div class="wrap">
+    <div class="cta">
+      <h2>Your next level starts on the sand.</h2>
+      <p>Pick a clinic, book a private, or go all-in with a membership. We'll help you find the right fit.</p>
+      <div class="actions">
+        <a href="https://goteamup.com/p/9142954-atx-beach/" target="_blank" rel="noopener" class="btn btn-accent">Start Training</a>
+        <a href="<?php echo $LINK['index']; ?>" class="btn btn-ghost">Back to Courts</a>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<footer class="venue">
+  <span class="venue__pitch"><b>8 lit pro courts</b> · white sand · full bar · leagues &amp; tournaments</span>
+  <span class="venue__meta">
+    <span>Open daily 8a–12a</span><span class="dot">·</span>
+    <a href="tel:+15128789459">(512) 878-9459</a><span class="dot">·</span>
+    <a href="https://maps.google.com/?q=11000+Middle+Fiskville+Road+Bldg+E+Austin+TX+78753" target="_blank" rel="noopener">11000 Middle Fiskville Rd, Austin</a>
+  </span>
+</footer>
+
+<a class="waiver-fab" href="<?php echo $LINK['play']; ?>" aria-label="Sign your waiver">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+  Sign Waiver
+</a>
+
+<?php wp_footer(); ?>
+</body>
+</html>

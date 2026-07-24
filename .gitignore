@@ -4,3 +4,6 @@ deploy/dist/
 # Local-only session notes (contain internal infra notes; repo deploys publicly to /beta/)
 resume.md
 resume.sh
+
+# WP plugin build artifact (rebuild with build-templates.sh + zip)
+atxbeach_v5_wp/dist/
