@@ -39,6 +39,41 @@ Then:
 
 Set a different port with `PORT=8080 npm start`.
 
+## Deploy on a Windows server (same Wi-Fi / LAN)
+
+For a living-room or office game where everyone is on the same network, no domain or
+HTTPS is needed — just run it on the Windows machine and have phones open its IP.
+
+1. **Install Node.js** (once) — download the **LTS** build from <https://nodejs.org> and
+   run the installer with the defaults.
+2. **Copy the `drawful_v1` folder** onto the server (clone the repo, or copy the folder).
+3. **Open the firewall** (once) — right-click **`allow-firewall-windows.bat`** and choose
+   **“Run as administrator.”** This lets phones on your Wi-Fi reach the game.
+4. **Start the game** — double-click **`start-windows.bat`**. The first run installs the one
+   dependency automatically, then a window opens showing something like:
+
+   ```
+   On PHONES connected to the same Wi-Fi, open:
+     http://192.168.1.20:3000
+   ```
+
+5. **Big screen:** on the server (or any PC on the network) open that address and click
+   **“Present on a big screen”** to get the game code.
+6. **Phones:** everyone opens the same `http://192.168.1.20:3000` address, taps
+   **“Join a game,”** and enters the code. Up to 8 players.
+
+Keep the `start-windows.bat` window open while you play; close it to stop the game.
+
+**Tips**
+- The IP shown is your server's LAN address — phones must be on the **same Wi-Fi/router**.
+- To change the port, edit `set PORT=3000` in **both** `start-windows.bat` and
+  `allow-firewall-windows.bat`.
+- If phones can't connect: confirm they're on the same network, re-run the firewall `.bat`
+  as administrator, and make sure the server window is still open.
+- Want it to auto-start on boot / run as a Windows service, or let people play over the
+  internet? That's a different setup (a service manager like NSSM/pm2, plus port-forwarding
+  and HTTPS) — ask and I'll add it.
+
 ## Tech
 
 - **Zero build step.** Node's built-in `http` server serves the static `public/` client;

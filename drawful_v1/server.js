@@ -1,6 +1,7 @@
 'use strict';
 const http = require('http');
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const { WebSocketServer } = require('ws');
 const { Room, makeCode, MAX_PLAYERS } = require('./game');
@@ -140,7 +141,31 @@ setInterval(() => {
   }
 }, 60000);
 
-server.listen(PORT, () => {
-  console.log(`\n  Drawful v1 running at http://localhost:${PORT}`);
-  console.log(`  Host a game on the big screen, players join from their phones.\n`);
+function lanAddresses() {
+  const out = [];
+  for (const iface of Object.values(os.networkInterfaces())) {
+    for (const a of iface || []) {
+      if (a.family === 'IPv4' && !a.internal) out.push(a.address);
+    }
+  }
+  return out;
+}
+
+server.listen(PORT, '0.0.0.0', () => {
+  const ips = lanAddresses();
+  console.log('\n  ================================================');
+  console.log('   Drawful v1 is running!  (keep this window open)');
+  console.log('  ================================================\n');
+  console.log(`   On THIS computer (the big screen):`);
+  console.log(`     http://localhost:${PORT}\n`);
+  if (ips.length) {
+    console.log(`   On PHONES connected to the same Wi-Fi, open:`);
+    for (const ip of ips) console.log(`     http://${ip}:${PORT}`);
+  } else {
+    console.log(`   (No LAN address detected — connect this machine to your network.)`);
+  }
+  console.log('\n  ------------------------------------------------');
+  console.log('   Big screen: click "Present on a big screen".');
+  console.log('   Phones:     open the address above, tap "Join a game".');
+  console.log('  ------------------------------------------------\n');
 });
