@@ -20,25 +20,37 @@ const esc = (s)=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;
 const qs = new URLSearchParams(location.search);
 
 let ws, state=null, me=JSON.parse(localStorage.getItem('drawful_me')||'null');
-let lastPhaseKey='';
+let lastPhaseKey='', pendingJoin=null, reconnectT=null;
 
 function connect(){
+  if (ws && (ws.readyState===0 || ws.readyState===1)) return; // already connecting/open
   ws = new WebSocket((location.protocol==='https:'?'wss://':'ws://')+location.host);
   ws.onopen = () => {
     if (me && me.pid && me.code) ws.send(JSON.stringify({t:'rejoin', code:me.code, pid:me.pid}));
-    else renderJoin();
+    else if (pendingJoin) ws.send(JSON.stringify({t:'join', code:pendingJoin.code, name:pendingJoin.name}));
+    // On the join screen we deliberately leave the form exactly as the user left it.
   };
   ws.onmessage = (e) => {
-    const m = JSON.parse(e.data);
-    if (m.t==='joined'){ me={pid:m.pid, code:m.code, name:m.name}; localStorage.setItem('drawful_me', JSON.stringify(me)); }
+    let m; try { m = JSON.parse(e.data); } catch { return; }
+    if (m.t==='joined'){ pendingJoin=null; me={pid:m.pid, code:m.code, name:m.name}; localStorage.setItem('drawful_me', JSON.stringify(me)); }
     if (m.t==='state'){ state=m.view; render(); }
     if (m.t==='error'){
-      if (state) { /* transient */ } else { localStorage.removeItem('drawful_me'); me=null; renderJoin(m.msg); }
+      if (!state){
+        const wasJoining = !!pendingJoin;
+        localStorage.removeItem('drawful_me'); me=null; pendingJoin=null;
+        renderJoin();               // no-op if the form is already on screen
+        if (wasJoining) showJoinError(m.msg);
+      }
     }
   };
-  ws.onclose = () => { setTimeout(connect, 1500); };
+  ws.onclose = () => { clearTimeout(reconnectT); reconnectT = setTimeout(connect, 1500); };
+  ws.onerror = () => { try { ws.close(); } catch(_){} };
 }
 const send=(o)=>ws&&ws.readyState===1&&ws.send(JSON.stringify(o));
+
+// Draw the form immediately so typing never waits on — or gets reset by — the socket.
+if (me && me.pid && me.code) waiting('Reconnecting…','Getting you back into your game.');
+else renderJoin();
 connect();
 
 // countdown
@@ -53,14 +65,15 @@ function runTimer(deadline){
 }
 
 // ---------------- JOIN ----------------
-function renderJoin(err){
+function renderJoin(){
   timerEl.classList.add('hidden');
+  if (document.getElementById('go')) return; // form already visible — never wipe what's typed
   app.className='center';
   const code = (qs.get('code')||'').toUpperCase();
   app.innerHTML = `
     <div class="logo" style="font-size:clamp(40px,14vw,72px)">Drawful<span style="font-size:.4em;vertical-align:super">v1</span></div>
     <div class="card" style="width:min(400px,94vw);display:flex;flex-direction:column;gap:16px">
-      ${err?`<div class="errbox">${esc(err)}</div>`:''}
+      <div id="joinerr" class="errbox hidden"></div>
       <div><label class="lbl">Room code</label>
         <input id="code" class="field" maxlength="4" placeholder="ABCD" autocapitalize="characters" autocomplete="off" value="${esc(code)}"></div>
       <div><label class="lbl">Your name</label>
@@ -69,15 +82,27 @@ function renderJoin(err){
     </div>
     <p class="muted" style="font-weight:600;font-size:13px">Get the 4-letter code from the big screen.</p>`;
   const codeEl=document.getElementById('code'), nameEl=document.getElementById('name');
-  codeEl.oninput=()=>codeEl.value=codeEl.value.toUpperCase().replace(/[^A-Z]/g,'');
-  document.getElementById('go').onclick=()=>{
-    const c=codeEl.value.trim(), n=nameEl.value.trim();
-    if(c.length<4){codeEl.focus();return;}
-    if(!n){nameEl.focus();return;}
-    send({t:'join', code:c, name:n});
+  codeEl.oninput=()=>{ const p=codeEl.selectionStart; codeEl.value=codeEl.value.toUpperCase().replace(/[^A-Z]/g,''); try{codeEl.setSelectionRange(p,p);}catch(_){} };
+  const go=()=>{
+    const c=codeEl.value.trim().toUpperCase(), n=nameEl.value.trim();
+    if(c.length<4){ showJoinError('Enter the 4-letter code from the big screen.'); codeEl.focus(); return; }
+    if(!n){ showJoinError('Pick a nickname.'); nameEl.focus(); return; }
+    hideJoinError();
+    document.getElementById('go').textContent='Joining…';
+    pendingJoin={code:c, name:n};
+    if (ws && ws.readyState===1) ws.send(JSON.stringify({t:'join', code:c, name:n}));
+    else connect(); // socket will send pendingJoin as soon as it opens
   };
+  document.getElementById('go').onclick=go;
+  codeEl.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); nameEl.focus(); } });
+  nameEl.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); go(); } });
   (code?nameEl:codeEl).focus();
 }
+function showJoinError(msg){
+  const go=document.getElementById('go'); if(go) go.textContent='Join game';
+  const b=document.getElementById('joinerr'); if(b){ b.textContent=msg; b.classList.remove('hidden'); }
+}
+function hideJoinError(){ const b=document.getElementById('joinerr'); if(b) b.classList.add('hidden'); }
 
 // ---------------- render dispatch ----------------
 function render(){
@@ -86,7 +111,7 @@ function render(){
   const P=state.phase;
   const key=P+'|'+(state.drawing?state.drawing.idx:'')+'|'+state.round;
   const fresh = key!==lastPhaseKey; lastPhaseKey=key;
-  if(P==='kicked'){ localStorage.removeItem('drawful_me'); me=null; return renderJoin('You left the game.'); }
+  if(P==='kicked'){ localStorage.removeItem('drawful_me'); me=null; state=null; renderJoin(); return showJoinError('You left the game.'); }
   if(P==='lobby') return renderLobby();
   if(P==='drawing') return renderDraw(fresh);
   if(P==='answering') return renderAnswer(fresh);
