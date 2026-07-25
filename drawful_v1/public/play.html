@@ -20,7 +20,7 @@ const esc = (s)=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;
 const qs = new URLSearchParams(location.search);
 
 let ws, state=null, me=JSON.parse(localStorage.getItem('drawful_me')||'null');
-let lastPhaseKey='', pendingJoin=null, reconnectT=null;
+let lastPhaseKey='', pendingJoin=null, reconnectT=null, hb=null;
 
 function connect(){
   if (ws && (ws.readyState===0 || ws.readyState===1)) return; // already connecting/open
@@ -28,6 +28,8 @@ function connect(){
   ws.onopen = () => {
     if (me && me.pid && me.code) ws.send(JSON.stringify({t:'rejoin', code:me.code, pid:me.pid}));
     else if (pendingJoin) ws.send(JSON.stringify({t:'join', code:pendingJoin.code, name:pendingJoin.name}));
+    // App-level heartbeat keeps NAT/router idle timeouts from killing the socket.
+    clearInterval(hb); hb = setInterval(() => { if (ws && ws.readyState===1) ws.send('{"t":"hb"}'); }, 15000);
     // On the join screen we deliberately leave the form exactly as the user left it.
   };
   ws.onmessage = (e) => {
@@ -43,7 +45,7 @@ function connect(){
       }
     }
   };
-  ws.onclose = () => { clearTimeout(reconnectT); reconnectT = setTimeout(connect, 1500); };
+  ws.onclose = () => { clearInterval(hb); clearTimeout(reconnectT); reconnectT = setTimeout(connect, 1500); };
   ws.onerror = () => { try { ws.close(); } catch(_){} };
 }
 const send=(o)=>ws&&ws.readyState===1&&ws.send(JSON.stringify(o));
@@ -105,17 +107,32 @@ function showJoinError(msg){
 function hideJoinError(){ const b=document.getElementById('joinerr'); if(b) b.classList.add('hidden'); }
 
 // ---------------- render dispatch ----------------
+// The key captures everything that should trigger a redraw. Crucially it depends
+// only on MY own sub-state (not other players' progress), so a reconnect that
+// re-sends the same state produces the same key and we DON'T redraw — the
+// in-progress drawing / typed answer / selected vote is left untouched.
+function stateKey(v){
+  const p=v.phase, d=v.drawing?v.drawing.idx:'';
+  if(p==='drawing')   return 'drawing|'+v.round+'|'+(v.submitted?1:0)+'|'+(v.noPrompt?1:0);
+  if(p==='answering') return 'answering|'+d+'|'+(v.isArtist?1:0)+'|'+(v.submitted?1:0);
+  if(p==='voting')    return 'voting|'+d+'|'+(v.isArtist?1:0)+'|'+(v.autoCorrect?1:0)+'|'+(v.submitted?1:0);
+  if(p==='reveal')    return 'reveal|'+(v.results?v.results.idx:'');
+  if(p==='lobby')     return 'lobby|'+v.players.map(x=>x.name+(x.connected?1:0)).join(',');
+  if(p==='roundscores'||p==='gameover') return p+'|'+v.round+'|'+(v.leaderboard||[]).map(x=>x.name+x.score).join(',');
+  return p;
+}
 function render(){
   if(!state) return;
   runTimer(state.deadline);
+  if(state.phase==='kicked'){ localStorage.removeItem('drawful_me'); me=null; state=null; renderJoin(); return showJoinError('You left the game.'); }
+  const key=stateKey(state);
+  if(key===lastPhaseKey) return;   // nothing meaningful changed — don't wipe the screen
+  lastPhaseKey=key;
   const P=state.phase;
-  const key=P+'|'+(state.drawing?state.drawing.idx:'')+'|'+state.round;
-  const fresh = key!==lastPhaseKey; lastPhaseKey=key;
-  if(P==='kicked'){ localStorage.removeItem('drawful_me'); me=null; state=null; renderJoin(); return showJoinError('You left the game.'); }
   if(P==='lobby') return renderLobby();
-  if(P==='drawing') return renderDraw(fresh);
-  if(P==='answering') return renderAnswer(fresh);
-  if(P==='voting') return renderVote(fresh);
+  if(P==='drawing') return renderDraw();
+  if(P==='answering') return renderAnswer();
+  if(P==='voting') return renderVote();
   if(P==='reveal') return renderReveal();
   if(P==='roundscores'||P==='gameover') return renderScores(P==='gameover');
 }
@@ -137,10 +154,9 @@ function renderLobby(){
 
 // ---------------- DRAWING ----------------
 let pad, ctx, strokes=[], drawing=false, cur=null, penColor='#111', penSize=6;
-function renderDraw(fresh){
+function renderDraw(){
   if(state.noPrompt){ return waiting('Sit this one out', 'You joined mid-round — you\'ll draw next round.'); }
   if(state.submitted){ return waiting('Nice one! 🎨', 'Waiting for the others to finish drawing…'); }
-  if(!fresh && document.getElementById('pad')) return; // don't wipe canvas on every state tick
   app.className='wrap';
   app.innerHTML=`
     <div style="text-align:center;margin-bottom:8px">
@@ -204,12 +220,12 @@ function submitDrawing(){
 }
 
 // ---------------- ANSWERING (write a lie) ----------------
-function renderAnswer(fresh){
+function renderAnswer(){
   if(state.isArtist) return waiting('That\'s YOUR drawing 😎','Sit tight while everyone invents lies about it.');
   if(state.submitted) return waiting('Sneaky. 🤥','Lie submitted — waiting for the rest…');
   app.className='center';
   app.innerHTML=`<div class="fadein" style="display:flex;flex-direction:column;gap:14px;align-items:center;width:min(460px,94vw)">
-    <div class="pill">by ${esc(state.drawing.artistName)}</div>
+    <div class="pill">Drawing ${state.drawing.idx} of ${state.drawing.total}</div>
     <img class="drawimg" style="width:min(46vh,80vw)" src="${state.drawing.img}">
     <h2 class="big">What is it?</h2>
     <p class="muted" style="font-weight:700;margin-top:-6px">Write a fake answer to fool everyone.</p>
@@ -223,7 +239,7 @@ function renderAnswer(fresh){
 }
 
 // ---------------- VOTING ----------------
-function renderVote(fresh){
+function renderVote(){
   if(state.isArtist) return waiting('This is your masterpiece 🖼️','Watch everyone try to guess it on the big screen.');
   if(state.autoCorrect) return waiting('You wrote the actual truth! 🎯','That counts as a correct guess. Nice.');
   if(state.submitted){
@@ -231,7 +247,7 @@ function renderVote(fresh){
   }
   app.className='center';
   app.innerHTML=`<div class="fadein" style="display:flex;flex-direction:column;gap:12px;align-items:center;width:min(560px,96vw)">
-    <div class="pill">by ${esc(state.drawing.artistName)}</div>
+    <div class="pill">Drawing ${state.drawing.idx} of ${state.drawing.total}</div>
     <img class="drawimg" style="width:min(34vh,66vw)" src="${state.drawing.img}">
     <h2 class="big">Which is the truth?</h2>
     <div class="choices">${state.choices.map((c,i)=>`<button class="choice" data-id="${c.id}"><span class="num">${i+1}</span>${esc(c.text)}</button>`).join('')}</div>

@@ -16,13 +16,14 @@
 <script>
 const app = document.getElementById('app');
 const timerEl = document.getElementById('timer');
-let ws, state = null, savedCode = sessionStorage.getItem('drawful_host_code');
+let ws, state = null, savedCode = sessionStorage.getItem('drawful_host_code'), hb = null;
 
 function connect(){
   ws = new WebSocket((location.protocol==='https:'?'wss://':'ws://')+location.host);
   ws.onopen = () => {
     if (savedCode) ws.send(JSON.stringify({t:'host_attach', code:savedCode}));
     else ws.send(JSON.stringify({t:'host_create'}));
+    clearInterval(hb); hb = setInterval(() => { if (ws && ws.readyState===1) ws.send('{"t":"hb"}'); }, 15000);
   };
   ws.onmessage = (e) => {
     const m = JSON.parse(e.data);
@@ -33,7 +34,7 @@ function connect(){
       ws.send(JSON.stringify({t:'host_create'}));
     }
   };
-  ws.onclose = () => { setTimeout(connect, 1500); };
+  ws.onclose = () => { clearInterval(hb); setTimeout(connect, 1500); };
 }
 const send = (o) => ws && ws.readyState===1 && ws.send(JSON.stringify(o));
 connect();
@@ -125,7 +126,6 @@ function drawingStage(caption, extra=''){
   app.innerHTML = `<div class="center" style="min-height:86dvh;gap:14px">
     <div class="pill">Drawing ${state.drawing.idx} / ${state.drawing.total} · Round ${state.round}/${state.rounds}</div>
     <img class="drawimg" src="${state.drawing.img}" alt="drawing">
-    <div class="artistline">by <b>${esc(state.drawing.artistName)}</b></div>
     <h2 class="big">${caption}</h2>
     ${extra}
   </div>`;

@@ -334,7 +334,8 @@ class Room {
       deadline: this.deadline, players: this.playerList() };
     if (this.phase === 'answering' || this.phase === 'voting') {
       const c = this.current;
-      base.drawing = { img: c.img, artistName: c.artistName, artistColor: c.artistColor, idx: c.idx, total: c.total };
+      // Artist stays anonymous until the reveal — don't leak their name/color.
+      base.drawing = { img: c.img, idx: c.idx, total: c.total };
       if (this.phase === 'voting') base.choices = c.choices.map(ch => ({ text: ch.text }));
     }
     if (this.phase === 'reveal') base.results = this.lastResults;
@@ -353,13 +354,13 @@ class Room {
     if (this.phase === 'drawing') { base.prompt = p.prompt; base.submitted = !!p.drawing; base.noPrompt = !p.prompt; }
     if (this.phase === 'answering' && c) {
       base.isArtist = pid === c.artistId;
-      base.drawing = { img: c.img, artistName: c.artistName, idx: c.idx, total: c.total };
+      base.drawing = { img: c.img, idx: c.idx, total: c.total }; // artist anonymous until reveal
       base.submitted = !!p.lie;
     }
     if (this.phase === 'voting' && c) {
       base.isArtist = pid === c.artistId;
       base.autoCorrect = c.autoCorrect.has(pid);
-      base.drawing = { img: c.img, artistName: c.artistName, idx: c.idx, total: c.total };
+      base.drawing = { img: c.img, idx: c.idx, total: c.total }; // artist anonymous until reveal
       base.submitted = !!p.vote;
       base.yourVote = p.vote;
       base.choices = c.choices
