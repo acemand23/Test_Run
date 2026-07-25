@@ -135,9 +135,17 @@ function renderAnswering(){
 }
 function renderVoting(){
   const choices = (state.choices||[]).map((c,i)=>`
-    <div class="choice"><span class="num">${i+1}</span>${esc(c.text)}</div>`).join('');
-  drawingStage('🗳️ Which one is the truth? Vote on your phones!',
-    `<div class="choices" style="margin-top:6px">${choices}</div>${playerChips(state.players)}`);
+    <div class="choice" style="cursor:default"><span class="num">${i+1}</span>${esc(c.text)}</div>`).join('');
+  app.className='wrap';
+  app.innerHTML = `<div class="center" style="min-height:88dvh;gap:18px">
+    <div class="pill">Drawing ${state.drawing.idx} / ${state.drawing.total} · Round ${state.round}/${state.rounds}</div>
+    <h2 class="big">🗳️ Which one is the truth? Vote on your phones!</h2>
+    <div class="vote-layout">
+      <img class="drawimg" style="width:min(52vh,42vw)" src="${state.drawing.img}" alt="drawing">
+      <div class="choices">${choices}</div>
+    </div>
+    ${playerChips(state.players)}
+  </div>`;
 }
 
 function renderReveal(){

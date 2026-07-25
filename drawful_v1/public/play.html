@@ -223,6 +223,7 @@ function submitDrawing(){
 function renderAnswer(){
   if(state.isArtist) return waiting('That\'s YOUR drawing 😎','Sit tight while everyone invents lies about it.');
   if(state.submitted) return waiting('Sneaky. 🤥','Lie submitted — waiting for the rest…');
+  const prevLie = document.getElementById('lie') ? document.getElementById('lie').value : ''; // keep anything already typed
   app.className='center';
   app.innerHTML=`<div class="fadein" style="display:flex;flex-direction:column;gap:14px;align-items:center;width:min(460px,94vw)">
     <div class="pill">Drawing ${state.drawing.idx} of ${state.drawing.total}</div>
@@ -232,7 +233,9 @@ function renderAnswer(){
     <input id="lie" class="field" maxlength="60" placeholder="e.g. a cat in a spaceship" autocomplete="off">
     <button class="btn pink lg wide" id="send">Submit fake answer</button>
   </div>`;
-  const lie=document.getElementById('lie'); lie.focus();
+  const lie=document.getElementById('lie');
+  if(prevLie){ lie.value=prevLie; }
+  lie.focus(); try{ lie.setSelectionRange(lie.value.length, lie.value.length); }catch(_){}
   const go=()=>{const v=lie.value.trim(); if(!v)return; send({t:'submit_lie', text:v}); waiting('Sneaky. 🤥','Waiting for the rest…');};
   document.getElementById('send').onclick=go;
   lie.addEventListener('keydown',e=>{if(e.key==='Enter')go();});
