@@ -185,10 +185,15 @@ function renderScores(final){
       <span class="sc">${p.score}</span></li>`).join('')}</ol>
     ${final
       ? `<button class="btn green lg" id="again">Play again</button>`
-      : `<button class="btn blue lg" id="next">Next round ▶</button>`}
+      : `<div class="muted" style="font-weight:800;font-size:18px">${state.paused?`⏸ Paused — ${state.pausedSecs}s left`:'⏱ Next round starts automatically…'}</div>
+         <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+           <button class="btn blue lg" id="next">Next round ▶</button>
+           <button class="btn ghost lg" id="pause">${state.paused?'▶ Resume':'⏸ Pause'}</button>
+         </div>`}
   </div>`;
   const n = document.getElementById('next'); if (n) n.onclick=()=>send({t:'next'});
   const a = document.getElementById('again'); if (a) a.onclick=()=>send({t:'play_again'});
+  const pb = document.getElementById('pause'); if (pb) pb.onclick=()=>send({t: state.paused ? 'resume' : 'pause'});
 }
 </script>
 </body>

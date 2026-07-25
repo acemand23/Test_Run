@@ -12,7 +12,7 @@ function promptPool(mode) {
 // ---- tuning ----
 const MAX_PLAYERS = 8;
 const MIN_PLAYERS = 2; // 3+ is more fun, but allow 2 for testing
-const TIMERS = { drawing: 100, answering: 55, voting: 35, reveal: 12 }; // seconds
+const TIMERS = { drawing: 100, answering: 55, voting: 35, reveal: 12, roundscores: 60 }; // seconds
 const SCORE = { correctGuess: 1000, perCorrectForArtist: 500, perVoteForLie: 500, everyoneFooledBonus: 1000 };
 
 const AVATAR_COLORS = ['#ef476f','#ffd166','#06d6a0','#118ab2','#f78c6b','#c77dff','#ff8fab','#4cc9f0'];
@@ -54,6 +54,9 @@ class Room {
     this.current = null;    // active presentation object
     this.timer = null;
     this.deadline = 0;
+    this.paused = false;
+    this.remaining = 0;
+    this._timerFn = null;
     this.lastResults = null;
   }
 
@@ -276,8 +279,14 @@ class Room {
   finishRound() {
     this.clearTimer();
     this.current = null;
-    if (this.round < this.rounds) { this.phase = 'roundscores'; this.onChange(); }
-    else { this.phase = 'gameover'; this.onChange(); }
+    if (this.round < this.rounds) {
+      this.phase = 'roundscores';
+      this.setTimer('roundscores', () => this.beginRound()); // auto-advance to next round
+      this.onChange();
+    } else {
+      this.phase = 'gameover';
+      this.onChange();
+    }
   }
 
   advance() { // host "Next / Continue" button
@@ -300,10 +309,29 @@ class Room {
   setTimer(kind, fn) {
     this.clearTimer();
     const secs = TIMERS[kind] || 30;
+    this._timerFn = fn;
     this.deadline = Date.now() + secs * 1000;
     this.timer = setTimeout(fn, secs * 1000);
   }
-  clearTimer() { if (this.timer) clearTimeout(this.timer); this.timer = null; this.deadline = 0; }
+  clearTimer() {
+    if (this.timer) clearTimeout(this.timer);
+    this.timer = null; this.deadline = 0; this.paused = false; this.remaining = 0; this._timerFn = null;
+  }
+  pause() { // hold the auto-advance countdown (host)
+    if (this.paused || !this.timer) return;
+    this.remaining = Math.max(0, this.deadline - Date.now());
+    clearTimeout(this.timer); this.timer = null;
+    this.paused = true; this.deadline = 0;
+    this.onChange();
+  }
+  resume() {
+    if (!this.paused || !this._timerFn) return;
+    this.paused = false;
+    const ms = Math.max(0, this.remaining || 0);
+    this.deadline = Date.now() + ms;
+    this.timer = setTimeout(this._timerFn, ms);
+    this.onChange();
+  }
 
   playerName(pid) { const p = this.players.get(pid); return p ? p.name : '???'; }
 
@@ -331,7 +359,8 @@ class Room {
   // View sent to the HOST (big screen) — public info only.
   hostView() {
     const base = { phase: this.phase, code: this.code, round: this.round, rounds: this.rounds,
-      deadline: this.deadline, players: this.playerList() };
+      deadline: this.deadline, paused: this.paused, pausedSecs: this.paused ? Math.round((this.remaining || 0) / 1000) : 0,
+      players: this.playerList() };
     if (this.phase === 'answering' || this.phase === 'voting') {
       const c = this.current;
       // Artist stays anonymous until the reveal — don't leak their name/color.
@@ -350,7 +379,8 @@ class Room {
     const c = this.current;
     const you = { pid: p.pid, name: p.name, color: p.color, score: p.score };
     const base = { phase: this.phase, code: this.code, round: this.round, rounds: this.rounds,
-      deadline: this.deadline, you, players: this.playerList() };
+      deadline: this.deadline, paused: this.paused, pausedSecs: this.paused ? Math.round((this.remaining || 0) / 1000) : 0,
+      you, players: this.playerList() };
     if (this.phase === 'drawing') { base.prompt = p.prompt; base.submitted = !!p.drawing; base.noPrompt = !p.prompt; }
     if (this.phase === 'answering' && c) {
       base.isArtist = pid === c.artistId;

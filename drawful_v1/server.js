@@ -122,6 +122,8 @@ function handle(ws, msg) {
       switch (msg.t) {
         case 'start': if (ws.isHost) room.start(msg.settings); break;
         case 'next': if (ws.isHost) room.advance(); break;
+        case 'pause': if (ws.isHost) room.pause(); break;
+        case 'resume': if (ws.isHost) room.resume(); break;
         case 'play_again': if (ws.isHost) room.playAgain(); break;
         case 'submit_drawing': if (ws.pid) room.submitDrawing(ws.pid, msg.img); break;
         case 'submit_lie': if (ws.pid) room.submitLie(ws.pid, msg.text); break;
