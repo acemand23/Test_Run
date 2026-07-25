@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Drawful v1 · Play</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="timer" class="timer hidden">–</div>
+<div id="app" class="wrap"></div>
+
+<script>
+const app = document.getElementById('app');
+const timerEl = document.getElementById('timer');
+const esc = (s)=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const qs = new URLSearchParams(location.search);
+
+let ws, state=null, me=JSON.parse(localStorage.getItem('drawful_me')||'null');
+let lastPhaseKey='';
+
+function connect(){
+  ws = new WebSocket((location.protocol==='https:'?'wss://':'ws://')+location.host);
+  ws.onopen = () => {
+    if (me && me.pid && me.code) ws.send(JSON.stringify({t:'rejoin', code:me.code, pid:me.pid}));
+    else renderJoin();
+  };
+  ws.onmessage = (e) => {
+    const m = JSON.parse(e.data);
+    if (m.t==='joined'){ me={pid:m.pid, code:m.code, name:m.name}; localStorage.setItem('drawful_me', JSON.stringify(me)); }
+    if (m.t==='state'){ state=m.view; render(); }
+    if (m.t==='error'){
+      if (state) { /* transient */ } else { localStorage.removeItem('drawful_me'); me=null; renderJoin(m.msg); }
+    }
+  };
+  ws.onclose = () => { setTimeout(connect, 1500); };
+}
+const send=(o)=>ws&&ws.readyState===1&&ws.send(JSON.stringify(o));
+connect();
+
+// countdown
+let tick;
+function runTimer(deadline){
+  clearInterval(tick);
+  if(!deadline){timerEl.classList.add('hidden');return;}
+  const upd=()=>{const s=Math.max(0,Math.round((deadline-Date.now())/1000));
+    timerEl.textContent=s;timerEl.classList.remove('hidden');timerEl.classList.toggle('warn',s<=10);
+    if(s<=0)clearInterval(tick);};
+  upd();tick=setInterval(upd,250);
+}
+
+// ---------------- JOIN ----------------
+function renderJoin(err){
+  timerEl.classList.add('hidden');
+  app.className='center';
+  const code = (qs.get('code')||'').toUpperCase();
+  app.innerHTML = `
+    <div class="logo" style="font-size:clamp(40px,14vw,72px)">Drawful<span style="font-size:.4em;vertical-align:super">v1</span></div>
+    <div class="card" style="width:min(400px,94vw);display:flex;flex-direction:column;gap:16px">
+      ${err?`<div class="errbox">${esc(err)}</div>`:''}
+      <div><label class="lbl">Room code</label>
+        <input id="code" class="field" maxlength="4" placeholder="ABCD" autocapitalize="characters" autocomplete="off" value="${esc(code)}"></div>
+      <div><label class="lbl">Your name</label>
+        <input id="name" class="field" maxlength="16" placeholder="Nickname" autocomplete="off"></div>
+      <button class="btn green lg wide" id="go">Join game</button>
+    </div>
+    <p class="muted" style="font-weight:600;font-size:13px">Get the 4-letter code from the big screen.</p>`;
+  const codeEl=document.getElementById('code'), nameEl=document.getElementById('name');
+  codeEl.oninput=()=>codeEl.value=codeEl.value.toUpperCase().replace(/[^A-Z]/g,'');
+  document.getElementById('go').onclick=()=>{
+    const c=codeEl.value.trim(), n=nameEl.value.trim();
+    if(c.length<4){codeEl.focus();return;}
+    if(!n){nameEl.focus();return;}
+    send({t:'join', code:c, name:n});
+  };
+  (code?nameEl:codeEl).focus();
+}
+
+// ---------------- render dispatch ----------------
+function render(){
+  if(!state) return;
+  runTimer(state.deadline);
+  const P=state.phase;
+  const key=P+'|'+(state.drawing?state.drawing.idx:'')+'|'+state.round;
+  const fresh = key!==lastPhaseKey; lastPhaseKey=key;
+  if(P==='kicked'){ localStorage.removeItem('drawful_me'); me=null; return renderJoin('You left the game.'); }
+  if(P==='lobby') return renderLobby();
+  if(P==='drawing') return renderDraw(fresh);
+  if(P==='answering') return renderAnswer(fresh);
+  if(P==='voting') return renderVote(fresh);
+  if(P==='reveal') return renderReveal();
+  if(P==='roundscores'||P==='gameover') return renderScores(P==='gameover');
+}
+
+function shell(inner){ app.className='center'; app.innerHTML=inner; }
+function waiting(title, sub){
+  shell(`<div class="spin"></div><h2 class="big">${title}</h2>${sub?`<p class="muted" style="font-weight:700">${sub}</p>`:''}`);
+}
+function youBadge(){ return `<div class="chip" style="border-color:${state.you.color}"><span class="dot" style="background:${state.you.color}"></span>${esc(state.you.name)} · ${state.you.score} pts</div>`; }
+
+function renderLobby(){
+  shell(`<div class="fadein" style="display:flex;flex-direction:column;gap:16px;align-items:center">
+    <div class="big">You're in! 🎉</div>
+    ${youBadge()}
+    <p class="muted" style="font-weight:700">Waiting for the host to start…</p>
+    <div class="players">${state.players.map(p=>`<div class="chip ${p.connected?'':'off'}"><span class="dot" style="background:${p.color}"></span>${esc(p.name)}</div>`).join('')}</div>
+  </div>`);
+}
+
+// ---------------- DRAWING ----------------
+let pad, ctx, strokes=[], drawing=false, cur=null, penColor='#111', penSize=6;
+function renderDraw(fresh){
+  if(state.noPrompt){ return waiting('Sit this one out', 'You joined mid-round — you\'ll draw next round.'); }
+  if(state.submitted){ return waiting('Nice one! 🎨', 'Waiting for the others to finish drawing…'); }
+  if(!fresh && document.getElementById('pad')) return; // don't wipe canvas on every state tick
+  app.className='wrap';
+  app.innerHTML=`
+    <div style="text-align:center;margin-bottom:8px">
+      <div class="pill">Draw this</div>
+      <h2 class="big" style="margin-top:8px">${esc(state.prompt)}</h2>
+    </div>
+    <div class="canvas-wrap"><canvas id="pad" width="500" height="500"></canvas></div>
+    <div class="tools" id="colors"></div>
+    <div class="tools" id="sizes"></div>
+    <div class="tools" style="margin-top:14px">
+      <button class="btn ghost" id="undo">↶ Undo</button>
+      <button class="btn ghost" id="clear">Clear</button>
+      <button class="btn green" id="submit" style="flex:1;min-width:160px">✅ Submit drawing</button>
+    </div>`;
+  setupPad();
+}
+function setupPad(){
+  pad=document.getElementById('pad'); ctx=pad.getContext('2d');
+  strokes=[]; penColor='#111'; penSize=6;
+  clearCanvas();
+  const COLORS=['#111','#ffffff','#ff4d8d','#ffd166','#06d6a0','#4cc9f0','#c77dff','#f78c6b','#8b5a2b','#2b2b8b'];
+  document.getElementById('colors').innerHTML=COLORS.map((c,i)=>`<div class="swatch ${i===0?'on':''}" data-c="${c}" style="background:${c}"></div>`).join('');
+  document.querySelectorAll('.swatch').forEach(s=>s.onclick=()=>{
+    penColor=s.dataset.c; document.querySelectorAll('.swatch').forEach(x=>x.classList.remove('on')); s.classList.add('on');
+  });
+  const SIZES=[4,6,12,22];
+  document.getElementById('sizes').innerHTML=SIZES.map((z,i)=>`<div class="sizebtn ${i===1?'on':''}" data-z="${z}"><span class="d" style="width:${z}px;height:${z}px"></span></div>`).join('');
+  document.querySelectorAll('.sizebtn').forEach(s=>s.onclick=()=>{
+    penSize=+s.dataset.z; document.querySelectorAll('.sizebtn').forEach(x=>x.classList.remove('on')); s.classList.add('on');
+  });
+  document.getElementById('undo').onclick=()=>{strokes.pop();redraw();};
+  document.getElementById('clear').onclick=()=>{strokes=[];clearCanvas();};
+  document.getElementById('submit').onclick=submitDrawing;
+
+  const pos=(e)=>{const r=pad.getBoundingClientRect();const t=e.touches?e.touches[0]:e;
+    return {x:(t.clientX-r.left)/r.width*500, y:(t.clientY-r.top)/r.height*500};};
+  const down=(e)=>{e.preventDefault();drawing=true;cur={color:penColor,size:penSize,pts:[pos(e)]};strokes.push(cur);redraw();};
+  const move=(e)=>{if(!drawing)return;e.preventDefault();cur.pts.push(pos(e));redraw();};
+  const up=(e)=>{if(drawing){e.preventDefault();drawing=false;}};
+  pad.addEventListener('mousedown',down);pad.addEventListener('mousemove',move);window.addEventListener('mouseup',up);
+  pad.addEventListener('touchstart',down,{passive:false});pad.addEventListener('touchmove',move,{passive:false});pad.addEventListener('touchend',up,{passive:false});
+}
+function clearCanvas(){ctx.fillStyle='#fff';ctx.fillRect(0,0,500,500);}
+function redraw(){
+  clearCanvas();
+  ctx.lineJoin='round';ctx.lineCap='round';
+  for(const s of strokes){
+    ctx.strokeStyle=s.color;ctx.lineWidth=s.size;
+    ctx.beginPath();
+    if(s.pts.length===1){ctx.arc(s.pts[0].x,s.pts[0].y,s.size/2,0,7);ctx.fillStyle=s.color;ctx.fill();continue;}
+    ctx.moveTo(s.pts[0].x,s.pts[0].y);
+    for(let i=1;i<s.pts.length;i++)ctx.lineTo(s.pts[i].x,s.pts[i].y);
+    ctx.stroke();
+  }
+}
+function submitDrawing(){
+  if(strokes.length===0){ if(!confirm('Submit a blank drawing?')) return; }
+  const img=pad.toDataURL('image/png');
+  send({t:'submit_drawing', img});
+  waiting('Sent! 🎨','Waiting for the others…');
+}
+
+// ---------------- ANSWERING (write a lie) ----------------
+function renderAnswer(fresh){
+  if(state.isArtist) return waiting('That\'s YOUR drawing 😎','Sit tight while everyone invents lies about it.');
+  if(state.submitted) return waiting('Sneaky. 🤥','Lie submitted — waiting for the rest…');
+  app.className='center';
+  app.innerHTML=`<div class="fadein" style="display:flex;flex-direction:column;gap:14px;align-items:center;width:min(460px,94vw)">
+    <div class="pill">by ${esc(state.drawing.artistName)}</div>
+    <img class="drawimg" style="width:min(46vh,80vw)" src="${state.drawing.img}">
+    <h2 class="big">What is it?</h2>
+    <p class="muted" style="font-weight:700;margin-top:-6px">Write a fake answer to fool everyone.</p>
+    <input id="lie" class="field" maxlength="60" placeholder="e.g. a cat in a spaceship" autocomplete="off">
+    <button class="btn pink lg wide" id="send">Submit fake answer</button>
+  </div>`;
+  const lie=document.getElementById('lie'); lie.focus();
+  const go=()=>{const v=lie.value.trim(); if(!v)return; send({t:'submit_lie', text:v}); waiting('Sneaky. 🤥','Waiting for the rest…');};
+  document.getElementById('send').onclick=go;
+  lie.addEventListener('keydown',e=>{if(e.key==='Enter')go();});
+}
+
+// ---------------- VOTING ----------------
+function renderVote(fresh){
+  if(state.isArtist) return waiting('This is your masterpiece 🖼️','Watch everyone try to guess it on the big screen.');
+  if(state.autoCorrect) return waiting('You wrote the actual truth! 🎯','That counts as a correct guess. Nice.');
+  if(state.submitted){
+    return waiting('Vote locked in ✅','Waiting for everyone else to vote…');
+  }
+  app.className='center';
+  app.innerHTML=`<div class="fadein" style="display:flex;flex-direction:column;gap:12px;align-items:center;width:min(560px,96vw)">
+    <div class="pill">by ${esc(state.drawing.artistName)}</div>
+    <img class="drawimg" style="width:min(34vh,66vw)" src="${state.drawing.img}">
+    <h2 class="big">Which is the truth?</h2>
+    <div class="choices">${state.choices.map((c,i)=>`<button class="choice" data-id="${c.id}"><span class="num">${i+1}</span>${esc(c.text)}</button>`).join('')}</div>
+  </div>`;
+  document.querySelectorAll('.choice').forEach(b=>b.onclick=()=>{
+    document.querySelectorAll('.choice').forEach(x=>x.classList.remove('sel')); b.classList.add('sel');
+    send({t:'submit_vote', choiceId:b.dataset.id});
+  });
+}
+
+function renderReveal(){
+  const r=state.results;
+  const mine=r.deltas.find(d=>d.name===state.you.name);
+  shell(`<div class="fadein" style="display:flex;flex-direction:column;gap:14px;align-items:center">
+    <div class="pill">by ${esc(r.artistName)}</div>
+    <h2 class="big">The answer was</h2>
+    <div class="big" style="color:var(--green)">${esc(r.truth)}</div>
+    ${mine?`<div class="chip done" style="font-size:22px">You earned +${mine.points} 🎉</div>`:'<div class="muted" style="font-weight:700">No points that round 😬</div>'}
+    ${youBadge()}
+    <p class="muted" style="font-weight:700">See the full breakdown on the big screen.</p>
+  </div>`);
+}
+
+function renderScores(final){
+  const lb=state.leaderboard;
+  const you=lb.find(p=>p.name===state.you.name);
+  shell(`<div class="fadein" style="display:flex;flex-direction:column;gap:16px;align-items:center;width:min(460px,94vw)">
+    <h1 class="logo" style="font-size:clamp(34px,10vw,56px)">${final?'🏆 Game over':'Scoreboard'}</h1>
+    ${you?`<div class="big">You're #${you.rank} · ${you.score} pts</div>`:''}
+    ${final&&lb[0]?`<div class="pill">Winner: ${esc(lb[0].name)}</div>`:''}
+    <ol class="lb">${lb.map(p=>`<li class="${p.rank===1?'first':''}"><span class="rank">${p.rank}</span>
+      <span class="nm"><span class="dot" style="width:14px;height:14px;border-radius:50%;background:${p.color}"></span>${esc(p.name)}${p.name===state.you.name?' <span class="muted">(you)</span>':''}</span>
+      <span class="sc">${p.score}</span></li>`).join('')}</ol>
+    <p class="muted" style="font-weight:700">${final?'Thanks for playing! The host can start a new game.':'Get ready for the next round…'}</p>
+  </div>`);
+}
+</script>
+</body>
+</html>

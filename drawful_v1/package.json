@@ -1,0 +1,13 @@
+{
+  "name": "drawful_v1",
+  "version": "1.0.0",
+  "description": "Drawful-style multiplayer party drawing game. Host on a big screen, up to 8 players draw and bluff on their phones.",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
