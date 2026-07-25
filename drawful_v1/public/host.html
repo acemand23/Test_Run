@@ -89,6 +89,13 @@ function renderLobby(){
     <div style="margin:18px 0">${playerChips(state.players)}</div>
     <div class="muted" style="font-weight:800">${state.players.length}/8 players joined</div>
     <div class="card" style="margin-top:18px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center">
+      <label class="lbl" style="margin:0">Prompts
+        <select id="mode" class="field" style="width:auto;padding:10px 14px;margin-left:8px">
+          <option value="adult" selected>🔞 After Dark (18+)</option>
+          <option value="mixed">😏 Mixed</option>
+          <option value="clean">😇 Party (clean)</option>
+        </select>
+      </label>
       <label class="lbl" style="margin:0">Rounds
         <select id="rounds" class="field" style="width:auto;padding:10px 14px;margin-left:8px">
           <option value="1">1</option><option value="2" selected>2</option><option value="3">3</option>
@@ -96,10 +103,11 @@ function renderLobby(){
       </label>
       <button class="btn green lg" id="start" ${enough?'':'disabled'}>▶ Start game</button>
     </div>
-    ${enough?'':'<div class="muted" style="margin-top:8px">Need at least 2 players to start</div>'}
+    <div class="muted" style="margin-top:8px;font-size:13px">🔞 After Dark contains crude, adult humor — 18+ players only.</div>
+    ${enough?'':'<div class="muted" style="margin-top:6px">Need at least 2 players to start</div>'}
   </div>`;
   document.getElementById('start').onclick = () =>
-    send({t:'start', settings:{rounds:+document.getElementById('rounds').value}});
+    send({t:'start', settings:{rounds:+document.getElementById('rounds').value, mode:document.getElementById('mode').value}});
 }
 
 function renderDrawing(){

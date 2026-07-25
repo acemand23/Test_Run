@@ -2,6 +2,13 @@
 const crypto = require('crypto');
 const PROMPTS = require('./prompts');
 
+const CONTENT_MODES = ['adult', 'mixed', 'clean'];
+function promptPool(mode) {
+  if (mode === 'clean') return PROMPTS.clean;
+  if (mode === 'mixed') return PROMPTS.clean.concat(PROMPTS.adult);
+  return PROMPTS.adult; // default
+}
+
 // ---- tuning ----
 const MAX_PLAYERS = 8;
 const MIN_PLAYERS = 2; // 3+ is more fun, but allow 2 for testing
@@ -38,7 +45,9 @@ class Room {
     this.phase = 'lobby';
     this.rounds = 2;
     this.round = 0;
-    this.promptDeck = shuffle(PROMPTS);
+    this.mode = 'adult';
+    this.pool = promptPool(this.mode);
+    this.promptDeck = shuffle(this.pool);
     this.deckIdx = 0;
     this.queue = [];        // ordered list of artist pids to present this round
     this.qi = -1;           // index into queue
@@ -93,6 +102,10 @@ class Room {
     if (this.phase !== 'lobby') return;
     if (this.activePlayers().length < MIN_PLAYERS) return;
     this.rounds = Math.min(3, Math.max(1, parseInt(settings && settings.rounds, 10) || 2));
+    this.mode = CONTENT_MODES.includes(settings && settings.mode) ? settings.mode : 'adult';
+    this.pool = promptPool(this.mode);
+    this.promptDeck = shuffle(this.pool);
+    this.deckIdx = 0;
     this.round = 0;
     for (const p of this.players.values()) p.score = 0;
     this.beginRound();
@@ -110,7 +123,7 @@ class Room {
   }
 
   drawPrompt() {
-    if (this.deckIdx >= this.promptDeck.length) { this.promptDeck = shuffle(PROMPTS); this.deckIdx = 0; }
+    if (this.deckIdx >= this.promptDeck.length) { this.promptDeck = shuffle(this.pool); this.deckIdx = 0; }
     return this.promptDeck[this.deckIdx++];
   }
 

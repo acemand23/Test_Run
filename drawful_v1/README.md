@@ -4,6 +4,9 @@ A [Drawful](https://jackboxgames.com/games/drawful)-style party game. One screen
 **host/presenter** (laptop or TV); up to **8 players** join from their **phones**, draw a
 secret prompt, then try to fool each other with fake answers.
 
+The host picks the prompt set in the lobby: **🔞 After Dark (18+)** — crude/adult humor
+(the default) — **😏 Mixed**, or **😇 Party (clean)** for a tamer crowd.
+
 ## How a round works
 
 1. **Draw** — every player gets a different weird prompt and draws it on their phone.
