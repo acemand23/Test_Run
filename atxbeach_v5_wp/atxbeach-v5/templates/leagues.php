@@ -68,55 +68,55 @@ $LINK = [
     <div class="panel-head">
       <span class="eyebrow">League Partners</span>
       <h2>Who runs our leagues</h2>
-      <p>These partners organize and run the leagues on our sand. The full lineup is on the way — check back soon for names, links, and league details.</p>
+      <p>These partners organize and run the leagues on our sand — tap any partner to see their current seasons and sign up.</p>
     </div>
     <div class="cards">
 
-      <!-- STUB: replace name / blurb / link when the partner list arrives -->
+      <!-- Real Austin league partners. Links verified; logo boxes are placeholders until real artwork is supplied. -->
       <div class="sand card" style="--c:var(--teal)">
-        <span class="partner__logo" aria-hidden="true">L1</span>
-        <h3>League Partner 1</h3>
-        <p>Placeholder — this card will describe the leagues this partner runs (format, nights, and levels).</p>
-        <a href="#" class="btn btn-accent">Visit Partner</a>
+        <span class="partner__logo" aria-hidden="true">ACES</span>
+        <h3>ACES</h3>
+        <p>Austin Crew of Everything Social — coed indoor &amp; sand volleyball leagues and social sports around town.</p>
+        <a href="https://acesintexas.com/" target="_blank" rel="noopener" class="btn btn-accent">Visit Partner</a>
       </div>
 
       <div class="sand card" style="--c:var(--coral)">
-        <span class="partner__logo" aria-hidden="true">L2</span>
-        <h3>League Partner 2</h3>
-        <p>Placeholder — this card will describe the leagues this partner runs (format, nights, and levels).</p>
-        <a href="#" class="btn btn-accent">Visit Partner</a>
+        <span class="partner__logo" aria-hidden="true">SK</span>
+        <h3>SportsKind</h3>
+        <p>Austin adult rec sports — coed sand volleyball leagues on our courts, plus grass, indoor &amp; more.</p>
+        <a href="https://sportskind.com/austin/" target="_blank" rel="noopener" class="btn btn-accent">Visit Partner</a>
       </div>
 
       <div class="sand card" style="--c:var(--gold)">
-        <span class="partner__logo" aria-hidden="true">L3</span>
-        <h3>League Partner 3</h3>
-        <p>Placeholder — this card will describe the leagues this partner runs (format, nights, and levels).</p>
-        <a href="#" class="btn btn-accent">Visit Partner</a>
+        <span class="partner__logo" aria-hidden="true">PS</span>
+        <h3>Pride Sports</h3>
+        <p>LGBTQ+ inclusive Austin sports league running coed sand volleyball and a full slate of social sports.</p>
+        <a href="https://pridesportsaustin.com" target="_blank" rel="noopener" class="btn btn-accent">Visit Partner</a>
       </div>
 
       <div class="sand card" style="--c:var(--purple)">
-        <span class="partner__logo" aria-hidden="true">L4</span>
-        <h3>League Partner 4</h3>
-        <p>Placeholder — this card will describe the leagues this partner runs (format, nights, and levels).</p>
-        <a href="#" class="btn btn-accent">Visit Partner</a>
+        <span class="partner__logo" aria-hidden="true">SS</span>
+        <h3>Stonewall Sports</h3>
+        <p>LGBTQ+ &amp; ally community sports nonprofit — volleyball, kickball, pickleball &amp; more here in Austin.</p>
+        <a href="https://www.stonewallsportsaustin.org/" target="_blank" rel="noopener" class="btn btn-accent">Visit Partner</a>
       </div>
 
       <div class="sand card" style="--c:var(--sun)">
-        <span class="partner__logo" aria-hidden="true">L5</span>
-        <h3>League Partner 5</h3>
-        <p>Placeholder — this card will describe the leagues this partner runs (format, nights, and levels).</p>
-        <a href="#" class="btn btn-accent">Visit Partner</a>
+        <span class="partner__logo" aria-hidden="true">RR</span>
+        <h3>Red Rocks Church</h3>
+        <p>Sports ministry running year-round rec adult volleyball leagues here in Austin.</p>
+        <a href="https://www.redrockschurch.com/sports/" target="_blank" rel="noopener" class="btn btn-accent">Visit Partner</a>
       </div>
 
       <div class="sand card" style="--c:var(--teal)">
-        <span class="partner__logo" aria-hidden="true">L6</span>
-        <h3>League Partner 6</h3>
-        <p>Placeholder — this card will describe the leagues this partner runs (format, nights, and levels).</p>
-        <a href="#" class="btn btn-accent">Visit Partner</a>
+        <span class="partner__logo" aria-hidden="true">SnS</span>
+        <h3>Sip &rsquo;n Serve</h3>
+        <p>Austin volleyball community with weekly pickup and monthly tournaments across sand, grass &amp; indoor.</p>
+        <a href="https://www.sipnservesociety.com/" target="_blank" rel="noopener" class="btn btn-accent">Visit Partner</a>
       </div>
 
     </div>
-    <p class="note">Partner names, logos, and links shown here are placeholders — the real lineup is coming soon.</p>
+    <p class="note">Logo tiles are placeholders — partner artwork coming soon. Each “Visit Partner” link opens that partner’s official site.</p>
   </div></section>
 </main>
 
