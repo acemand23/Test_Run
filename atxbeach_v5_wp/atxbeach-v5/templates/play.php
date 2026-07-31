@@ -83,7 +83,7 @@ $LINK = [
       <div class="sand card" style="--c:var(--purple)">
         <h3>Leagues</h3>
         <p>Coed 4s &amp; 6s leagues forming now — weekly matches, real standings, and a season-ending bracket.</p>
-        <a href="https://atxbeach.volleyballlife.com/tournaments/current" target="_blank" rel="noopener" class="btn btn-accent">See Leagues</a>
+        <a href="<?php echo $LINK['leagues']; ?>" class="btn btn-accent">See Leagues</a>
       </div>
       <div class="sand card" style="--c:var(--coral)">
         <h3>Tournaments</h3>
