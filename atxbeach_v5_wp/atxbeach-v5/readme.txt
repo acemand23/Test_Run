@@ -5,12 +5,12 @@ Requires PHP: 8.0
 Stable tag: 1.0.0
 License: GPL-2.0-or-later
 
-The approved ATX Beach "aerial court" homepage + four sub-pages (Play, Train,
-ATX Juniors, Events) as standalone, full-bleed WordPress page templates.
+The approved ATX Beach "aerial court" homepage + five sub-pages (Play, Train,
+ATX Juniors, Events, Leagues) as standalone, full-bleed WordPress page templates.
 
 == What it is ==
 
-This plugin adds five page templates. It does NOT touch the active theme, so it
+This plugin adds six page templates. It does NOT touch the active theme, so it
 is safe to run alongside the existing Hub/Elementor site. Each template renders
 its page full-bleed (no theme header/footer), pixel-matched to the sign-off
 mockup, and loads only its own CSS/images.
@@ -18,7 +18,7 @@ mockup, and loads only its own CSS/images.
 Rollback is built in two ways:
   1. Switch the homepage back (Settings -> Reading) — the old homepage is never
      touched, so this is instant.
-  2. Deactivate this plugin — the five templates disappear and the pages fall
+  2. Deactivate this plugin — the six templates disappear and the pages fall
      back to the theme default. The Page content itself is never deleted.
 
 == Install ==
@@ -26,33 +26,41 @@ Rollback is built in two ways:
 1. WP Admin -> Plugins -> Add New -> Upload Plugin -> choose atxbeach-v5.zip -> Install.
 2. Activate "ATX Beach v5 (Aerial)".
 
-== One-time setup: create the 5 pages ==
+== One-time setup: create 6 NEW pages ==
 
-The homepage tiles link to /play/, /train/, /juniors/, /events/, so those pages
-must exist with those exact slugs.
+These use distinct "sand-*" slugs on purpose, so they NEVER collide with existing
+live pages (e.g. atxbeach.com already has /train/ and /events/). You create brand-new
+pages and leave every existing page untouched — that is what makes rollback trivial.
 
 For each page below: Pages -> Add New, set the Title and permalink SLUG, then in
-Page Attributes -> Template pick the matching template, and Publish.
+Page Attributes -> Template pick the matching template, and Publish. Leave the body
+EMPTY — the template supplies all content.
 
-    Title          Slug       Template
-    -----          ----       --------
-    Home           home       ATX Beach — Home
-    Play           play       ATX Beach — Play
-    Train          train      ATX Beach — Train
-    ATX Juniors    juniors    ATX Beach — ATX Juniors
-    Events         events     ATX Beach — Events
+    Title          Slug            Template
+    -----          ----            --------
+    Home           sand-home       ATX Beach — Home
+    Play           sand-play       ATX Beach — Play
+    Train          sand-train      ATX Beach — Train
+    ATX Juniors    sand-juniors    ATX Beach — ATX Juniors
+    Events         sand-events     ATX Beach — Events
+    Leagues        sand-leagues    ATX Beach — Leagues
 
-(Leave the page body empty — the template supplies all content.)
+(The slugs live in one place — atxb_v5_slugs() in the plugin, or the 'atxb_v5_slugs'
+filter — if you ever want to change them. Rename the pages to match if you do.)
 
 Faster, via WP-CLI:
     wp plugin activate atxbeach-v5
-    for row in "Home:home:atxb-home" "Play:play:atxb-play" "Train:train:atxb-train" \
-               "ATX Juniors:juniors:atxb-juniors" "Events:events:atxb-events"; do
+    for row in "Home:sand-home:atxb-home" "Play:sand-play:atxb-play" \
+               "Train:sand-train:atxb-train" "ATX Juniors:sand-juniors:atxb-juniors" \
+               "Events:sand-events:atxb-events" "Leagues:sand-leagues:atxb-leagues"; do
       T="${row%%:*}"; rest="${row#*:}"; S="${rest%%:*}"; TPL="${rest#*:}"
       ID=$(wp post create --post_type=page --post_status=publish --post_title="$T" --post_name="$S" --porcelain)
       wp post meta update "$ID" _wp_page_template "$TPL"
     done
     wp rewrite flush
+
+Set where the Events form emails (host inquiries):
+    wp option update atxb_host_email lj@atxbeach.com
 
 == THE FLIP (go live) ==
 
@@ -70,6 +78,10 @@ Faster, via WP-CLI:
    (Or simply deactivate this plugin.)
 2. Purge WP Engine + Cloudflare caches again.
 Under a minute, and the old homepage returns exactly as it was.
+
+Because the new pages use their own sand-* slugs, NO existing page was ever
+modified — the old site is still there untouched. Full teardown = trash the five
+sand-* pages and deactivate the plugin. The originals never moved.
 
 == Still to swap in real content ==
 

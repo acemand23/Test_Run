@@ -111,6 +111,28 @@ h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.05}
   background:color-mix(in srgb,var(--c) 20%,#fff);color:var(--c-deep);font-family:var(--font-display);font-weight:700;margin-bottom:14px}
 .card h3{font-size:1.2rem;text-transform:uppercase;letter-spacing:.4px;color:var(--ink)}
 .card p{margin-top:7px;color:var(--muted);font-size:.94rem;line-height:1.5}
+.card .btn{margin-top:16px}
+/* league-partner logo placeholder (swap for real logo art later) */
+.partner__logo{display:flex;align-items:center;justify-content:center;height:72px;margin-bottom:16px;border-radius:8px;
+  background:color-mix(in srgb,var(--c) 14%,#fff);border:1px dashed color-mix(in srgb,var(--c) 45%,#fff);
+  color:var(--c-deep,var(--navy-deep));font-family:var(--font-display);font-weight:700;font-size:1.15rem;letter-spacing:2px}
+
+/* Host-event inquiry form (Events page) */
+.hostform{margin-top:18px}
+.hostform label{display:block;font-family:var(--font-display);font-weight:600;font-size:.8rem;letter-spacing:.6px;
+  text-transform:uppercase;color:var(--muted);margin-bottom:15px}
+.hostform input,.hostform select,.hostform textarea{display:block;width:100%;margin-top:7px;padding:11px 12px;
+  font:400 .98rem/1.4 var(--font-body);text-transform:none;letter-spacing:normal;color:var(--ink);
+  background:#fff;border:1px solid var(--line);border-radius:10px}
+.hostform input:focus,.hostform select:focus,.hostform textarea:focus{outline:none;border-color:var(--c);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 20%,transparent)}
+.hostform textarea{resize:vertical}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hostform .btn{margin-top:6px}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.notice{padding:12px 15px;border-radius:10px;font-weight:600;margin:6px 0 16px}
+.notice-ok{background:#e5f4f2;color:#0c5a73;border:1px solid #bfe3dc}
+.notice-err{background:#fdecea;color:#9b241a;border:1px solid #f2b8b2}
 
 /* split: prose + aside */
 .split{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:start}
@@ -173,6 +195,10 @@ h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.05}
 .venue__meta a{color:rgba(255,255,255,.8)}
 .venue__meta a:hover{color:#fff}
 .venue__meta .dot{opacity:.35}
+.venue__social{display:inline-flex;align-items:center;gap:14px}
+.venue__social a{color:rgba(255,255,255,.8);display:inline-flex;align-items:center}
+.venue__social a:hover{color:#fff}
+.venue__social svg{display:block}
 
 /* ---------- Sign-waiver FAB ---------- */
 .waiver-fab{position:fixed;left:16px;bottom:14px;z-index:80;display:inline-flex;align-items:center;gap:9px;background:var(--coral);
@@ -185,6 +211,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.05}
 @media (max-width:900px){
   .cards{grid-template-columns:1fr}
   .split{grid-template-columns:1fr}
+  .field-row{grid-template-columns:1fr}
   .aside{position:static}
   .tiers{grid-template-columns:1fr}
 }

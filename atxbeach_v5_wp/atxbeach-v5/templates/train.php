@@ -2,11 +2,12 @@
 if (!defined('ABSPATH')) exit;
 $ATXB = ATXBEACH_ASSETS;
 $LINK = [
-    'index'   => esc_url(home_url('/')),
-    'play'    => esc_url(home_url('/play/')),
-    'train'   => esc_url(home_url('/train/')),
-    'juniors' => esc_url(home_url('/juniors/')),
-    'events'  => esc_url(home_url('/events/')),
+    'index'   => esc_url(atxb_v5_url('home')),
+    'play'    => esc_url(atxb_v5_url('play')),
+    'train'   => esc_url(atxb_v5_url('train')),
+    'juniors' => esc_url(atxb_v5_url('juniors')),
+    'events'  => esc_url(atxb_v5_url('events')),
+    'leagues' => esc_url(atxb_v5_url('leagues')),
 ];
 ?>
 <!DOCTYPE html>
@@ -118,19 +119,19 @@ $LINK = [
         <span class="ribbon">Starter</span><h3>Drop-In</h3>
         <div class="price">Pay as you go <span>/ session</span></div>
         <ul><li>Join any clinic or open play</li><li>No commitment</li><li>Great for visitors &amp; first-timers</li></ul>
-        <a href="https://goteamup.com/p/9142954-atx-beach/" target="_blank" rel="noopener" class="btn btn-outline">Get Started</a>
+        <a href="https://goteamup.com/p/9142954-atx-beach/memberships/" target="_blank" rel="noopener" class="btn btn-outline">Get Started</a>
       </div>
       <div class="sand tier featured">
         <span class="ribbon">Most Popular</span><h3>Monthly Member</h3>
         <div class="price">Monthly <span>/ recurring</span></div>
         <ul><li>Discounted clinics &amp; sessions</li><li>Priority registration</li><li>Member-only events</li></ul>
-        <a href="https://goteamup.com/p/9142954-atx-beach/" target="_blank" rel="noopener" class="btn btn-accent">Become a Member</a>
+        <a href="https://goteamup.com/p/9142954-atx-beach/memberships/" target="_blank" rel="noopener" class="btn btn-accent">Become a Member</a>
       </div>
       <div class="sand tier">
         <span class="ribbon">All-In</span><h3>Unlimited</h3>
         <div class="price">Best value <span>/ recurring</span></div>
         <ul><li>Unlimited clinics &amp; drop-ins</li><li>Best per-session value</li><li>Perks across the venue</li></ul>
-        <a href="https://goteamup.com/p/9142954-atx-beach/" target="_blank" rel="noopener" class="btn btn-outline">Go Unlimited</a>
+        <a href="https://goteamup.com/p/9142954-atx-beach/memberships/" target="_blank" rel="noopener" class="btn btn-outline">Go Unlimited</a>
       </div>
     </div>
     <p class="note">Tiers and pricing shown are samples — see TeamUp for current membership options.</p>
@@ -153,11 +154,15 @@ $LINK = [
   <span class="venue__meta">
     <span>Open daily 8a–12a</span><span class="dot">·</span>
     <a href="tel:+15128789459">(512) 878-9459</a><span class="dot">·</span>
-    <a href="https://maps.google.com/?q=11000+Middle+Fiskville+Road+Bldg+E+Austin+TX+78753" target="_blank" rel="noopener">11000 Middle Fiskville Rd, Austin</a>
+    <a href="https://maps.google.com/?q=11000+Middle+Fiskville+Road+Bldg+E+Austin+TX+78753" target="_blank" rel="noopener">11000 Middle Fiskville Rd, Austin</a><span class="dot">·</span>
+    <span class="venue__social">
+      <a href="https://www.instagram.com/atxbeach/" target="_blank" rel="noopener" aria-label="ATX Beach on Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.facebook.com/profile.php?id=61553879228225" target="_blank" rel="noopener" aria-label="ATX Beach on Facebook"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg></a>
+    </span>
   </span>
 </footer>
 
-<a class="waiver-fab" href="<?php echo $LINK['play']; ?>" aria-label="Sign your waiver">
+<a class="waiver-fab" href="https://www.yourcourts.com/yourcourts/security/register/2892776" target="_blank" rel="noopener" aria-label="Sign your waiver">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
   Sign Waiver
 </a>
