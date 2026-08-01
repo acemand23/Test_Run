@@ -366,17 +366,6 @@ $LINK = [
       </span>
     </a>
 
-    <a class="court" href="<?php echo $LINK['juniors']; ?>" style="--c:#f0a423">
-      <span class="court__net" aria-hidden="true"></span>
-      <span class="court__half court__half--a court__photo" style="background-image:url(<?php echo $ATXB; ?>images/site/social-3.jpg)" aria-hidden="true"></span>
-      <span class="court__half court__half--b">
-        <span class="court__tag">Youth Programs</span>
-        <span class="court__label">Juniors<u></u></span>
-        <span class="court__desc">Camps, clinics, and competitive pathways that grow young players on and off the sand.</span>
-        <span class="court__cta">Explore Juniors <span class="court__arrow">→</span></span>
-      </span>
-    </a>
-
     <a class="court" href="<?php echo $LINK['train']; ?>" style="--c:#ff6b4a">
       <span class="court__net" aria-hidden="true"></span>
       <span class="court__half court__half--a court__photo" style="background-image:url(<?php echo $ATXB; ?>images/photos/action-87.jpg)" aria-hidden="true"></span>
@@ -396,6 +385,17 @@ $LINK = [
         <span class="court__label">Host Events<u></u></span>
         <span class="court__desc">Tournaments, leagues, corporate &amp; private events — book the whole venue and bar.</span>
         <span class="court__cta">Host With Us <span class="court__arrow">→</span></span>
+      </span>
+    </a>
+
+    <a class="court" href="<?php echo $LINK['juniors']; ?>" style="--c:#f0a423">
+      <span class="court__net" aria-hidden="true"></span>
+      <span class="court__half court__half--a court__photo" style="background-image:url(<?php echo $ATXB; ?>images/site/social-3.jpg)" aria-hidden="true"></span>
+      <span class="court__half court__half--b">
+        <span class="court__tag">Youth Programs</span>
+        <span class="court__label">Juniors<u></u></span>
+        <span class="court__desc">Camps, clinics, and competitive pathways that grow young players on and off the sand.</span>
+        <span class="court__cta">Explore Juniors <span class="court__arrow">→</span></span>
       </span>
     </a>
 
