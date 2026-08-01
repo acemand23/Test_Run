@@ -157,7 +157,7 @@ $LINK = [
     <a href="https://maps.google.com/?q=11000+Middle+Fiskville+Road+Bldg+E+Austin+TX+78753" target="_blank" rel="noopener">11000 Middle Fiskville Rd, Austin</a><span class="dot">·</span>
     <span class="venue__social">
       <a href="https://www.instagram.com/atxbeach/" target="_blank" rel="noopener" aria-label="ATX Beach on Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg></a>
-      <a href="https://www.facebook.com/profile.php?id=61553879228225" target="_blank" rel="noopener" aria-label="ATX Beach on Facebook"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg></a>
+      <a href="https://www.facebook.com/profile.php?id=61553887867812" target="_blank" rel="noopener" aria-label="ATX Beach on Facebook"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg></a>
     </span>
   </span>
 </footer>
