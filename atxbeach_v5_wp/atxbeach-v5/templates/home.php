@@ -368,7 +368,7 @@ $LINK = [
 
     <a class="court" href="<?php echo $LINK['train']; ?>" style="--c:#ff6b4a">
       <span class="court__net" aria-hidden="true"></span>
-      <span class="court__half court__half--a court__photo" style="background-image:url(<?php echo $ATXB; ?>images/photos/action-87.jpg)" aria-hidden="true"></span>
+      <span class="court__half court__half--a court__photo" style="background-image:url(<?php echo $ATXB; ?>images/site/league-action.jpg)" aria-hidden="true"></span>
       <span class="court__half court__half--b">
         <span class="court__tag">Adult Clinics &amp; Memberships</span>
         <span class="court__label">Train<u></u></span>

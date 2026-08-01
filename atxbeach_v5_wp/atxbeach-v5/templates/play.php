@@ -54,7 +54,7 @@ $LINK = [
 
 <main>
   <!-- court-style hero -->
-  <header class="phero" style="background-image:url(<?php echo $ATXB; ?>images/photos/action-87.jpg)">
+  <header class="phero" style="background-image:url(<?php echo $ATXB; ?>images/photos/venue-9468.jpg)">
     <div class="wrap">
       <div class="breadcrumb"><a href="<?php echo $LINK['index']; ?>">Home</a> &rsaquo; Play</div>
       <span class="eyebrow">Open Play &amp; Court Reservations</span>
