@@ -96,7 +96,8 @@ add_action('template_redirect', function (): void {
 /** Where host inquiries are emailed: the atxb_host_email option, else the site admin. */
 function atxb_host_inquiry_recipient(): string {
     $opt = get_option('atxb_host_email');
-    return is_email($opt) ? $opt : (string) get_option('admin_email');
+    if (is_email($opt)) return $opt;      // optional override via the atxb_host_email option
+    return 'lj@atxbeach.com';             // default recipient on prod (no WP-CLI needed)
 }
 
 /** Handle an Events-page inquiry submission and email it (POST -> admin-post.php). */
