@@ -1,0 +1,5 @@
+# Godot 4 editor import cache & per-user files
+.godot/
+*.import
+export_presets.cfg
+.mono/

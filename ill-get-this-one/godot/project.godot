@@ -1,0 +1,28 @@
+; Godot 4 project — "I'll Get This One"
+; Open this folder in Godot 4.3+ (Project > Import), then run.
+
+config_version=5
+
+[application]
+
+config/name="I'll Get This One"
+run/main_scene="res://Main.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Session="*res://autoload/Session.gd"
+Api="*res://autoload/Api.gd"
+
+[display]
+
+window/size/viewport_width=390
+window/size/viewport_height=844
+window/handheld/orientation=1
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true

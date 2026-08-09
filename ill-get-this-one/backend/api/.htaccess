@@ -1,0 +1,15 @@
+# Route every request under this folder to index.php (front controller).
+RewriteEngine On
+RewriteBase /api/
+
+# Let real files (if any) be served directly.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Everything else -> index.php
+RewriteRule ^ index.php [QSA,L]
+
+# Make sure the Authorization header survives to PHP on shared hosting.
+RewriteCond %{HTTP:Authorization} ^(.+)$
+RewriteRule ^ - [E=HTTP_AUTHORIZATION:%1]
