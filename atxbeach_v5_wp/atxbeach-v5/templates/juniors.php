@@ -52,7 +52,7 @@ $LINK = [
 </div>
 
 <main>
-  <header class="phero" style="background-image:url(<?php echo $ATXB; ?>images/site/social-2.jpg)">
+  <header class="phero" style="background-image:url(<?php echo $ATXB; ?>images/site/juniors-team.jpg)">
     <div class="wrap">
       <div class="breadcrumb"><a href="<?php echo $LINK['index']; ?>">Home</a> &rsaquo; ATX Juniors</div>
       <span class="eyebrow">Youth Beach Volleyball</span>

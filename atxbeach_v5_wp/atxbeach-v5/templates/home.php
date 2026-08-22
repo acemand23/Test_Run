@@ -390,7 +390,7 @@ $LINK = [
 
     <a class="court" href="<?php echo $LINK['juniors']; ?>" style="--c:#f0a423">
       <span class="court__net" aria-hidden="true"></span>
-      <span class="court__half court__half--a court__photo" style="background-image:url(<?php echo $ATXB; ?>images/site/social-3.jpg)" aria-hidden="true"></span>
+      <span class="court__half court__half--a court__photo" style="background-image:url(<?php echo $ATXB; ?>images/site/juniors-team.jpg)" aria-hidden="true"></span>
       <span class="court__half court__half--b">
         <span class="court__tag">Youth Programs</span>
         <span class="court__label">Juniors<u></u></span>
