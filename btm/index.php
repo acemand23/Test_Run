@@ -9,6 +9,7 @@ $boomtown_target  = $boomtown_open->getTimestamp();
 $boomtown_now     = time();
 $boomtown_is_open = $boomtown_now >= $boomtown_target;
 $boomtown_reg_url = 'https://boomtown.vballmanager.com/org/tournament.php?slug=boomtown&event_id=128';
+$boomtown_when    = $boomtown_open->format('l, F j, Y') . ' at ' . $boomtown_open->format('g:i A T');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -230,6 +231,13 @@ $boomtown_reg_url = 'https://boomtown.vballmanager.com/org/tournament.php?slug=b
             opacity: 0.9;
         }
 
+        .countdown-date {
+            margin-top: 18px;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #764ba2;
+        }
+
         .register-btn {
             display: inline-block;
             background: linear-gradient(135deg, #667eea, #764ba2);
@@ -332,6 +340,7 @@ $boomtown_reg_url = 'https://boomtown.vballmanager.com/org/tournament.php?slug=b
                     <div class="countdown-unit"><span class="countdown-number" data-minutes>--</span><span class="countdown-label">Minutes</span></div>
                     <div class="countdown-unit"><span class="countdown-number" data-seconds>--</span><span class="countdown-label">Seconds</span></div>
                 </div>
+                <div class="countdown-date"><?php echo htmlspecialchars($boomtown_when, ENT_QUOTES); ?></div>
             </div>
         <?php endif; ?>
         <p class="memorial-note">All proceeds benefit the Dr. Matthew P. Rowan Memorial Foundation</p>
