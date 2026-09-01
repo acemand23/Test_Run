@@ -24,7 +24,7 @@
   <div class="soon">
     <div class="soon-badge">Opening Soon</div>
     <h2>Registration opens October&nbsp;7, 2026</h2>
-    <p>Sign-ups go live <strong>Saturday, October&nbsp;7 at 6:00&nbsp;PM CT</strong>. Drop us a note and we&rsquo;ll let you know the moment they open &mdash; or watch the countdown on our home page.</p>
+    <p>Sign-ups go live <strong>Wednesday, October&nbsp;7 at 6:00&nbsp;PM CT</strong>. Drop us a note and we&rsquo;ll let you know the moment they open &mdash; or watch the countdown on our home page.</p>
     <div class="cta-row">
       <a href="<?= htmlspecialchars($reg_notify_url) ?>" class="btn grad">Notify me &rarr;</a>
       <a href="tournament.php" class="btn line">How it works</a>

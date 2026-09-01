@@ -59,7 +59,7 @@
       <div class="cd-cell"><span class="cd-num" data-cd="secs"><?= sprintf('%02d', $cd_s) ?></span><span class="cd-lab">Sec</span></div>
     </div>
     <p class="cd-open-msg">🏐 Registration is open!</p>
-    <p class="cd-sub">Saturday, October 7, 2026 · 6:00&nbsp;PM CT</p>
+    <p class="cd-sub">Wednesday, October 7, 2026 · 6:00&nbsp;PM CT</p>
     <div class="cta-row">
       <a class="btn grad cd-cta"
          href="<?= $reg_is_open ? htmlspecialchars($reg_signup_url) : htmlspecialchars($reg_notify_url) ?>"
