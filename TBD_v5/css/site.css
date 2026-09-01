@@ -110,6 +110,32 @@ header{background:var(--cream);position:relative;z-index:10}
 .soon p{font-weight:600;color:#3c4257;font-size:16px;line-height:1.6;max-width:54ch;margin:14px auto 0}
 .soon .cta-row{justify-content:center}
 
+/* ── registration countdown (homepage, under the poster) ─────────────── */
+.countdown-wrap{padding:20px 0 6px}
+.countdown{background:var(--paper);border:1px solid var(--line);border-radius:18px;
+  padding:24px 22px 22px;text-align:center;position:relative;overflow:hidden}
+.countdown::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:var(--grad)}
+.cd-kicker{font-family:"Archivo Black";text-transform:uppercase;letter-spacing:.06em;
+  color:var(--orange-d);font-size:14px;margin:6px 0 16px}
+.cd-clock{display:flex;justify-content:center;gap:10px}
+.cd-cell{background:#fff;border:1.5px solid var(--line);border-radius:14px;
+  padding:12px 6px 9px;flex:0 1 84px;min-width:70px}
+.cd-num{display:block;font-family:"Archivo Black";font-size:clamp(30px,7vw,44px);line-height:1;
+  color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.cd-lab{display:block;margin-top:7px;font-family:"Archivo Black";text-transform:uppercase;
+  letter-spacing:.09em;font-size:11px;color:#9a9486}
+.cd-open-msg{display:none;font-family:"Archivo Black";font-size:clamp(24px,5.5vw,36px);
+  color:var(--teal);line-height:1;margin:4px 0}
+.cd-sub{margin:16px 0 2px;font-weight:700;color:var(--ink);font-size:15px}
+.countdown .cta-row{justify-content:center;margin-top:16px}
+.countdown.is-open .cd-kicker,
+.countdown.is-open .cd-clock{display:none}
+.countdown.is-open .cd-open-msg{display:block}
+@media(max-width:480px){
+  .cd-clock{gap:7px}
+  .cd-cell{flex:1 1 0;min-width:0;padding:11px 2px 8px}
+}
+
 /* sponsorship tiers (sponsor.php — rebuilt from the poster as editable HTML) */
 .tiers{display:flex;flex-direction:column;gap:16px}
 .tier{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 24px;position:relative}
