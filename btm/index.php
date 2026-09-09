@@ -476,7 +476,7 @@ $boomtown_when    = $boomtown_open->format('l, F j, Y') . ' at ' . $boomtown_ope
             <li><strong>Check in:</strong> 7:30 - 8 a.m.</li>
             <li><strong>Play begins:</strong> 8:30 a.m. SHARP!</li>
             <li><strong>Format:</strong> Blind Draw 4's (sign up by yourself and you will be placed on a team)</li>
-            <li><strong>Cost:</strong> $34 per player (Matt and Sunday were both 34 years old)</li>
+            <li><strong>Cost:</strong> $44 per player (Matt and Sunday were both 34 years old, and this is the 10th Anniversary of the Event)</li>
         </ul>
         <p>Prizes for 1st and 2nd place teams (maybe more depending on prize donations).</p>
         <p>All proceeds go directly to the Dr. Matthew P. Rowan Memorial Foundation to foster and grow amateur beach volleyball communities across San Antonio and Austin.</p>
