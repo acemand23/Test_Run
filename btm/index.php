@@ -184,6 +184,27 @@ $boomtown_when    = $boomtown_open->format('l, F j, Y') . ' at ' . $boomtown_ope
             margin-bottom: 10px;
         }
 
+        /* 10th-anniversary t-shirt perk, tucked under the Cost line */
+        .cost-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 10px;
+            padding: 12px 16px;
+            background: #FFF3E7;
+            border-left: 4px solid #FB7A3C;
+            border-radius: 10px;
+            font-size: 0.98em;
+            line-height: 1.5;
+            color: #7a4a24;
+        }
+
+        .cost-note .cost-note-icon {
+            flex: 0 0 auto;
+            font-size: 1.3em;
+            line-height: 1.3;
+        }
+
         /* Registration countdown */
         .countdown-card {
             margin: 28px 0 12px;
@@ -476,7 +497,12 @@ $boomtown_when    = $boomtown_open->format('l, F j, Y') . ' at ' . $boomtown_ope
             <li><strong>Check in:</strong> 7:30 - 8 a.m.</li>
             <li><strong>Play begins:</strong> 8:30 a.m. SHARP!</li>
             <li><strong>Format:</strong> Blind Draw 4's (sign up by yourself and you will be placed on a team)</li>
-            <li><strong>Cost:</strong> $44 per player (Matt and Sunday were both 34 years old, and this is the 10th Anniversary of the Event)</li>
+            <li><strong>Cost:</strong> $44 per player (Matt and Sunday were both 34 years old, and this is the 10th Anniversary of the Event)
+                <div class="cost-note">
+                    <span class="cost-note-icon" aria-hidden="true">&#128085;</span>
+                    <span>For our 10th Anniversary, every entry comes with a commemorative t-shirt (will be based on your profile size). Additional shirts can be ordered during the registration process.</span>
+                </div>
+            </li>
         </ul>
         <p>Prizes for 1st and 2nd place teams (maybe more depending on prize donations).</p>
         <p>All proceeds go directly to the Dr. Matthew P. Rowan Memorial Foundation to foster and grow amateur beach volleyball communities across San Antonio and Austin.</p>
