@@ -257,6 +257,104 @@ $boomtown_when    = $boomtown_open->format('l, F j, Y') . ' at ' . $boomtown_ope
             box-shadow: 0 12px 30px rgba(102, 126, 234, 0.5);
         }
 
+        /* Pre-register login CTA — warm sunset accent to stand apart from the
+           page's cool indigo. Golden-hour sand for a beach tournament. */
+        .prereg {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-align: left;
+            max-width: 720px;
+            margin: 28px auto 4px;
+            padding: 20px 26px;
+            border-radius: 18px;
+            color: #fff;
+            background: linear-gradient(135deg, #FBA015 0%, #FB5A34 100%);
+            box-shadow: 0 12px 30px rgba(251, 90, 52, 0.38);
+        }
+
+        .prereg > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Single, slow light sweep to draw the eye (disabled if reduced motion). */
+        .prereg::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -60%;
+            width: 45%;
+            height: 100%;
+            background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+            transform: skewX(-20deg);
+            animation: prereg-sheen 4.2s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes prereg-sheen {
+            0%        { left: -60%; }
+            55%, 100% { left: 135%; }
+        }
+
+        .prereg-icon {
+            flex: 0 0 auto;
+            width: 56px;
+            height: 56px;
+            display: grid;
+            place-items: center;
+            font-size: 1.9em;
+            line-height: 1;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.22);
+            box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+        }
+
+        .prereg-text {
+            flex: 1 1 auto;
+        }
+
+        .prereg-title {
+            font-size: 1.2em;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: 0.2px;
+        }
+
+        .prereg-sub {
+            font-size: 0.98em;
+            line-height: 1.45;
+            margin-top: 5px;
+            opacity: 0.95;
+        }
+
+        .prereg-btn {
+            flex: 0 0 auto;
+            display: inline-block;
+            white-space: nowrap;
+            background: #fff;
+            color: #E8531F;
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-size: 1.05em;
+            font-weight: 800;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .prereg-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .prereg::after { animation: none; display: none; }
+            .prereg-btn { transition: none; }
+        }
+
         @media (max-width: 768px) {
             .top-nav ul {
                 gap: 15px;
@@ -293,6 +391,17 @@ $boomtown_when    = $boomtown_open->format('l, F j, Y') . ' at ' . $boomtown_ope
             .register-btn {
                 padding: 14px 34px;
                 font-size: 1.15em;
+            }
+
+            .prereg {
+                flex-direction: column;
+                text-align: center;
+                gap: 14px;
+                padding: 24px 20px;
+            }
+
+            .prereg-btn {
+                width: 100%;
             }
         }
     </style>
@@ -343,6 +452,14 @@ $boomtown_when    = $boomtown_open->format('l, F j, Y') . ' at ' . $boomtown_ope
                 <div class="countdown-date"><?php echo htmlspecialchars($boomtown_when, ENT_QUOTES); ?></div>
             </div>
         <?php endif; ?>
+        <div class="prereg">
+            <div class="prereg-icon" aria-hidden="true">&#9889;</div>
+            <div class="prereg-text">
+                <div class="prereg-title">Pre-register your Boomtown login</div>
+                <div class="prereg-sub">Set up your account now so checkout flies the moment registration opens.</div>
+            </div>
+            <a class="prereg-btn" href="https://boomtown.vballmanager.com/members/join.php">Pre-Register Now</a>
+        </div>
         <p class="memorial-note">All proceeds benefit the Dr. Matthew P. Rowan Memorial Foundation</p>
     </div>
 
