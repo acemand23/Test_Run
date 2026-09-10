@@ -1,15 +1,14 @@
 <?php
-// --- Boomtown Classic registration countdown --------------------------------
-// Registration opens Sep 10, 2026 at 6:00pm Central. Using the America/Chicago
-// zone resolves that date to CDT (UTC-5) automatically. getTimestamp() and
-// time() both return absolute UTC epoch seconds, so the comparison is correct
-// regardless of the server's configured timezone.
+// --- Boomtown Classic registration doorway ----------------------------------
+// Registration opens Sep 10, 2026 at 6:00pm Central (America/Chicago resolves
+// to CDT automatically). The live countdown now lives on the registration page
+// itself; this page is an evergreen signpost that sends visitors there. We
+// still format the open day/time from the DateTime so the displayed weekday and
+// time can never drift out of sync with the actual open date.
 $boomtown_open    = new DateTime('2026-09-10 18:00:00', new DateTimeZone('America/Chicago'));
-$boomtown_target  = $boomtown_open->getTimestamp();
-$boomtown_now     = time();
-$boomtown_is_open = $boomtown_now >= $boomtown_target;
-$boomtown_reg_url = 'https://boomtown.vballmanager.com/org/tournament.php?slug=boomtown&event_id=128';
-$boomtown_when    = $boomtown_open->format('l, F j, Y') . ' at ' . $boomtown_open->format('g:i A T');
+$boomtown_reg_url = 'https://boomtown.vballmanager.com/org/event.php?slug=boomtown&event_id=128&instance_id=131';
+$boomtown_dayline = $boomtown_open->format('l, F j');   // e.g. Thursday, September 10
+$boomtown_time    = $boomtown_open->format('g:i A T');  // e.g. 6:00 PM CDT
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -219,44 +218,10 @@ $boomtown_when    = $boomtown_open->format('l, F j, Y') . ' at ' . $boomtown_ope
             margin-bottom: 18px;
         }
 
-        .countdown-timer {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .countdown-unit {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 15px;
-            padding: 18px 12px;
-            min-width: 92px;
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .countdown-number {
-            display: block;
-            font-size: 2.6em;
-            font-weight: bold;
-            line-height: 1;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .countdown-label {
-            display: block;
-            font-size: 0.78em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 8px;
-            opacity: 0.9;
-        }
-
-        .countdown-date {
-            margin-top: 18px;
-            font-size: 1.1em;
-            font-weight: 600;
-            color: #764ba2;
+        /* Doorway sub-line under the "Registration opens…" heading */
+        .doorway-sub {
+            max-width: 640px;
+            margin: 0 auto 20px;
         }
 
         .register-btn {
@@ -396,19 +361,6 @@ $boomtown_when    = $boomtown_open->format('l, F j, Y') . ' at ' . $boomtown_ope
                 padding: 12px 25px;
             }
 
-            .countdown-timer {
-                gap: 10px;
-            }
-
-            .countdown-unit {
-                min-width: 68px;
-                padding: 14px 8px;
-            }
-
-            .countdown-number {
-                font-size: 2em;
-            }
-
             .register-btn {
                 padding: 14px 34px;
                 font-size: 1.15em;
@@ -453,31 +405,16 @@ $boomtown_when    = $boomtown_open->format('l, F j, Y') . ' at ' . $boomtown_ope
         <div class="anniversary-badge">10th Anniversary Tournament</div>
         <p>We're excited to announce the 10th annual charity tournament in loving memory of our dear friends Matt and Sunday Rowan.</p>
         <p>Save the date: <strong>October 10th, 2026</strong></p>
-        <?php if ($boomtown_is_open): ?>
-            <div class="countdown-card">
-                <div class="countdown-heading">Registration is open!</div>
-                <a class="register-btn" href="<?php echo htmlspecialchars($boomtown_reg_url, ENT_QUOTES); ?>">Register Now</a>
-            </div>
-        <?php else: ?>
-            <div class="countdown-card">
-                <div class="countdown-heading">Registration opens in</div>
-                <div id="boomtown-countdown" class="countdown-timer"
-                     data-target="<?php echo $boomtown_target; ?>"
-                     data-now="<?php echo $boomtown_now; ?>"
-                     data-url="<?php echo htmlspecialchars($boomtown_reg_url, ENT_QUOTES); ?>">
-                    <div class="countdown-unit"><span class="countdown-number" data-days>--</span><span class="countdown-label">Days</span></div>
-                    <div class="countdown-unit"><span class="countdown-number" data-hours>--</span><span class="countdown-label">Hours</span></div>
-                    <div class="countdown-unit"><span class="countdown-number" data-minutes>--</span><span class="countdown-label">Minutes</span></div>
-                    <div class="countdown-unit"><span class="countdown-number" data-seconds>--</span><span class="countdown-label">Seconds</span></div>
-                </div>
-                <div class="countdown-date"><?php echo htmlspecialchars($boomtown_when, ENT_QUOTES); ?></div>
-            </div>
-        <?php endif; ?>
+        <div class="countdown-card">
+            <div class="countdown-heading">Registration opens <?php echo htmlspecialchars($boomtown_dayline, ENT_QUOTES); ?></div>
+            <p class="doorway-sub">Head over to the registration page to watch the live countdown &mdash; and be ready to grab your spot the moment sign-ups open at <?php echo htmlspecialchars($boomtown_time, ENT_QUOTES); ?>.</p>
+            <a class="register-btn" href="<?php echo htmlspecialchars($boomtown_reg_url, ENT_QUOTES); ?>">Head to the Registration Page &rarr;</a>
+        </div>
         <div class="prereg">
             <div class="prereg-icon" aria-hidden="true">&#9889;</div>
             <div class="prereg-text">
                 <div class="prereg-title">Pre-register your Boomtown login</div>
-                <div class="prereg-sub">Set up your account now so checkout flies the moment registration opens.</div>
+                <div class="prereg-sub">Don&rsquo;t forget to set up your Boomtown account ahead of time &mdash; it saves you time when sign-ups open.</div>
             </div>
             <a class="prereg-btn" href="https://boomtown.vballmanager.com/members/join.php">Pre-Register Now</a>
         </div>
@@ -529,66 +466,6 @@ $boomtown_when    = $boomtown_open->format('l, F j, Y') . ' at ' . $boomtown_ope
 
     window.addEventListener('beforeunload', function() {
         clearInterval(timeInterval);
-    });
-})();
-
-// Registration countdown — driven by the server clock, not the visitor's.
-(function() {
-    var wrap = document.getElementById('boomtown-countdown');
-    if (!wrap) return;
-
-    var targetMs    = parseInt(wrap.getAttribute('data-target'), 10) * 1000;
-    var serverNowMs = parseInt(wrap.getAttribute('data-now'), 10) * 1000;
-    var regUrl      = wrap.getAttribute('data-url');
-
-    // Advance from the server's timestamp using elapsed monotonic time, so the
-    // countdown ignores any skew in the visitor's device clock.
-    var hasPerf   = !!(window.performance && performance.now);
-    var loadedAt  = hasPerf ? performance.now() : Date.now();
-    function nowMs() {
-        return serverNowMs + ((hasPerf ? performance.now() : Date.now()) - loadedAt);
-    }
-
-    var daysEl = wrap.querySelector('[data-days]');
-    var hrsEl  = wrap.querySelector('[data-hours]');
-    var minsEl = wrap.querySelector('[data-minutes]');
-    var secsEl = wrap.querySelector('[data-seconds]');
-
-    function pad(n) { return (n < 10 ? '0' : '') + n; }
-
-    var timer = null;
-
-    function showRegister() {
-        var card = wrap.parentNode;
-        var heading = card.querySelector('.countdown-heading');
-        if (heading) heading.textContent = 'Registration is open!';
-        if (wrap.parentNode) wrap.parentNode.removeChild(wrap);
-        var btn = document.createElement('a');
-        btn.className = 'register-btn';
-        btn.href = regUrl;
-        btn.textContent = 'Register Now';
-        card.appendChild(btn);
-    }
-
-    function tick() {
-        var diff = targetMs - nowMs();
-        if (diff <= 0) {
-            if (timer) clearInterval(timer);
-            showRegister();
-            return;
-        }
-        var total = Math.floor(diff / 1000);
-        daysEl.textContent = Math.floor(total / 86400);
-        hrsEl.textContent  = pad(Math.floor((total % 86400) / 3600));
-        minsEl.textContent = pad(Math.floor((total % 3600) / 60));
-        secsEl.textContent = pad(total % 60);
-    }
-
-    tick();
-    timer = setInterval(tick, 1000);
-
-    window.addEventListener('beforeunload', function() {
-        if (timer) clearInterval(timer);
     });
 })();
 </script>
