@@ -149,11 +149,11 @@ function atxb_host_notice(): void {
 
 /* ---- ATX Juniors leads / "Talk to a coach" form (Juniors page) ------------- */
 
-/** Where juniors leads are emailed: the atxb_juniors_email option, else lj@atxbeach.com. */
+/** Where juniors leads are emailed: the atxb_juniors_email option, else dakota@atxbeach.com. */
 function atxb_juniors_inquiry_recipient(): string {
     $opt = get_option('atxb_juniors_email');
-    if (is_email($opt)) return $opt;      // set once the real juniors-leads inbox is known
-    return 'lj@atxbeach.com';             // safe default meanwhile so no lead is lost
+    if (is_email($opt)) return $opt;      // optional override via the atxb_juniors_email option
+    return 'dakota@atxbeach.com';         // ATX Juniors leads inbox (no WP-CLI needed)
 }
 
 /** Handle a Juniors-page lead submission and email it (POST -> admin-post.php). */
