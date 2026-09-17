@@ -33,6 +33,8 @@ transform () {  # $1 = source basename (no ext), $2 = dest basename
       s{__ATXB_ACTION__}{<?php echo esc_url(admin_url('"'"'admin-post.php'"'"')); ?>}g;
       s{<!--ATXB_NONCE-->}{<?php wp_nonce_field('"'"'atxb_host_inquiry'"'"', '"'"'atxb_nonce'"'"'); ?>}g;
       s{<!--ATXB_NOTICE-->}{<?php atxb_host_notice(); ?>}g;
+      s{<!--ATXB_NONCE_JUNIORS-->}{<?php wp_nonce_field('"'"'atxb_juniors_inquiry'"'"', '"'"'atxb_nonce'"'"'); ?>}g;
+      s{<!--ATXB_NOTICE_JUNIORS-->}{<?php atxb_juniors_notice(); ?>}g;
       s{(<link href="https://fonts\.googleapis\.com/css2)}{<?php wp_head(); ?>\n$1};
       s{</body>}{<?php wp_footer(); ?>\n</body>};
     ' "$SRC/$1.html"

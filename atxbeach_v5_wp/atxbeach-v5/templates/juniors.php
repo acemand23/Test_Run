@@ -60,6 +60,7 @@ $LINK = [
       <p>ATX Juniors helps young athletes grow on and off the sand through purposeful training, expert coaching, and recruiting support. Camps, clinics, and competitive pathways for every age and level.</p>
       <div class="actions">
         <a href="https://juniors.atxbeach.com/" target="_blank" rel="noopener" class="btn btn-accent">Explore Juniors Programs</a>
+        <a href="#juniors-interest" class="btn btn-ghost">Talk to a Coach</a>
         <a href="<?php echo $LINK['index']; ?>" class="btn btn-ghost">Back to Courts</a>
       </div>
     </div>
@@ -104,6 +105,72 @@ $LINK = [
         <a href="https://juniors.atxbeach.com/" target="_blank" rel="noopener" class="btn btn-accent">View Programs</a>
         <a href="<?php echo $LINK['index']; ?>" class="btn btn-outline">Back to Courts</a>
         <p class="fine">Opens juniors.atxbeach.com in a new tab.</p>
+      </aside>
+    </div>
+  </div></section>
+
+  <section class="panel" id="juniors-interest"><div class="wrap">
+    <div class="split">
+      <div class="sand prose">
+        <span class="eyebrow">Talk to a coach</span>
+        <h2>Let's find the right fit for your athlete</h2>
+        <p>Tell us a little about your player and what you're looking for. An ATX Juniors coach will follow up with the camps, clinics, or competitive options that fit them best.</p>
+        <?php atxb_juniors_notice(); ?>
+        <form class="hostform" method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+          <input type="hidden" name="action" value="atxb_juniors_inquiry">
+          <?php wp_nonce_field('atxb_juniors_inquiry', 'atxb_nonce'); ?>
+          <!-- honeypot: real people leave this empty -->
+          <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <div class="field-row">
+            <label>Parent / Guardian name<input type="text" name="name" required placeholder="Your name"></label>
+            <label>Email<input type="email" name="email" required placeholder="you@example.com"></label>
+          </div>
+          <div class="field-row">
+            <label>Phone<input type="tel" name="phone" placeholder="(512) 555-0100"></label>
+            <label>Athlete's age
+              <select name="athlete_age">
+                <option value="">Select an age</option>
+                <option>8 &amp; under</option>
+                <option>9&ndash;10</option>
+                <option>11&ndash;12</option>
+                <option>13&ndash;14</option>
+                <option>15&ndash;16</option>
+                <option>17&ndash;18</option>
+              </select>
+            </label>
+          </div>
+          <div class="field-row">
+            <label>Experience level
+              <select name="experience">
+                <option>New to beach volleyball</option>
+                <option>Some experience</option>
+                <option>Competitive / club player</option>
+              </select>
+            </label>
+            <label>Interested in
+              <select name="interest">
+                <option>Camps</option>
+                <option>Clinics &amp; training</option>
+                <option>Competitive pathway</option>
+                <option>Not sure yet</option>
+              </select>
+            </label>
+          </div>
+          <label>Anything else?<textarea name="message" rows="5" placeholder="Goals, questions, schedule needs — anything that helps us point you the right way."></textarea></label>
+          <button type="submit" class="btn btn-accent">Send Message</button>
+          <p class="fine">We'll only use your info to follow up about ATX Juniors programs.</p>
+        </form>
+      </div>
+      <aside class="sand aside">
+        <span class="label">What to expect</span>
+        <h3>A quick, friendly reply</h3>
+        <ul>
+          <li>A coach reviews your athlete's age and experience.</li>
+          <li>We recommend the camps, clinics, or competitive track that fit.</li>
+          <li>Clear next steps, schedules, and how to register.</li>
+          <li>No pressure — just guidance to help your player grow.</li>
+        </ul>
+        <p class="fine">Prefer to talk it through? Call <a href="tel:+15128789459">(512) 878-9459</a>.</p>
       </aside>
     </div>
   </div></section>

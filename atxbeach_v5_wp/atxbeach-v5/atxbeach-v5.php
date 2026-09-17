@@ -146,3 +146,59 @@ function atxb_host_notice(): void {
         echo '<p class="notice notice-err">Please add your name and a valid email, then try again.</p>';
     }
 }
+
+/* ---- ATX Juniors leads / "Talk to a coach" form (Juniors page) ------------- */
+
+/** Where juniors leads are emailed: the atxb_juniors_email option, else lj@atxbeach.com. */
+function atxb_juniors_inquiry_recipient(): string {
+    $opt = get_option('atxb_juniors_email');
+    if (is_email($opt)) return $opt;      // set once the real juniors-leads inbox is known
+    return 'lj@atxbeach.com';             // safe default meanwhile so no lead is lost
+}
+
+/** Handle a Juniors-page lead submission and email it (POST -> admin-post.php). */
+function atxb_handle_juniors_inquiry(): void {
+    $back = atxb_v5_url('juniors');
+    if (!isset($_POST['atxb_nonce']) || !wp_verify_nonce($_POST['atxb_nonce'], 'atxb_juniors_inquiry')) {
+        wp_safe_redirect(add_query_arg('sent', 'err', $back) . '#juniors-interest'); exit;
+    }
+    if (!empty($_POST['website'])) { wp_safe_redirect(add_query_arg('sent', '1', $back) . '#juniors-interest'); exit; } // honeypot
+
+    $name  = sanitize_text_field(wp_unslash($_POST['name'] ?? ''));
+    $email = sanitize_email(wp_unslash($_POST['email'] ?? ''));
+    $phone = sanitize_text_field(wp_unslash($_POST['phone'] ?? ''));
+    $age   = sanitize_text_field(wp_unslash($_POST['athlete_age'] ?? ''));
+    $exp   = sanitize_text_field(wp_unslash($_POST['experience'] ?? ''));
+    $intr  = sanitize_text_field(wp_unslash($_POST['interest'] ?? ''));
+    $msg   = sanitize_textarea_field(wp_unslash($_POST['message'] ?? ''));
+
+    if ($name === '' || !is_email($email)) { wp_safe_redirect(add_query_arg('sent', 'err', $back) . '#juniors-interest'); exit; }
+
+    $body = "New ATX Juniors lead from the ATX Beach website:\n\n"
+          . "Parent/Guardian:  $name\n"
+          . "Email:            $email\n"
+          . "Phone:            $phone\n"
+          . "Athlete's age:    $age\n"
+          . "Experience:       $exp\n"
+          . "Interested in:    $intr\n\n"
+          . "Message:\n$msg\n";
+    wp_mail(
+        atxb_juniors_inquiry_recipient(),
+        'ATX Beach — ATX Juniors lead from ' . $name,
+        $body,
+        ['Reply-To: ' . $name . ' <' . $email . '>']
+    );
+    wp_safe_redirect(add_query_arg('sent', '1', $back) . '#juniors-interest'); exit;
+}
+add_action('admin_post_nopriv_atxb_juniors_inquiry', 'atxb_handle_juniors_inquiry');
+add_action('admin_post_atxb_juniors_inquiry', 'atxb_handle_juniors_inquiry');
+
+/** Success/error banner rendered on the Juniors page after a submission (token in the template). */
+function atxb_juniors_notice(): void {
+    $s = $_GET['sent'] ?? '';
+    if ($s === '1') {
+        echo '<p class="notice notice-ok">Thanks — a coach will reach out soon about the right ATX Juniors fit.</p>';
+    } elseif ($s === 'err') {
+        echo '<p class="notice notice-err">Please add your name and a valid email, then try again.</p>';
+    }
+}

@@ -133,6 +133,8 @@ h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.05}
 .notice{padding:12px 15px;border-radius:10px;font-weight:600;margin:6px 0 16px}
 .notice-ok{background:#e5f4f2;color:#0c5a73;border:1px solid #bfe3dc}
 .notice-err{background:#fdecea;color:#9b241a;border:1px solid #f2b8b2}
+.hostform .fine{font-size:.78rem;color:var(--muted);margin-top:6px}
+#juniors-interest{scroll-margin-top:calc(var(--ticker-h) + 16px)}
 
 /* split: prose + aside */
 .split{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:start}
