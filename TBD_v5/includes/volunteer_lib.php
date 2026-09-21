@@ -24,7 +24,7 @@ function tbd_header_safe(string $s): string {
 }
 
 /** Keep only submitted values that are on the allow-list, de-duplicated. */
-function tbd_clean_list(mixed $vals, array $allowed): array {
+function tbd_clean_list($vals, array $allowed): array {
     if (!is_array($vals)) { $vals = [$vals]; }
     $out = [];
     foreach ($vals as $v) {
@@ -102,7 +102,7 @@ function tbd_org_email(array $d, array $cfg): array {
         . "Availability (time blocks):\n  {$timesTxt}\n\n"
         . "Notes:\n  {$notes}\n";
 
-    $e = fn($s) => htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8');
+    $e = function ($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); };
     $html = "<h2 style='margin:0 0 12px'>New volunteer signup</h2>"
         . "<table cellpadding='6' style='border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px'>"
         . "<tr><td><b>Name</b></td><td>"  . $e($d['name'])  . "</td></tr>"
@@ -138,7 +138,7 @@ function tbd_volunteer_email(array $d, array $cfg): array {
         . "— The Big Draw\n"
         . "Benefiting Big Brothers Big Sisters of Central Texas\n";
 
-    $e = fn($s) => htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8');
+    $e = function ($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); };
     $html = "<p>Hi " . $e($first) . ",</p>"
         . "<p>Thank you for offering to help at <b>The Big Draw</b>! Here's what you signed up for:</p>"
         . "<table cellpadding='6' style='border-collapse:collapse;font-family:Arial,sans-serif;font-size:14px'>"

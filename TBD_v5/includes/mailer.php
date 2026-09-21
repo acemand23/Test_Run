@@ -1,6 +1,8 @@
 <?php
 // Thin SMTP mail sender over the vendored PHPMailer (lib/PHPMailer).
 // Config (host/port/user/pass/from) comes from config.php — see config.sample.php.
+// Kept to a PHP 7.x baseline (no typed properties / promotion / union types),
+// matching the production host.
 declare(strict_types=1);
 
 require_once __DIR__ . '/../lib/PHPMailer/Exception.php';
@@ -10,23 +12,30 @@ require_once __DIR__ . '/../lib/PHPMailer/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 
 final class TBD_Mailer {
-    public function __construct(
-        private string $host,
-        private int $port,
-        private string $user,
-        private string $pass,
-        private string $fromEmail,
-        private string $fromName
-    ) {}
+    private $host;
+    private $port;
+    private $user;
+    private $pass;
+    private $fromEmail;
+    private $fromName;
+
+    public function __construct($host, $port, $user, $pass, $fromEmail, $fromName) {
+        $this->host      = (string) $host;
+        $this->port      = (int) $port;
+        $this->user      = (string) $user;
+        $this->pass      = (string) $pass;
+        $this->fromEmail = (string) $fromEmail;
+        $this->fromName  = (string) $fromName;
+    }
 
     public static function fromConfig(array $cfg): self {
         return new self(
-            (string)($cfg['smtp_host'] ?? ''),
-            (int)   ($cfg['smtp_port'] ?? 587),
-            (string)($cfg['smtp_user'] ?? ''),
-            (string)($cfg['smtp_pass'] ?? ''),
-            (string)($cfg['mail_from'] ?? ''),
-            (string)($cfg['mail_from_name'] ?? 'The Big Draw'),
+            isset($cfg['smtp_host']) ? $cfg['smtp_host'] : '',
+            isset($cfg['smtp_port']) ? $cfg['smtp_port'] : 587,
+            isset($cfg['smtp_user']) ? $cfg['smtp_user'] : '',
+            isset($cfg['smtp_pass']) ? $cfg['smtp_pass'] : '',
+            isset($cfg['mail_from']) ? $cfg['mail_from'] : '',
+            isset($cfg['mail_from_name']) ? $cfg['mail_from_name'] : 'The Big Draw'
         );
     }
 
@@ -37,7 +46,7 @@ final class TBD_Mailer {
     }
 
     /** Send one HTML+text email. Throws PHPMailer\PHPMailer\Exception on failure. */
-    public function send(string $to, string $subject, string $html, string $text, ?string $replyTo = null): void {
+    public function send($to, $subject, $html, $text, $replyTo = '') {
         $m = new PHPMailer(true);
         $m->isSMTP();
         $m->CharSet    = PHPMailer::CHARSET_UTF8;
@@ -49,7 +58,7 @@ final class TBD_Mailer {
         $m->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $m->setFrom($this->fromEmail, $this->fromName);
         $m->addAddress($to);
-        if ($replyTo !== null && $replyTo !== '') {
+        if ($replyTo !== '' && $replyTo !== null) {
             $m->addReplyTo($replyTo);
         }
         $m->isHTML(true);
