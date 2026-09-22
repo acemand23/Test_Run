@@ -1,7 +1,15 @@
 <?php
   require __DIR__ . '/includes/volunteer_lib.php';
-  $cfg = is_file(__DIR__ . '/config.php') ? require __DIR__ . '/config.php' : [];
-  $contact_email = $cfg['volunteer_to'] ?? 'questions@tbdvolleyball.com';
+  // Built-in defaults so the form works with no config.php (sends via local mail()).
+  // A config.php may override these and/or add smtp_* to use authenticated SMTP.
+  $defaults = [
+      'mail_from'      => 'questions@tbdvolleyball.com',
+      'mail_from_name' => 'The Big Draw',
+      'volunteer_to'   => 'questions@tbdvolleyball.com',
+  ];
+  $file_cfg = is_file(__DIR__ . '/config.php') ? require __DIR__ . '/config.php' : [];
+  $cfg = (is_array($file_cfg) ? $file_cfg : []) + $defaults;
+  $contact_email = $cfg['volunteer_to'];
 
   // Submission state (all false on a fresh GET).
   $submitted    = false;   // show the thank-you panel
@@ -21,7 +29,7 @@
       } else {
           require __DIR__ . '/includes/mailer.php';
           $mailer = TBD_Mailer::fromConfig($cfg);
-          if ($mailer->isConfigured()) {
+          if ($mailer->canSend()) {
               try {
                   $o = $prep['org'];
                   $mailer->send($o['to'], $o['subject'], $o['html'], $o['text'], $o['reply_to']);

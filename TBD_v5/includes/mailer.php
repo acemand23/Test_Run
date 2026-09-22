@@ -1,8 +1,13 @@
 <?php
-// Thin SMTP mail sender over the vendored PHPMailer (lib/PHPMailer).
-// Config (host/port/user/pass/from) comes from config.php — see config.sample.php.
-// Kept to a PHP 7.x baseline (no typed properties / promotion / union types),
-// matching the production host.
+// Mail sender over the vendored PHPMailer (lib/PHPMailer).
+//
+// Transport: if real SMTP creds are configured (config.php), authenticate over
+// SMTP; otherwise send with the host's local mail() — which works out of the box
+// here because the website and the tbdvolleyball.com mail server are the same box
+// (InMotion/cPanel). No credentials or secret file required for the default path.
+//
+// Kept to a PHP 7.x baseline (no typed properties / promotion / union types) to
+// match the web host's PHP version.
 declare(strict_types=1);
 
 require_once __DIR__ . '/../lib/PHPMailer/Exception.php';
@@ -39,23 +44,35 @@ final class TBD_Mailer {
         );
     }
 
-    /** True only when enough config is present to attempt a send. */
-    public function isConfigured(): bool {
+    /** True when authenticated SMTP is configured (otherwise we use local mail()). */
+    public function hasSmtp(): bool {
         return $this->host !== '' && $this->user !== '' && $this->pass !== ''
-            && $this->pass !== 'CHANGE_ME' && $this->fromEmail !== '';
+            && $this->pass !== 'CHANGE_ME';
+    }
+
+    /** True when we have enough to attempt a send (a From address). */
+    public function canSend(): bool {
+        return $this->fromEmail !== '';
     }
 
     /** Send one HTML+text email. Throws PHPMailer\PHPMailer\Exception on failure. */
     public function send($to, $subject, $html, $text, $replyTo = '') {
         $m = new PHPMailer(true);
-        $m->isSMTP();
-        $m->CharSet    = PHPMailer::CHARSET_UTF8;
-        $m->Host       = $this->host;
-        $m->Port       = $this->port;
-        $m->SMTPAuth   = true;
-        $m->Username   = $this->user;
-        $m->Password   = $this->pass;
-        $m->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $m->CharSet = PHPMailer::CHARSET_UTF8;
+
+        if ($this->hasSmtp()) {
+            $m->isSMTP();
+            $m->Host       = $this->host;
+            $m->Port       = $this->port;
+            $m->SMTPAuth   = true;
+            $m->Username   = $this->user;
+            $m->Password   = $this->pass;
+            $m->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        } else {
+            $m->isMail();                    // local PHP mail() — no credentials
+            $m->Sender = $this->fromEmail;   // envelope-from → Return-Path (SPF alignment)
+        }
+
         $m->setFrom($this->fromEmail, $this->fromName);
         $m->addAddress($to);
         if ($replyTo !== '' && $replyTo !== null) {

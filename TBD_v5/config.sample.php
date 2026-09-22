@@ -1,23 +1,26 @@
 <?php
-// Copy this file to config.php (which is gitignored) and fill in the real
-// SMTP password. NEVER commit config.php — the password is a server-only secret.
+// OPTIONAL config. The volunteer form (volunteer.php) works WITHOUT this file:
+// by default it sends through the host's local mail() (the website and the
+// tbdvolleyball.com mailbox are on the same server), and uses questions@ as both
+// the sender and the signup recipient.
 //
-// The volunteer form (volunteer.php) reads this to send two emails through the
-// tbdvolleyball.com mailbox: a signup notice to `volunteer_to`, and a
-// confirmation to the volunteer. If config.php is missing or still has the
-// placeholder password, the form falls back to a plain mailto: link.
+// Create config.php (copy this file) ONLY to change those addresses or to force
+// authenticated SMTP instead of local mail(). config.php is gitignored — never
+// commit it, since smtp_pass is a secret. Any key you omit falls back to the
+// built-in default in volunteer.php.
 return [
-    // SMTP relay for the tbdvolleyball.com mailbox. Confirm host/port with the
-    // email provider (cPanel/webmail hosts are usually mail.<domain> : 587 STARTTLS).
-    'smtp_host'      => 'mail.tbdvolleyball.com',
-    'smtp_port'      => 587,
-    'smtp_user'      => 'questions@tbdvolleyball.com',
-    'smtp_pass'      => 'CHANGE_ME',              // <-- real password, config.php only
+    // Where volunteer signups are delivered. Comma-separate for several.
+    'volunteer_to'   => 'questions@tbdvolleyball.com',
 
     // What volunteers see as the sender.
     'mail_from'      => 'questions@tbdvolleyball.com',
     'mail_from_name' => 'The Big Draw',
 
-    // Where volunteer signups are delivered (your inbox). Comma-separate for several.
-    'volunteer_to'   => 'questions@tbdvolleyball.com',
+    // --- Authenticated SMTP (optional) ---------------------------------------
+    // Uncomment and fill these to send via SMTP instead of local mail(). Leave
+    // them out (or leave smtp_pass as CHANGE_ME) to keep using local mail().
+    // 'smtp_host' => 'localhost',
+    // 'smtp_port' => 587,
+    // 'smtp_user' => 'questions@tbdvolleyball.com',
+    // 'smtp_pass' => 'CHANGE_ME',
 ];
