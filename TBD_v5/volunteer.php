@@ -72,7 +72,7 @@
 <?php if ($submitted): ?>
     <div class="lead-form" id="volThanks">
       <h2 class="kicker" style="margin-top:0">You're in — thank you!</h2>
-      <div class="form-success" style="display:block">Thank you! You'll receive an email with more information. We'll be in touch soon.</div>
+      <div class="form-success" style="display:block">Thank you! We'll be in touch soon with more information.</div>
       <p class="muted" style="margin-bottom:0">See you on the sand at The Big Draw. 🏐</p>
     </div>
 <?php else: ?>
