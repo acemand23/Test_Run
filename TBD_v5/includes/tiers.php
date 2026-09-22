@@ -41,12 +41,12 @@
     [
       'n'=>3, 'name'=>'Team Sponsor', 'price'=>'$500', 'kind'=>'pay',
       'avail'=>'12 spots available', 'state'=>'open',
-      'desc'=>['Support one of the tournament teams and be part of their day on the sand. This is a great option for small businesses, families, groups, or friends who want to support the mission in a fun and visible way.'],
+      'desc'=>['Brand one of the tournament\'s randomly drawn 4-player teams and be part of their day on the sand. True to The Big Draw, your team is set by blind draw — you won\'t know who you\'re cheering for until the draw. A fun, visible way for small businesses, families, groups, or friends to support the mission.'],
       'perks'=>[
-        'Logo on one team\'s arm bands, worn by four players throughout the tournament',
+        'Your logo on your randomly drawn team\'s arm bands, worn by all four players throughout the tournament',
         'Logo recognition on the event bracket',
         'Social media shoutout or tag recognizing your sponsorship',
-        'Team assignment and scheduled play time shared with you before the event, so you can come cheer on "your" team',
+        'Your randomly drawn team and their play schedule shared with you after the draw, so you can come cheer on "your" team',
         'Event-day verbal recognition and appreciation',
       ],
     ],
