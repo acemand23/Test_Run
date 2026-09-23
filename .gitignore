@@ -10,3 +10,6 @@ atxbeach_v5_wp/dist/
 
 # Secret runtime config — real SMTP password, server-only. Never commit.
 /TBD_v5/config.php
+
+# Secret form key for the Form Data validation page — server-only. Never commit.
+/formdemo/config.php
