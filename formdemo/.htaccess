@@ -1,0 +1,30 @@
+# Never serve the config files or the client library as content.
+#
+# config.php holds the form's secret key. It is normally harmless over HTTP
+# because PHP executes it and it echoes nothing — but that depends entirely on
+# the PHP handler being configured. This very account was found serving PHP 5.6
+# instead of 8.3 because a MultiPHP .htaccess had gone missing, and a handler
+# that stops interpreting .php would serve this file as plain text, leaking the
+# key. Deny it explicitly rather than rely on PHP running.
+
+<Files ~ "^config.*\.php$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</Files>
+
+# The client library is not secret (it ships to sites by design), but there is
+# no reason to serve it from here.
+<FilesMatch "^formdata-client\.php$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
