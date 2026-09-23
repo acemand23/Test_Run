@@ -97,25 +97,41 @@ function formdata_submit(array $opts) {
     $unreachableReason = 'api_unreachable';
 
     if ($res !== null) {
-        $decoded = json_decode($res['body'], true);
-        if (is_array($decoded) && array_key_exists('ok', $decoded)) {
-            if (!empty($decoded['ok'])) {
-                return array('ok' => true, 'id' => isset($decoded['id']) ? (int)$decoded['id'] : null,
-                             'via' => 'api', 'error' => null);
+        $code = isset($res['code']) ? (int)$res['code'] : 0;
+        if ($code >= 500) {
+            // Our own API's catch-all (api/submit.php) returns a well-formed
+            // {"ok":false,"error":"server_error"} JSON body on ANY uncaught
+            // Throwable, with HTTP 500. That body carries our exact JSON
+            // contract, but it is not a verdict — the API did not decide
+            // anything, it failed before it could. Treating it as a decision
+            // is exactly how a mail() failure, an HTTP 508, or a MariaDB blip
+            // silently loses a real person's submission: the one case an
+            // *uncaught* fatal (which produces an HTML page, not this JSON)
+            // already falls back on correctly. Any 5xx status — regardless of
+            // body — must be treated like an outage, not a rejection.
+            $unreachableReason = 'api_server_error';
+        } else {
+            $decoded = json_decode($res['body'], true);
+            if (is_array($decoded) && array_key_exists('ok', $decoded)) {
+                if (!empty($decoded['ok'])) {
+                    return array('ok' => true, 'id' => isset($decoded['id']) ? (int)$decoded['id'] : null,
+                                 'via' => 'api', 'error' => null);
+                }
+                // The API answered with a non-5xx status and said no (spam, bad
+                // key, oversized). That is a real verdict, not an outage —
+                // emailing it would defeat the filtering.
+                $err = isset($decoded['error']) ? $decoded['error'] : 'rejected';
+                return array('ok' => false, 'id' => null, 'via' => 'api', 'error' => $err);
             }
-            // The API answered and said no (spam, bad key, oversized). That is a real
-            // verdict, not an outage — emailing it would defeat the filtering.
-            $err = isset($decoded['error']) ? $decoded['error'] : 'rejected';
-            return array('ok' => false, 'id' => null, 'via' => 'api', 'error' => $err);
+            // A response came back, but it does not carry our API's JSON contract —
+            // a WAF, proxy, or error page answered instead (e.g. ModSecurity's HTML
+            // 406 page for a request it disliked). We never got a real verdict from
+            // our API, so this must be treated exactly like a transport failure, not
+            // a spam rejection — otherwise a WAF false positive silently drops a
+            // real lead, which is the exact failure this whole service exists to
+            // prevent.
+            $unreachableReason = 'api_bad_response';
         }
-        // A response came back, but it does not carry our API's JSON contract —
-        // a WAF, proxy, or error page answered instead (e.g. ModSecurity's HTML
-        // 406 page for a request it disliked). We never got a real verdict from
-        // our API, so this must be treated exactly like a transport failure, not
-        // a spam rejection — otherwise a WAF false positive silently drops a
-        // real lead, which is the exact failure this whole service exists to
-        // prevent.
-        $unreachableReason = 'api_bad_response';
     }
 
     // Transport failure (or an unrecognizable response): the API is unreachable.
@@ -128,8 +144,20 @@ function formdata_submit(array $opts) {
     foreach ($fields as $k => $v) {
         $lines[] = $k . ': ' . (is_array($v) ? implode('; ', $v) : $v);
     }
-    $from    = isset($opts['fallback_from']) ? $opts['fallback_from'] : $to;
-    $subject = 'FORMDATA FALLBACK — API unreachable — ' . (isset($opts['form_name']) ? $opts['form_name'] : $opts['endpoint']);
+    $from = isset($opts['fallback_from']) ? $opts['fallback_from'] : $to;
+    // This file must stay PHP 7.0+ and standalone with no mbstring
+    // assumption, so the subject is kept pure ASCII (plain "-"/":" instead of
+    // the em dash src/notify.php uses) rather than reaching for
+    // mb_encode_mimeheader — that sidesteps RFC 2047 encoding entirely
+    // instead of half-solving it on a host that may not have mbstring.
+    // form_name is caller-supplied (often straight from that site's own
+    // config), so it gets the same CR/LF strip src/notify.php applies to a
+    // form name before it reaches a mail header — and this fallback path now
+    // fires on any 5xx from the API, not just a rare outage, so it is no
+    // longer a corner case worth skipping.
+    $formName = isset($opts['form_name']) ? $opts['form_name'] : $opts['endpoint'];
+    $formName = preg_replace('/[\r\n]+/', ' ', (string)$formName);
+    $subject  = 'FORMDATA FALLBACK: API unreachable - ' . $formName;
     $body    = "The Form Data API could not be reached, so this submission is being\n"
              . "emailed instead. Paste it into the admin and check the service.\n\n"
              . implode("\n", $lines) . "\n";
