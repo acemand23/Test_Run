@@ -37,7 +37,7 @@
     <span></span><span></span><span></span>
   </button>
   <nav class="links" id="navlinks">
-    <a href="register.php" class="<?= $active==='register'?'on':'' ?>">Register</a>
+    <a href="<?= htmlspecialchars($register_url) ?>"<?= $community_is_open ? ' target="_blank" rel="noopener"' : '' ?> class="<?= $active==='register'?'on':'' ?>">Register</a>
     <a href="tournament.php" class="<?= $active==='tour'?'on':'' ?>">How It Works</a>
     <a href="volunteer.php" class="<?= $active==='involve'?'on':'' ?>">Get Involved</a>
     <a href="sponsor.php" class="<?= $active==='sponsor'?'on':'' ?>">Sponsor</a>

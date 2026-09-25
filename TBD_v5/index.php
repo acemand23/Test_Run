@@ -33,8 +33,8 @@
   <span class="poster-ov ov-date">November 7th, 2026</span>
   <span class="poster-ov ov-loc">Aussies Grill &amp; Beach Bar</span>
 
-  <!-- Register Now button hotspot -->
-  <a class="hot" data-label="Register Now" href="<?= $register_url ?>"
+  <!-- Register Now button hotspot — goes straight to the signup (Community is open) -->
+  <a class="hot" data-label="Register Now" href="<?= htmlspecialchars($register_url) ?>" target="_blank" rel="noopener"
      style="left:5.3%;top:69.3%;width:29.4%;height:11%"></a>
 </div>
 
