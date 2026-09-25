@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Road Goes On Forever — Eight Scenes</title>
+<meta name="description" content="Eight cinematic scenes tracing the story in Robert Earl Keen's 'The Road Goes On Forever and the Party Never Ends.'">
+<meta name="theme-color" content="#0B1220">
+<meta property="og:title" content="The Road Goes On Forever — Eight Scenes">
+<meta property="og:description" content="Eight cinematic scenes, Mapleton to Miami and back again.">
+<meta property="og:image" content="img/01-sherry.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;800&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Sampled from the murals: cold blue night, warm sodium pools, one red neon. */
+  --night:#0B1220;
+  --asphalt:#161C26;
+  --sodium:#F0A83C;
+  --neon:#E0362F;
+  --chalk:#EDE7DA;
+  --dusk:#8494A8;
+  --display:"Big Shoulders Display",Impact,"Haettenschweiler",sans-serif;
+  --read:Spectral,Georgia,serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--night);color:var(--chalk);
+  font-family:var(--read);font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--sodium);outline-offset:3px}
+
+/* ── the road: a dashed centre line running the page, filling as you scroll.
+      Every mural has this same yellow stripe across its foreground, so the
+      page borrows it as structure rather than inventing an ornament. ── */
+.road{position:fixed;left:max(1rem,3vw);top:0;bottom:0;width:3px;z-index:5;pointer-events:none}
+.road::before{
+  content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(to bottom,
+    rgba(240,168,60,.22) 0 22px, transparent 22px 44px);
+}
+.road__run{
+  position:absolute;left:0;top:0;width:100%;height:var(--run,0%);
+  background:repeating-linear-gradient(to bottom,
+    var(--sodium) 0 22px, transparent 22px 44px);
+  filter:drop-shadow(0 0 6px rgba(240,168,60,.55));
+}
+@media (max-width:700px){.road{display:none}}
+
+/* ── hero ── */
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden}
+.hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(11,18,32,.55) 0%,rgba(11,18,32,.15) 42%,var(--night) 97%);
+}
+.hero__inner{position:relative;z-index:2;padding:0 max(1.5rem,6vw) clamp(3rem,9vh,6rem);max-width:74rem}
+.hero h1{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(3.4rem,13.5vw,12rem);line-height:.83;
+  letter-spacing:-.012em;margin:0;text-transform:uppercase;
+  text-shadow:0 2px 40px rgba(11,18,32,.75);
+}
+.hero h1 span{display:block}
+.hero__sub{
+  font-family:var(--read);font-style:italic;font-weight:300;
+  font-size:clamp(1.05rem,2.6vw,1.9rem);color:var(--sodium);
+  margin:.7rem 0 0;letter-spacing:.01em;
+}
+.hero__meta{
+  margin:1.9rem 0 0;color:var(--dusk);font-size:.95rem;line-height:1.7;max-width:34rem;
+}
+.hero__meta b{color:var(--chalk);font-weight:400}
+.scrollcue{
+  margin-top:2.4rem;display:inline-flex;align-items:center;gap:.7rem;
+  color:var(--dusk);font-family:var(--display);font-size:1.05rem;
+  letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+}
+.scrollcue i{
+  width:2.6rem;height:1px;background:var(--sodium);display:block;
+  animation:run 2.6s ease-in-out infinite;transform-origin:left;
+}
+@keyframes run{0%,100%{transform:scaleX(.35)}50%{transform:scaleX(1)}}
+
+/* ── scenes ── */
+main{padding:clamp(3rem,10vh,7rem) 0 0}
+.scene{
+  padding:0 max(1.5rem,6vw) clamp(4rem,11vh,8rem);
+  max-width:84rem;margin:0 auto;
+}
+.scene__btn{
+  display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;
+  color:inherit;font:inherit;text-align:left;
+  position:relative;border-radius:2px;
+}
+.scene__frame{
+  position:relative;background:var(--asphalt);
+  box-shadow:0 28px 70px -30px rgba(0,0,0,.95);
+}
+.scene__frame img{
+  width:100%;height:auto;max-height:78svh;object-fit:cover;
+  opacity:0;transition:opacity .7s ease;
+}
+.scene__frame img.ready{opacity:1}
+.scene__btn::after{
+  content:"Open full size";position:absolute;right:.85rem;bottom:.85rem;
+  font-family:var(--display);font-size:.92rem;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--night);background:var(--sodium);
+  padding:.34rem .72rem;opacity:0;transition:opacity .25s ease;
+}
+.scene__btn:hover::after,.scene__btn:focus-visible::after{opacity:1}
+.scene__cap{display:flex;gap:1.1rem;align-items:baseline;margin:1.15rem 0 0}
+.scene__no{
+  font-family:var(--display);font-weight:600;font-size:1.5rem;
+  color:var(--sodium);line-height:1;flex:none;
+  font-variant-numeric:tabular-nums;
+}
+.scene__txt{max-width:44rem}
+.scene__name{
+  font-family:var(--display);font-weight:600;text-transform:uppercase;
+  font-size:clamp(1.5rem,3.4vw,2.3rem);line-height:1;margin:0;letter-spacing:.005em;
+}
+.scene__line{margin:.5rem 0 0;color:var(--dusk);font-size:1.03rem;line-height:1.65}
+
+/* the closing scene mirrors the opening camera position — say so once, quietly */
+.mirror{
+  max-width:84rem;margin:0 auto;padding:0 max(1.5rem,6vw) clamp(4rem,11vh,8rem);
+}
+.mirror p{
+  border-left:2px solid var(--neon);padding-left:1.1rem;margin:0;
+  max-width:40rem;color:var(--chalk);font-size:1.08rem;line-height:1.7;font-style:italic;
+}
+
+footer{
+  border-top:1px solid rgba(132,148,168,.18);
+  padding:2.6rem max(1.5rem,6vw) 4rem;max-width:84rem;margin:0 auto;
+  color:var(--dusk);font-size:.92rem;line-height:1.75;
+}
+footer a{color:var(--sodium)}
+
+/* ── lightbox ── */
+.lb{
+  position:fixed;inset:0;z-index:50;display:none;
+  background:rgba(6,10,18,.97);
+  align-items:center;justify-content:center;
+}
+.lb[open],.lb.on{display:flex}
+.lb__img{max-width:96vw;max-height:84svh;object-fit:contain;box-shadow:0 30px 90px -20px #000}
+.lb__bar{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:1rem max(1rem,4vw) 1.4rem;display:flex;gap:1.1rem;align-items:baseline;
+  background:linear-gradient(to top,rgba(6,10,18,.96),transparent);
+}
+.lb__no{font-family:var(--display);font-size:1.15rem;color:var(--sodium);flex:none;font-variant-numeric:tabular-nums}
+.lb__name{font-family:var(--display);text-transform:uppercase;font-size:1.15rem;margin:0}
+.lb__line{color:var(--dusk);font-size:.95rem;margin:.15rem 0 0}
+.lb__nav{
+  position:absolute;top:0;bottom:0;width:26vw;min-width:4.5rem;border:0;cursor:pointer;
+  background:none;color:var(--chalk);font-size:2rem;line-height:1;
+  display:grid;place-items:center;opacity:.45;transition:opacity .2s;
+}
+.lb__nav:hover,.lb__nav:focus-visible{opacity:1}
+.lb__prev{left:0}.lb__next{right:0}
+.lb__close{
+  position:absolute;top:0;right:0;width:3.6rem;height:3.6rem;border:0;cursor:pointer;
+  background:none;color:var(--chalk);font-size:1.7rem;line-height:1;opacity:.6;
+}
+.lb__close:hover,.lb__close:focus-visible{opacity:1}
+body.locked{overflow:hidden}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  .scene__frame img{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<div class="road" aria-hidden="true"><div class="road__run" id="run"></div></div>
+
+<header class="hero">
+  <img class="hero__img" src="img/01-sherry.webp" alt="" fetchpriority="high">
+  <div class="hero__inner">
+    <h1><span>The Road</span><span>Goes On</span><span>Forever</span></h1>
+    <p class="hero__sub">and the party never ends</p>
+    <p class="hero__meta">
+      Eight scenes from the story in <b>Robert Earl Keen's</b> 1989 ballad —
+      a small Texas main street, a bad night in a pool hall, a run to Miami,
+      and a corner that looks exactly the same when she comes back to it.
+    </p>
+    <a class="scrollcue" href="#s1"><i></i> Start driving</a>
+  </div>
+</header>
+
+<main id="scenes"></main>
+
+<section class="mirror">
+  <p>Look at the first scene and the last one together. Same corner, same neon,
+     same hardware store. Only the car is different — and the newspaper on the seat.</p>
+</section>
+
+<footer>
+  <p>Fan tribute. “The Road Goes On Forever” was written and recorded by
+     Robert Earl Keen (1989). Lyrics are not reproduced here — go buy the record.</p>
+  <p>Eight scenes, click any one to open it full size. Use ← and → to move through, Esc to close.</p>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Full size scene">
+  <button class="lb__close" id="lbClose" aria-label="Close full size view">✕</button>
+  <button class="lb__nav lb__prev" id="lbPrev" aria-label="Previous scene">‹</button>
+  <img class="lb__img" id="lbImg" src="" alt="">
+  <button class="lb__nav lb__next" id="lbNext" aria-label="Next scene">›</button>
+  <div class="lb__bar">
+    <span class="lb__no" id="lbNo"></span>
+    <div>
+      <h2 class="lb__name" id="lbName"></h2>
+      <p class="lb__line" id="lbLine"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+const SCENES=[
+ {f:"01-sherry",n:"Sherry",
+  l:"Mapleton, Texas. A waitress with an hour left on her shift and a car that only just makes it home.",
+  a:"A young woman in a waitress uniform sits at the wheel of a rusted blue sedan on a wet main street at night, outside a lit cafe."},
+ {f:"02-sonny",n:"Sonny",
+  l:"Bracken, at the orange end of the day. He has been leaning on that truck outside the Lone Star for a while now.",
+  a:"A man leans against a white and rust pickup truck outside the Lone Star Bar at sunset, small-town Texas street."},
+ {f:"03-the-pool-hall",n:"The Pool Hall",
+  l:"It took one punch. She goes after him anyway, still wearing the apron.",
+  a:"A man lies sprawled on a pool hall floor while a waitress reaches after another man walking out into the night."},
+ {f:"04-the-escape",n:"The Escape",
+  l:"Miami Beach by dusk on a Texas plate. Clean rooms, cold beer, a brighter tomorrow.",
+  a:"A couple drive a rusted pickup along a beachfront road at dusk past a neon motel sign and palm trees."},
+ {f:"05-the-deal",n:"The Deal",
+  l:"A briefcase open on a kitchen table, and a man in the doorway nobody invited.",
+  a:"Men sit around a kitchen table with an open briefcase of cash while a uniformed officer steps through the open door."},
+ {f:"06-the-410",n:"The .410",
+  l:"There was a shotgun behind the seat. Nobody in that alley expected her to reach for it.",
+  a:"At night a deputy pins a man to the gravel while a woman levels a shotgun from beside an open truck door."},
+ {f:"07-sonnys-sacrifice",n:"Sonny's Sacrifice",
+  l:"He takes the truck and the charge. She stands on the walkway with the suitcase and watches the taillights go.",
+  a:"A woman with a suitcase stands outside a motel room at dusk watching a pickup truck drive away toward the city."},
+ {f:"08-main-street-again",n:"Main Street Again",
+  l:"Same corner, same neon, different car. The newspaper on the seat says the date is set.",
+  a:"The same main street at night, now with a silver sedan at the kerb and a newspaper on the passenger seat."}
+];
+
+/* build the scenes */
+const main=document.getElementById("scenes");
+main.innerHTML=SCENES.map((s,i)=>`
+<section class="scene" id="s${i+1}">
+  <button class="scene__btn" data-i="${i}" aria-label="Open ${s.n} full size">
+    <div class="scene__frame">
+      <img src="img/${s.f}.webp" alt="${s.a}" loading="${i<2?"eager":"lazy"}" decoding="async" width="1200" height="800">
+    </div>
+  </button>
+  <div class="scene__cap">
+    <span class="scene__no">${String(i+1).padStart(2,"0")}</span>
+    <div class="scene__txt">
+      <h2 class="scene__name">${s.n}</h2>
+      <p class="scene__line">${s.l}</p>
+    </div>
+  </div>
+</section>`).join("");
+
+/* fade each frame in only once it has actually decoded */
+document.querySelectorAll(".scene__frame img").forEach(img=>{
+  const show=()=>img.classList.add("ready");
+  img.complete?show():img.addEventListener("load",show,{once:true});
+});
+
+/* the road fills as you travel */
+const run=document.getElementById("run");
+let ticking=false;
+function drawRoad(){
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  run.style.setProperty("--run",(h>0?(window.scrollY/h)*100:0)+"%");
+  ticking=false;
+}
+addEventListener("scroll",()=>{if(!ticking){ticking=true;requestAnimationFrame(drawRoad)}},{passive:true});
+addEventListener("resize",drawRoad);drawRoad();
+
+/* lightbox */
+const lb=document.getElementById("lb"),lbImg=document.getElementById("lbImg"),
+      lbNo=document.getElementById("lbNo"),lbName=document.getElementById("lbName"),
+      lbLine=document.getElementById("lbLine");
+let at=0,opener=null;
+
+function show(i){
+  at=(i+SCENES.length)%SCENES.length;
+  const s=SCENES[at];
+  lbImg.src=`img/${s.f}-full.webp`;
+  lbImg.alt=s.a;
+  lbNo.textContent=String(at+1).padStart(2,"0");
+  lbName.textContent=s.n;
+  lbLine.textContent=s.l;
+  [-1,1].forEach(d=>{const n=new Image();n.src=`img/${SCENES[(at+d+SCENES.length)%SCENES.length].f}-full.webp`});
+}
+function open(i,btn){opener=btn;lb.classList.add("on");document.body.classList.add("locked");show(i);document.getElementById("lbClose").focus()}
+function close(){lb.classList.remove("on");document.body.classList.remove("locked");lbImg.src="";if(opener)opener.focus()}
+
+document.querySelectorAll(".scene__btn").forEach(b=>
+  b.addEventListener("click",()=>open(+b.dataset.i,b)));
+document.getElementById("lbClose").addEventListener("click",close);
+document.getElementById("lbPrev").addEventListener("click",()=>show(at-1));
+document.getElementById("lbNext").addEventListener("click",()=>show(at+1));
+lb.addEventListener("click",e=>{if(e.target===lb)close()});
+
+addEventListener("keydown",e=>{
+  if(!lb.classList.contains("on"))return;
+  if(e.key==="Escape")close();
+  else if(e.key==="ArrowLeft")show(at-1);
+  else if(e.key==="ArrowRight")show(at+1);
+  else if(e.key==="Tab"){ /* keep focus inside the dialog */
+    const f=lb.querySelectorAll("button");
+    const first=f[0],last=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+  }
+});
+
+/* swipe on touch */
+let x0=null;
+lb.addEventListener("touchstart",e=>x0=e.changedTouches[0].clientX,{passive:true});
+lb.addEventListener("touchend",e=>{
+  if(x0===null)return;
+  const dx=e.changedTouches[0].clientX-x0;
+  if(Math.abs(dx)>50)show(dx<0?at+1:at-1);
+  x0=null;
+},{passive:true});
+</script>
+</body>
+</html>
