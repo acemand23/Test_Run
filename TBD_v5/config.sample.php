@@ -23,4 +23,17 @@ return [
     // 'smtp_port' => 587,
     // 'smtp_user' => 'questions@tbdvolleyball.com',
     // 'smtp_pass' => 'CHANGE_ME',
+
+    // --- "Get notified" form (notify.php) → forms.anthonyduke.com ------------
+    // notify.php posts to the central form-intake service. The KEY authenticates
+    // this form and is shown once when the form is created in the admin; anyone
+    // holding it can post to it, so it lives here (config.php) only, never in git.
+    // The Turnstile SITE key is public (rendered into the page); the SECRET lives
+    // on forms.anthonyduke.com. fallback_* is the emergency email path used only
+    // if the API is unreachable, so a signup is never silently lost.
+    // 'formdata_endpoint' => 'https://forms.anthonyduke.com/api/submit.php',
+    // 'formdata_key'      => 'fd_XXXXXXXX_...(64 hex)...',
+    // 'turnstile_sitekey' => '0x4AAAAAAFBaWGqFaK_Pwt_F',
+    // 'fallback_to'       => 'questions@tbdvolleyball.com',
+    // 'fallback_from'     => 'questions@tbdvolleyball.com',
 ];

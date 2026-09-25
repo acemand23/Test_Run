@@ -11,8 +11,9 @@
   $community_is_open   = true;                                   // Community: live now
   $competitive_open_ts = strtotime('2026-10-07T18:00:00-05:00'); // Competitive: opens this instant
   $competitive_is_open = time() >= $competitive_open_ts;
-  $reg_notify_url      = 'mailto:questions@tbdvolleyball.com?subject='
-                       . rawurlencode('Notify me when The Big Draw Competitive Division opens');
+  // "Get notified" (Competitive) → on-site form that captures interest via the
+  // central form-intake service (forms.anthonyduke.com) instead of a mailto.
+  $reg_notify_url      = 'notify.php';
   // Back-compat aliases for anything still reading the old single-gate names:
   $reg_open_ts = $competitive_open_ts;   // countdown target = Competitive open time
   $reg_is_open = $community_is_open;      // some registration is open (Community)
