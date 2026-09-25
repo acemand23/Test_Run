@@ -38,34 +38,50 @@
      style="left:5.3%;top:69.3%;width:29.4%;height:11%"></a>
 </div>
 
-<!-- registration countdown — ticks to 6pm CT Oct 7, 2026, then auto-flips to "open".
-     The target instant + signup URL live in includes/header.php ($reg_open_ts / $reg_signup_url). -->
+<!-- registration — Community Division is open now; Competitive counts down to
+     6pm CT Oct 7, 2026 then auto-flips to "open". Targets + signup URL live in
+     includes/header.php ($community_is_open / $competitive_open_ts / $reg_signup_url). -->
 <?php
-  $cd_left = max(0, $reg_open_ts - time());
+  $cd_left = max(0, $competitive_open_ts - time());
   $cd_d = intdiv($cd_left, 86400);
   $cd_h = intdiv($cd_left % 86400, 3600);
   $cd_m = intdiv($cd_left % 3600, 60);
   $cd_s = $cd_left % 60;
 ?>
 <section class="countdown-wrap"><div class="col">
-  <div class="countdown<?= $reg_is_open ? ' is-open' : '' ?>"
-       data-reg-open="<?= date('c', $reg_open_ts) ?>"
+
+  <?php if ($community_is_open): ?>
+  <!-- Community Division — registration open now -->
+  <div class="reg-live">
+    <div class="soon-badge">Now Open</div>
+    <p class="cd-kicker">Community Division Registration</p>
+    <p class="cd-sub">Co-Ed · Rec · 4v4 · 8:30&nbsp;AM–Noon · Sat, Nov&nbsp;7</p>
+    <div class="cta-row">
+      <a class="btn grad" href="<?= htmlspecialchars($reg_signup_url) ?>" target="_blank" rel="noopener">Register now →</a>
+    </div>
+  </div>
+  <?php endif; ?>
+
+  <!-- Competitive Division — countdown to Oct 7, then auto-flips to "open" -->
+  <div class="countdown<?= $competitive_is_open ? ' is-open' : '' ?>"
+       data-reg-open="<?= date('c', $competitive_open_ts) ?>"
        data-signup="<?= htmlspecialchars($reg_signup_url) ?>">
-    <p class="cd-kicker">Registration Opens</p>
-    <div class="cd-clock" role="timer" aria-label="Time until registration opens">
+    <p class="cd-kicker">Competitive Division Opens</p>
+    <div class="cd-clock" role="timer" aria-label="Time until Competitive Division registration opens">
       <div class="cd-cell"><span class="cd-num" data-cd="days"><?= sprintf('%02d', $cd_d) ?></span><span class="cd-lab">Days</span></div>
       <div class="cd-cell"><span class="cd-num" data-cd="hours"><?= sprintf('%02d', $cd_h) ?></span><span class="cd-lab">Hrs</span></div>
       <div class="cd-cell"><span class="cd-num" data-cd="mins"><?= sprintf('%02d', $cd_m) ?></span><span class="cd-lab">Min</span></div>
       <div class="cd-cell"><span class="cd-num" data-cd="secs"><?= sprintf('%02d', $cd_s) ?></span><span class="cd-lab">Sec</span></div>
     </div>
-    <p class="cd-open-msg">🏐 Registration is open!</p>
-    <p class="cd-sub">Wednesday, October 7, 2026 · 6:00&nbsp;PM CT</p>
+    <p class="cd-open-msg">🏐 Competitive registration is open!</p>
+    <p class="cd-sub">Wednesday, October 7, 2026 · 6:00&nbsp;PM CT · Co-Ed · All&nbsp;Levels · 4v4 · 11:30&nbsp;AM–8&nbsp;PM</p>
     <div class="cta-row">
       <a class="btn grad cd-cta"
-         href="<?= $reg_is_open ? htmlspecialchars($reg_signup_url) : htmlspecialchars($reg_notify_url) ?>"
-         <?= $reg_is_open ? 'target="_blank" rel="noopener"' : '' ?>><?= $reg_is_open ? 'Register now →' : 'Get notified →' ?></a>
+         href="<?= $competitive_is_open ? htmlspecialchars($reg_signup_url) : htmlspecialchars($reg_notify_url) ?>"
+         <?= $competitive_is_open ? 'target="_blank" rel="noopener"' : '' ?>><?= $competitive_is_open ? 'Register now →' : 'Get notified →' ?></a>
     </div>
   </div>
+
 </div></section>
 <script>
 (function(){

@@ -135,6 +135,15 @@ header{background:var(--cream);position:relative;z-index:10}
   .cd-clock{gap:7px}
   .cd-cell{flex:1 1 0;min-width:0;padding:11px 2px 8px}
 }
+/* Community Division — open-now banner (homepage, above the Competitive countdown) */
+.reg-live{background:var(--paper);border:1px solid var(--line);border-radius:18px;
+  padding:24px 22px 22px;text-align:center;position:relative;overflow:hidden;margin-bottom:14px}
+.reg-live::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:var(--teal)}
+.reg-live .cd-kicker{color:var(--teal);margin-bottom:6px}
+.reg-live .cta-row{justify-content:center;margin-top:18px}
+/* two division cards on register.php (stack on mobile, side-by-side on wider screens) */
+.reg-divs{display:grid;gap:18px}
+@media(min-width:720px){.reg-divs{grid-template-columns:1fr 1fr}}
 
 /* sponsorship tiers (sponsor.php — rebuilt from the poster as editable HTML) */
 .tiers{display:flex;flex-direction:column;gap:16px}
