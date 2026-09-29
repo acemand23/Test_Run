@@ -217,6 +217,13 @@ header{background:var(--cream);position:relative;z-index:10}
 .lvl-team .sponsor-logo{aspect-ratio:3/2;padding:16px}
 .lvl-inkind .sponsor-wall{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
 .lvl-inkind .sponsor-logo{aspect-ratio:3/2;padding:12px}
+/* Match sponsors — same size as in-kind */
+.lvl-match .sponsor-wall{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+.lvl-match .sponsor-logo{aspect-ratio:3/2;padding:12px}
+/* Name placeholders — shown in the logo slot until a real logo is supplied */
+.sponsor-logo.is-ph{border-style:dashed;border-color:#c9cfd8;background:#fbfaf7}
+.sponsor-ph{font-family:"Archivo",system-ui,sans-serif;font-weight:800;text-transform:uppercase;
+  letter-spacing:.02em;font-size:13px;line-height:1.18;color:#5d6b7a;text-align:center;word-break:break-word}
 .sponsors-past{border:1px solid var(--line);border-radius:16px;background:#fff;padding:16px}
 .sponsors-past img{display:block;width:100%;height:auto;opacity:.6;transition:opacity .3s}
 .sponsors-past:hover img{opacity:1}

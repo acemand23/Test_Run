@@ -2,21 +2,34 @@
   $title='The Big Draw — Volleyball for Good'; $active='home';
 
   /* Sponsors featured on the home page. Add one entry per sponsor as they sign on:
-   *   'name'  — shown as the logo's alt text
-   *   'logo'  — image path, e.g. 'assets/sponsors/acme.png'
+   *   'name'  — shown as the logo's alt text (and as a text placeholder until a logo is added)
+   *   'logo'  — OPTIONAL image path, e.g. 'assets/sponsors/acme.png'. If omitted, the
+   *             sponsor's NAME is shown in the logo slot as a placeholder.
    *   'url'   — optional; wraps the logo in a link to the sponsor's site
-   *   'level' — 'presenting' | 'court' | 'team' | 'inkind'
-   *             controls ORDER (top to bottom) and logo SIZE (presenting largest).
+   *   'level' — 'presenting' | 'court' | 'team' | 'match' | 'inkind'
+   *             controls ORDER (top to bottom) and logo SIZE (presenting largest;
+   *             match + in-kind are the smallest / same size).
    * While empty, the section shows an invitation + "Become a sponsor" CTA. */
   $sponsors = [
-    // ['name'=>'Acme Co.', 'logo'=>'assets/sponsors/acme.png', 'url'=>'https://acme.example', 'level'=>'presenting'],
+    // 2026 sponsors. Logos TBD — the NAME shows as a placeholder until a 'logo' path is added.
+    ['name' => "O'Connell Robertson", 'level' => 'court'],
+    ['name' => 'Interface',           'level' => 'team'],
+    ['name' => 'Steelcase',           'level' => 'team'],
+    ['name' => 'McCoy Rockford',      'level' => 'team'],
+    ['name' => 'Teresa Schock',       'level' => 'team'],
+    ['name' => 'Pump Studios',        'level' => 'team'],
+    ['name' => 'Peach Pollen',        'level' => 'match'],
+    ['name' => 'Digaball',            'level' => 'inkind'],
+    ['name' => 'Aussies',             'level' => 'inkind'],
   ];
 
   // Level display order (top→bottom) + section label. Logo size per level is in css/site.css (.lvl-*).
+  // 'match' is a new package, shown at the same size as in-kind.
   $sponsor_levels = [
     'presenting' => 'Presenting Sponsor',
     'court'      => 'Court Sponsors',
     'team'       => 'Team Sponsors',
+    'match'      => 'Match Sponsors',
     'inkind'     => 'In-Kind Sponsors',
   ];
 
@@ -134,8 +147,11 @@
       <h3 class="sponsor-tier-label"><?= htmlspecialchars($label) ?></h3>
       <div class="sponsor-wall">
         <?php foreach ($group as $s):
-                $img = '<img src="'.htmlspecialchars($s['logo']).'" alt="'.htmlspecialchars($s['name']).'" loading="lazy">'; ?>
-        <div class="sponsor-logo"><?php if (!empty($s['url'])): ?><a href="<?= htmlspecialchars($s['url']) ?>" target="_blank" rel="noopener"><?= $img ?></a><?php else: ?><?= $img ?><?php endif; ?></div>
+                $has_logo = !empty($s['logo']);
+                $mark = $has_logo
+                  ? '<img src="'.htmlspecialchars($s['logo']).'" alt="'.htmlspecialchars($s['name']).'" loading="lazy">'
+                  : '<span class="sponsor-ph">'.htmlspecialchars($s['name']).'</span>'; ?>
+        <div class="sponsor-logo<?= $has_logo ? '' : ' is-ph' ?>"><?php if (!empty($s['url'])): ?><a href="<?= htmlspecialchars($s['url']) ?>" target="_blank" rel="noopener"><?= $mark ?></a><?php else: ?><?= $mark ?><?php endif; ?></div>
         <?php endforeach; ?>
       </div>
     </div>
