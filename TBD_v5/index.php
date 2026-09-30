@@ -14,11 +14,12 @@
     // 2026 sponsors. Logos live in assets/sponsors/. Peach Pollen logo is TBD, so
     // its NAME shows as a placeholder until a 'logo' path is added.
     ['name' => "O'Connell Robertson", 'logo' => 'assets/sponsors/oconnell-robertson.png', 'level' => 'court'],
-    ['name' => 'Interface',           'logo' => 'assets/sponsors/interface.png',          'level' => 'team'],
+    ['name' => 'Interface',           'logo' => 'assets/sponsors/interface.jpg',          'level' => 'team'],
     ['name' => 'Steelcase',           'logo' => 'assets/sponsors/steelcase.png',          'level' => 'team'],
     ['name' => 'McCoy Rockford',      'logo' => 'assets/sponsors/mccoy-rockford.png',     'level' => 'team'],
     ['name' => 'Teri Schock',         'logo' => 'assets/sponsors/teresa-schock.jpg',      'level' => 'team'],
-    ['name' => 'Pump Studios',        'logo' => 'assets/sponsors/pump.png',               'level' => 'team'],
+    // Pump Studios logo TBD — the Drive copy is a bad crop; name placeholder for now.
+    ['name' => 'Pump Studios',        'level' => 'team'],
     ['name' => 'Peach Pollen',        'level' => 'match'],
     ['name' => 'Digaball',            'logo' => 'assets/sponsors/digaball.png',           'level' => 'inkind'],
     ['name' => 'Aussies',             'logo' => 'assets/sponsors/aussies.png',            'level' => 'inkind'],
