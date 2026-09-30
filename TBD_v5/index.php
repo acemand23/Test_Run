@@ -18,8 +18,7 @@
     ['name' => 'Steelcase',           'logo' => 'assets/sponsors/steelcase.png',          'level' => 'team'],
     ['name' => 'McCoy Rockford',      'logo' => 'assets/sponsors/mccoy-rockford.png',     'level' => 'team'],
     ['name' => 'Teri Schock',         'logo' => 'assets/sponsors/teresa-schock.jpg',      'level' => 'team'],
-    // Pump Studios logo TBD — the Drive copy is a bad crop; name placeholder for now.
-    ['name' => 'Pump Studios',        'level' => 'team'],
+    ['name' => 'Pump Studios',        'logo' => 'assets/sponsors/pump.png',               'level' => 'team'],
     ['name' => 'Peach Pollen',        'logo' => 'assets/sponsors/peach-pollen.svg',       'level' => 'match'],
     ['name' => 'Digaball',            'logo' => 'assets/sponsors/digaball.png',           'level' => 'inkind'],
     ['name' => 'Aussies',             'logo' => 'assets/sponsors/aussies.png',            'level' => 'inkind'],
