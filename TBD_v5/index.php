@@ -149,8 +149,15 @@
       <div class="sponsor-wall">
         <?php foreach ($group as $s):
                 $has_logo = !empty($s['logo']);
+                $logo_src = '';
+                if ($has_logo) {
+                    // Append the file's mtime so a swapped logo busts the browser cache.
+                    $logo_src = $s['logo'];
+                    $logo_abs = __DIR__ . '/' . $s['logo'];
+                    if (is_file($logo_abs)) { $logo_src .= '?v=' . filemtime($logo_abs); }
+                }
                 $mark = $has_logo
-                  ? '<img src="'.htmlspecialchars($s['logo']).'" alt="'.htmlspecialchars($s['name']).'" loading="lazy">'
+                  ? '<img src="'.htmlspecialchars($logo_src).'" alt="'.htmlspecialchars($s['name']).'" loading="lazy">'
                   : '<span class="sponsor-ph">'.htmlspecialchars($s['name']).'</span>'; ?>
         <div class="sponsor-logo<?= $has_logo ? '' : ' is-ph' ?>"><?php if (!empty($s['url'])): ?><a href="<?= htmlspecialchars($s['url']) ?>" target="_blank" rel="noopener"><?= $mark ?></a><?php else: ?><?= $mark ?><?php endif; ?></div>
         <?php endforeach; ?>
