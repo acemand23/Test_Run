@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Aussie's — Concept C · Clubhouse 1989</title>
+<link rel="icon" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -27,6 +28,8 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--brass);outline-offs
 header{background:var(--green);color:#fff;position:sticky;top:0;z-index:20}
 header .wrap{display:flex;align-items:center;gap:28px;height:76px}
 .logo{font-family:"Playfair Display";font-weight:800;font-size:28px;line-height:1}
+.logo img{display:block;mix-blend-mode:screen;height:56px;width:auto}
+.strip{margin:0;position:relative;background:var(--green2)}.strip img{display:block;width:100%;height:clamp(200px,30vw,400px);object-fit:cover;object-position:center 35%}.strip figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 22px 14px;background:linear-gradient(transparent,rgba(11,39,29,.85));color:#fff;font-family:"Playfair Display",serif;font-style:italic;font-size:18px;text-align:center}
 .logo small{display:block;font:600 10px "Work Sans";letter-spacing:.3em;text-transform:uppercase;color:var(--brass2);margin-top:4px}
 nav{display:flex;gap:28px;margin-left:auto;font-weight:500;font-size:15px}
 nav a{padding:8px 0;border-bottom:2px solid transparent}nav a:hover{border-color:var(--brass2)}
@@ -98,6 +101,9 @@ table.lg{width:100%;border-collapse:collapse;background:var(--card);border:1px s
 .menu b{display:block;font:700 11px "Work Sans";letter-spacing:.18em;text-transform:uppercase;color:var(--brass2);margin-bottom:8px}
 .menu strong{display:block;font-family:"Playfair Display";font-size:19px;color:#fff;line-height:1.2;margin-bottom:8px}
 .menu .now{background:var(--cream);color:var(--mute)}.menu .now strong{color:var(--ink)}.menu .now b{color:var(--brick)}
+.plates{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}.plates img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid rgba(255,255,255,.25)}
+.visitpic{display:block;width:100%;height:150px;object-fit:cover;margin-top:14px;border:1px solid rgba(255,255,255,.2)}
+@media(max-width:940px){.plates{grid-template-columns:1fr 1fr}}
 .kfoot{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-top:26px;color:#cfdcd4}
 
 footer{background:var(--green2);color:#cfdcd4;padding:60px 0 90px}
@@ -123,7 +129,7 @@ footer{background:var(--green2);color:#cfdcd4;padding:60px 0 90px}
 
 <div class="util"><div class="wrap"><span><b>Open today</b> 11 AM – 12 AM · Courts playable, no rainouts</span><span>306 Barton Springs Rd · <a href="tel:5124800952"><b>512.480.0952</b></a></span></div></div>
 <header><div class="wrap">
-  <a class="logo" href="#top">Aussie's<small>Grill &amp; Beach Bar</small></a>
+  <a class="logo" href="#top"><img src="img/logo-on-black.jpg" alt="Aussie's Grill &amp; Beach Bar" width="235" height="56"></a>
   <nav aria-label="Main"><a href="#leagues">Leagues</a><a href="#tournaments">Tournaments</a><a href="#courts">Courts</a><a href="#kitchen">Kitchen &amp; Bar</a><a href="#visit">Visit</a></nav>
   <a class="btn" href="#">Sign in</a>
 </div></header>
@@ -151,6 +157,8 @@ footer{background:var(--green2);color:#cfdcd4;padding:60px 0 90px}
     <div class="day"><div class="d"><b>05</b><span>Dec</span></div><div><p><span class="tag t">Tournament</span>Trejo's Triples Challenge</p><p>Registration open</p></div></div>
   </aside>
 </div></div>
+
+<figure class="strip"><img src="img/action-sunset.jpg" alt="Evening match on the sand at Aussie's with the patio and palms behind"><figcaption>Evening league play, with the patio a few steps away.</figcaption></figure>
 
 <section id="leagues"><div class="wrap">
   <div class="head"><div><div class="over">Leagues</div><h2>Spring 1 registration</h2></div><p>Coed, six-a-side, recreational. Seven weeks at $525 per team — roughly $12.50 a player each week. Eight teams per session, no more: when you pay, the spot is yours.</p></div>
@@ -186,12 +194,13 @@ footer{background:var(--green2);color:#cfdcd4;padding:60px 0 90px}
 <section class="kitchen" id="kitchen"><div class="wrap">
   <div class="head"><div><div class="over" style="color:var(--brass2)">Kitchen &amp; bar</div><h2>A special for every day of the week</h2></div><p>Fourteen drafts, a full bar and the burger people drive across town for. Happy Hour runs Monday–Friday, 1 to 6.</p></div>
   <div class="menu" id="menu"></div>
+  <div class="plates"><img src="img/burger.jpg" alt="Cheeseburger with seasoned fries" loading="lazy"><img src="img/chicken-plate.jpg" alt="Grilled chicken with rice and broccoli" loading="lazy"><img src="img/tacos-beer.jpg" alt="Chicken tacos with a draft beer" loading="lazy"><img src="img/beer-bucket.jpg" alt="Bucket of iced beers on the bar" loading="lazy"></div>
   <div class="kfoot"><span>Specials are dine-in only, open to close.</span><span><a class="btn" href="#" style="color:var(--brass2)">Read the full menu</a> &nbsp; <a class="btn" href="#visit" style="color:#fff">Plan a party for 10–200</a></span></div>
 </div></section>
 </main>
 
 <footer id="visit"><div class="wrap foot">
-  <div><div class="logo" style="color:#fff">Aussie's<small>Grill &amp; Beach Bar</small></div><p style="margin-top:14px">306 Barton Springs Road<br>Austin, Texas 78704<br><a href="tel:5124800952" style="color:#fff;font-weight:600">512.480.0952</a></p></div>
+  <div><div class="logo" style="color:#fff">Aussie's<small>Grill &amp; Beach Bar</small></div><p style="margin-top:14px">306 Barton Springs Road<br>Austin, Texas 78704<br><a href="tel:5124800952" style="color:#fff;font-weight:600">512.480.0952</a></p><img class="visitpic" src="img/entrance.jpg" alt="The timber entrance pavilion at Aussie's" loading="lazy"></div>
   <div><h4>Hours</h4><ul><li>Mon · 11 AM – 11 PM</li><li>Tue–Fri · 11 AM – 12 AM</li><li>Sat · 10 AM – 12 AM</li><li>Sun · 10 AM – 11 PM</li></ul></div>
   <div><h4>Play</h4><ul><li><a href="#leagues">Leagues</a></li><li><a href="#tournaments">Tournaments</a></li><li><a href="#courts">Court rentals</a></li><li><a href="#">Schedules &amp; standings</a></li></ul></div>
   <div><h4>Visit</h4><ul><li><a href="#">Directions &amp; parking</a></li><li><a href="#">Private events</a></li><li><a href="#">Contact</a></li></ul></div>

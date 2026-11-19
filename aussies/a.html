@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Aussie's — Concept A · Night Game</title>
+<link rel="icon" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -27,22 +28,22 @@ h1,h2,h3,.disp{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacin
 
 header{position:sticky;top:0;z-index:20;background:rgba(10,12,15,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 header .wrap{display:flex;align-items:center;gap:26px;height:68px}
-.logo{font-family:Anton;font-size:28px;letter-spacing:.03em}.logo span{color:var(--gold)}
+.logo{font-family:Anton;font-size:28px;letter-spacing:.03em}.logo span{color:var(--gold)}.logo img{display:block;mix-blend-mode:screen;height:52px;width:auto}
 nav{display:flex;gap:24px;margin-left:auto;font-weight:600;font-size:15px}
 nav a{padding:10px 0;color:var(--mute)}nav a:hover{color:var(--text)}
 header .btn{min-height:42px}
 
 .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);
- background:radial-gradient(900px 500px at 85% -10%,rgba(255,200,31,.22),transparent 60%),radial-gradient(700px 500px at 0% 110%,rgba(255,77,46,.18),transparent 60%),var(--bg)}
+ background:linear-gradient(90deg,rgba(10,12,15,.96) 0%,rgba(10,12,15,.82) 45%,rgba(10,12,15,.45) 100%),linear-gradient(0deg,var(--bg) 0%,transparent 45%),url(img/action-sunset.jpg) center 35%/cover no-repeat,var(--bg)}
 .hero .wrap{padding-top:72px;padding-bottom:40px;position:relative}
 .hero h1{font-size:clamp(54px,10.5vw,148px)}
 .hero h1 em{font-style:normal;color:var(--gold)}
 .hero p{max-width:560px;color:var(--mute);font-size:18px;margin:22px 0 0}
-.net{position:absolute;right:-40px;top:30px;width:520px;opacity:.16;pointer-events:none}
+.net{display:none}
 
 /* the three jobs */
 .jobs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px}
-.job{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:10px;min-height:188px;transition:.15s}
+.job{background:rgba(19,23,28,.9);backdrop-filter:blur(4px);border:1px solid var(--line);border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:10px;min-height:188px;transition:.15s}
 .job:hover{transform:translateY(-3px);border-color:var(--gold)}
 .job .n{font-family:Anton;color:var(--gold);font-size:15px;letter-spacing:.1em}
 .job h3{font-size:32px}
@@ -95,6 +96,8 @@ section{padding:76px 0;border-bottom:1px solid var(--line)}
 .slot.x{background:transparent;color:#5d6773;cursor:not-allowed;border-style:dashed}
 .sum{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line);flex-wrap:wrap}
 
+.ph{display:block;width:calc(100% + 44px);max-width:none;margin:-22px -22px 16px;height:200px;object-fit:cover;border-radius:10px 10px 0 0}
+.shot{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:10px;border:1px solid var(--line);margin-top:18px}
 /* food */
 .days{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
 .days button{min-height:44px;padding:0 16px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--mute);font:600 14px Inter;cursor:pointer}
@@ -131,7 +134,7 @@ footer{padding:56px 0 110px}
 </div></div>
 
 <header><div class="wrap">
-  <a class="logo" href="#top">AUSSIE'<span>S</span></a>
+  <a class="logo" href="#top"><img src="img/logo-on-black.jpg" alt="Aussie's Grill &amp; Beach Bar" width="218" height="52"></a>
   <nav aria-label="Main">
     <a href="#leagues">Leagues</a><a href="#tournaments">Tournaments</a><a href="#courts">Courts</a><a href="#food">Food &amp; Drink</a><a href="#visit">Visit</a>
   </nav>
@@ -159,7 +162,7 @@ footer{padding:56px 0 110px}
       <ul class="rows"><li><span>Court 1 · Jim vs Tristan</span><span>6:30</span></li><li><span>Court 2 · Palm vs Mike</span><span>6:30</span></li><li><span>Court 1 · Brian vs Robbie</span><span>7:30</span></li><li><span>Court 2 · Erik vs Jeff</span><span>7:30</span></li></ul>
       <p class="note"><a href="#leagues" style="color:var(--gold);font-weight:700">Full schedule &amp; standings →</a></p></div>
     <div class="cell"><div class="eyebrow">On special</div><h3 id="b-title">Thursday</h3><ul class="rows" id="b-list"></ul></div>
-    <div class="cell"><div class="eyebrow">On the screens</div><h3>14 HD screens</h3>
+    <div class="cell"><img class="ph" src="img/bar-screens.jpg" alt="The bar at Aussie's with games on four screens" loading="lazy"><div class="eyebrow">On the screens</div><h3>14 HD screens</h3>
       <ul class="rows"><li><span>NFL Sunday Ticket</span><span>Sun</span></li><li><span>NBA League Pass</span><span>Nightly</span></li><li><span>NCAA &amp; MLB packages</span><span>In season</span></li></ul>
       <p class="note">Don't see your team? Call 512.480.0952.</p></div>
   </div>
@@ -190,6 +193,7 @@ footer{padding:56px 0 110px}
     <div class="eyebrow">Court rentals</div><h2 style="font-size:clamp(38px,5.6vw,64px);margin-top:8px">Grab a court</h2>
     <div class="rates"><div class="rate"><b>$20</b><div>per hour · Mon–Thu</div></div><div class="rate"><b>$30</b><div>per hour · Fri–Sun</div></div></div>
     <p style="color:var(--mute)">Courts open at 9 AM. League and tournament times are blocked out automatically, so what you see is what's free. Big group or a whole weekend day? Call 512.480.0952.</p>
+    <img class="shot" src="img/courts-play.jpg" alt="Players on the sand courts seen from the patio, umbrellas in the foreground" loading="lazy">
   </div>
   <div class="picker" aria-label="Court availability (sample)">
     <div class="head" style="margin-bottom:14px"><h3 style="font-size:26px">Fri, Nov 20</h3><span class="pill">$30 / hour</span></div>
@@ -203,9 +207,9 @@ footer{padding:56px 0 110px}
   <div class="days" role="tablist" id="days"></div>
   <div class="special"><div><div class="eyebrow" id="s-day">Thursday</div><h3 id="s-food">$11.99 Broiled Pork Chop</h3></div><ul id="s-drinks"></ul></div>
   <div class="food">
-    <div class="cell"><h3>Burgers</h3><p style="color:var(--mute);margin:0">The finest in Austin, plus sandwiches, tacos, chops and salads.</p></div>
-    <div class="cell"><h3>14 drafts</h3><p style="color:var(--mute);margin:0">Full bar, cold pitchers, house margaritas.</p></div>
-    <div class="cell"><h3>Parties 10–200</h3><p style="color:var(--mute);margin:0">Luncheons, fundraisers and team nights. <a href="#visit" style="color:var(--gold)">Ask us →</a></p></div>
+    <div class="cell"><img class="ph" src="img/burger-bacon.jpg" alt="Bacon jalapeño cheeseburger with hand-cut fries" loading="lazy"><h3>Burgers</h3><p style="color:var(--mute);margin:0">The finest in Austin, plus sandwiches, tacos, chops and salads.</p></div>
+    <div class="cell"><img class="ph" src="img/beer-bucket.jpg" alt="Bucket of iced beers on the bar" loading="lazy"><h3>14 drafts</h3><p style="color:var(--mute);margin:0">Full bar, cold pitchers, house margaritas.</p></div>
+    <div class="cell"><img class="ph" src="img/tacos-beer.jpg" alt="Plate of chicken tacos with a draft beer" loading="lazy"><h3>Parties 10–200</h3><p style="color:var(--mute);margin:0">Luncheons, fundraisers and team nights. <a href="#visit" style="color:var(--gold)">Ask us →</a></p></div>
   </div>
   <p style="margin-top:22px"><a class="btn" href="#">See the full menu</a></p>
 </div></section>
