@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Aussie's — Concept C · Clubhouse 1989</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--green:#103528;--green2:#0b271d;--cream:#fbf6ea;--card:#fffdf7;--ink:#1c211e;--mute:#5d665f;--brass:#b8891b;--brass2:#e2bd5a;--brick:#a8402a;--line:#ddd3bd}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font:16.5px/1.6 "Work Sans",system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:800;line-height:1.05;margin:0}
+em{font-family:"Playfair Display",serif;font-style:italic;font-weight:600}
+.over{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brass)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;font-weight:600;border:1.5px solid currentColor;border-radius:2px;letter-spacing:.02em;transition:.15s}
+.btn.go{background:var(--brick);border-color:var(--brick);color:#fff}.btn.go:hover{background:#8e3421}
+.btn:hover{background:rgba(0,0,0,.05)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+
+.util{background:var(--green2);color:#cfdcd4;font-size:13.5px}
+.util .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.util b{color:var(--brass2);font-weight:600}
+header{background:var(--green);color:#fff;position:sticky;top:0;z-index:20}
+header .wrap{display:flex;align-items:center;gap:28px;height:76px}
+.logo{font-family:"Playfair Display";font-weight:800;font-size:28px;line-height:1}
+.logo small{display:block;font:600 10px "Work Sans";letter-spacing:.3em;text-transform:uppercase;color:var(--brass2);margin-top:4px}
+nav{display:flex;gap:28px;margin-left:auto;font-weight:500;font-size:15px}
+nav a{padding:8px 0;border-bottom:2px solid transparent}nav a:hover{border-color:var(--brass2)}
+header .btn{min-height:42px;color:var(--brass2)}
+
+/* hero: story left, this week right */
+.hero{background:var(--green);color:#fff;padding:54px 0 78px;background-image:radial-gradient(700px 380px at 12% 0,rgba(226,189,90,.16),transparent 65%)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:start}
+.hero h1{font-size:clamp(46px,6.4vw,88px)}
+.hero h1 em{color:var(--brass2)}
+.hero p.lead{font-size:19px;color:#cfdcd4;max-width:520px;margin:22px 0 28px}
+.todo{list-style:none;margin:0;padding:0;border-top:1px solid rgba(255,255,255,.2)}
+.todo a{display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:center;padding:18px 4px;border-bottom:1px solid rgba(255,255,255,.2);transition:.15s}
+.todo a:hover{background:rgba(255,255,255,.06);padding-left:12px}
+.todo .no{font-family:"Playfair Display";font-style:italic;color:var(--brass2);font-size:22px}
+.todo b{font-family:"Playfair Display";font-size:25px;font-weight:800;display:block;line-height:1.15}
+.todo span{color:#b9c9bf;font-size:15px}.todo i{font-style:normal;color:var(--brass2);font-size:22px}
+
+.week{background:var(--card);color:var(--ink);border-radius:4px;padding:26px 26px 12px;box-shadow:0 18px 40px rgba(0,0,0,.28);border-top:5px solid var(--brass)}
+.week h2{font-size:27px;margin:6px 0 14px}
+.day{display:grid;grid-template-columns:54px 1fr;gap:14px;padding:13px 0;border-top:1px solid var(--line)}
+.day .d{text-align:center}.day .d b{display:block;font-family:"Playfair Display";font-size:25px;line-height:1}
+.day .d span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.day p{margin:0;font-size:15px}.day p+p{color:var(--mute)}
+.day.now{background:#f6edd6;margin:0 -26px;padding-left:26px;padding-right:26px}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:2px;margin-right:6px;color:#fff;background:var(--green)}
+.tag.t{background:var(--brick)}.tag.f{background:var(--brass);color:#1c211e}
+
+section{padding:84px 0}
+.rule{border-top:1px solid var(--line)}
+.head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:36px}
+.head h2{font-size:clamp(36px,4.8vw,58px);margin-top:10px}
+.head p{color:var(--mute);margin:0}
+
+/* leagues table */
+table.lg{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line)}
+.lg th{text-align:left;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);padding:14px 20px;border-bottom:2px solid var(--ink)}
+.lg td{padding:18px 20px;border-bottom:1px solid var(--line);vertical-align:middle}
+.lg td:first-child{font-family:"Playfair Display";font-weight:800;font-size:23px}
+.dots{display:flex;gap:5px}.dots i{width:14px;height:14px;border-radius:50%;background:var(--green)}.dots i.o{background:transparent;border:1.5px solid var(--green)}
+.lg small{display:block;color:var(--mute);font-size:13px;margin-top:4px}
+.lg .btn{min-height:44px;padding:0 18px}
+.fine{color:var(--mute);font-size:14px;margin-top:14px}
+
+/* split: tournaments + courts */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.panel{background:var(--card);border:1px solid var(--line);padding:32px;display:flex;flex-direction:column}
+.panel h2{font-size:38px;margin:10px 0 8px}.panel>p{color:var(--mute);margin:0 0 18px}
+.ev{display:grid;grid-template-columns:84px 1fr auto;gap:16px;align-items:center;padding:16px 0;border-top:1px solid var(--line)}
+.ev .d b{display:block;font-family:"Playfair Display";font-size:30px;line-height:1;color:var(--brick)}
+.ev .d span{white-space:nowrap;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.ev h3{font-size:21px}.ev p{margin:2px 0 0;color:var(--mute);font-size:14.5px}
+.ev a{font-weight:600;color:var(--brick);min-height:44px;display:inline-flex;align-items:center;white-space:nowrap}
+.rates{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);margin-bottom:18px}
+.rates div{padding:18px}.rates div+div{border-left:1px solid var(--line)}
+.rates b{font-family:"Playfair Display";font-size:44px;line-height:1;display:block;color:var(--green)}
+.times{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.times button{min-height:46px;border:1.5px solid var(--green);background:transparent;color:var(--green);font:600 15px "Work Sans";border-radius:2px;cursor:pointer}
+.times button[aria-pressed=true]{background:var(--green);color:#fff}
+.times button:disabled{border-color:var(--line);color:#a9a595;cursor:not-allowed;text-decoration:line-through}
+.sum{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px}
+
+/* kitchen */
+.kitchen{background:var(--green);color:#fff}
+.kitchen .head p{color:#cfdcd4}
+.menu{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid rgba(255,255,255,.25)}
+.menu div{padding:18px 14px;border-left:1px solid rgba(255,255,255,.25);font-size:14px;color:#cfdcd4}
+.menu div:first-child{border:0}
+.menu b{display:block;font:700 11px "Work Sans";letter-spacing:.18em;text-transform:uppercase;color:var(--brass2);margin-bottom:8px}
+.menu strong{display:block;font-family:"Playfair Display";font-size:19px;color:#fff;line-height:1.2;margin-bottom:8px}
+.menu .now{background:var(--cream);color:var(--mute)}.menu .now strong{color:var(--ink)}.menu .now b{color:var(--brick)}
+.kfoot{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-top:26px;color:#cfdcd4}
+
+footer{background:var(--green2);color:#cfdcd4;padding:60px 0 90px}
+.foot{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:30px}
+.foot h4{font:700 11px "Work Sans";letter-spacing:.2em;text-transform:uppercase;color:var(--brass2);margin:0 0 12px}
+.foot p{margin:0}.foot ul{list-style:none;margin:0;padding:0}.foot li{padding:3px 0}
+.mock{position:fixed;left:12px;bottom:12px;z-index:30;background:#000;color:#cfdcd4;font-size:12px;padding:6px 10px;border-radius:3px}
+.mock a{color:var(--brass2)}
+
+@media(max-width:940px){
+ nav{display:none}header .btn{margin-left:auto}
+ .hero .wrap,.head,.split,.foot{grid-template-columns:1fr}.head{gap:12px}
+ .menu{grid-template-columns:1fr}.menu div{border-left:0;border-top:1px solid rgba(255,255,255,.25)}
+ section{padding:58px 0}.hero{padding:40px 0 56px}
+ .lg thead{display:none}.lg tr{display:grid;grid-template-columns:1fr 1fr;padding:14px 6px;border-bottom:1px solid var(--line)}
+ .lg td{border:0;padding:6px 14px}.lg td:last-child{grid-column:1/-1}.lg td:last-child .btn{width:100%}
+ .times{grid-template-columns:repeat(3,1fr)}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="util"><div class="wrap"><span><b>Open today</b> 11 AM – 12 AM · Courts playable, no rainouts</span><span>306 Barton Springs Rd · <a href="tel:5124800952"><b>512.480.0952</b></a></span></div></div>
+<header><div class="wrap">
+  <a class="logo" href="#top">Aussie's<small>Grill &amp; Beach Bar</small></a>
+  <nav aria-label="Main"><a href="#leagues">Leagues</a><a href="#tournaments">Tournaments</a><a href="#courts">Courts</a><a href="#kitchen">Kitchen &amp; Bar</a><a href="#visit">Visit</a></nav>
+  <a class="btn" href="#">Sign in</a>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap">
+  <div>
+    <div class="over" style="color:var(--brass2)">Est. 1989 · Austin, Texas</div>
+    <h1>The neighborhood grill <em>with sand in its shoes.</em></h1>
+    <p class="lead">Thirty-seven years of burgers, ballgames and beach volleyball under the Barton Springs oaks.</p>
+    <ul class="todo">
+      <li><a href="#leagues"><span class="no">i.</span><div><b>Join a league</b><span>Coed 6s, Monday–Thursday · 8 spots open</span></div><i>→</i></a></li>
+      <li><a href="#tournaments"><span class="no">ii.</span><div><b>Enter a tournament</b><span>Next: Trejo's Triples, Saturday Dec 5</span></div><i>→</i></a></li>
+      <li><a href="#courts"><span class="no">iii.</span><div><b>Reserve a court</b><span>From $20 an hour, open from 9 AM</span></div><i>→</i></a></li>
+      <li><a href="#kitchen"><span class="no">iv.</span><div><b>Come eat</b><span id="h-special">Today: $11.99 Broiled Pork Chop</span></div><i>→</i></a></li>
+    </ul>
+  </div>
+  <aside class="week" aria-label="This week at Aussie's">
+    <div class="over">The week ahead</div><h2>This week at Aussie's</h2>
+    <div class="day now"><div class="d"><b>19</b><span>Thu</span></div><div><p><span class="tag">League</span>Fall 2 · first serve 6:30</p><p>$11.99 pork chop · $3 off pitchers</p></div></div>
+    <div class="day"><div class="d"><b>20</b><span>Fri</span></div><div><p><span class="tag f">Open courts</span>Rentals 9 AM – close</p><p>$9.99 fish &amp; chips · $1 off margaritas</p></div></div>
+    <div class="day"><div class="d"><b>21</b><span>Sat</span></div><div><p><span class="tag f">Open courts</span>Rentals 9 AM – close</p><p>College football on 14 screens</p></div></div>
+    <div class="day"><div class="d"><b>22</b><span>Sun</span></div><div><p><span class="tag f">Open courts</span>NFL Sunday Ticket</p><p>$5 Bloody Marys &amp; mimosas</p></div></div>
+    <div class="day"><div class="d"><b>23</b><span>Mon</span></div><div><p><span class="tag">League</span>Fall 2 Monday session begins</p><p>$9.99 all burgers</p></div></div>
+    <div class="day"><div class="d"><b>05</b><span>Dec</span></div><div><p><span class="tag t">Tournament</span>Trejo's Triples Challenge</p><p>Registration open</p></div></div>
+  </aside>
+</div></div>
+
+<section id="leagues"><div class="wrap">
+  <div class="head"><div><div class="over">Leagues</div><h2>Spring 1 registration</h2></div><p>Coed, six-a-side, recreational. Seven weeks at $525 per team — roughly $12.50 a player each week. Eight teams per session, no more: when you pay, the spot is yours.</p></div>
+  <table class="lg">
+    <thead><tr><th>Night</th><th>Times</th><th>Availability</th><th></th></tr></thead>
+    <tbody>
+      <tr><td>Monday</td><td>6:30 · 7:30 · 8:30<small>Begins March 1</small></td><td><div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i class="o"></i><i class="o"></i><i class="o"></i></div><small>3 of 8 spots open</small></td><td><a class="btn go" href="#">Register a team</a></td></tr>
+      <tr><td>Tuesday</td><td>Early 6:30 · Late 8:30<small>Begins March 2</small></td><td><div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="o"></i></div><small>1 spot open (Late)</small></td><td><a class="btn go" href="#">Register a team</a></td></tr>
+      <tr><td>Wednesday</td><td>6:30 · 7:30 · 8:30<small>Begins March 3</small></td><td><div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><small>Full · waitlist open</small></td><td><a class="btn" href="#">Join the waitlist</a></td></tr>
+      <tr><td>Thursday</td><td>6:30 · 7:30 · 8:30<small>Begins March 4</small></td><td><div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i></div><small>4 of 8 spots open</small></td><td><a class="btn go" href="#">Register a team</a></td></tr>
+    </tbody>
+  </table>
+  <p class="fine">Dates and spot counts are sample data for this mockup. Current players: <a href="#" style="color:var(--brick);font-weight:600">Fall 2 schedules and standings →</a></p>
+</div></section>
+
+<section class="rule" style="padding-top:64px"><div class="wrap split">
+  <div class="panel" id="tournaments">
+    <div class="over">Tournaments</div><h2>On the calendar</h2><p>Registration opens 30 days ahead; refunds until 72 hours before play.</p>
+    <div class="ev"><div class="d"><b>05</b><span>Dec · Sat</span></div><div><h3>Trejo's Triples Challenge</h3><p>Triples · All levels · Prizes for 1st and 2nd</p></div><a href="#">Enter →</a></div>
+    <div class="ev"><div class="d"><b>06</b><span>Dec · Sun</span></div><div><h3>The Jingle Draw</h3><p>Blind draw · Presented by A Teacher's Gift</p></div><a href="#">Enter →</a></div>
+    <div class="ev"><div class="d"><b>07</b><span>Nov · Sat</span></div><div><h3>The Big Draw</h3><p>Benefiting Big Brothers Big Sisters · Final</p></div><a href="#">Results →</a></div>
+    <p style="margin:18px 0 0"><a class="btn" href="#">All tournaments &amp; results</a></p>
+  </div>
+  <div class="panel" id="courts">
+    <div class="over">Court rentals</div><h2>Reserve a court</h2><p>League and tournament hours are already blocked, so anything shown is yours to book.</p>
+    <div class="rates"><div><b>$20</b>per hour · Mon–Thu</div><div><b>$30</b>per hour · Fri–Sun</div></div>
+    <div style="font-weight:600;margin-bottom:10px">Friday, Nov 20 · Court 1</div>
+    <div class="times" id="times"></div>
+    <div class="sum"><span id="sum" style="color:var(--mute)">Choose your hours</span><a class="btn go" href="#">Reserve</a></div>
+  </div>
+</div></section>
+
+<section class="kitchen" id="kitchen"><div class="wrap">
+  <div class="head"><div><div class="over" style="color:var(--brass2)">Kitchen &amp; bar</div><h2>A special for every day of the week</h2></div><p>Fourteen drafts, a full bar and the burger people drive across town for. Happy Hour runs Monday–Friday, 1 to 6.</p></div>
+  <div class="menu" id="menu"></div>
+  <div class="kfoot"><span>Specials are dine-in only, open to close.</span><span><a class="btn" href="#" style="color:var(--brass2)">Read the full menu</a> &nbsp; <a class="btn" href="#visit" style="color:#fff">Plan a party for 10–200</a></span></div>
+</div></section>
+</main>
+
+<footer id="visit"><div class="wrap foot">
+  <div><div class="logo" style="color:#fff">Aussie's<small>Grill &amp; Beach Bar</small></div><p style="margin-top:14px">306 Barton Springs Road<br>Austin, Texas 78704<br><a href="tel:5124800952" style="color:#fff;font-weight:600">512.480.0952</a></p></div>
+  <div><h4>Hours</h4><ul><li>Mon · 11 AM – 11 PM</li><li>Tue–Fri · 11 AM – 12 AM</li><li>Sat · 10 AM – 12 AM</li><li>Sun · 10 AM – 11 PM</li></ul></div>
+  <div><h4>Play</h4><ul><li><a href="#leagues">Leagues</a></li><li><a href="#tournaments">Tournaments</a></li><li><a href="#courts">Court rentals</a></li><li><a href="#">Schedules &amp; standings</a></li></ul></div>
+  <div><h4>Visit</h4><ul><li><a href="#">Directions &amp; parking</a></li><li><a href="#">Private events</a></li><li><a href="#">Contact</a></li></ul></div>
+</div></footer>
+
+<div class="mock">Concept C · Clubhouse 1989 · <a href="index.html">all concepts</a></div>
+
+<script>
+var S=[["Sun","$5 Bloody Marys & Mimosas","$5 margaritas · $1 off Miller Lite & Coors Light"],
+["Mon","$9.99 All Burgers","$1 off Landshark pints · $1 off Blind Squirrel shots"],
+["Tue","$9.99 All Tacos","$1 off BEERita pints · $1 off all tequilas"],
+["Wed","$9.99 Chicken Fried Steak","$1 off Yuengling pints · $1 off Fireball shots"],
+["Thu","$11.99 Broiled Pork Chop","$3 off all pitchers · $6 Vodka / Red Bull"],
+["Fri","$9.99 Fish & Chips or Catfish","$1 off Modelo & Pacifico · $1 off margaritas"],
+["Sat","$5 Bloody Marys & Mimosas","$5 margaritas · $1 off Miller Lite & Coors Light"]];
+var d=new Date().getDay(),order=[1,2,3,4,5,6,0];
+document.getElementById('menu').innerHTML=order.map(function(i){return '<div'+(i===d?' class="now"':'')+'><b>'+S[i][0]+(i===d?' · today':'')+'</b><strong>'+S[i][1]+'</strong>'+S[i][2]+'</div>'}).join('');
+document.getElementById('h-special').textContent='Today: '+S[d][1];
+var t=document.getElementById('times'),n=0,off={"6 PM":1,"7 PM":1,"8 PM":1};
+["9 AM","10 AM","11 AM","12 PM","1 PM","2 PM","3 PM","4 PM","5 PM","6 PM","7 PM","8 PM"].forEach(function(h){
+ var b=document.createElement('button');b.textContent=h;
+ if(off[h]){b.disabled=true;b.title='Tournament play';}
+ else{b.setAttribute('aria-pressed','false');b.onclick=function(){var on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',on);n+=on?1:-1;
+  document.getElementById('sum').textContent=n?n+' hour'+(n>1?'s':'')+' · $'+n*30+' plus tax':'Choose your hours';};}
+ t.appendChild(b);});
+</script>
+</body>
+</html>
